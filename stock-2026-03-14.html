@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股市基金日报 · 2026-03-14</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --bg4:#2d333b;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --red:#f85149; --yellow:#d29922;
+    --purple:#d2a8ff; --orange:#f0883e; --teal:#39d353;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; min-height:100vh; }
+
+  /* Header */
+  .header { background:linear-gradient(135deg,#0d1117 0%,#161b22 100%); border-bottom:1px solid var(--border); padding:40px 20px 30px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#f85149,#d29922,#3fb950,#58a6ff); }
+  .header-back { position:absolute; top:18px; left:20px; color:var(--blue); text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; }
+  .header-back:hover { color:var(--text); }
+  .header-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(240,136,62,.15); border:1px solid rgba(240,136,62,.3); color:var(--orange); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
+  .header h1 { font-size:28px; font-weight:700; margin-bottom:8px; }
+  .header .meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+  .container { max-width:900px; margin:0 auto; padding:32px 16px 60px; }
+
+  /* Section */
+  .section { margin-bottom:40px; }
+  .section-title { font-size:16px; font-weight:700; color:var(--text); margin-bottom:16px; display:flex; align-items:center; gap:10px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .section-title .icon { font-size:20px; }
+
+  /* Index Cards */
+  .index-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; margin-bottom:20px; }
+  .index-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center; }
+  .index-name { font-size:13px; color:var(--muted); margin-bottom:6px; }
+  .index-value { font-size:22px; font-weight:700; margin-bottom:4px; }
+  .index-change { font-size:13px; font-weight:600; padding:2px 10px; border-radius:20px; display:inline-block; }
+  .up { color:var(--red); } .down { color:var(--green); } .flat { color:var(--muted); }
+  .tag-up { background:rgba(248,81,73,.12); border:1px solid rgba(248,81,73,.25); color:var(--red); }
+  .tag-down { background:rgba(63,185,80,.12); border:1px solid rgba(63,185,80,.25); color:var(--green); }
+
+  /* Market Overview */
+  .overview-box { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:20px; }
+  .overview-box p { color:#c9d1d9; line-height:1.9; margin-bottom:10px; }
+  .overview-box p:last-child { margin-bottom:0; }
+  .highlight { color:var(--orange); font-weight:600; }
+  .highlight-up { color:var(--red); font-weight:600; }
+  .highlight-down { color:var(--green); font-weight:600; }
+  .highlight-blue { color:var(--blue); font-weight:600; }
+
+  /* Trend Analysis */
+  .trend-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:600px){ .trend-grid { grid-template-columns:1fr; } }
+  .trend-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:18px; }
+  .trend-card h4 { font-size:14px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .trend-card p { font-size:13px; color:#c9d1d9; line-height:1.8; }
+
+  /* Sector Cards */
+  .sector-list { display:flex; flex-direction:column; gap:16px; }
+  .sector-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  .sector-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg3); }
+  .sector-header-left { display:flex; align-items:center; gap:12px; }
+  .sector-rank { font-size:12px; font-weight:700; color:var(--muted); background:var(--bg4); border-radius:6px; padding:2px 8px; }
+  .sector-name { font-size:16px; font-weight:700; }
+  .sector-tag { font-size:11px; padding:2px 10px; border-radius:20px; font-weight:600; }
+  .tag-hot { background:rgba(248,81,73,.15); border:1px solid rgba(248,81,73,.3); color:var(--red); }
+  .tag-stable { background:rgba(88,166,255,.15); border:1px solid rgba(88,166,255,.3); color:var(--blue); }
+  .tag-growth { background:rgba(63,185,80,.15); border:1px solid rgba(63,185,80,.3); color:var(--green); }
+  .sector-body { padding:18px 20px; }
+  .sector-analysis { font-size:13px; color:#c9d1d9; line-height:1.8; margin-bottom:14px; }
+  .stock-title { font-size:12px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+  .stock-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px; }
+  .stock-item { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:10px 14px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .stock-info { flex:1; min-width:0; }
+  .stock-name { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stock-code { font-size:11px; color:var(--muted); margin-top:1px; }
+  .stock-type { font-size:11px; padding:1px 7px; border-radius:4px; white-space:nowrap; }
+  .type-stock { background:rgba(240,136,62,.1); border:1px solid rgba(240,136,62,.2); color:var(--orange); }
+  .type-etf { background:rgba(88,166,255,.1); border:1px solid rgba(88,166,255,.2); color:var(--blue); }
+
+  /* Disclaimer */
+  .disclaimer { background:rgba(210,153,34,.08); border:1px solid rgba(210,153,34,.25); border-radius:10px; padding:14px 18px; font-size:12px; color:var(--yellow); line-height:1.7; margin-top:32px; }
+
+  /* Footer */
+  .footer { text-align:center; padding:28px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:8px; }
+  .footer a { color:var(--blue); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="header-back" href="index.html">← 返回首页</a>
+  <div class="header-badge">📈 股市基金日报</div>
+  <h1>股市基金日报</h1>
+  <div class="meta">
+    <span>📅 2026年03月14日（周六）</span>
+    <span>·</span>
+    <span>基于2026-03-13收盘数据</span>
+    <span>·</span>
+    <span>深度行情解析 + 十大板块推荐</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 指数概览 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span>主要指数收盘（2026-03-13）</div>
+    <div class="index-grid">
+      <div class="index-card">
+        <div class="index-name">上证指数</div>
+        <div class="index-value down">4095.45</div>
+        <div class="index-change tag-down">▼ 0.81%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">深证成指</div>
+        <div class="index-value down">14280.78</div>
+        <div class="index-change tag-down">▼ 0.65%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">创业板指</div>
+        <div class="index-value down">3310.28</div>
+        <div class="index-change tag-down">▼ 0.22%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">北证50</div>
+        <div class="index-value down">—</div>
+        <div class="index-change tag-down">▼ 1.03%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">沪深两市成交额</div>
+        <div class="index-value" style="font-size:18px;color:var(--blue);">2.40万亿</div>
+        <div class="index-change" style="background:rgba(88,166,255,.1);border:1px solid rgba(88,166,255,.2);color:var(--blue);">缩量约416亿</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">涨跌股数</div>
+        <div class="index-value" style="font-size:16px;">1502涨 / 3828跌</div>
+        <div class="index-change" style="background:rgba(139,148,158,.1);border:1px solid rgba(139,148,158,.2);color:var(--muted);">跌多涨少</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行情深度解析 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔍</span>行情深度解析</div>
+    <div class="overview-box">
+      <p>周五A股三大指数集体收跌，<span class="highlight-up">上证指数失守4100点整数关口</span>，报收4095.45点，创近两周新低。市场全天缩量震荡，两市合计成交约2.40万亿元，较前一日缩量逾400亿元，显示<span class="highlight">多空双方观望情绪明显升温</span>。</p>
+      <p>从个股看，3828只个股下跌，占比超七成，仅1502只上涨。涨停家数68只，跌停22只，结构上跌停数量较本周前几天明显压缩，说明市场恐慌情绪有所收敛，但<span class="highlight-down">整体信心仍显不足</span>。</p>
+      <p>板块方面分化显著：<span class="highlight-blue">食品饮料、银行、化肥、煤化工</span>逆势走强，展现出防御属性资金的避险需求；而<span class="highlight-up">算力租赁、电网设备、小金属、液冷服务器、军工装备</span>等前期强势赛道遭遇明显调整，主力资金阶段性兑现离场迹象较为突出。</p>
+      <p>港股方面，阿里巴巴盘中涨超2%、腾讯维持涨势，<span class="highlight-blue">港股互联网板块相对抗跌</span>，受智能体生态发展和腾讯云大模型API提价双重催化。本周整体（3月2日-6日）主力资金净流出约<span class="highlight-up">2453亿元</span>，能源与公用事业板块为全周少数净流入方向。</p>
+    </div>
+  </div>
+
+  <!-- 趋势研判 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🧭</span>趋势研判与操作展望</div>
+    <div class="trend-grid">
+      <div class="trend-card">
+        <h4>🟡 短期（1-2周）：震荡蓄势</h4>
+        <p>上证4100点破位后，市场短期情绪偏谨慎。成交缩量尚未触及量能底部信号，主力资金仍处净流出状态。关注4050-4080区间能否形成支撑，若缩量守住则反弹可期。<strong>关注英伟达GTC大会</strong>（预计3月下旬），可能成为算力板块反弹催化剂。</p>
+      </div>
+      <div class="trend-card">
+        <h4>🟢 中期（1-3个月）：结构性机会</h4>
+        <p>"十五五"规划开局之年，政策支持力度不减。市场风格或从"科技概念炒作"切换至<strong>业绩兑现+涨价链</strong>双主线。能源电力、消费复苏、实物资产重估（铜铝黄金）方向确定性较强，值得重点布局。</p>
+      </div>
+      <div class="trend-card">
+        <h4>🔴 风险点关注</h4>
+        <p>① 地缘冲突加剧引发全球避险情绪；② 美联储降息节奏不及预期导致流动性收紧；③ 国内经济数据修复偏慢、消费复苏力度不足；④ 算力板块前期涨幅较大，机构兑现压力持续。操作上建议<strong>控制仓位、逢低布局</strong>，避免追高。</p>
+      </div>
+      <div class="trend-card">
+        <h4>🔵 长期（2026全年）：慢牛格局</h4>
+        <p>机构主流观点认为，A股2026年整体呈现<strong>结构性慢牛</strong>。注册制深化后市场资金更聚焦业绩扎实标的，机构占比提升带动价值投资风格回归。全年看好AI应用落地、高端制造出口、新能源装机三大核心赛道的持续景气。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 十大板块推荐 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🏆</span>十大优质板块深度分析 · 个股基金推荐</div>
+    <div class="sector-list">
+
+      <!-- 1. AI算力 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#1</span>
+            <span class="sector-name">🤖 AI算力产业链</span>
+          </div>
+          <span class="sector-tag tag-hot">核心主线</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">AI算力需求爆发是2026年最确定性的产业趋势。随着国内大模型参数量持续增大、智能体应用加速普及，数据中心GPU、光模块、液冷服务器需求呈指数级增长。英伟达GTC大会即将召开，有望释放新一代算力架构信号，国产替代逻辑（海光信息、寒武纪）与全球供应链逻辑（中际旭创、工业富联）双线并进。短期虽有回调压力，但中长期逻辑未变，可逢低分批布局。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">海光信息</div><div class="stock-code">688041.SH · 国产芯片龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">中际旭创</div><div class="stock-code">300308.SZ · 光模块全球龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">工业富联</div><div class="stock-code">601138.SH · AI服务器制造</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">润泽科技</div><div class="stock-code">300442.SZ · 超大规模IDC</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">英维克</div><div class="stock-code">002837.SZ · 液冷散热龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">创业板AI ETF</div><div class="stock-code">159363 · 创业板AI指数</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 算力电力 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#2</span>
+            <span class="sector-name">⚡ 算电协同·新型电力系统</span>
+          </div>
+          <span class="sector-tag tag-hot">最强主线</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">AI数据中心耗电量激增，"算力=电力"已成为2026年市场最强共识之一。算力中心对稳定绿色电力的刚性需求，直接推动电力运营商价值重估。本周中国能建（601868）成交高达174亿元，机构大举建仓，豫能控股累计涨幅达207%。虚拟电厂、储能调峰、绿电交易等细分方向同步受益，是当前最具爆发力的复合赛道。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">中国能建</div><div class="stock-code">601868.SH · 算电协同总承包</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">协鑫能科</div><div class="stock-code">002015.SZ · 虚拟电厂+储能</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">华电能源</div><div class="stock-code">600726.SH · 绿电转型</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">阳光电源</div><div class="stock-code">300274.SZ · 储能逆变器龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">南网能源</div><div class="stock-code">003035.SZ · 虚拟电厂</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">电力ETF</div><div class="stock-code">515790 · 中证电力指数</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 银行 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#3</span>
+            <span class="sector-name">🏦 银行·高股息防御</span>
+          </div>
+          <span class="sector-tag tag-stable">稳健配置</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">银行ETF（512800）近日走出"4连阳"，杭州银行逆市创新高，充分展现银行板块的避险配置价值。中金公司预计2026年银行板块估值有望提升15%-20%，核心逻辑在于：高股息（平均股息率超4%）吸引险资长线配置、政策鼓励国有金融资本布局、低估值（PB<0.7倍）修复空间大。存款利率下行对息差的负面影响正逐步被财富管理业务增长所对冲。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">招商银行</div><div class="stock-code">600036.SH · 零售业务标杆</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">宁波银行</div><div class="stock-code">002142.SZ · 区域经济红利</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">江苏银行</div><div class="stock-code">600919.SH · 成长属性突出</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">杭州银行</div><div class="stock-code">600926.SH · 科创金融特色</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">银行ETF</div><div class="stock-code">512800 · 中证银行指数</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">银行ETF优选</div><div class="stock-code">517900 · 优选银行指数</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 食品饮料 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#4</span>
+            <span class="sector-name">🍷 食品饮料·消费复苏</span>
+          </div>
+          <span class="sector-tag tag-growth">估值洼地</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">食品饮料板块当前PE处于近十年1.76%历史低位分位，安全边际极高。3月13日食品饮料ETF（515710）收涨0.71%，白酒、啤酒、调味品领涨。原材料涨价传导终端提价预期正在形成，叠加"以旧换新"政策带动消费回流，机构认为消费板块悲观预期已充分消化，当前是左侧布局良机。贵州茅台、五粮液等白酒龙头估值回到历史低位，长期配置性价比极高。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">贵州茅台</div><div class="stock-code">600519.SH · 白酒绝对龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">五粮液</div><div class="stock-code">000858.SZ · 高端白酒</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">泸州老窖</div><div class="stock-code">000568.SZ · 次高端弹性大</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">海天味业</div><div class="stock-code">603288.SH · 调味品龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">食品饮料ETF</div><div class="stock-code">515710 · 细分食品指数</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">白酒ETF</div><div class="stock-code">512690 · 中证白酒指数</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 黄金贵金属 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#5</span>
+            <span class="sector-name">🥇 黄金·贵金属避险</span>
+          </div>
+          <span class="sector-tag tag-hot">避险首选</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">黄金价格在2026年持续走强，受美元信用动摇、美联储降息周期开启、全球地缘冲突加剧三重利好驱动。国金证券3月金股报告明确将黄金列入"实物资产重估"核心主线。市场机构预计全年美联储降息节奏若超预期，金价仍有15%-20%上行空间。A股黄金板块跟随国际金价共振，矿业龙头（山东黄金、中金黄金）业绩弹性显著优于黄金ETF。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">山东黄金</div><div class="stock-code">600547.SH · A股黄金龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">中金黄金</div><div class="stock-code">600489.SH · 央企黄金资源</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">赤峰黄金</div><div class="stock-code">600988.SH · 高成长矿企</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">云铝股份</div><div class="stock-code">000807.SZ · 绿电铝/有色龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">黄金ETF</div><div class="stock-code">518880 · 黄金现货指数</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">贵金属ETF</div><div class="stock-code">159562 · 中证贵金属矿业</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 半导体国产替代 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#6</span>
+            <span class="sector-name">💻 半导体·国产替代</span>
+          </div>
+          <span class="sector-tag tag-growth">政策驱动</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">半导体国产替代是"十五五"规划最核心战略部署之一，政策资金（大基金三期）持续加码。海外出口管制倒逼国内企业加速攻克28nm以下制程，设备、材料、设计三个环节机会并存。本轮科技行情从DeepSeek引发的软件侧景气，正逐步传导至硬件算力需求，半导体设计（EDA工具、IP核）、制造设备（刻蚀机、光刻机）、封装测试（先进封装）三条细分链均值得关注。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">中芯国际</div><div class="stock-code">688981.SH · 国内晶圆制造龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">北方华创</div><div class="stock-code">002371.SZ · 半导体设备龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">寒武纪</div><div class="stock-code">688256.SH · 国产AI芯片</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">澜起科技</div><div class="stock-code">688008.SH · 内存接口芯片</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">芯片ETF</div><div class="stock-code">159995 · 中证芯片产业</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">半导体ETF</div><div class="stock-code">512480 · 中证半导体</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. 港股互联网 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#7</span>
+            <span class="sector-name">🌐 港股互联网·AI应用</span>
+          </div>
+          <span class="sector-tag tag-growth">估值修复</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">以腾讯、阿里为代表的港股互联网巨头正在经历AI应用落地的价值重估。腾讯云大幅提高大模型API价格，意味着AI商业化进程加速，云计算收入有望迎来量价双升。阿里巴巴通义系列模型持续迭代，海外云业务高速增长。港股互联网整体估值远低于A股科技股，2026年有望迎来业绩+估值双重修复行情，是配置中国科技最具性价比的方向之一。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">腾讯控股</div><div class="stock-code">00700.HK · 云+游戏+AI应用</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">阿里巴巴</div><div class="stock-code">09988.HK · 云计算+AI平台</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">美团</div><div class="stock-code">03690.HK · 本地生活龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">港股互联网ETF</div><div class="stock-code">513770 · 恒生互联网科技</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">恒生科技ETF</div><div class="stock-code">513130 · 恒生科技指数</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">纳指科技ETF</div><div class="stock-code">159509 · 纳斯达克科技</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. 工业金属 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#8</span>
+            <span class="sector-name">🏭 工业金属·大宗商品</span>
+          </div>
+          <span class="sector-tag tag-stable">周期共振</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">铜、铝、锡等工业金属处于全球制造业复苏周期的核心位置。国金证券3月报告明确将铜铝锡列为"实物资产重估"主线首选。AI算力数据中心建设、新能源汽车扩产、输电线路升级改造均是铜需求强驱动力。供给端受矿山品位下降、南美政治风险影响，中长期供不应求逻辑坚实。铜价在美联储降息预期下弱美元环境中更具上涨弹性。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">紫金矿业</div><div class="stock-code">601899.SH · 铜金矿业龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">铜陵有色</div><div class="stock-code">000630.SZ · 铜冶炼龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">云铝股份</div><div class="stock-code">000807.SZ · 绿电铝龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">荣盛石化</div><div class="stock-code">002493.SZ · 民营炼化龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">有色金属ETF</div><div class="stock-code">512400 · 中证有色金属</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">铜产业ETF</div><div class="stock-code">159690 · 中证铜产业</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. 机器人 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#9</span>
+            <span class="sector-name">🦾 人形机器人·高端制造</span>
+          </div>
+          <span class="sector-tag tag-growth">前沿赛道</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">人形机器人是2026年最具长期想象空间的前沿赛道。特斯拉Optimus量产节奏明显超预期，国内宇树、智元、傅利叶等本土品牌加速追赶，产业链核心零部件（减速器、空心杯电机、传感器、伺服系统）国产化进程加速。工信部、科技部联合出台支持政策，多省市纳入战略新兴产业重点培育。中期看1-2年内商业化落地（工厂场景）将带来订单兑现，龙头公司业绩拐点可期。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">绿的谐波</div><div class="stock-code">688017.SH · 谐波减速器龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">汇川技术</div><div class="stock-code">300124.SZ · 伺服系统领军</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">三花智控</div><div class="stock-code">002050.SZ · 精密零件供应商</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">博众精工</div><div class="stock-code">688097.SH · 机器人装配系统</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">机器人ETF</div><div class="stock-code">562500 · 中证机器人</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">工业母机ETF</div><div class="stock-code">159667 · 中证工业母机</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. 医药创新 -->
+      <div class="sector-card">
+        <div class="sector-header">
+          <div class="sector-header-left">
+            <span class="sector-rank">#10</span>
+            <span class="sector-name">💊 创新药·医疗健康</span>
+          </div>
+          <span class="sector-tag tag-stable">长期配置</span>
+        </div>
+        <div class="sector-body">
+          <p class="sector-analysis">医药板块经历两年深度调整后，正在迎来政策边际改善与创新业绩双重催化。国产创新药BD出海（授权海外药企）已成为核心增长逻辑，信达生物、百济神州等企业里程碑收入持续兑现。医疗器械国产替代加速，高值耗材集采影响逐步消化。老龄化社会加速带来医疗需求长期增长，GLP-1减重药、ADC抗癌药、mRNA疫苗等前沿方向全球需求旺盛，中国企业正加速卡位。</p>
+          <div class="stock-title">推荐标的</div>
+          <div class="stock-grid">
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">恒瑞医药</div><div class="stock-code">600276.SH · 创新药龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">信达生物</div><div class="stock-code">01801.HK · BD出海领军</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">迈瑞医疗</div><div class="stock-code">300760.SZ · 医疗器械龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">药明康德</div><div class="stock-code">603259.SH · CXO龙头</div></div><span class="stock-type type-stock">个股</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">创新药ETF</div><div class="stock-code">159992 · 中证创新药</div></div><span class="stock-type type-etf">ETF</span></div>
+            <div class="stock-item"><div class="stock-info"><div class="stock-name">医疗ETF</div><div class="stock-code">512170 · 中证医疗</div></div><span class="stock-type type-etf">ETF</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end sector-list -->
+  </div>
+
+  <!-- 免责声明 -->
+  <div class="disclaimer">
+    ⚠️ 风险提示：本报告所有内容均基于公开资讯整理，仅供参考学习，不构成任何投资建议。股市有风险，投资需谨慎。文中提及的任何个股和基金均不代表推荐买入或卖出，投资者需结合自身风险承受能力，在专业机构指导下独立做出投资决策。
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 每日 08:00 更新 &nbsp;·&nbsp; <a href="index.html">查看所有报告 →</a>
+</div>
+
+</body>
+</html>
