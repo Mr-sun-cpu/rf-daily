@@ -3,67 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>射频芯片日报 · 归档</title>
+<title>每日科技调研报告</title>
 <style>
   :root {
     --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
     --border:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --blue:#58a6ff; --green:#3fb950; --purple:#d2a8ff;
+    --blue:#58a6ff; --green:#3fb950; --purple:#d2a8ff; --orange:#f0883e;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; min-height:100vh; }
 
   .header { background:linear-gradient(135deg,#0d1117,#161b22); border-bottom:1px solid var(--border); padding:36px 20px 28px; position:relative; overflow:hidden; text-align:center; }
-  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--purple),var(--green)); }
+  .header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--purple),var(--green),var(--orange)); }
   .header-badge { display:inline-block; background:rgba(88,166,255,.15); border:1px solid rgba(88,166,255,.3); color:var(--blue); font-size:12px; padding:3px 12px; border-radius:20px; margin-bottom:14px; }
   .header h1 { font-size:26px; font-weight:700; margin-bottom:8px; }
   .header p { color:var(--muted); font-size:14px; }
 
-  .container { max-width:680px; margin:0 auto; padding:32px 16px; }
+  .container { max-width:720px; margin:0 auto; padding:32px 16px; }
 
-  .section-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:600; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  .section-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:600; margin:28px 0 14px; display:flex; align-items:center; gap:8px; }
   .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
 
   .report-list { display:flex; flex-direction:column; gap:10px; }
-  .report-item { display:flex; align-items:center; justify-content:space-between; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px 18px; text-decoration:none; color:var(--text); transition:border-color .2s, background .2s; }
-  .report-item:hover { border-color:var(--blue); background:var(--bg3); }
+  .report-item { display:flex; align-items:center; justify-content:space-between; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px 18px; text-decoration:none; color:var(--text); transition:border-color .2s,background .2s; }
+  .report-item:hover { background:var(--bg3); }
+  .report-item.rf:hover   { border-color:var(--blue); }
+  .report-item.ev:hover   { border-color:var(--green); }
   .report-item-left { display:flex; align-items:center; gap:14px; }
-  .report-date-badge { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .report-info {}
+  .report-date-badge { font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .badge-rf { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); }
+  .badge-ev { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.25);  color:var(--green); }
   .report-title { font-size:15px; font-weight:600; margin-bottom:3px; }
   .report-sub { font-size:13px; color:var(--muted); }
   .report-arrow { color:var(--muted); font-size:18px; flex-shrink:0; }
-  .report-item:hover .report-arrow { color:var(--blue); }
 
-  .empty { text-align:center; color:var(--muted); padding:48px 0; font-size:14px; }
-
-  .footer { text-align:center; padding:32px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:16px; }
+  .footer { text-align:center; padding:32px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:8px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-badge">📡 射频芯片领域动态</div>
-  <h1>射频芯片日报</h1>
-  <p>每日自动更新 · WorkBuddy 智能调研</p>
+  <div class="header-badge">🔬 每日科技调研</div>
+  <h1>科技调研日报</h1>
+  <p>WorkBuddy 智能调研 · 每日自动更新</p>
 </div>
 
 <div class="container">
-  <div class="section-label">📋 历史报告</div>
-  <div class="report-list">
 
-    <a class="report-item" href="2026-03-14.html">
+  <div class="section-label">⚡ 新能源电动车</div>
+  <div class="report-list">
+    <a class="report-item ev" href="ev-2026-03-14.html">
       <div class="report-item-left">
-        <div class="report-date-badge">2026-03-14</div>
+        <div class="report-date-badge badge-ev">2026-03-14</div>
         <div class="report-info">
-          <div class="report-title">射频芯片日报 · 2026-03-14</div>
-          <div class="report-sub">高通X105 · 北大6G全频段芯片 · 太赫兹4.8Tbps · 国产替代</div>
+          <div class="report-title">新能源电动车日报 · 2026-03-14</div>
+          <div class="report-sub">比亚迪夺纯电全球销冠 · 问界M9年改 · 固态电池三代路线图 · 15款新车速递</div>
         </div>
       </div>
       <div class="report-arrow">›</div>
     </a>
-
   </div>
+
+  <div class="section-label">📡 射频芯片</div>
+  <div class="report-list">
+    <a class="report-item rf" href="2026-03-14.html">
+      <div class="report-item-left">
+        <div class="report-date-badge badge-rf">2026-03-14</div>
+        <div class="report-info">
+          <div class="report-title">射频芯片日报 · 2026-03-14</div>
+          <div class="report-sub">高通X105 · 北大6G全频段芯片 · 太赫兹4.8Tbps · 国产替代加速</div>
+        </div>
+      </div>
+      <div class="report-arrow">›</div>
+    </a>
+  </div>
+
 </div>
 
 <div class="footer">
