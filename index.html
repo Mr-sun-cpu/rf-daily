@@ -41,6 +41,7 @@
   .report-card.cat-stock:hover { border-color:var(--orange); }
   .report-card.cat-ev:hover    { border-color:var(--green); }
   .report-card.cat-rf:hover    { border-color:var(--blue); }
+  .report-card.cat-gaas:hover  { border-color:var(--purple); }
 
   .card-left { display:flex; align-items:center; gap:14px; flex:1; min-width:0; }
   .date-pill { font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; white-space:nowrap; flex-shrink:0; }
@@ -48,6 +49,7 @@
   .pill-stock { background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.3); color:var(--orange); }
   .pill-ev    { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.3);  color:var(--green); }
   .pill-rf    { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.3); color:var(--blue); }
+  .pill-gaas  { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.3); color:var(--purple); }
 
   .card-info { flex:1; min-width:0; }
   .card-title { font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px; }
@@ -68,7 +70,7 @@
     <span>·</span>
     <span>⏰ 每天 08:00 自动更新</span>
     <span>·</span>
-    <span>📂 4 个栏目</span>
+    <span>📂 5 个栏目</span>
   </div>
 </div>
 
@@ -90,7 +92,11 @@
     <div class="stat-label">射频芯片</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">4</div>
+    <div class="stat-num" style="color:var(--purple)">1</div>
+    <div class="stat-label">GaAs MMIC</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
     <div class="stat-label">报告总数</div>
   </div>
 </div>
@@ -172,6 +178,34 @@
           <div class="card-info">
             <div class="card-title">新能源电动车日报 · 2026-03-14</div>
             <div class="card-sub">比亚迪夺纯电全球销冠 · 问界M9年改 · 固态电池三代路线图 · 15款新车速递</div>
+          </div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- GaAs MMIC -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-title">
+        <span class="cat-icon">🔬</span>
+        <div>
+          <div class="cat-name">GaAs MMIC 前沿技术追踪</div>
+          <div class="cat-desc">市场动态 · 新技术方向 · 前沿论文 · 芯片设计深析</div>
+        </div>
+      </div>
+      <span class="cat-count">1 篇</span>
+    </div>
+    <div class="report-list">
+      <a class="report-card cat-gaas" href="gaas-2026-03-14.html">
+        <div class="card-left">
+          <div class="date-pill pill-gaas">03-14</div>
+          <div class="card-info">
+            <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-14</div>
+            <div class="card-sub">芯谷微三款新品 · 100GHz+突破 · 六大应用赛道 · 设计方法深析</div>
           </div>
         </div>
         <span class="card-arrow">›</span>
