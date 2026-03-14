@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日实时新政日报 · 2026-03-15</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --yellow:#d29922; --orange:#f0883e; --green:#3fb950;
+    --blue:#58a6ff; --purple:#d2a8ff; --red:#f85149;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  .header { background:linear-gradient(160deg,#0d1117 0%,#1a1200 100%); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--yellow),var(--orange),var(--red)); }
+  .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
+  .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+
+  .nav-back { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); }
+  .nav-back:hover { color:var(--blue); }
+
+  .container { max-width:800px; margin:0 auto; padding:32px 16px 60px; }
+  .section { margin-bottom:36px; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .section-icon { font-size:20px; }
+  .section-title { font-size:17px; font-weight:700; }
+  .section-badge { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+  .badge-hot { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
+  .badge-policy { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
+  .badge-int { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
+  .badge-ent { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
+
+  .news-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:12px; transition:all .2s; }
+  .news-card:hover { background:var(--bg3); border-color:var(--yellow); }
+  .news-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; line-height:1.5; }
+  .news-card p { font-size:14px; color:#c9d1d9; line-height:1.8; }
+  .news-tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin-bottom:8px; }
+  .tag-breaking { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
+  .tag-policy { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
+  .tag-intl { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
+  .tag-ent { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
+  .tag-tech { background:rgba(63,185,80,.12); color:var(--green); border:1px solid rgba(63,185,80,.3); }
+
+  .analysis-box { background:linear-gradient(135deg,rgba(210,153,34,.06),rgba(240,136,62,.04)); border:1px solid rgba(210,153,34,.2); border-radius:12px; padding:20px 22px; margin-top:24px; }
+  .analysis-box h4 { color:var(--yellow); font-size:14px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+  .analysis-box p { font-size:14px; color:#c9d1d9; line-height:1.9; }
+
+  .summary-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+  .sum-item { flex:1; min-width:140px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-align:center; }
+  .sum-num { font-size:22px; font-weight:800; margin-bottom:4px; }
+  .sum-label { font-size:12px; color:var(--muted); }
+
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:20px; }
+</style>
+</head>
+<body>
+
+<a class="nav-back" href="index.html">← 返回首页</a>
+
+<div class="header">
+  <div class="badge">📰 每日实时新政</div>
+  <h1>每日实时新政日报</h1>
+  <div class="header-meta">
+    <span>📅 2026年3月15日 · 星期日</span>
+    <span>·</span>
+    <span>⏰ 08:00 自动生成</span>
+    <span>·</span>
+    <span>🔥 两会闭幕后首个周末</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="summary-bar">
+    <div class="sum-item">
+      <div class="sum-num" style="color:var(--red)">3</div>
+      <div class="sum-label">国内头条</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num" style="color:var(--yellow)">4</div>
+      <div class="sum-label">重大政策</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num" style="color:var(--blue)">3</div>
+      <div class="sum-label">国际动态</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num" style="color:var(--purple)">3</div>
+      <div class="sum-label">娱乐头条</div>
+    </div>
+  </div>
+
+  <!-- 国内头条 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <span class="section-title">国内头条</span>
+      <span class="section-badge badge-hot">Breaking</span>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-breaking">头条</span>
+      <h3>两会圆满闭幕，"十五五"规划正式批准，开局之年定调高质量发展</h3>
+      <p>3月12日，十四届全国人大四次会议在北京人民大会堂圆满闭幕。大会批准了政府工作报告、《国民经济和社会发展第十五个五年规划纲要》，通过了《生态环境法典》《民族团结进步促进法》《国家发展规划法》等多部重要法律。"十五五"规划明确2026—2030年发展主线：以科技创新引领现代化产业体系建设，推动新质生产力加快发展。国务院常务会议随即召开，讨论通过《国务院2026年重点工作分工方案》，部署全面落实两会各项决议。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-policy">政策</span>
+      <h3>王毅外长记者会："元首外交是中国外交定盘星"，表态台湾问题不可退让</h3>
+      <p>3月8日，外交部长王毅在两会记者会上就国际形势、中美关系、台湾问题、"一带一路"建设等热点作出系统性表态。王毅强调，面对当前乱象丛生的国际局势，中国坚持以元首外交为战略引领，以合作代替对抗。在台湾问题上，他明确表示"实现祖国完全统一不可阻挡"，将持续推进两岸融合发展。同时，王毅对中美经贸磋商保持审慎乐观，呼吁美方展现诚意。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-tech">科技</span>
+      <h3>国家脑机接口医疗器械首批获批上市，中国脑科学产业进入临床元年</h3>
+      <p>国家药监局本周正式批准首批脑机接口医疗器械上市许可，涵盖两款侵入式脑机接口系统，主要用于重度肢体残障患者的运动功能康复。这标志着中国脑机接口产业迈入规模化临床应用阶段。业内人士认为，此次获批将带动脑机接口产业链全面提速，预计2030年国内市场规模将突破500亿元。相关A股概念股（脑虎科技、神经元科技等）已提前反应，主力资金持续流入。</p>
+    </div>
+  </div>
+
+  <!-- 重大政策 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <span class="section-title">重大政策解读</span>
+      <span class="section-badge badge-policy">政策</span>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-policy">十五五</span>
+      <h3>【深度】"十五五"规划六大核心主线全解析</h3>
+      <p>刚批准的"十五五"规划纲要以2026—2030年为周期，明确六大核心主线：<br>
+      ①<strong>新质生产力</strong>：人工智能、量子计算、生物制造列为前沿突破方向；<br>
+      ②<strong>科教兴国</strong>：基础研究经费占全社会研发支出比例提升至15%以上；<br>
+      ③<strong>扩大内需</strong>：居民消费率争取每年提高1个百分点；<br>
+      ④<strong>绿色转型</strong>：单位GDP碳排放量较2020年下降50%；<br>
+      ⑤<strong>共同富裕</strong>：城乡居民收入差距持续缩小，基尼系数降至0.44以内；<br>
+      ⑥<strong>安全发展</strong>：粮食、能源、金融、数据等领域安全底线全面筑牢。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-policy">资本市场</span>
+      <h3>上交所回应两会：四大举措推动科创板改革，打通"硬科技"上市快速通道</h3>
+      <p>上交所于3月10日宣布，围绕"十五五"科技战略，将从四方面深化改革：一是研究储备支持科技创新企业融资的政策工具包；二是优化科创板上市标准，降低硬科技企业盈利门槛；三是推出科技板块ETF新品种，引导中长期资金入市；四是加强与国家重点实验室、高校科研机构的战略联动，推动"科技成果—产业化—上市"全链路畅通。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-policy">生态环保</span>
+      <h3>《生态环境法典》正式通过：首部系统性绿色法典，环保监管迈入新纪元</h3>
+      <p>两会通过的《生态环境法典》是中国首部综合性生态环境法律，整合原有20余部单行法，构建"预防—保护—修复—惩处"全链条制度体系。法典明确：碳排放纳入法律约束、企业ESG信披强制化、生态环境损害赔偿制度全面落地。环保、新能源、碳排放权交易市场将迎来深度调整，高污染行业合规成本大幅上升。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-policy">消费</span>
+      <h3>2026年"消费促进年"政策包落地：家电以旧换新补贴扩围，覆盖新能源汽车</h3>
+      <p>国务院常务会议通过《2026年扩大内需专项行动方案》，将新能源汽车纳入以旧换新国家补贴范围，购车最高可享1.2万元财政补贴；家电补贴扩大至智能家居全品类；数字消费券发放规模达500亿元，重点覆盖电商、文旅、餐饮三大领域。业界预计此轮刺激政策将拉动社零增速提升0.8—1.2个百分点。</p>
+    </div>
+  </div>
+
+  <!-- 国际动态 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <span class="section-title">国际动态</span>
+      <span class="section-badge badge-int">国际</span>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-intl">国际</span>
+      <h3>中美经贸磋商在巴黎举行，双方就关税调整与科技出口管制展开密集谈判</h3>
+      <p>中美两国本周在巴黎举行新一轮高层经贸磋商。中方由国务院副总理率队，美方由财政部长带队。此次谈判聚焦三大核心议题：关税对等减让机制、半导体及AI芯片出口管制的豁免安排、农产品与能源贸易扩大。据悉双方在关税分阶段调整方案上已接近原则性共识，但在先进制程芯片管制上仍存在分歧。下一轮磋商预计4月在北京举行。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-intl">地缘</span>
+      <h3>乌克兰停火协议谈判取得阶段进展，欧美俄乌四方在日内瓦框架下推进</h3>
+      <p>日内瓦框架下，乌克兰停火谈判本周取得阶段性进展。欧盟、美国、俄罗斯及乌克兰代表已就"停火线冻结方案"达成初步框架，但领土归属、战后重建资金来源及北约安全保障机制仍是关键分歧点。当前战线基本稳定于2025年底形成的态势。国际油价因地缘缓和预期下跌2.3%，布伦特原油跌至每桶74美元附近。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-intl">科技</span>
+      <h3>OpenAI发布GPT-5，推理能力对标博士级，全球AI竞赛再度升温</h3>
+      <p>OpenAI宣布推出GPT-5系列，新模型在MMLU、GPQA等权威评测中超越现有最优水平，数学推理、代码生成、复杂逻辑分析等核心能力达到博士生平均水平。与此同时，谷歌DeepMind加速推进Gemini Ultra 2.0的部署，中国国内百度、智谱、深度求索等厂商亦加快发布对标产品。全球AI大模型军备竞赛进入"能力跃升"新阶段，算力、数据、人才争夺愈发激烈。</p>
+    </div>
+  </div>
+
+  <!-- 娱乐头条 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🎬</span>
+      <span class="section-title">娱乐圈头条</span>
+      <span class="section-badge badge-ent">娱乐</span>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-ent">影视</span>
+      <h3>国产科幻大片《流浪地球3》宣布启动拍摄，郭帆执导，预计2028年上映</h3>
+      <p>导演郭帆在社交媒体宣布《流浪地球3》正式立项并进入筹备拍摄阶段，预计将于2026年下半年开机，2028年贺岁档上映。影片将以地球抵达比邻星系为核心背景，探讨人类文明在星际移民后的命运抉择。全球累计票房超60亿元的系列IP再度引发广泛期待，相关电影、文旅衍生品概念股受到资本关注。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-ent">音乐</span>
+      <h3>华语乐坛震动：周杰伦宣布全球巡演"MoMo Tour"，首站上海5月开票</h3>
+      <p>周杰伦工作室官方宣布，2026年全球巡演"MoMo Tour"正式启动，预计覆盖亚洲、北美、欧洲等30个城市。上海首站演唱会票务5月18日正式开售，网传内场票价区间为2800—5800元。此消息一出，各大票务平台预约人数瞬间突破数百万，再度引发"周杰伦演唱会经济"热议。</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag tag-ent">综艺</span>
+      <h3>《披荆斩棘》第五季官宣，多位"哥哥"回归，AI演唱会技术引发版权争议</h3>
+      <p>芒果TV宣布《披荆斩棘》第五季正式立项，多位上届参与者传出回归消息，预计暑期档播出。与此同时，本周娱乐圈热议话题还包括：某平台利用AI技术"复活"已故歌手举办虚拟演唱会引发强烈争议，国家版权局已表示将研究AI娱乐内容的专项监管框架，明星肖像权保护问题进入立法视野。</p>
+    </div>
+  </div>
+
+  <!-- 深度分析 -->
+  <div class="analysis-box">
+    <h4>📊 深度分析：两会后A股与宏观政策走向研判</h4>
+    <p>随着2026年全国两会圆满落幕，"十五五"规划正式批准落地，市场进入政策预期兑现阶段。从历史规律看，两会闭幕后两周内A股往往经历"政策驱动行情消化期"。本届两会最大的增量信息在于：①<strong>新质生产力</strong>写入规划纲要具体量化目标，AI、脑机接口、量子计算、低空经济等赛道获得政策背书；②<strong>消费刺激</strong>力度超预期，新能源汽车补贴续期+家电以旧换新升级，利好消费链；③<strong>资本市场改革</strong>加速，科创板优化+长期资金入市机制完善，中长线资金有望持续流入。短期需关注美联储3月议息会议（本周四）及国际地缘局势边际变化。</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 2026-03-15 08:00 &nbsp;·&nbsp; 数据来源：新华社、人民网、央视、环球网等权威媒体
+</div>
+
+</body>
+</html>
