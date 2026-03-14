@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新能源电动车日报 · 2026-03-14</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --orange:#f0883e;
+    --purple:#d2a8ff; --red:#f78166; --yellow:#e3b341;
+    --teal:#39d353;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; padding-bottom:48px; }
+
+  .header { background:linear-gradient(135deg,#0d1117 0%,#0d2137 100%); border-bottom:1px solid var(--border); padding:28px 20px 24px; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,var(--green),var(--teal),var(--blue)); }
+  .back-link { display:inline-flex; align-items:center; gap:6px; color:var(--blue); text-decoration:none; font-size:13px; margin-bottom:14px; opacity:.8; }
+  .back-link:hover { opacity:1; }
+  .header-badge { display:inline-block; background:rgba(63,185,80,.15); border:1px solid rgba(63,185,80,.3); color:var(--green); font-size:12px; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+  .header h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+
+  .nav-pills { display:flex; gap:8px; padding:14px 20px; overflow-x:auto; background:var(--bg2); border-bottom:1px solid var(--border); scrollbar-width:none; }
+  .nav-pills::-webkit-scrollbar { display:none; }
+  .pill { display:inline-flex; align-items:center; gap:5px; padding:5px 14px; border-radius:20px; font-size:13px; white-space:nowrap; text-decoration:none; border:1px solid var(--border); color:var(--muted); background:var(--bg3); transition:all .2s; }
+  .pill:hover { border-color:var(--green); color:var(--green); }
+
+  .container { max-width:800px; margin:0 auto; padding:0 16px; }
+
+  .summary-card { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--green); border-radius:8px; padding:18px; margin:20px 0; }
+  .summary-card .label { font-size:12px; color:var(--green); font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .summary-card p { color:var(--text); line-height:1.8; }
+
+  .section { margin:28px 0; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .section-icon { width:32px;height:32px; border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:16px; flex-shrink:0; }
+  .section-title { font-size:17px; font-weight:600; }
+
+  .cards { display:flex; flex-direction:column; gap:12px; }
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; transition:border-color .2s; }
+  .card:hover { border-color:rgba(63,185,80,.35); }
+  .card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:10px; }
+  .card-name { font-size:15px; font-weight:600; }
+  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:12px; white-space:nowrap; flex-shrink:0; }
+  .tag-blue   { background:rgba(88,166,255,.15);  color:var(--blue);   border:1px solid rgba(88,166,255,.25); }
+  .tag-green  { background:rgba(63,185,80,.15);   color:var(--green);  border:1px solid rgba(63,185,80,.25); }
+  .tag-orange { background:rgba(240,136,62,.15);  color:var(--orange); border:1px solid rgba(240,136,62,.25); }
+  .tag-purple { background:rgba(210,168,255,.15); color:var(--purple); border:1px solid rgba(210,168,255,.25); }
+  .tag-red    { background:rgba(247,129,102,.15); color:var(--red);    border:1px solid rgba(247,129,102,.25); }
+  .tag-yellow { background:rgba(227,179,65,.15);  color:var(--yellow); border:1px solid rgba(227,179,65,.25); }
+  .tag-teal   { background:rgba(57,211,83,.15);   color:var(--teal);   border:1px solid rgba(57,211,83,.25); }
+
+  .card-body { color:var(--muted); font-size:14px; }
+  .card-body li { list-style:none; padding:3px 0 3px 14px; position:relative; }
+  .card-body li::before { content:'·'; position:absolute; left:0; color:var(--green); }
+  .card-body p { margin-top:4px; line-height:1.8; }
+  .hl { color:var(--text); font-weight:500; }
+
+  /* 新车表格 */
+  .car-table-wrap { overflow-x:auto; }
+  .car-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .car-table th { background:var(--bg3); color:var(--muted); font-weight:600; padding:10px 12px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; }
+  .car-table td { padding:10px 12px; border-bottom:1px solid rgba(48,54,61,.6); color:var(--text); vertical-align:top; }
+  .car-table tr:last-child td { border-bottom:none; }
+  .car-table tr:hover td { background:rgba(255,255,255,.02); }
+  .price-badge { display:inline-block; background:rgba(63,185,80,.12); border:1px solid rgba(63,185,80,.25); color:var(--green); padding:2px 8px; border-radius:6px; font-weight:600; font-size:12px; white-space:nowrap; }
+  .type-badge { display:inline-block; font-size:11px; padding:2px 7px; border-radius:10px; white-space:nowrap; }
+  .type-bev   { background:rgba(88,166,255,.12); color:var(--blue);   border:1px solid rgba(88,166,255,.2); }
+  .type-erev  { background:rgba(240,136,62,.12); color:var(--orange); border:1px solid rgba(240,136,62,.2); }
+  .type-phev  { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.2); }
+
+  .trend-list { display:flex; flex-direction:column; gap:10px; }
+  .trend-item { display:flex; align-items:flex-start; gap:14px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .trend-num { width:32px;height:32px; border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; margin-top:2px; }
+  .trend-content .trend-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; }
+  .trend-content .trend-desc  { font-size:13px; color:var(--muted); line-height:1.7; }
+
+  .footer { text-align:center; padding:28px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:36px; }
+  .footer a { color:var(--blue); text-decoration:none; }
+  [id] { scroll-margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="back-link" href="index.html">← 返回报告列表</a>
+  <div class="header-badge">⚡ 新能源电动车动态</div>
+  <h1>新能源电动车日报</h1>
+  <div class="header-meta">
+    <span>📅 2026年3月14日（周六）</span>
+    <span>✍️ WorkBuddy 自动调研</span>
+  </div>
+</div>
+
+<div class="nav-pills">
+  <a class="pill" href="#summary">📋 摘要</a>
+  <a class="pill" href="#market">📊 市场格局</a>
+  <a class="pill" href="#tech">🔬 前沿科技</a>
+  <a class="pill" href="#newcars">🚗 新车速递</a>
+  <a class="pill" href="#trends">📌 五大趋势</a>
+</div>
+
+<div class="container">
+
+  <!-- 今日摘要 -->
+  <div id="summary" class="summary-card">
+    <div class="label">📋 今日摘要</div>
+    <p>比亚迪击败特斯拉夺得2025年全球纯电销冠，吉利新能源跃居全球第二；3月新能源新车密集上市，问界M9年改、腾势Z9 GT、仰望全系同日亮相；中科院院士欧阳明高指出固态电池产业化还需3-5年，当前L2向L4跨越式智驾路线将在2-3年内见分晓；超充"补能大战"全面开打，比亚迪、极氪相继发布兆瓦级超充方案。</p>
+  </div>
+
+  <!-- 一、市场格局 -->
+  <div id="market" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(63,185,80,.15);">📊</div>
+      <div class="section-title">一、市场格局</div>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">比亚迪 · 全球纯电销冠</div><span class="tag tag-green">2025年终局</span></div>
+        <div class="card-body"><ul>
+          <li>2025年全球销量 <span class="hl">460万辆</span>，首次进入全球车企销量前五</li>
+          <li>纯电销量超越特斯拉，荣登 BEV 全球第一</li>
+          <li>全球新能源销量前十车型中，中国品牌 <span class="hl">独占8席</span></li>
+          <li>仰望U9突破纽北7分钟大关，旗舰技术影响力持续提升</li>
+        </ul></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">吉利 · 全球新能源第二</div><span class="tag tag-blue">黑马逆袭</span></div>
+        <div class="card-body"><ul>
+          <li>新能源销量 <span class="hl">168.7万辆</span>，超越特斯拉跃居全球第二</li>
+          <li>2026年1-2月月销量双超比亚迪，车市格局出现新变数</li>
+          <li>极氪、领克、银河多品牌矩阵协同发力</li>
+        </ul></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">特斯拉 · 优势犹存</div><span class="tag tag-orange">承压前行</span></div>
+        <div class="card-body"><ul>
+          <li>上海工厂2月交付 <span class="hl">5.86万台</span>，同比增长 91%</li>
+          <li>Model Y仍是全球前十中唯一上榜外资车型</li>
+          <li>FSD自动驾驶、Supercharger网络、能源业务仍是核心壁垒</li>
+          <li>Cybertruck在北美市场持续放量</li>
+        </ul></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">新势力首破盈利魔咒</div><span class="tag tag-purple">里程碑</span></div>
+        <div class="card-body"><ul>
+          <li>蔚来、零跑、智己等在2025-2026年初首次实现单季盈利</li>
+          <li>小米SU7 Ultra刷新纽北赛道圈速纪录，品牌影响力爆发</li>
+          <li>中国品牌欧洲市场份额飙升，零跑在德国市占率已超1%</li>
+        </ul></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 二、前沿科技 -->
+  <div id="tech" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(88,166,255,.15);">🔬</div>
+      <div class="section-title">二、前沿科技</div>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">固态电池 · 三代路线图</div><span class="tag tag-blue">欧阳明高最新解读</span></div>
+        <div class="card-body">
+          <p style="margin-bottom:10px;">中科院院士欧阳明高在车百会论坛（2026-03-13）发布最新判断：</p>
+          <ul>
+            <li><span class="hl">第一代（2025-2027）</span>：石墨/低硅负极 + 硫化物电解质，能量密度 200-300 Wh/kg</li>
+            <li><span class="hl">第二代（2027-2030）</span>：高硅负极 + 硫化物全固态，目标 400 Wh/kg</li>
+            <li><span class="hl">第三代（2030-2035）</span>：锂负极 + 高电压正极，目标 500 Wh/kg</li>
+            <li>产业化还需 <span class="hl">3-5 年</span>，2026年底有望开始实车测试</li>
+            <li>中国固态电池专利全球占比 <span class="hl">44.1%</span>，超越日韩</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">超充补能大战</div><span class="tag tag-yellow">兆瓦级超充</span></div>
+        <div class="card-body"><ul>
+          <li>比亚迪、极氪等多家车企相继发布 <span class="hl">兆瓦级（1000kW+）</span> 超充方案</li>
+          <li>极氪：5分钟充500km，主流车型快充时间压缩至10分钟内</li>
+          <li>欣旺达 HEV 电池技术突破，支持 5C 快充</li>
+          <li>V2G（车网互动）加速推进，有望实现"0成本用电"</li>
+        </ul></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">智能驾驶 · L2跨越L4</div><span class="tag tag-purple">2-3年见分晓</span></div>
+        <div class="card-body"><ul>
+          <li>欧阳明高：支持 <span class="hl">L2→L4 跨越式</span>路线，对法规政策更友好</li>
+          <li>预计 <span class="hl">2028-2029年</span> L4级自动驾驶技术落地</li>
+          <li>黄仁勋亲测英伟达自动驾驶平台，全程无人工接管</li>
+          <li>华为乾崑 ADS 3.0 已在问界、享界、智界全系落地</li>
+          <li>小鹏 XNGP、理想 Mind GPT 等端到端大模型上车提速</li>
+        </ul></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-name">增程 vs 纯电 · 技术路线大混战</div><span class="tag tag-orange">格局重塑</span></div>
+        <div class="card-body"><ul>
+          <li>小鹏、小米等纯电新势力开始进军增程赛道</li>
+          <li>福特、通用、丰田、大众也在规划增程车型，2026年全面爆发</li>
+          <li>增程综合续航普遍突破 <span class="hl">1200km</span>，里程焦虑近乎消除</li>
+          <li>纯电优势：能效最高，绿电利用率是绿氢汽车的 2 倍</li>
+        </ul></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 三、新车速递 -->
+  <div id="newcars" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(227,179,65,.15);">🚗</div>
+      <div class="section-title">三、3月新车速递（已上市 / 预售）</div>
+    </div>
+    <div class="car-table-wrap">
+      <table class="car-table">
+        <thead>
+          <tr>
+            <th>车型</th>
+            <th>上市/预售</th>
+            <th>类型</th>
+            <th>价格</th>
+            <th>续航（CLTC）</th>
+            <th>核心亮点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>问界 M9 年改款</strong></td>
+            <td>3月4日</td>
+            <td><span class="type-badge type-erev">增程/纯电</span></td>
+            <td><span class="price-badge">47.98-59.98万</span></td>
+            <td>增程290km / 纯电630km</td>
+            <td>华为乾崑ADS 3.0，896线激光雷达版本首发</td>
+          </tr>
+          <tr>
+            <td><strong>尊界 S800 年改款</strong></td>
+            <td>3月4日</td>
+            <td><span class="type-badge type-bev">纯电/增程</span></td>
+            <td><span class="price-badge">70.8-101.8万</span></td>
+            <td>纯电670km / 增程400km</td>
+            <td>旗舰豪华轿车，华为全栈智驾，旋转大屏</td>
+          </tr>
+          <tr>
+            <td><strong>昊铂 A800</strong></td>
+            <td>3月4日</td>
+            <td><span class="type-badge type-erev">增程</span></td>
+            <td><span class="price-badge">18.98-29.98万</span></td>
+            <td>纯电220km / 综合1300km+</td>
+            <td>华为全栈，27寸W-HUD，零百3.5秒，L3级辅助驾驶</td>
+          </tr>
+          <tr>
+            <td><strong>腾势 Z9 GT 全新款</strong></td>
+            <td>3月5日</td>
+            <td><span class="type-badge type-phev">插混/纯电</span></td>
+            <td><span class="price-badge">26.98-36.98万</span></td>
+            <td>插混301km / 纯电最高1036km</td>
+            <td>猎装GT造型，纯电续航全级最长，云辇-X悬挂</td>
+          </tr>
+          <tr>
+            <td><strong>仰望 U7 2026款</strong></td>
+            <td>3月5日</td>
+            <td><span class="type-badge type-phev">PHEV/纯电</span></td>
+            <td><span class="price-badge">65.8-88.8万</span></td>
+            <td>PHEV 300km / 纯电1006km</td>
+            <td>150度超大电池，1000km续航旗舰，四电机全驱</td>
+          </tr>
+          <tr>
+            <td><strong>仰望 U8 2026款</strong></td>
+            <td>3月5日</td>
+            <td><span class="type-badge type-phev">PHEV</span></td>
+            <td><span class="price-badge">100.8万起</span></td>
+            <td>纯电230km</td>
+            <td>超大型越野旗舰，原地掉头，易四方技术</td>
+          </tr>
+          <tr>
+            <td><strong>比亚迪 宋Ultra EV</strong></td>
+            <td>3月5日预售</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">15.5-18.5万</span></td>
+            <td>620-710km</td>
+            <td>天神之眼智驾，猎豹造型，家用主力SUV</td>
+          </tr>
+          <tr>
+            <td><strong>比亚迪 海豹07 EV</strong></td>
+            <td>3月5日</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">16.99-18.99万</span></td>
+            <td>705km</td>
+            <td>240kW电机，天神之眼B，高性价比纯电轿车</td>
+          </tr>
+          <tr>
+            <td><strong>比亚迪 海狮06 EV</strong></td>
+            <td>3月5日</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">15.99-18.98万</span></td>
+            <td>605-710km</td>
+            <td>天神之眼B版可选，刀片电池，高颜值中型SUV</td>
+          </tr>
+          <tr>
+            <td><strong>小鹏 X9 2026款</strong></td>
+            <td>3月2日</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">30.98-36.98万</span></td>
+            <td>665-750km</td>
+            <td>800V超充，5C快充8分钟400km，三排电动折叠，后轮转向</td>
+          </tr>
+          <tr>
+            <td><strong>小鹏 G6 超级增程版</strong></td>
+            <td>3月6日</td>
+            <td><span class="type-badge type-erev">增程</span></td>
+            <td><span class="price-badge">18.68万起</span></td>
+            <td>纯电430km / 综合1704km</td>
+            <td>超长综合续航，XNGP智驾，小鹏首款增程轿跑SUV</td>
+          </tr>
+          <tr>
+            <td><strong>极狐 全新阿尔法S5</strong></td>
+            <td>3月中下旬</td>
+            <td><span class="type-badge type-bev">增程/纯电</span></td>
+            <td><span class="price-badge">11.28-17.38万</span></td>
+            <td>增程230km / 纯电720km</td>
+            <td>华为智驾，11万起入门纯电，性价比突出</td>
+          </tr>
+          <tr>
+            <td><strong>广汽丰田 铂智7</strong></td>
+            <td>3月5日预售</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">15.68-20.98万</span></td>
+            <td>600-710km</td>
+            <td>丰田品质，88kWh大电池，合资纯电家用SUV</td>
+          </tr>
+          <tr>
+            <td><strong>零跑 A10</strong></td>
+            <td>3月26日预售</td>
+            <td><span class="type-badge type-bev">纯电</span></td>
+            <td><span class="price-badge">10万级</span></td>
+            <td>403-505km</td>
+            <td>800V平台，激光雷达，10万级智能化天花板</td>
+          </tr>
+          <tr>
+            <td><strong>岚图 梦想家冠军版</strong></td>
+            <td>3月10日</td>
+            <td><span class="type-badge type-phev">PHEV</span></td>
+            <td><span class="price-badge">31.99万</span></td>
+            <td>纯电235km</td>
+            <td>豪华MPV，三排六座，大屏娱乐生态</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 四、五大趋势 -->
+  <div id="trends" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(227,179,65,.15);">📌</div>
+      <div class="section-title">四、五大核心趋势</div>
+    </div>
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(63,185,80,.2);color:#3fb950;">1</div>
+        <div class="trend-content">
+          <div class="trend-title">增程技术全面主流化</div>
+          <div class="trend-desc">2026年增程赛道进入全面爆发期，纯电新势力、传统豪华品牌、合资车企全部入局，综合续航普遍突破1200km，里程焦虑基本终结。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(88,166,255,.2);color:#58a6ff;">2</div>
+        <div class="trend-content">
+          <div class="trend-title">智能驾驶加速商业化落地</div>
+          <div class="trend-desc">端到端大模型上车提速，华为、小鹏、理想等高阶智驾从城市NOA走向全场景无图覆盖，L4级自动驾驶预计2028-2029年实现商业落地。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(240,136,62,.2);color:#f0883e;">3</div>
+        <div class="trend-content">
+          <div class="trend-title">超充补能进入兆瓦级时代</div>
+          <div class="trend-desc">比亚迪、极氪等主流车企相继发布1000kW+超充方案，5分钟充500km成为新标杆，V2G车网互动逐步从概念走向实用。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(210,168,255,.2);color:#d2a8ff;">4</div>
+        <div class="trend-content">
+          <div class="trend-title">中国品牌全球市场份额持续扩张</div>
+          <div class="trend-desc">比亚迪夺得全球纯电销冠，吉利跃居第二，中国品牌在欧洲市场加速本土化，2026年欧洲市场份额已超15%并持续攀升。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(227,179,65,.2);color:#e3b341;">5</div>
+        <div class="trend-content">
+          <div class="trend-title">固态电池进入工程化验证关键期</div>
+          <div class="trend-desc">2026年第一代半固态/固态电池开始实车测试，全面量产还需3-5年，中国在全球专利占比已达44.1%，抢占未来十年技术制高点。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>本报告由 <strong>WorkBuddy</strong> 自动调研生成 &nbsp;|&nbsp; 数据截至 2026 年 3 月 14 日</p>
+  <p style="margin-top:6px;">来源：新浪财经 / 有驾 / 新出行 / 36氪 / 东车帝 &nbsp;|&nbsp; <a href="index.html">← 查看所有报告</a></p>
+</div>
+
+</body>
+</html>
