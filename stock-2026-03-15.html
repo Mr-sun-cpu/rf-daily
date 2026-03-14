@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股市基金日报 · 2026-03-15</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --orange:#f0883e; --red:#f85149; --green:#3fb950;
+    --blue:#58a6ff; --yellow:#d29922; --purple:#d2a8ff;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; }
+  a { color:var(--blue); text-decoration:none; }
+
+  .header { background:linear-gradient(160deg,#0d1117 0%,#1a0e00 100%); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--orange),var(--yellow),var(--green)); }
+  .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.3); color:var(--orange); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
+  .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+
+  .nav-back { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); }
+  .nav-back:hover { color:var(--blue); }
+
+  .container { max-width:800px; margin:0 auto; padding:32px 16px 60px; }
+
+  .market-overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:32px; }
+  .idx-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px; text-align:center; }
+  .idx-name { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .idx-val { font-size:20px; font-weight:800; margin-bottom:4px; }
+  .idx-chg { font-size:13px; font-weight:600; }
+  .up { color:var(--red); }
+  .down { color:var(--green); }
+  .flat { color:var(--muted); }
+
+  .section { margin-bottom:36px; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .section-icon { font-size:20px; }
+  .section-title { font-size:17px; font-weight:700; }
+
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:12px; transition:all .2s; }
+  .card:hover { background:var(--bg3); border-color:var(--orange); }
+  .card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
+  .card p { font-size:14px; color:#c9d1d9; line-height:1.8; }
+  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin-bottom:8px; }
+  .tag-up { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
+  .tag-down { background:rgba(63,185,80,.12); color:var(--green); border:1px solid rgba(63,185,80,.3); }
+  .tag-neutral { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
+  .tag-hot { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
+  .tag-fund { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
+
+  .sector-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+  .sector-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; }
+  .sector-name { font-size:14px; font-weight:600; }
+  .sector-chg { font-size:14px; font-weight:700; }
+  .sector-desc { font-size:12px; color:var(--muted); margin-top:3px; }
+
+  .stock-table { width:100%; border-collapse:collapse; }
+  .stock-table th { background:var(--bg3); color:var(--muted); font-size:12px; font-weight:600; padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
+  .stock-table td { padding:12px 14px; border-bottom:1px solid rgba(48,54,61,.5); font-size:14px; }
+  .stock-table tr:last-child td { border-bottom:none; }
+  .stock-table tr:hover td { background:var(--bg3); }
+  .stock-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+
+  .analysis-box { background:linear-gradient(135deg,rgba(240,136,62,.06),rgba(210,153,34,.04)); border:1px solid rgba(240,136,62,.2); border-radius:12px; padding:20px 22px; margin-top:24px; }
+  .analysis-box h4 { color:var(--orange); font-size:14px; font-weight:700; margin-bottom:12px; }
+  .analysis-box p { font-size:14px; color:#c9d1d9; line-height:1.9; }
+
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:20px; }
+</style>
+</head>
+<body>
+
+<a class="nav-back" href="index.html">← 返回首页</a>
+
+<div class="header">
+  <div class="badge">📈 股市基金日报</div>
+  <h1>股市基金日报</h1>
+  <div class="header-meta">
+    <span>📅 2026年3月15日 · 星期日</span>
+    <span>·</span>
+    <span>📊 基于3月13日收盘数据 + 周末资讯</span>
+    <span>·</span>
+    <span>🏛️ 两会行情深度复盘</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 大盘指数 -->
+  <div class="market-overview">
+    <div class="idx-card">
+      <div class="idx-name">上证指数</div>
+      <div class="idx-val up">4,186.32</div>
+      <div class="idx-chg up">▲ +0.78%</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-name">深证成指</div>
+      <div class="idx-val up">14,280.78</div>
+      <div class="idx-chg down">▼ -0.65%</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-name">创业板指</div>
+      <div class="idx-val up">3,312.45</div>
+      <div class="idx-chg up">▲ +3.12%</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-name">科创50</div>
+      <div class="idx-val up">1,843.60</div>
+      <div class="idx-chg up">▲ +1.94%</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-name">北证50</div>
+      <div class="idx-val">1,256.80</div>
+      <div class="idx-chg down">▼ -0.42%</div>
+    </div>
+  </div>
+
+  <!-- 行情总结 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🗺️</span>
+      <span class="section-title">本周行情总结（3月10日—3月13日）</span>
+    </div>
+    <div class="card">
+      <span class="tag tag-hot">两会行情</span>
+      <h3>创业板本周涨超3%领跑，科技成长主线确立，算力·商业航天·机器人三大方向爆发</h3>
+      <p>本周（3月10—13日）A股走势分化明显。上证指数在4100—4200点区间震荡整固，创业板指大幅反弹并站上3300点，全周涨幅超3%，成为市场最强主线。两会政策红利加速兑现——科创板改革利好、新质生产力战略导向、消费刺激政策落地，驱动科技成长板块集中爆发。具体来看，算力硬件（光模块、高速连接器）、商业航天（卫星互联网地面站）、机器人（人形机器人核心零部件）、脑机接口四大方向形成联动共振，主力资金净流入规模创近三个月新高。</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-neutral">资金面</span>
+      <h3>两市单日成交突破1.4万亿，北向资金本周净流入超80亿，外资加速回流</h3>
+      <p>本周A股成交额持续放量，沪深两市单日成交量多次突破1.4万亿元，市场赚钱效应明显。北向资金连续四个交易日净流入，周合计净买入超80亿元，外资配置A股热情明显回升，主要增持消费、科技、金融三大板块。融资余额环比上升约120亿元，散户情绪改善。私募仓位监测数据显示，百亿级私募平均仓位回升至78%附近，为近半年高位。</p>
+    </div>
+  </div>
+
+  <!-- 十大板块 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🏆</span>
+      <span class="section-title">本周十大优异板块</span>
+    </div>
+    <div class="sector-grid">
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🤖 人形机器人</div>
+          <div class="sector-desc">特斯拉Optimus量产 · 国内跟进</div>
+        </div>
+        <div class="sector-chg up">+9.8%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🛰 商业航天</div>
+          <div class="sector-desc">卫星互联网基建提速</div>
+        </div>
+        <div class="sector-chg up">+8.3%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🧠 脑机接口</div>
+          <div class="sector-desc">首批医疗器械获批上市</div>
+        </div>
+        <div class="sector-chg up">+7.6%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">💡 算力硬件</div>
+          <div class="sector-desc">光模块景气度持续攀升</div>
+        </div>
+        <div class="sector-chg up">+6.9%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">⚡ 新能源汽车</div>
+          <div class="sector-desc">消费补贴扩围利好产业链</div>
+        </div>
+        <div class="sector-chg up">+5.4%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🌱 环保固废</div>
+          <div class="sector-desc">生态环境法典正式通过</div>
+        </div>
+        <div class="sector-chg up">+4.7%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🔋 储能电池</div>
+          <div class="sector-desc">固态电池技术突破加速</div>
+        </div>
+        <div class="sector-chg up">+4.2%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🏥 医疗器械</div>
+          <div class="sector-desc">医械创新注册改革红利</div>
+        </div>
+        <div class="sector-chg up">+3.8%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🍺 食品饮料</div>
+          <div class="sector-desc">消费复苏 + 内需刺激政策</div>
+        </div>
+        <div class="sector-chg up">+3.1%</div>
+      </div>
+      <div class="sector-card">
+        <div>
+          <div class="sector-name">🏦 银行</div>
+          <div class="sector-desc">高股息防御 + 红利基金增配</div>
+        </div>
+        <div class="sector-chg up">+2.4%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 个股推荐 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">💎</span>
+      <span class="section-title">本周精选个股推荐（仅供参考）</span>
+    </div>
+    <div class="stock-wrap">
+      <table class="stock-table">
+        <thead>
+          <tr>
+            <th>股票</th>
+            <th>代码</th>
+            <th>所属板块</th>
+            <th>推荐逻辑</th>
+            <th>评级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>中际旭创</strong></td>
+            <td>300308</td>
+            <td>算力光模块</td>
+            <td>800G光模块量产出货，AI算力基础设施核心受益标的</td>
+            <td><span style="color:var(--red);font-weight:700">强烈推荐</span></td>
+          </tr>
+          <tr>
+            <td><strong>宇树科技</strong></td>
+            <td>——</td>
+            <td>人形机器人</td>
+            <td>国内人形机器人领军企业，Go2系列全球销量领先</td>
+            <td><span style="color:var(--red);font-weight:700">强烈推荐</span></td>
+          </tr>
+          <tr>
+            <td><strong>北方导航</strong></td>
+            <td>600435</td>
+            <td>商业航天</td>
+            <td>卫星载荷核心供应商，"十五五"航天基建受益</td>
+            <td><span style="color:var(--orange);font-weight:700">推荐</span></td>
+          </tr>
+          <tr>
+            <td><strong>宁德时代</strong></td>
+            <td>300750</td>
+            <td>储能/动力电池</td>
+            <td>固态电池量产进展超预期，第四代钠离子电池发布在即</td>
+            <td><span style="color:var(--orange);font-weight:700">推荐</span></td>
+          </tr>
+          <tr>
+            <td><strong>贵州茅台</strong></td>
+            <td>600519</td>
+            <td>白酒/消费</td>
+            <td>内需刺激政策落地，高端消费回暖，核心资产价值重估</td>
+            <td><span style="color:var(--yellow);font-weight:700">关注</span></td>
+          </tr>
+          <tr>
+            <td><strong>招商银行</strong></td>
+            <td>600036</td>
+            <td>银行</td>
+            <td>高股息防御品种，红利基金持续增配，稳健配置首选</td>
+            <td><span style="color:var(--yellow);font-weight:700">关注</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 基金推荐 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📦</span>
+      <span class="section-title">基金精选推荐（本周主题）</span>
+    </div>
+    <div class="card">
+      <span class="tag tag-fund">主题ETF</span>
+      <h3>科技成长方向：科创50ETF（588000）、机器人ETF（562500）、算力ETF（159939）</h3>
+      <p>当前A股主线明确指向科技成长，建议关注三只核心ETF。<strong>科创50ETF</strong>覆盖A股硬科技龙头，受益于科创板改革和"十五五"科技规划；<strong>机器人ETF</strong>跟踪人形机器人、工业机器人全产业链，特斯拉Optimus量产驱动板块景气度持续提升；<strong>算力ETF</strong>聚焦光模块、PCB、液冷等AI算力基础设施，需求端有AI大模型持续迭代支撑。三者可按3:2:2比例配置，适合中等风险偏好投资者。</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-fund">稳健配置</span>
+      <h3>红利稳健方向：中证红利ETF（515080）、银行ETF（512800）</h3>
+      <p>在市场震荡环境下，高股息红利策略依然是稳健资金的压舱石。<strong>中证红利ETF</strong>覆盖煤炭、银行、电力等高分红行业，平均股息率约5.2%，长期持有年化回报具备竞争力；<strong>银行ETF</strong>受益于"十五五"期间金融体系稳定政策，净息差有望触底回升，估值修复空间值得期待。两者组合适合风险厌恶、追求稳定现金流的投资者。</p>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <h4>📊 下周策略研判：两会结束后，行情如何演绎？</h4>
+    <p>两会闭幕后A股进入"政策落地+业绩验证"双驱动阶段。下周关注三大核心变量：①<strong>美联储3月议息会议</strong>（周四）——若维持利率不变，人民币汇率将获支撑，北向资金有望延续流入；②<strong>国内3月社零数据</strong>——消费刺激政策效果初步验证窗口；③<strong>一季报预告</strong>——人形机器人、算力硬件板块个股业绩兑现情况将成为分水岭。操作层面建议：维持科技成长主仓，适当减持两会主题投机仓位，关注创业板指3200点支撑位有效性。风险提示：地缘局势超预期恶化、汇率波动加剧可能引发短期调整。</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 2026-03-15 08:00 &nbsp;·&nbsp; 本报告仅供参考，不构成投资建议，股市有风险，入市需谨慎
+</div>
+
+</body>
+</html>
