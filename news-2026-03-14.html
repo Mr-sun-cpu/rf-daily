@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日实时新政 · 2026-03-14</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --bg4:#2d333b;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --red:#f85149;
+    --yellow:#d29922; --purple:#d2a8ff; --orange:#f0883e; --teal:#39d353;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; }
+
+  /* Header */
+  .header { background:linear-gradient(160deg,#0d1117,#161b22); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0;left:0;right:0;height:3px; background:linear-gradient(90deg,#f85149,#d29922,#3fb950,#58a6ff,#d2a8ff); }
+  .header-back { position:absolute; top:18px; left:20px; color:var(--blue); text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; }
+  .header-back:hover { color:var(--text); }
+  .header-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
+  .header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; }
+
+  /* Quick Nav */
+  .quick-nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:12px 20px; display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .nav-pill { display:inline-flex; align-items:center; gap:5px; background:var(--bg3); border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-size:12px; color:var(--muted); text-decoration:none; transition:all .2s; white-space:nowrap; }
+  .nav-pill:hover { color:var(--text); border-color:var(--muted); }
+
+  /* Container */
+  .container { max-width:860px; margin:0 auto; padding:32px 16px 60px; }
+
+  /* Section */
+  .section { margin-bottom:40px; }
+  .section-header { display:flex; align-items:center; gap:12px; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .section-icon { font-size:22px; }
+  .section-title { font-size:18px; font-weight:800; }
+  .section-badge { font-size:11px; padding:2px 10px; border-radius:20px; font-weight:600; }
+
+  .badge-danger  { background:rgba(248,81,73,.12);  border:1px solid rgba(248,81,73,.3);  color:var(--red); }
+  .badge-warning { background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); }
+  .badge-info    { background:rgba(88,166,255,.12);  border:1px solid rgba(88,166,255,.3);  color:var(--blue); }
+  .badge-success { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.3);  color:var(--green); }
+  .badge-purple  { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.3); color:var(--purple); }
+
+  /* News Card */
+  .news-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; margin-bottom:14px; overflow:hidden; transition:border-color .2s; }
+  .news-card:hover { border-color:var(--bg4); }
+  .news-card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:18px 20px 14px; }
+  .news-card-title { font-size:15px; font-weight:700; line-height:1.5; flex:1; }
+  .news-tag { font-size:11px; padding:2px 8px; border-radius:6px; white-space:nowrap; flex-shrink:0; margin-top:2px; }
+  .tag-hot    { background:rgba(248,81,73,.12); border:1px solid rgba(248,81,73,.25); color:var(--red); }
+  .tag-policy { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); }
+  .tag-intl   { background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.25); color:var(--yellow); }
+  .tag-tech   { background:rgba(63,185,80,.12); border:1px solid rgba(63,185,80,.25); color:var(--green); }
+  .tag-ent    { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.25); color:var(--purple); }
+  .tag-social { background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.25); color:var(--orange); }
+
+  .news-divider { height:1px; background:var(--border); margin:0 20px; opacity:.6; }
+
+  .news-body { padding:14px 20px 18px; }
+  .news-summary { font-size:13px; color:#c9d1d9; line-height:1.85; margin-bottom:12px; }
+  .news-analysis { background:var(--bg3); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:12px 16px; }
+  .news-analysis-label { font-size:11px; color:var(--yellow); font-weight:700; letter-spacing:.06em; margin-bottom:6px; }
+  .news-analysis-text { font-size:13px; color:#c9d1d9; line-height:1.8; }
+
+  /* Highlight */
+  .hl-red    { color:var(--red);    font-weight:600; }
+  .hl-blue   { color:var(--blue);   font-weight:600; }
+  .hl-green  { color:var(--green);  font-weight:600; }
+  .hl-yellow { color:var(--yellow); font-weight:600; }
+  .hl-purple { color:var(--purple); font-weight:600; }
+  .hl-orange { color:var(--orange); font-weight:600; }
+
+  /* Summary Box */
+  .summary-box { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin-bottom:16px; }
+  .summary-box h3 { font-size:15px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .summary-list { display:flex; flex-direction:column; gap:8px; }
+  .summary-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#c9d1d9; line-height:1.7; }
+  .summary-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:8px; }
+
+  /* Disclaimer */
+  .disclaimer { background:rgba(210,153,34,.07); border:1px solid rgba(210,153,34,.2); border-radius:10px; padding:12px 18px; font-size:12px; color:var(--yellow); line-height:1.7; margin-top:28px; }
+
+  /* Footer */
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:8px; }
+  .footer a { color:var(--blue); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="header-back" href="index.html">← 返回首页</a>
+  <div class="header-badge">📰 每日实时新政</div>
+  <h1>每日实时新政</h1>
+  <div class="header-meta">
+    <span>📅 2026年03月14日（周六）</span>
+    <span>·</span>
+    <span>国内 · 国际 · 政策 · 热点 · 娱乐</span>
+    <span>·</span>
+    <span>深度解析版</span>
+  </div>
+</div>
+
+<div class="quick-nav">
+  <a class="nav-pill" href="#domestic">🇨🇳 国内要闻</a>
+  <a class="nav-pill" href="#policy">📋 重大政策</a>
+  <a class="nav-pill" href="#international">🌍 国际局势</a>
+  <a class="nav-pill" href="#hot">🔥 时事热点</a>
+  <a class="nav-pill" href="#entertainment">🎬 娱乐头条</a>
+</div>
+
+<div class="container">
+
+  <!-- ① 今日速览 -->
+  <div class="section">
+    <div class="summary-box">
+      <h3>⚡ 今日速览 · 不可错过的重点</h3>
+      <div class="summary-list">
+        <div class="summary-item"><div class="summary-dot" style="background:var(--red)"></div><span><strong>中东战火持续升级：</strong>美以对伊朗军事打击进入第14天，伊朗新领袖誓言"复仇"，霍尔木兹海峡趋于封锁，国际油价突破100美元/桶。</span></div>
+        <div class="summary-item"><div class="summary-dot" style="background:var(--blue)"></div><span><strong>"十五五"规划纲要正式发布：</strong>勾勒2026-2030年国家蓝图，GDP增长目标、研发投入年增7%+、人均预期寿命80岁等关键指标首次公布。</span></div>
+        <div class="summary-item"><div class="summary-dot" style="background:var(--green)"></div><span><strong>中美第六轮经贸磋商启动：</strong>何立峰率团赴巴黎，同期美方对华发起301调查，中美经贸关系再度进入博弈敏感期。</span></div>
+        <div class="summary-item"><div class="summary-dot" style="background:var(--yellow)"></div><span><strong>国产脑机接口获批上市：</strong>全球首款侵入式脑机接口医疗器械在华获批，脑机接口从"十五五"规划未来产业走向商业化元年。</span></div>
+        <div class="summary-item"><div class="summary-dot" style="background:var(--purple)"></div><span><strong>娱乐圈：</strong>张慧雯确认加盟《浪姐》、成龙自曝创作告别歌、《金树林·年度女主》角逐白热化，杨紫孙俪杨幂赵露思四强对决。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 国内要闻 -->
+  <div class="section" id="domestic">
+    <div class="section-header">
+      <span class="section-icon">🇨🇳</span>
+      <span class="section-title">国内要闻</span>
+      <span class="section-badge badge-info">5条</span>
+    </div>
+
+    <!-- 1 脑机接口 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">全球首款侵入式脑机接口医疗器械在华获批上市</div>
+        <span class="news-tag tag-tech">科技突破</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">国家药品监督管理局正式批准全球首款侵入式脑机接口医疗器械（<span class="hl-green">手部运动功能代偿系统</span>）上市，填补国际国内临床空白。该产品适用于<span class="hl-blue">脊髓损伤导致的四肢瘫痪患者</span>，通过采集大脑运动皮层神经电信号，经算法解码后驱动外骨骼或功能性电刺激设备，辅助患者实现手部抓握动作。此次获批标志着脑机接口技术正式从实验室走向临床应用，比国际竞争对手（如马斯克旗下Neuralink）更早实现商业化落地。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">"十五五"规划纲要明确将<span class="hl-yellow">脑机接口列为未来产业重点</span>，此次获批堪称政策与产业双共振的标志性节点。中国在脑机接口领域已形成"政策支持+资本驱动+高校院所攻关"三力合一的格局，预计2026年将是国内脑机接口商业化的元年。A股相关概念股（脑机接口ETF、神经调控、半导体传感器方向）短期有望获得市场关注。长期看，脑机接口将深刻改变神经康复、教育增强、人机交互等多个领域。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 北斗升级 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">北斗卫星导航系统将实施在轨升级，在轨卫星达50颗</div>
+        <span class="news-tag tag-tech">航天科技</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">中国北斗卫星导航系统当前在轨运行卫星数量已达<span class="hl-green">50颗</span>，相关部门宣布将开展在轨升级优化工作，重点提升定位精度和抗干扰能力。试验三十号卫星03、04星已于近日成功发射入轨，进一步丰富星座构型。北斗系统目前已全面服务于交通、气象、农业、应急等领域，全球用户规模持续增长。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">北斗系统的持续升级是中国自主可控战略的重要组成部分。在当前地缘政治格局下，对GPS的战略替代意义尤为突出。此次在轨升级将进一步提升北斗在<span class="hl-blue">高精度测量、自动驾驶、低空经济</span>等新兴领域的竞争力。值得关注的是，低空经济（eVTOL、无人机物流）的爆发式增长，正倒逼北斗加速高精度差分定位服务的商业化落地。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 互联网助贷 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">金融监管总局约谈分期乐等5家互联网助贷平台，规范息费披露</div>
+        <span class="news-tag tag-policy">金融监管</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">金融监管总局就互联网助贷业务违规问题，约谈<span class="hl-red">分期乐、奇富借条</span>等5家平台运营机构，要求限期整改：①禁止诱导性、误导性营销；②必须清晰、醒目、完整地向用户披露综合资金成本（年化利率）；③不得将贷款包装成"分期购物"等形式规避监管。近期，"花呗变利率"引发的全网声讨正是此类问题的集中爆发。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">互联网信贷的"小字陷阱"长期是监管痛点。此次约谈是<span class="hl-yellow">金融强监管周期</span>持续深化的信号——从去年整治P2P余波，到今年聚焦助贷乱象，监管层对"消费者金融保护"的力度明显加码。对消费者而言，选择助贷产品时务必查看"年化综合利率"而非"日利率"，两者相差可达数十倍。平台端短期面临整改压力，但长期利好行业规范化发展。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 春运收官 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">2026年春运收官：40天94亿人次跨区域流动创历史新高</div>
+        <span class="news-tag tag-social">民生数据</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">2026年春运（1月26日至3月6日）正式收官，<span class="hl-green">40天内全社会跨区域人员流动量预计达94亿人次</span>，同比增长约6.3%，再创历史新高。其中铁路旅客发送量约9.8亿人次，民航旅客量突破1.2亿人次，公路自驾出行占比首超60%。春节假期延长（除夕纳入法定假日）对春运客流时空分布产生显著影响。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">94亿人次的背后，折射出<span class="hl-blue">中国经济的强劲内生活力</span>。"除夕入假"政策落地首年即显现成效，返乡出行更从容，消费场景更丰富。这一数据对旅游、餐饮、交运板块构成持续利好。值得注意的是，自驾比例首超60%，意味着高速公路收费、ETC覆盖、沿途服务区升级等基础设施需求将持续放大。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 广告整治 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">市场监管总局部署半年专项整治：严打"大字吸睛、小字免责"广告乱象</div>
+        <span class="news-tag tag-policy">市场监管</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">市场监管总局印发通知，自即日起开展为期6个月的广告提示性用语专项整治，重点打击：①主体信息字号比提示语大5倍以上；②促销条件以极小字体标注；③直播间广告口播与屏显内容不一致；④短视频植入广告不标"广告"字样等违规行为。违规平台将被<span class="hl-red">没收违法所得并处罚款</span>，情节严重者吊销营业执照。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">此次整治直指消费者权益保护的核心痛点。随着直播电商、短视频广告爆发，"视觉欺骗"问题愈演愈烈。整治行动将对<span class="hl-yellow">头部MCN机构、电商平台和品牌方</span>形成约束压力，短期可能影响广告投放量；但长期有助于净化营销环境，提升消费者信任，对有真实产品力的品牌反而是利好。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 重大政策 -->
+  <div class="section" id="policy">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <span class="section-title">重大政策</span>
+      <span class="section-badge badge-warning">核心解读</span>
+    </div>
+
+    <!-- 十五五规划 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">【重磅】"十五五"规划纲要正式发布，擘画2026-2030年国家发展蓝图</div>
+        <span class="news-tag tag-policy">国家战略</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">《中华人民共和国国民经济和社会发展第十五个五年规划纲要（2026-2030年）》于3月13日经全国人大批准正式发布，共18篇。核心目标：<span class="hl-yellow">GDP保持合理增长</span>（为2035年人均GDP比2020年翻番奠基）、<span class="hl-green">全社会研发投入年增7%以上</span>、单位GDP碳排放降低17%、劳动年龄人口平均受教育年限提升至11.7年、人均预期寿命达<span class="hl-blue">80岁</span>。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读 · 五大核心看点</div>
+          <div class="news-analysis-text">
+            <strong>① 科技自立自强</strong>：研发投入增速目标（年均7%+）超过GDP增速预期，意味着科技将成为最核心的战略资源投入方向，半导体、AI、量子计算、生物技术将获持续政策红利。<br><br>
+            <strong>② 未来产业布局</strong>：<span class="hl-purple">脑机接口、人形机器人、氢能、量子科技</span>被明确列为"未来产业"重点，标志着这些赛道进入政策确定性通道，相关产业链将迎来加速发展期。<br><br>
+            <strong>③ 新型城镇化</strong>：强调"以人为本"的城镇化，重点推进农业转移人口市民化，户籍制度改革将进一步深化，长三角、粤港澳等核心都市圈持续扩张。<br><br>
+            <strong>④ 绿色转型</strong>：碳达峰目标如期推进，新能源、节能环保、碳汇市场将在五年内持续扩容，绿色金融体系进一步完善。<br><br>
+            <strong>⑤ 民生兜底</strong>：老龄化应对、生育支持、公共卫生体系建设力度加大，养老、普惠托育、社区医疗等领域政策供给将明显增加。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中美经贸磋商 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">第六轮中美经贸磋商在巴黎启动，美方同步对华发起301调查</div>
+        <span class="news-tag tag-intl">中美关系</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">国务院副总理<span class="hl-blue">何立峰</span>率团于3月14日至17日赴法国巴黎，与美方举行第六轮中美经贸磋商，以两国元首釜山会晤共识为基础。与此同时，美国贸易代表办公室以"产能过剩"为由，对包括中国在内的<span class="hl-red">16个经济体启动301调查</span>。中方明确表示：此举为"单边主义行径"，敦促美方回到对话轨道。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">"边谈边打"是当前中美经贸关系的典型特征。巴黎磋商的积极意义在于<span class="hl-green">双方仍保持沟通渠道畅通</span>，但美方同步发起301调查表明其贸易保护立场未变。"产能过剩"指控实质是对中国新能源、电动车、钢铁等出口竞争力的战略性遏制。对A股影响：出口链相关板块（光伏、电动车、锂电）短期面临不确定性，但高端制造、内需消费逻辑不受影响。建议关注磋商结果及后续是否有加征关税动作。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 两会民生建言 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">两会民生建言热点回顾：彩礼限额6万元、养老金提500元、身份证去地址化</div>
+        <span class="news-tag tag-social">民生热点</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">2026年全国两会（3月4日-12日）期间，多项代表建议引爆社会舆论：①全国人大代表建议<span class="hl-yellow">彩礼金额限额不超过6万元</span>（微信视频号最高传播量）；②建议将70岁以上农村老人<span class="hl-green">基础养老金每月提至500元</span>（抖音最高播放量）；③"居民身份证去地址化"话题阅读量破<span class="hl-blue">亿</span>，引发个人信息安全大讨论。民生类议题占两会热搜内容超60%。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">三大议题折射出当代中国社会三个深层焦虑：<span class="hl-red">婚育成本过高抑制生育意愿</span>（彩礼问题）、<span class="hl-yellow">农村老人基本保障不足</span>（养老金问题）、<span class="hl-blue">个人信息在数字时代面临泄露风险</span>（身份证去地址问题）。三项建议目前均处于"代表建议"阶段，进入立法程序仍需时日，但高热度讨论本身就是政策决策的重要民意参考。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 国际局势 -->
+  <div class="section" id="international">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <span class="section-title">国际局势</span>
+      <span class="section-badge badge-danger">紧急关注</span>
+    </div>
+
+    <!-- 中东战争 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">【持续追踪】美以对伊朗战争进入第14天，新领袖誓言复仇，油价突破100美元</div>
+        <span class="news-tag tag-hot">战争警报</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">美以联合对伊朗军事打击3月13日进入第14天。关键进展：①伊朗新任最高领袖<span class="hl-red">穆杰塔巴·哈梅内伊</span>发表就任首次声明，誓言"为每一个被杀害的伊朗人复仇"，并宣布将继续封锁霍尔木兹海峡；②伊朗军方称已摧毁美国在中东地区<span class="hl-red">70%的军事基地</span>；③以军夜间对德黑兰发动大规模空袭；④美国防部长批准向中东增派两栖戒备群；⑤特朗普宣布将于下周对伊朗实施"猛烈空袭"，成本已达<span class="hl-yellow">110亿美元</span>；⑥伊朗约<span class="hl-red">320万人</span>流离失所，联合国紧急呼吁保护平民。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读 · 全球影响评估</div>
+          <div class="news-analysis-text">
+            <strong>能源冲击：</strong>霍尔木兹海峡趋于封锁，全球石油日供应损失逾<span class="hl-red">1000万桶</span>，国际能源署称"史上最大供应扰动"，布伦特原油突破100美元/桶。<br><br>
+            <strong>粮食安全：</strong>全球三分之一尿素需经霍尔木兹运输，正值北半球春耕，化肥价格已飙涨超20%，农业生产成本上升。<br><br>
+            <strong>日本"三杀"：</strong>日本股汇债同步下跌，滞胀担忧加剧，反映地缘风险向全球经济传导的速度。<br><br>
+            <strong>美国内部分裂：</strong>MAGA核心意见领袖倒戈，共和党内部裂痕扩大，特朗普面临执政合法性挑战。<br><br>
+            <strong>中国立场：</strong>中国呼吁停火、支持通过外交手段解决，俄罗斯已制定调解建议。两国在中东局势上的协调对全球秩序影响深远。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 俄乌 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">俄乌问题：佩斯科夫表示希望推进三方会谈，暂无具体日期</div>
+        <span class="news-tag tag-intl">俄乌局势</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">俄罗斯总统新闻秘书<span class="hl-blue">佩斯科夫</span>表示，俄方希望继续推进俄美乌三方会谈，但目前暂无具体时间安排。与此同时，美财政部宣布允许在4月11日前继续销售已装载的俄罗斯原油，显示美方在经济制裁与能源供应之间的微妙平衡。俄乌冲突整体进入战场拉锯与外交试探并行阶段。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">中东战争的爆发在客观上<span class="hl-yellow">稀释了国际社会对俄乌问题的关注度</span>，也使美国的战略资源分散。"允许销售俄油"的豁免期透露出：美国深知中东战争对全球能源的冲击，需要用俄罗斯石油来平抑油价。这给俄方创造了一定外交腾挪空间。三方会谈若能在4月前落地，将是今年最重要的地缘政治事件之一。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 时事热点 -->
+  <div class="section" id="hot">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <span class="section-title">时事热点</span>
+      <span class="section-badge badge-success">全网追踪</span>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">全球新能源赋能中心启航，"光-储-氢"一体化清洁能源网络加速构建</div>
+        <span class="news-tag tag-tech">绿色能源</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">3月13日，全球新能源赋能中心启航仪式举办，重点推动<span class="hl-green">太阳能光伏、储能与氢能三大产业</span>从"单点突破"走向"深度融合"，构建"光-储-氢"一体化清洁能源网络。中国在这三个领域均处于全球领先地位：光伏装机全球第一、储能出货量全球第一、绿氢制备技术快速追赶。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">"光储氢一体化"是解决可再生能源间歇性难题的终极方案。中东战争推高油价，客观上加速了<span class="hl-green">全球能源转型</span>的紧迫性和经济性。对A股投资者而言，这是已确定的超长期主线：阳光电源（储能逆变器）、隆基绿能（光伏）、亿华通（氢燃料电池）等均可关注。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">AI短剧成本管控成两会焦点，人工智能内容监管进入立法讨论阶段</div>
+        <span class="news-tag tag-tech">AI监管</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">两会期间，多位代表委员聚焦<span class="hl-purple">AI短剧的内容质量与版权归属</span>问题，建议出台专项规范：AI生成内容须标注来源、禁止AI换脸用于涉黄涉暴内容、平台需对AI短剧进行二次审核。目前AI短剧制作成本已降至万元级，爆发式增长的同时内容乱象频发，监管层已将此列为2026年重点整治方向之一。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">AI内容监管的立法加速，意味着"<span class="hl-yellow">合规能力</span>"将成为AI短剧平台的核心竞争壁垒。拥有完善内容审核能力的头部平台（快手、抖音、腾讯视频）反而会因监管门槛提升而受益，中小野生平台将被清退。对从事AI内容创作的个人和企业而言，提前了解并遵守"AI标注义务"，是规避法律风险的必要准备。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ 娱乐头条 -->
+  <div class="section" id="entertainment">
+    <div class="section-header">
+      <span class="section-icon">🎬</span>
+      <span class="section-title">娱乐头条</span>
+      <span class="section-badge badge-purple">明星·影视·综艺</span>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">《浪姐》新赛季：张慧雯粉丝接机确认加盟，阵容豪华引爆期待</div>
+        <span class="news-tag tag-ent">综艺热点</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">有粉丝在机场接机时确认<span class="hl-purple">张慧雯</span>已加盟新一季《乘风破浪的姐姐》，消息迅速登上热搜。目前已确认或疑似加盟的艺人包括张慧雯、宋妍霏等多位实力派，业内预测本季将打破以往以流量为主的模式，更聚焦演技与综合舞台实力的竞争。节目预计于2026年二季度播出。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">《浪姐》系列已成为国内综艺最稳定的<span class="hl-purple">IP现金牛</span>，每季均能制造现象级话题。张慧雯近年凭借正剧积累了大量口碑，加盟综艺意在拓宽受众圈层。从商业角度看，本季赞助商竞争极为激烈，<span class="hl-yellow">美妆、服装、饮品</span>等品类厂商已开始提前布局冠名资源。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">金树林年度女主角角逐白热化：杨紫、孙俪、杨幂、赵露思四强对决</div>
+        <span class="news-tag tag-ent">影视颁奖</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">2026年金树林电视剧盛典年度女主角提名揭晓：<span class="hl-purple">杨紫</span>（《国色芳华》）、<span class="hl-purple">孙俪</span>（《蛮好的人生》）、<span class="hl-purple">杨幂</span>（《生万物》）、<span class="hl-purple">赵露思</span>（《许我耀眼》）、吴越（《沉默的荣耀》）五人入围。其中杨紫主演的古装剧《国色芳华》年度话题度最高，孙俪凭现实题材稳扎稳打，赵露思从流量向实力型演员的转型最受业界认可。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">本次提名阵容折射出2026年国产剧两大趋势：<span class="hl-yellow">古装大IP持续是流量密码</span>（杨紫《国色芳华》），而<span class="hl-green">现实题材正在收获口碑与商业双回报</span>（孙俪《蛮好的人生》）。赵露思的"蜕变路线"值得同类演员参考——从单一偶像剧IP出圈，逐步向现实主义题材延伸，完成受众扩圈。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">成龙自曝正在创作"告别歌"，单腿跪地签名现场谈生死感悟</div>
+        <span class="news-tag tag-ent">明星动态</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">成龙在武汉参加活动时，当众单腿跪地为粉丝签名，引发全场感动。他透露目前正在创作一首"告别歌曲"，用以表达对人生的回望与告别，感叹时光飞逝，称"还有很多事想做，想拍的电影还没拍完"。此番言论迅速引发全网关注，粉丝纷纷表达不舍与祝福。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">成龙今年72岁，作为<span class="hl-yellow">华语电影全球传播的最大符号之一</span>，他的每一次公开表态都具有文化层面的象征意义。"告别歌"的创作信号，令人联想到他近年频繁提及的"最后一部动作片"愿望。成龙现象本质上是中国70-80年代草根奋斗精神的投射，这种情感共鸣跨越代际。他未来若正式告别银幕，将是华语电影的一个重要历史节点。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">叶璇转型短剧演婆婆：回应"自降咖位"，称"演员只有角色高下之分"</div>
+        <span class="news-tag tag-ent">演艺生态</span>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <p class="news-summary">前"港剧女神"叶璇近日出演短剧《少夫人来自东北》中的婆婆角色，引发部分网友争议，认为其"自降咖位"。叶璇本人公开回应：<span class="hl-purple">"演员注重的是演技的磨练，而非角色的高低贵贱"</span>，并表示短剧制作节奏快、表演挑战不亚于传统剧，自己乐于尝试新的创作形式。</p>
+        <div class="news-analysis">
+          <div class="news-analysis-label">📌 深度解读</div>
+          <div class="news-analysis-text">叶璇转战短剧折射出行业变局：<span class="hl-yellow">短剧日均播放量已超长剧</span>，头部短剧单集制作费从万元升至百万级，越来越多的传统演员加入。"咖位"争议本质是旧有娱乐业秩序与新媒体生态之间的价值观碰撞——在注意力经济时代，<span class="hl-green">触达用户的能力</span>比"咖位标签"更重要。短剧赛道仍处于快速成长期，是值得持续关注的内容产业新蓝海。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ 本报告内容综合自新浪财经、央视新闻、新华社、同花顺、宁波晚报等公开媒体报道，信息来源均为权威媒体。所有分析解读仅代表信息整合观点，不构成投资建议或法律意见。读者应自行判断信息的适用性，重要决策请以官方渠道为准。
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>WorkBuddy</strong> 每日自动生成 &nbsp;·&nbsp; 每天 08:00 更新 &nbsp;·&nbsp; <a href="index.html">查看所有报告 →</a>
+</div>
+
+</body>
+</html>
