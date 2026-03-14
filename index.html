@@ -27,12 +27,14 @@
   .report-list { display:flex; flex-direction:column; gap:10px; }
   .report-item { display:flex; align-items:center; justify-content:space-between; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px 18px; text-decoration:none; color:var(--text); transition:border-color .2s,background .2s; }
   .report-item:hover { background:var(--bg3); }
-  .report-item.rf:hover   { border-color:var(--blue); }
-  .report-item.ev:hover   { border-color:var(--green); }
+  .report-item.rf:hover     { border-color:var(--blue); }
+  .report-item.ev:hover     { border-color:var(--green); }
+  .report-item.stock:hover  { border-color:var(--orange); }
   .report-item-left { display:flex; align-items:center; gap:14px; }
   .report-date-badge { font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .badge-rf { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); }
-  .badge-ev { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.25);  color:var(--green); }
+  .badge-rf    { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); }
+  .badge-ev    { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.25);  color:var(--green); }
+  .badge-stock { background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.25); color:var(--orange); }
   .report-title { font-size:15px; font-weight:600; margin-bottom:3px; }
   .report-sub { font-size:13px; color:var(--muted); }
   .report-arrow { color:var(--muted); font-size:18px; flex-shrink:0; }
@@ -49,6 +51,20 @@
 </div>
 
 <div class="container">
+
+  <div class="section-label">📈 股市基金</div>
+  <div class="report-list">
+    <a class="report-item stock" href="stock-2026-03-14.html">
+      <div class="report-item-left">
+        <div class="report-date-badge badge-stock">2026-03-14</div>
+        <div class="report-info">
+          <div class="report-title">股市基金日报 · 2026-03-14</div>
+          <div class="report-sub">沪指失守4100点 · 银行食饮抗跌 · 十大板块深度解析 · 个股基金推荐</div>
+        </div>
+      </div>
+      <div class="report-arrow">›</div>
+    </a>
+  </div>
 
   <div class="section-label">⚡ 新能源电动车</div>
   <div class="report-list">
