@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>射频芯片日报 · 2026-03-14</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+    --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+    --blue: #58a6ff; --green: #3fb950; --orange: #f0883e;
+    --purple: #d2a8ff; --red: #f78166; --yellow: #e3b341;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 15px; line-height: 1.7; padding-bottom: 40px; }
+  .header { background: linear-gradient(135deg,#0d1117,#161b22); border-bottom: 1px solid var(--border); padding: 28px 20px 24px; position: relative; overflow: hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--purple),var(--green)); }
+  .header-badge { display:inline-block; background:rgba(88,166,255,.15); border:1px solid rgba(88,166,255,.3); color:var(--blue); font-size:12px; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+  .header h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; color:var(--blue); text-decoration:none; font-size:13px; margin-bottom:14px; }
+  .nav-pills { display:flex; gap:8px; padding:14px 20px; overflow-x:auto; background:var(--bg2); border-bottom:1px solid var(--border); scrollbar-width:none; }
+  .nav-pills::-webkit-scrollbar { display:none; }
+  .pill { display:inline-flex; align-items:center; gap:5px; padding:5px 14px; border-radius:20px; font-size:13px; white-space:nowrap; text-decoration:none; border:1px solid var(--border); color:var(--muted); background:var(--bg3); transition:all .2s; }
+  .pill:hover { border-color:var(--blue); color:var(--blue); }
+  .container { max-width:780px; margin:0 auto; padding:0 16px; }
+  .summary-card { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:8px; padding:18px; margin:20px 0; }
+  .summary-card .label { font-size:12px; color:var(--blue); font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .section { margin:28px 0; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .section-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .section-title { font-size:17px; font-weight:600; }
+  .cards { display:flex; flex-direction:column; gap:12px; }
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; transition:border-color .2s; }
+  .card:hover { border-color:#58a6ff44; }
+  .card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:10px; }
+  .card-name { font-size:15px; font-weight:600; }
+  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:12px; white-space:nowrap; flex-shrink:0; }
+  .tag-blue   { background:rgba(88,166,255,.15);  color:var(--blue);   border:1px solid rgba(88,166,255,.25); }
+  .tag-green  { background:rgba(63,185,80,.15);   color:var(--green);  border:1px solid rgba(63,185,80,.25); }
+  .tag-orange { background:rgba(240,136,62,.15);  color:var(--orange); border:1px solid rgba(240,136,62,.25); }
+  .tag-purple { background:rgba(210,168,255,.15); color:var(--purple); border:1px solid rgba(210,168,255,.25); }
+  .tag-red    { background:rgba(247,129,102,.15); color:var(--red);    border:1px solid rgba(247,129,102,.25); }
+  .tag-yellow { background:rgba(227,179,65,.15);  color:var(--yellow); border:1px solid rgba(227,179,65,.25); }
+  .card-body { color:var(--muted); font-size:14px; }
+  .card-body li { list-style:none; padding:3px 0 3px 14px; position:relative; }
+  .card-body li::before { content:'·'; position:absolute; left:0; color:var(--blue); }
+  .card-body p { margin-top:6px; line-height:1.7; }
+  .highlight { color:var(--text); font-weight:500; }
+  .trend-list { display:flex; flex-direction:column; gap:10px; }
+  .trend-item { display:flex; align-items:center; gap:14px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .trend-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .trend-text { font-size:14px; }
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:32px; }
+  .footer a { color:var(--blue); text-decoration:none; }
+  [id] { scroll-margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="back-link" href="index.html">← 返回报告列表</a>
+  <div class="header-badge">📡 射频芯片领域动态</div>
+  <h1>射频芯片日报</h1>
+  <div class="header-meta">
+    <span>📅 2026年3月14日（周六）</span>
+    <span>✍️ WorkBuddy 自动调研</span>
+  </div>
+</div>
+
+<div class="nav-pills">
+  <a class="pill" href="#summary">📋 摘要</a>
+  <a class="pill" href="#products">🆕 新品发布</a>
+  <a class="pill" href="#tech">🔬 技术突破</a>
+  <a class="pill" href="#enterprise">🏢 企业动态</a>
+  <a class="pill" href="#policy">📜 政策产业链</a>
+  <a class="pill" href="#trends">📌 五大趋势</a>
+</div>
+
+<div class="container">
+
+  <div id="summary" class="summary-card">
+    <div class="label">📋 今日摘要</div>
+    <p>MWC 2026 射频黑科技集中爆发：高通 X105 成全球首款 R19 就绪调制解调器；北大团队在 Nature 发布全球首款 6G 全频段芯片；中国太赫兹传输速率领跑全球；国产替代加速向高端器件突破；多地政府出台 6G 扶持政策。</p>
+  </div>
+
+  <div id="products" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(63,185,80,.15);">🆕</div>
+      <div class="section-title">一、新品发布</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-name">高通 Snapdragon X105</div><span class="tag tag-green">全球首款R19</span></div>
+        <div class="card-body"><ul>
+          <li>全球首款 3GPP R19 就绪调制解调器</li>
+          <li>下行峰值 <span class="highlight">14.8 Gbps</span>，上行 4.2 Gbps</li>
+          <li>6nm 射频工艺，功耗降低 <span class="highlight">30%</span>，占板面积减少 15%</li>
+          <li>内置第五代 AI 处理器，支持卫星直连通话</li>
+          <li>预计 <span class="highlight">2026 年下半年</span>商用</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">华为 U6GHz 256通道 AAU</div><span class="tag tag-blue">5G-A 旗舰</span></div>
+        <div class="card-body"><ul>
+          <li>支持 400MHz 瞬时带宽</li>
+          <li>下行峰值 <span class="highlight">100 Gbps</span>，上行 10 Gbps</li>
+          <li>预计 <span class="highlight">2028 年</span>规模部署</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">中兴 Gigamimo</div><span class="tag tag-purple">6G 预演</span></div>
+        <div class="card-body"><ul>
+          <li>U6G 频段 <span class="highlight">2048 天线阵子</span>原型</li>
+          <li>峰值速率超 <span class="highlight">190 Gbps</span>，容量是 5G-A 的 <span class="highlight">10 倍</span></li>
+          <li>AI 驱动波束优化</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">青岛国数微电子 14nm CMOS</div><span class="tag tag-orange">国产新品</span></div>
+        <div class="card-body"><ul>
+          <li>覆盖 70MHz – 7.125GHz 全频段</li>
+          <li>适用于 5G-A 基站与卫星终端</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">高芯思通 QM-RF2366</div><span class="tag tag-yellow">国产替代</span></div>
+        <div class="card-body"><ul>
+          <li>旗舰级多模宽频 SDR 射频收发芯片，性能媲美 ADI 同类产品</li>
+          <li>预计 <span class="highlight">2026 年 Q2</span> 规模商用</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tech" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(88,166,255,.15);">🔬</div>
+      <div class="section-title">二、学术与技术突破</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-name">北京大学 · Nature</div><span class="tag tag-blue">全球首款</span></div>
+        <div class="card-body"><p>全球首款 <span class="highlight">6G 全频段光电融合集成芯片</span>，由北大王兴军教授团队联合香港城大研制，是 6G 超宽带通信的里程碑。</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">中国太赫兹传输</div><span class="tag tag-green">全球最快</span></div>
+        <div class="card-body"><ul>
+          <li>紫金山实验室：<span class="highlight">1.2 Tbps</span> 实时传输验证（全球速率标杆）</li>
+          <li>国内团队芯片已实现 <span class="highlight">4.8 Tbps</span> 传输能力</li>
+          <li>相当于 1 秒传输 200 部 4K 电影，比 5G 快 100 倍</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">电子科技大学</div><span class="tag tag-purple">相控阵突破</span></div>
+        <div class="card-body"><ul>
+          <li><span class="highlight">32 通道 220GHz</span> 相控阵芯片</li>
+          <li>20 米距离实现 6 Gbps 传输</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">东南大学</div><span class="tag tag-orange">体系构建</span></div>
+        <div class="card-body"><p>发布《6G 太赫兹架构白皮书》，形成从芯片到系统的完整技术体系。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="enterprise" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,136,62,.15);">🏢</div>
+      <div class="section-title">三、企业动态</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-name">卓胜微 &amp; 飞骧科技</div><span class="tag tag-green">量产推进</span></div>
+        <div class="card-body"><ul>
+          <li>X-SIP 模组尺寸缩至 <span class="highlight">4×4mm</span>，良率达 <span class="highlight">85%</span></li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">唯捷创芯</div><span class="tag tag-blue">供应链突破</span></div>
+        <div class="card-body"><ul>
+          <li>5G PA 模组已进入多家主流手机品牌供应链</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">联发科</div><span class="tag tag-purple">互连升级</span></div>
+        <div class="card-body"><p>推出 UCIe-Advanced IP 芯片互连技术，提升数据中心射频互连带宽密度。</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">卫星射频（NTN）</div><span class="tag tag-yellow">新赛道</span></div>
+        <div class="card-body"><p>SpaceX 筹备 IPO，国产射频芯片企业加速布局卫星互联网赛道。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="policy" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(210,168,255,.15);">📜</div>
+      <div class="section-title">四、政策与产业链</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-name">广东省 6G 政策</div><span class="tag tag-purple">省级布局</span></div>
+        <div class="card-body"><p>明确支持超高速光电太赫兹通信、空天地海一体化组网、毫米波有源相控阵等 6G 前沿技术研发。</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">多国战略布局</div><span class="tag tag-blue">全球竞争</span></div>
+        <div class="card-body"><p>多个经济体将射频前端芯片列为关键战略技术，通过专项资金、税收优惠、研发联盟加速本土生态建设。</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">供应链区域化</div><span class="tag tag-orange">产能重构</span></div>
+        <div class="card-body"><p>预计到 <span class="highlight">2028 年</span>，全球射频产能地理分布将明显分散，本土制造产能加速建设。</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-name">出口管制影响</div><span class="tag tag-red">国产加速</span></div>
+        <div class="card-body"><p>美国出口管制持续倒逼国产替代。中芯国际、华虹半导体产能扩张提速。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="trends" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(227,179,65,.15);">📌</div>
+      <div class="section-title">五、五大趋势</div>
+    </div>
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(63,185,80,.2);color:#3fb950;">1</div>
+        <div class="trend-text"><strong>U6GHz</strong> 成 5G-A 到 6G 过渡的核心频段</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(88,166,255,.2);color:#58a6ff;">2</div>
+        <div class="trend-text"><strong>AI 与射频深度融合</strong>，已成行业标配</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(240,136,62,.2);color:#f0883e;">3</div>
+        <div class="trend-text"><strong>太赫兹</strong>从实验室走向预商用，中国全球领跑</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(210,168,255,.2);color:#d2a8ff;">4</div>
+        <div class="trend-text"><strong>国产替代</strong>向 BAW 滤波器等高端器件持续突破</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:rgba(227,179,65,.2);color:#e3b341;">5</div>
+        <div class="trend-text"><strong>卫星射频（NTN）</strong>成射频芯片新增长极</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>本报告由 <strong>WorkBuddy</strong> 自动生成 &nbsp;|&nbsp; 数据截至 2026 年 3 月 14 日</p>
+  <p style="margin-top:6px;"><a href="index.html">← 查看历史报告</a></p>
+</div>
+
+</body>
+</html>
