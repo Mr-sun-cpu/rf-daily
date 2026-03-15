@@ -21,6 +21,8 @@
 
   .stats-bar { display:flex; justify-content:center; gap:28px; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg2); flex-wrap:wrap; }
   .stat-item { text-align:center; }
+  .stat-item a { text-decoration:none; color:inherit; display:block; padding:4px 8px; border-radius:8px; transition:background .15s; }
+  .stat-item a:hover { background:var(--bg3); }
   .stat-num { font-size:20px; font-weight:700; }
   .stat-label { font-size:11px; color:var(--muted); margin-top:1px; }
 
@@ -107,24 +109,34 @@
 
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--yellow)">3</div>
-    <div class="stat-label">每日新政</div>
+    <a href="#cat-news" onclick="openCat('cat-news')">
+      <div class="stat-num" style="color:var(--yellow)">3</div>
+      <div class="stat-label">每日新政</div>
+    </a>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--orange)">3</div>
-    <div class="stat-label">股市基金</div>
+    <a href="#cat-stock" onclick="openCat('cat-stock')">
+      <div class="stat-num" style="color:var(--orange)">3</div>
+      <div class="stat-label">股市基金</div>
+    </a>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--green)">3</div>
-    <div class="stat-label">新能源电动车</div>
+    <a href="#cat-ev" onclick="openCat('cat-ev')">
+      <div class="stat-num" style="color:var(--green)">3</div>
+      <div class="stat-label">新能源电动车</div>
+    </a>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--blue)">3</div>
-    <div class="stat-label">射频芯片</div>
+    <a href="#cat-rf" onclick="openCat('cat-rf')">
+      <div class="stat-num" style="color:var(--blue)">3</div>
+      <div class="stat-label">射频芯片</div>
+    </a>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--purple)">3</div>
-    <div class="stat-label">GaAs MMIC</div>
+    <a href="#cat-gaas" onclick="openCat('cat-gaas')">
+      <div class="stat-num" style="color:var(--purple)">3</div>
+      <div class="stat-label">GaAs MMIC</div>
+    </a>
   </div>
   <div class="stat-item">
     <div class="stat-num">15</div>
@@ -409,6 +421,13 @@
   function toggleCat(id) {
     const el = document.getElementById(id);
     el.classList.toggle('open');
+  }
+  function openCat(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('open');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
   }
 </script>
 
