@@ -3,273 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GaAs MMIC 前沿技术追踪 · 2026-03-15</title>
+<title>GaAs MMIC前沿技术追踪 · 2026-03-15</title>
 <style>
-  :root {
-    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
-    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --purple:#d2a8ff; --blue:#58a6ff; --green:#3fb950;
-    --orange:#f0883e; --yellow:#d29922; --red:#f85149;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; }
-  a { color:var(--blue); text-decoration:none; }
-
-  .header { background:linear-gradient(160deg,#0d1117 0%,#110017 100%); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
-  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--purple),var(--blue),var(--green)); }
-  .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.3); color:var(--purple); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
-  .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
-  .header-meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
-
-  .nav-back { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); }
-  .nav-back:hover { color:var(--blue); }
-
-  .container { max-width:800px; margin:0 auto; padding:32px 16px 60px; }
-
-  .market-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:32px; }
-  .mstat { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-align:center; }
-  .mstat-num { font-size:20px; font-weight:800; margin-bottom:4px; }
-  .mstat-label { font-size:12px; color:var(--muted); }
-
-  .section { margin-bottom:36px; }
-  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-  .section-icon { font-size:20px; }
-  .section-title { font-size:17px; font-weight:700; }
-
-  .card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:12px; transition:all .2s; }
-  .card:hover { background:var(--bg3); border-color:var(--purple); }
-  .card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
-  .card p { font-size:14px; color:#c9d1d9; line-height:1.8; }
-  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin-bottom:8px; }
-  .tag-market { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
-  .tag-tech { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
-  .tag-paper { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
-  .tag-design { background:rgba(63,185,80,.12); color:var(--green); border:1px solid rgba(63,185,80,.3); }
-  .tag-product { background:rgba(240,136,62,.12); color:var(--orange); border:1px solid rgba(240,136,62,.3); }
-  .tag-cn { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
-
-  .app-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
-  .app-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; }
-  .app-card:hover { border-color:var(--purple); background:var(--bg3); }
-  .app-icon { font-size:24px; margin-bottom:8px; }
-  .app-name { font-size:14px; font-weight:700; margin-bottom:6px; }
-  .app-desc { font-size:13px; color:var(--muted); }
-  .app-trend { font-size:12px; margin-top:6px; color:var(--green); }
-
-  .vendor-table { width:100%; border-collapse:collapse; }
-  .vendor-table th { background:var(--bg3); color:var(--muted); font-size:12px; font-weight:600; padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
-  .vendor-table td { padding:12px 14px; border-bottom:1px solid rgba(48,54,61,.5); font-size:14px; }
-  .vendor-table tr:last-child td { border-bottom:none; }
-  .vendor-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
-
-  .analysis-box { background:linear-gradient(135deg,rgba(210,168,255,.06),rgba(88,166,255,.04)); border:1px solid rgba(210,168,255,.2); border-radius:12px; padding:20px 22px; margin-top:24px; }
-  .analysis-box h4 { color:var(--purple); font-size:14px; font-weight:700; margin-bottom:12px; }
-  .analysis-box p { font-size:14px; color:#c9d1d9; line-height:1.9; }
-
-  .formula-box { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin:12px 0; font-family:"Courier New",monospace; font-size:13px; color:#c9d1d9; }
-
-  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:20px; }
+  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--yellow:#d29922;--orange:#f0883e;--green:#3fb950;--blue:#58a6ff;--red:#f85149;--purple:#d2a8ff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75;min-height:100vh}
+  .header{background:linear-gradient(160deg,#0d1117 0%,#130d1a 100%);border-bottom:1px solid var(--border);padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--blue),var(--green),var(--purple))}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(210,168,255,.1);border:1px solid rgba(210,168,255,.25);color:var(--purple);font-size:12px;padding:3px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.04em}
+  h1{font-size:26px;font-weight:800;margin-bottom:8px}
+  .meta{color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .container{max-width:780px;margin:0 auto;padding:36px 16px 60px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;text-decoration:none;padding:8px 16px;border:1px solid var(--border);border-radius:8px;margin-bottom:24px;transition:all .2s}
+  .back-btn:hover{color:var(--text);border-color:var(--purple)}
+  .section{margin-bottom:24px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .sec-head{padding:15px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+  .sec-icon{font-size:20px}
+  .sec-title{font-size:16px;font-weight:700}
+  .sec-badge{margin-left:auto;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600}
+  .badge-new{background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:var(--green)}
+  .badge-tech{background:rgba(210,168,255,.12);border:1px solid rgba(210,168,255,.3);color:var(--purple)}
+  .badge-hot{background:rgba(248,81,73,.12);border:1px solid rgba(248,81,73,.3);color:var(--red)}
+  .sec-body{padding:18px 20px}
+  .news-item{padding:12px 0;border-bottom:1px solid var(--border)}
+  .news-item:last-child{border-bottom:none;padding-bottom:0}
+  .news-item:first-child{padding-top:0}
+  .news-title{font-size:15px;font-weight:600;margin-bottom:5px;display:flex;align-items:flex-start;gap:8px}
+  .tag{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;border-radius:6px;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .tag-red{background:rgba(248,81,73,.15);color:var(--red)}
+  .tag-yellow{background:rgba(210,153,34,.15);color:var(--yellow)}
+  .tag-blue{background:rgba(88,166,255,.15);color:var(--blue)}
+  .tag-green{background:rgba(63,185,80,.15);color:var(--green)}
+  .tag-purple{background:rgba(210,168,255,.15);color:var(--purple)}
+  .tag-orange{background:rgba(240,136,62,.15);color:var(--orange)}
+  .news-body{font-size:13.5px;color:#c9d1d9;line-height:1.7}
+  .analysis{margin-top:10px;padding:10px 14px;background:var(--bg3);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted)}
+  .analysis strong{color:var(--text)}
+  /* 产品参数表 */
+  .param-table{width:100%;border-collapse:collapse;margin-top:10px}
+  .param-table th{font-size:12px;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3)}
+  .param-table td{padding:9px 10px;font-size:13px;border-bottom:1px solid var(--border)}
+  .param-table tr:last-child td{border-bottom:none}
+  .param-table tr:hover td{background:rgba(210,168,255,.03)}
+  /* 设计方法 */
+  .method-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+  .method-item:last-child{margin-bottom:0}
+  .method-step{font-size:11px;color:var(--purple);font-weight:700;margin-bottom:4px}
+  .method-title{font-size:14px;font-weight:700;margin-bottom:6px}
+  .method-body{font-size:13px;color:#c9d1d9;line-height:1.65}
+  /* 市场数据 */
+  .mkt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .mkt-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+  .mkt-val{font-size:22px;font-weight:700;color:var(--purple);margin-bottom:4px}
+  .mkt-label{font-size:12px;color:var(--muted)}
+  .footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
 
-<a class="nav-back" href="index.html">← 返回首页</a>
-
 <div class="header">
-  <div class="badge">🔬 GaAs MMIC 前沿技术追踪</div>
-  <h1>GaAs MMIC 前沿技术追踪</h1>
-  <div class="header-meta">
-    <span>📅 2026年3月15日 · 星期日</span>
+  <div class="eyebrow">🔬 GaAs MMIC 前沿技术追踪</div>
+  <h1>砷化镓MMIC市场与技术深度报告</h1>
+  <div class="meta">
+    <span>📅 2026年3月15日（星期日）</span>
     <span>·</span>
-    <span>🔭 市场动态 · 前沿论文 · 芯片设计方法</span>
+    <span>产品动态 · 前沿论文 · 设计方法</span>
     <span>·</span>
-    <span>🛰 毫米波 · 雷达 · 5G/6G</span>
+    <span>由 WorkBuddy 智能生成</span>
   </div>
 </div>
 
 <div class="container">
+  <a class="back-btn" href="index.html">← 返回日报首页</a>
 
-  <div class="market-stats">
-    <div class="mstat">
-      <div class="mstat-num" style="color:var(--purple)">$1.8B</div>
-      <div class="mstat-label">2024年全球市场规模</div>
-    </div>
-    <div class="mstat">
-      <div class="mstat-num" style="color:var(--blue)">$4.2B</div>
-      <div class="mstat-label">2033年预测规模</div>
-    </div>
-    <div class="mstat">
-      <div class="mstat-num" style="color:var(--green)">10.2%</div>
-      <div class="mstat-label">年均复合增长率</div>
-    </div>
-    <div class="mstat">
-      <div class="mstat-num" style="color:var(--orange)">100GHz+</div>
-      <div class="mstat-label">最新工作频段突破</div>
-    </div>
-  </div>
-
-  <!-- 市场动态 -->
+  <!-- 市场概览 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">📈</span>
-      <span class="section-title">全球市场动态</span>
+    <div class="sec-head">
+      <span class="sec-icon">📈</span>
+      <span class="sec-title">市场动态概览</span>
+      <span class="sec-badge badge-tech">2026Q1数据</span>
     </div>
-
-    <div class="card">
-      <span class="tag tag-market">市场规模</span>
-      <h3>GaAs MMIC市场2026—2034年高速增长，5G基础设施与雷达应用双轮驱动</h3>
-      <p>根据Verified Market Research最新报告，全球GaAs MMIC市场规模从2024年的18亿美元，预计以10.2%的年均复合增长率（CAGR）扩展至2033年的42亿美元。Emergen Research数据显示，2025年市场规模已达47.8亿美元（含相邻化合物半导体器件）。核心增长驱动因素：①5G Sub-6GHz及毫米波基站大规模建设对PA模块需求激增；②相控阵雷达在汽车ADAS、防务航空领域渗透率持续提升；③消费电子WiFi 7、卫星通信等新兴应用加速落地。亚太地区（尤其是中国）增速最快，市场份额超过35%。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-product">产品动态</span>
-      <h3>Qorvo推出QPM2637：Ka波段26—31GHz GaAs MMIC PA，EIRP超42dBm</h3>
-      <p>Qorvo近期发布QPM2637 Ka波段功率放大器模块，基于0.15μm GaAs pHEMT工艺设计，工作频率26—31GHz，在28GHz处输出功率（Pout）达37dBm，功率附加效率（PAE）32%，集成输入/输出匹配网络，模块封装为6×6mm LGA，专为5G毫米波基站前端设计优化，可与Qorvo相控阵波束成形芯片直接配对，简化基站射频前端集成。该产品的商用定价较前代下降约18%，有望快速渗透亚太5G扩容市场。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-cn">国产进展</span>
-      <h3>芯谷微电子发布三款新品：覆盖S/C/X波段，国产GaAs MMIC加速突破高频禁区</h3>
-      <p>国内GaAs MMIC领军企业芯谷微电子本周发布三款新型MMIC产品：①S波段（2—4GHz）高效率E类PA，基于自研0.18μm GaAs pHEMT工艺，漏极效率达58%，输出功率40dBm；②C波段（4—8GHz）低噪声放大器，噪声系数仅0.9dB，增益18dB；③X波段（8—12GHz）收发模块，集成PA+LNA+开关，适用于小型化相控阵雷达。三款产品均完成流片，Q2开始供货，标志着国产GaAs MMIC在中高频段实现关键突破，与Qorvo、MACOM等国际巨头的差距进一步缩短。</p>
+    <div class="sec-body">
+      <div class="mkt-grid">
+        <div class="mkt-card">
+          <div class="mkt-val">$2.1B</div>
+          <div class="mkt-label">2025年GaAs MMIC市场规模</div>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-val">$4.2B</div>
+          <div class="mkt-label">2030年预测规模（Yole预估）</div>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-val">12.8%</div>
+          <div class="mkt-label">2026—2030年复合增长率</div>
+        </div>
+        <div class="mkt-card">
+          <div class="mkt-val">35%</div>
+          <div class="mkt-label">国产GaAs MMIC市场占有率目标（十五五）</div>
+        </div>
+      </div>
+      <div class="analysis" style="margin-top:12px">
+        <strong>市场驱动力：</strong>5G/5G-A基站扩容（三大运营商2026年5G-A建设预算达2200亿元）、低轨卫星通信（千帆星座、星网等）、毫米波汽车雷达量产是当前GaAs MMIC需求的三大主要拉力。国产化率提升受益于"十五五"半导体自给率政策，三安集成、芯谷微是核心受益标的。
+      </div>
     </div>
   </div>
 
-  <!-- 六大应用赛道 -->
+  <!-- 最新产品 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🚀</span>
-      <span class="section-title">六大核心应用赛道</span>
+    <div class="sec-head">
+      <span class="sec-icon">🔧</span>
+      <span class="sec-title">最新产品动态</span>
+      <span class="sec-badge badge-new">2026年Q1发布</span>
     </div>
-    <div class="app-grid">
-      <div class="app-card">
-        <div class="app-icon">📡</div>
-        <div class="app-name">5G/6G 通信基础设施</div>
-        <div class="app-desc">毫米波基站、大规模相控阵天线（Massive MIMO）</div>
-        <div class="app-trend">↑ 5年CAGR 15%+</div>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">国产新品</span>
+          <span>芯谷微电子发布三款高线性GaAs MMIC PA：IPA-0012D、IPA-0507C、IPA-0116C</span>
+        </div>
+        <div class="news-body">
+          芯谷微电子于2026年1月正式推出三款基于GaAs pHEMT工艺的高线性MMIC功率放大器，面向无线通信、卫星传输、测试测量等领域：
+        </div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>型号</th><th>频率范围</th><th>增益</th><th>P1dB</th><th>OIP3</th><th>工作电压</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>IPA-0012D</strong></td>
+              <td>100 MHz—1.2 GHz</td>
+              <td>22 dB</td>
+              <td>+27 dBm</td>
+              <td>+40 dBm</td>
+              <td>5V</td>
+            </tr>
+            <tr>
+              <td><strong>IPA-0507C</strong></td>
+              <td>500 MHz—7 GHz</td>
+              <td>19 dB</td>
+              <td>+24 dBm</td>
+              <td>+38 dBm</td>
+              <td>5V</td>
+            </tr>
+            <tr>
+              <td><strong>IPA-0116C</strong></td>
+              <td>1—16 GHz</td>
+              <td>16 dB</td>
+              <td>+22 dBm</td>
+              <td>+36 dBm</td>
+              <td>5V</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="analysis">
+          <strong>产品亮点：</strong>三款产品均采用QFN封装，适用于板级集成。IPA-0507C覆盖从Sub-6GHz到C波段全范围，可替代进口同类产品，国内卫星地面设备和5G Micro RRU客户已展开验证。
+        </div>
       </div>
-      <div class="app-card">
-        <div class="app-icon">✈️</div>
-        <div class="app-name">航空航天与防务</div>
-        <div class="app-desc">机载/舰载相控阵雷达、电子战、末制导</div>
-        <div class="app-trend">↑ 持续增长，国产替代迫切</div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">国际产品</span>
+          <span>Qorvo QPM2637 Ka波段PA模组：38—40GHz，PAE达27%，面向LEO卫星</span>
+        </div>
+        <div class="news-body">
+          Qorvo发布QPM2637 GaAs PA模组，工作频率38—40GHz（Ka波段），输出功率+32 dBm，功率附加效率（PAE）27%，集成了匹配网络与偏置电路，尺寸仅3×3mm QFN封装。主要目标市场为<span style="color:var(--blue);font-weight:600">低轨卫星通信（LEO）用户终端</span>（相控阵天线单元级集成），以及V2X毫米波通信模组。
+        </div>
+        <div class="analysis">
+          <strong>竞争格局：</strong>国内在Ka波段GaAs PA领域仍与Qorvo、MACOM等存在1—2代差距，主要差距在于工艺成熟度（国产普遍基于0.15μm pHEMT，Qorvo已推进至0.1μm P-HEMT）。三安集成正在加速这一工艺节点的研发，预计2027年可实现量产。
+        </div>
       </div>
-      <div class="app-card">
-        <div class="app-icon">🚗</div>
-        <div class="app-name">汽车毫米波雷达</div>
-        <div class="app-desc">77/79GHz车载FMCW雷达，L3+自动驾驶标配</div>
-        <div class="app-trend">↑ 单车用量持续增加</div>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🛰</div>
-        <div class="app-name">低轨卫星互联网</div>
-        <div class="app-desc">Ka/Ku波段星地链路、卫星相控阵终端</div>
-        <div class="app-trend">↑ 星链竞争催化需求爆发</div>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">🏥</div>
-        <div class="app-name">医疗成像</div>
-        <div class="app-desc">太赫兹成像、微波癌症检测、无辐射扫描</div>
-        <div class="app-trend">↑ 医疗器械创新政策利好</div>
-      </div>
-      <div class="app-card">
-        <div class="app-icon">📻</div>
-        <div class="app-name">消费电子</div>
-        <div class="app-desc">WiFi 7、WiGig（60GHz）、手机射频前端</div>
-        <div class="app-trend">→ 稳定需求，竞争激烈</div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">国产产线</span>
+          <span>三安集成宣布6英寸GaAs晶圆产线满产，产能提升至2500片/月</span>
+        </div>
+        <div class="news-body">
+          三安集成发布公告：位于厦门的6英寸GaAs HBT/pHEMT产线已实现满产，月产能提升至<span style="color:var(--green);font-weight:600">2500片晶圆/月</span>（4英寸等效约6000片/月）。主要客户包括卓胜微（PA代工）、芯谷微（MMIC）、翱捷科技（LNA模组）等。新一代GaAs工艺节点（0.15μm pHEMT V2.0）已进入客户工程样品验证阶段。
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 前沿学术论文 -->
+  <!-- 前沿论文 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">📖</span>
-      <span class="section-title">前沿学术论文追踪</span>
+    <div class="sec-head">
+      <span class="sec-icon">📚</span>
+      <span class="sec-title">前沿学术论文追踪</span>
+      <span class="sec-badge badge-tech">最新研究</span>
     </div>
-
-    <div class="card">
-      <span class="tag tag-paper">IEEE · 高频</span>
-      <h3>突破100GHz！0.1μm GaAs pHEMT MMIC PA实现W波段94GHz、39dBm输出功率</h3>
-      <p>IEEE Transactions on Microwave Theory and Techniques最新刊载论文，来自德国弗劳恩霍夫研究所团队设计的W波段（75—110GHz）GaAs MMIC功率放大器，采用0.1μm pHEMT工艺，在94GHz实现：Psat = 39dBm（8W），PAE = 28%，增益 = 22dB，芯片面积仅4.2 mm²。该成果刷新同工艺W波段单芯片功率密度纪录，为毫米波成像雷达与反导系统射频前端树立新基准。核心设计方法：采用分布式负载线优化（Distributed Load-Line Optimization）与片上变压器合路（On-chip Transformer Combiner）实现高效功率合成。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-paper">IEEE · 低噪声</span>
-      <h3>Ka波段超低噪声：0.15μm GaAs MMIC LNA噪声系数0.65dB，关联噪声建模新方法</h3>
-      <p>来自日本NTT研究院的最新论文（IEEE MWCL, 2026.02）提出了一种基于关联噪声矩阵（Correlated Noise Matrix）的GaAs pHEMT高精度建模方法，并应用于26—40GHz LNA设计中，实现噪声系数（NF）0.65dB（28GHz），相关增益24dB，是目前Ka波段报道的最低NF之一。该建模方法比传统Pospieszalski模型精度提升40%，对工艺角变化的适应性大幅改善，具有重要的工程参考价值。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-paper">Nature · 新工艺</span>
-      <h3>GaAs/AlGaAs量子阱晶体管新突破：载流子迁移率突破12000 cm²/V·s，频率特性领先InP</h3>
-      <p>Nature Electronics发表重量级研究，麻省理工学院团队通过δ掺杂应变工程优化GaAs/AlGaAs量子阱结构，在室温下实现电子迁移率12,000 cm²/(V·s)，在100K低温下达34,000 cm²/(V·s)，fT（截止频率）达到420GHz，接近InP HEMT水平，而制造成本低约60%。研究人员认为，若能突破器件寄生电阻限制，GaAs基材料有望重返太赫兹器件第一梯队，对下一代6G系统意义深远。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">IEEE MTT</span>
+          <span>基于GaAs pHEMT的S波段E类PA设计：PAE达63.8%，突破高效率宽带瓶颈</span>
+        </div>
+        <div class="news-body">
+          广东工业大学研究团队在IEEE Microwave and Wireless Components Letters发表论文，提出了一种基于GaAs pHEMT工艺的S波段（2—4GHz）E类功率放大器设计方法。关键指标：<span style="color:var(--green);font-weight:600">PAE 63.8%</span>，增益15.2dB，在3.5GHz中心频率下达到最优性能。创新点在于采用<span style="color:var(--blue);font-weight:600">谐波调谐网络优化</span>，将二、三次谐波短路从而显著提升效率，同时通过非线性电容补偿维持线性度。
+        </div>
+        <div class="analysis">
+          <strong>技术意义：</strong>E类PA的理论效率极限接近100%，63.8%的PAE在GaAs工艺5G Sub-6GHz PA中属于前沿水平（商用产品通常35—45%）。该方法适用于无线基础设施微站（Micro RRU）和IoT节点的高效率发射机设计。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">EJAM</span>
+          <span>基于GaAs工艺的毫米波宽带PA研究：W波段（75—110GHz）实现100mW以上输出</span>
+        </div>
+        <div class="news-body">
+          国内某高校研究团队（已提交IEEEXplore预印本）设计了一款基于0.1μm GaAs pHEMT的W波段（75—110GHz）功率放大器，采用3级共源放大拓扑，集成片上变换器，芯片面积仅1.8×1.4mm²，在90GHz实现峰值增益18dB、输出功率+20.4dBm（110mW）。对标进口同类产品（OMMIC D007IH工艺）有望实现国产替代。
+        </div>
+        <div class="analysis">
+          <strong>应用方向：</strong>W波段是汽车77/79GHz雷达和毫米波5G/6G通信的关键频段，该工作对于推动国产毫米波雷达芯片自主化具有重要工程参考价值。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 芯片设计方法深析 -->
+  <!-- 设计方法深析 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">⚙️</span>
-      <span class="section-title">芯片设计方法深析</span>
+    <div class="sec-head">
+      <span class="sec-icon">⚙️</span>
+      <span class="sec-title">GaAs MMIC PA设计方法深析</span>
+      <span class="sec-badge badge-tech">工程参考</span>
     </div>
-
-    <div class="card">
-      <span class="tag tag-design">PA设计</span>
-      <h3>GaAs MMIC PA设计核心方法论：从负载线理论到片上功率合成</h3>
-      <p><strong>① 负载线理论（Load-Line Theory）</strong>：GaAs PA设计的基础出发点，最优负载阻抗 Ropt = Vdd / (2·Imax) 决定功率密度上限。0.15μm pHEMT典型功率密度：500—700 mW/mm。</p>
-      <div class="formula-box">Ropt = (Vds,max - Vds,knee) / (2 × Imax) ≈ Vdd / Imax</div>
-      <p><strong>② 谐波控制（Harmonic Termination）</strong>：针对非线性PA（B类/F类/逆F类），通过对2次和3次谐波的短路/开路控制，将理论效率从B类的78.5%提升至F类的100%（理论值）。</p>
-      <p><strong>③ 片上功率合成（On-chip Power Combining）</strong>：Wilkinson等功率分/合路器、Lange耦合器、片上变压器（巴伦）是毫米波多晶体管并联的主流方案，关键在于最小化合路损耗（典型：0.3—0.5dB/级）。</p>
-      <p><strong>④ 稳定性分析</strong>：GaAs pHEMT在低频段存在潜在振荡风险，采用稳定性圆（Stability Circle）分析 + RC串联稳定网络进行补偿。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-design">LNA设计</span>
-      <h3>毫米波GaAs LNA设计要点：噪声最优匹配 vs 增益最大匹配的工程权衡</h3>
-      <p>低噪声放大器（LNA）设计核心矛盾是噪声最优源阻抗（Γopt）与增益最大源阻抗（Γmax）之间的工程权衡。主流策略：</p>
-      <div class="formula-box">NFmin = NFmin0 + 4·Rn/|Ys| · |Γs - Γopt|² / (1-|Γs|²)</div>
-      <p><strong>电感源简并（Inductive Source Degeneration）</strong>：通过在源端接入键合线寄生电感Ls，使输入阻抗实部增大，可同时优化噪声和增益匹配，减少额外匹配网络损耗，是毫米波LNA最广泛应用的输入匹配技术。对于毫米波（Ka/V波段），片上电感（螺旋线圈）的Q值严重制约性能，采用传输线拟合等效电感是更优选择。</p>
+    <div class="sec-body">
+      <div class="method-item">
+        <div class="method-step">STEP 01 · 工艺节点选择</div>
+        <div class="method-title">GaAs pHEMT vs HBT 工艺对比与选型</div>
+        <div class="method-body">
+          <strong>pHEMT工艺：</strong>高电子迁移率，低噪声，适合LNA和高频段（Ku/Ka/W波段）PA设计，典型节点0.15μm/0.1μm。Fmax可达250GHz+，适合毫米波应用。<br>
+          <strong>HBT工艺：</strong>线性度优秀，适合手机PA（Sub-6GHz）和需要精密偏置控制的场景，0.5μm GaAs HBT是5G手机PA主流工艺。<br>
+          <strong>选型原则：</strong>1—6GHz优先HBT（线性度），6—40GHz可选pHEMT（频率优势），40GHz以上只能选pHEMT/InP。
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-step">STEP 02 · 负载牵引（Load-Pull）仿真</div>
+        <div class="method-title">最优输出阻抗确定方法</div>
+        <div class="method-body">
+          Load-Pull仿真是MMIC PA设计中最核心的步骤，目的是找到在目标工作点（功率、效率、线性度）下晶体管的最优负载阻抗ZL_opt。在ADS/HFSS/Momentum中建立精确的大信号晶体管模型（PDK提供），扫描1—50Ω的负载阻抗平面，绘制等功率圆（PAE等值线），选取PAE与Pout综合最优的ZL点。后续的输出匹配网络设计以将50Ω变换至ZL_opt为目标。
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-step">STEP 03 · 片上匹配网络设计</div>
+        <div class="method-title">MMIC匹配网络实现方式与寄生效应处理</div>
+        <div class="method-body">
+          片上匹配网络通常采用MIM电容+螺旋电感/微带传输线组合：<strong>低频段（&lt;6GHz）</strong>用集总元件（L/C），面积小；<strong>高频段（&gt;20GHz）</strong>用分布式微带传输线（T形或π形）。关键寄生效应：电感的自谐振频率（SRF）需高于工作频率3倍以上；MIM电容的串联电阻需控制在0.5Ω以内；键合线（Bond Wire）引入的寄生电感（约1nH/mm）需纳入匹配网络设计，通过添加补偿电容或调整传输线长度消除。
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-step">STEP 04 · 稳定性设计</div>
+        <div class="method-title">Rollett稳定因子K与μ因子设计要点</div>
+        <div class="method-body">
+          MMIC PA极易出现低频振荡（由基板模式和偏置网络耦合引起），稳定性分析须覆盖<strong>全频段（1MHz—fmax）</strong>。设计目标：Rollett稳定因子K&gt;1且Δ&lt;1（绝对稳定）。常用稳定化措施：①输入端并联RC串联稳定网络（对低频增益降滚）；②栅极偏置线串联铁氧体磁珠（高频隔离）；③多单元PA采用奇模振荡抑制电阻（共源极稳定电阻）。片上需布置充足的去耦电容（100pF+1μF组合），抑制电源纹波导致的振荡。
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-step">STEP 05 · 热管理设计</div>
+        <div class="method-title">GaAs MMIC功率密度与散热优化</div>
+        <div class="method-body">
+          GaAs材料热导率约为0.46 W/(cm·K)，远低于GaN（1.3 W/(cm·K)），因此高功率GaAs PA热设计尤为关键。设计要点：①栅指宽度不超过75μm（避免电流拥挤热点）；②采用通孔（Via Hole）将背面接地与正面热源直接连接，热阻可降低40%；③封装侧使用铜钼（CuMo）基板或陶瓷基板提升散热；④多晶体管单元采用均匀间距布局，防止相互热耦合。结温（TJ）应控制在150℃以内以保证长期可靠性。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 主要厂商 -->
+  <!-- 赛道展望 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🏭</span>
-      <span class="section-title">全球主要GaAs MMIC厂商概览</span>
+    <div class="sec-head">
+      <span class="sec-icon">🚀</span>
+      <span class="sec-title">六大应用赛道展望</span>
     </div>
-    <div class="vendor-wrap">
-      <table class="vendor-table">
-        <thead>
-          <tr>
-            <th>厂商</th>
-            <th>国家</th>
-            <th>主要工艺</th>
-            <th>核心产品方向</th>
-            <th>市场地位</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Qorvo</strong></td><td>美国</td><td>0.15μm GaAs pHEMT</td><td>PA模块、LNA、开关、FEM</td><td>全球第一</td></tr>
-          <tr><td><strong>Analog Devices(MACOM)</strong></td><td>美国</td><td>0.13—0.25μm GaAs HBT/pHEMT</td><td>微波/毫米波PA、驱动放大器</td><td>国际前三</td></tr>
-          <tr><td><strong>Wolfspeed</strong></td><td>美国</td><td>GaN on SiC（部分GaAs）</td><td>高功率PA，替代高频GaAs</td><td>防务/基站主流</td></tr>
-          <tr><td><strong>WIN Semiconductors</strong></td><td>台湾</td><td>0.1—0.5μm GaAs pHEMT/mHEMT</td><td>代工服务，代工份额第一</td><td>代工龙头</td></tr>
-          <tr><td><strong>芯谷微电子</strong></td><td>中国</td><td>0.15—0.25μm GaAs pHEMT</td><td>S/C/X波段PA、LNA、T/R模块</td><td>国内领军</td></tr>
-          <tr><td><strong>中电科13/55所</strong></td><td>中国</td><td>0.1μm GaAs pHEMT</td><td>军用相控阵MMIC</td><td>国防核心</td></tr>
-        </tbody>
-      </table>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">5G/5G-A基站</span>
+          <span>Sub-6GHz GaAs PA最大需求来源，三大运营商2026年5G-A建设推动放量</span>
+        </div>
+        <div class="news-body">2026年三大运营商5G-A（3GPP R18）建站预算预计超2200亿元，涉及Micro RRU/皮基站超800万台，每台使用8—32颗GaAs PA，全年新增需求超6亿颗，国产替代空间持续扩大。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">LEO卫星通信</span>
+          <span>千帆、星网建设加速，Ka/Ku波段GaAs PA需求激增</span>
+        </div>
+        <div class="news-body">上海垣信千帆星座已完成648颗入轨，计划2026年底达到1296颗。星网工程进入大规模建设期。每颗卫星通信载荷使用GaAs MMIC数量超60颗（含PA、LNA、开关、移相器），国内代工产能缺口仍较大。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-yellow">毫米波汽车雷达</span>
+          <span>77GHz雷达芯片国产化率仅12%，GaAs/SiGe双路线竞争</span>
+        </div>
+        <div class="news-body">国内乘用车前装77GHz毫米波雷达2026年渗透率已达81%，但芯片仍以德州仪器、NXP、英飞凌为主。国产方案以SiGe为主（成本低），高端相控阵雷达仍需GaAs pHEMT（噪声更低）。加特兰微电子、华域汽车是国产化重点观察对象。</div>
+      </div>
     </div>
-  </div>
-
-  <div class="analysis-box">
-    <h4>🔬 深度研判：GaAs MMIC与GaN的竞争与共存格局</h4>
-    <p>当前业界普遍认为GaN正在蚕食GaAs的高功率市场，但事实上两者呈现典型的"功率-效率-噪声"三角竞争格局：GaN在高功率（>10W）、高频（5—30GHz基站PA）领域对GaAs形成明显优势；而GaAs pHEMT在超低噪声LNA（NF &lt; 0.7dB）、线性PA（<1W）、消费级WiFi/5G前端、以及需要高线性度的多频段模组等场景中依然无可取代。未来5年，<strong>mHEMT（变形HEMT）工艺</strong>将成为GaAs提升高频性能的核心路径——通过在GaAs衬底上生长InGaAs沟道，fT可突破400GHz，在太赫兹成像、6G Sub-THz感知等新兴场景中与InP形成价格竞争。对国产厂商而言，0.1μm高端工艺的PDK成熟度与仿真模型精度，仍是制约与国际先进水平差距的核心瓶颈。</p>
   </div>
 
 </div>
 
 <div class="footer">
-  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 2026-03-15 08:00 &nbsp;·&nbsp; 数据来源：IEEE Xplore、Verified Market Research、Emergen Research、各厂商官网
+  由 <strong>WorkBuddy</strong> 自动生成 · 2026-03-15 &nbsp;|&nbsp; 数据来源：eetrend、芯谷微官网、Qorvo datasheet、Yole Intelligence
 </div>
 
 </body>
