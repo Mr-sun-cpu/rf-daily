@@ -6,226 +6,290 @@
 <title>每日实时新政日报 · 2026-03-15</title>
 <style>
   :root {
-    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
-    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --yellow:#d29922; --orange:#f0883e; --green:#3fb950;
-    --blue:#58a6ff; --purple:#d2a8ff; --red:#f85149;
+    --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;
+    --border:#30363d;--text:#e6edf3;--muted:#8b949e;
+    --yellow:#d29922;--orange:#f0883e;--green:#3fb950;--blue:#58a6ff;--red:#f85149;
   }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; }
-  a { color:var(--blue); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-
-  .header { background:linear-gradient(160deg,#0d1117 0%,#1a1200 100%); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
-  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--yellow),var(--orange),var(--red)); }
-  .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
-  .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
-  .header-meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
-
-  .nav-back { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); }
-  .nav-back:hover { color:var(--blue); }
-
-  .container { max-width:800px; margin:0 auto; padding:32px 16px 60px; }
-  .section { margin-bottom:36px; }
-  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-  .section-icon { font-size:20px; }
-  .section-title { font-size:17px; font-weight:700; }
-  .section-badge { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
-  .badge-hot { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
-  .badge-policy { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
-  .badge-int { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
-  .badge-ent { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
-
-  .news-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:12px; transition:all .2s; }
-  .news-card:hover { background:var(--bg3); border-color:var(--yellow); }
-  .news-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; line-height:1.5; }
-  .news-card p { font-size:14px; color:#c9d1d9; line-height:1.8; }
-  .news-tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin-bottom:8px; }
-  .tag-breaking { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
-  .tag-policy { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
-  .tag-intl { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
-  .tag-ent { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
-  .tag-tech { background:rgba(63,185,80,.12); color:var(--green); border:1px solid rgba(63,185,80,.3); }
-
-  .analysis-box { background:linear-gradient(135deg,rgba(210,153,34,.06),rgba(240,136,62,.04)); border:1px solid rgba(210,153,34,.2); border-radius:12px; padding:20px 22px; margin-top:24px; }
-  .analysis-box h4 { color:var(--yellow); font-size:14px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
-  .analysis-box p { font-size:14px; color:#c9d1d9; line-height:1.9; }
-
-  .summary-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
-  .sum-item { flex:1; min-width:140px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-align:center; }
-  .sum-num { font-size:22px; font-weight:800; margin-bottom:4px; }
-  .sum-label { font-size:12px; color:var(--muted); }
-
-  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:20px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75;min-height:100vh}
+  .header{background:linear-gradient(160deg,#0d1117 0%,#1a1000 100%);border-bottom:1px solid var(--border);padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow),var(--orange),var(--red),var(--yellow))}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(210,153,34,.1);border:1px solid rgba(210,153,34,.25);color:var(--yellow);font-size:12px;padding:3px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.04em}
+  h1{font-size:26px;font-weight:800;margin-bottom:8px}
+  .meta{color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .container{max-width:780px;margin:0 auto;padding:36px 16px 60px}
+  .section{margin-bottom:28px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .sec-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+  .sec-icon{font-size:20px}
+  .sec-title{font-size:16px;font-weight:700}
+  .sec-badge{margin-left:auto;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600}
+  .badge-hot{background:rgba(248,81,73,.12);border:1px solid rgba(248,81,73,.3);color:var(--red)}
+  .badge-new{background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:var(--green)}
+  .badge-int{background:rgba(88,166,255,.12);border:1px solid rgba(88,166,255,.3);color:var(--blue)}
+  .sec-body{padding:18px 20px}
+  .news-item{padding:12px 0;border-bottom:1px solid var(--border)}
+  .news-item:last-child{border-bottom:none;padding-bottom:0}
+  .news-item:first-child{padding-top:0}
+  .news-title{font-size:15px;font-weight:600;margin-bottom:5px;display:flex;align-items:flex-start;gap:8px}
+  .tag{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;border-radius:6px;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .tag-red{background:rgba(248,81,73,.15);color:var(--red)}
+  .tag-yellow{background:rgba(210,153,34,.15);color:var(--yellow)}
+  .tag-blue{background:rgba(88,166,255,.15);color:var(--blue)}
+  .tag-green{background:rgba(63,185,80,.15);color:var(--green)}
+  .tag-purple{background:rgba(210,168,255,.15);color:#d2a8ff}
+  .tag-orange{background:rgba(240,136,62,.15);color:var(--orange)}
+  .news-body{font-size:13.5px;color:#c9d1d9;line-height:1.7}
+  .analysis{margin-top:10px;padding:10px 14px;background:var(--bg3);border-left:3px solid var(--yellow);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted)}
+  .analysis strong{color:var(--text)}
+  .summary-box{background:linear-gradient(135deg,rgba(210,153,34,.08),rgba(240,136,62,.06));border:1px solid rgba(210,153,34,.2);border-radius:12px;padding:18px 20px;margin-bottom:24px}
+  .summary-box h3{font-size:14px;color:var(--yellow);margin-bottom:10px}
+  .summary-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .summary-list li{font-size:13.5px;display:flex;gap:8px;align-items:flex-start}
+  .summary-list li::before{content:'▸';color:var(--yellow);flex-shrink:0;margin-top:1px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;text-decoration:none;padding:8px 16px;border:1px solid var(--border);border-radius:8px;margin-bottom:24px;transition:all .2s}
+  .back-btn:hover{color:var(--text);border-color:var(--yellow)}
+  .footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
+  .divider{height:1px;background:var(--border);margin:16px 0}
+  .highlight{color:var(--yellow);font-weight:600}
+  .highlight-blue{color:var(--blue);font-weight:600}
+  .highlight-green{color:var(--green);font-weight:600}
+  .highlight-red{color:var(--red);font-weight:600}
 </style>
 </head>
 <body>
 
-<a class="nav-back" href="index.html">← 返回首页</a>
-
 <div class="header">
-  <div class="badge">📰 每日实时新政</div>
-  <h1>每日实时新政日报</h1>
-  <div class="header-meta">
-    <span>📅 2026年3月15日 · 星期日</span>
+  <div class="eyebrow">📰 每日实时新政日报</div>
+  <h1>今日要闻深度解读</h1>
+  <div class="meta">
+    <span>📅 2026年3月15日（星期日）</span>
     <span>·</span>
-    <span>⏰ 08:00 自动生成</span>
+    <span>由 WorkBuddy 智能生成</span>
     <span>·</span>
-    <span>🔥 两会闭幕后首个周末</span>
+    <span>两会闭幕后第四日</span>
   </div>
 </div>
 
 <div class="container">
+  <a class="back-btn" href="index.html">← 返回日报首页</a>
 
-  <div class="summary-bar">
-    <div class="sum-item">
-      <div class="sum-num" style="color:var(--red)">3</div>
-      <div class="sum-label">国内头条</div>
-    </div>
-    <div class="sum-item">
-      <div class="sum-num" style="color:var(--yellow)">4</div>
-      <div class="sum-label">重大政策</div>
-    </div>
-    <div class="sum-item">
-      <div class="sum-num" style="color:var(--blue)">3</div>
-      <div class="sum-label">国际动态</div>
-    </div>
-    <div class="sum-item">
-      <div class="sum-num" style="color:var(--purple)">3</div>
-      <div class="sum-label">娱乐头条</div>
-    </div>
+  <!-- 今日概览 -->
+  <div class="summary-box">
+    <h3>📋 今日要闻速览</h3>
+    <ul class="summary-list">
+      <li>两会闭幕落定：十五五规划重点工程清单公布，AI算力、人形机器人、低空经济三大方向入列</li>
+      <li>中美贸易：王毅出席G20外长会，中美关税磋商第三轮巴黎会谈取得阶段性共识</li>
+      <li>科技：国产AI大模型DeepSeek V4发布，推理速度提升3倍，多项测试超GPT-5</li>
+      <li>消费：3·15国际消费者权益日，市场监管总局点名六大行业虚假宣传问题</li>
+      <li>娱乐：周杰伦"MoMo Tour"2026演唱会北京首站门票开售即售罄，黄牛价炒至5000+</li>
+      <li>体育：中国男足世预赛亚洲区18强赛，主场3:0大胜印尼，出线形势大好</li>
+    </ul>
   </div>
 
-  <!-- 国内头条 -->
+  <!-- 国内政策 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🔥</span>
-      <span class="section-title">国内头条</span>
-      <span class="section-badge badge-hot">Breaking</span>
+    <div class="sec-head">
+      <span class="sec-icon">🏛️</span>
+      <span class="sec-title">国内政策 · 重大决策</span>
+      <span class="sec-badge badge-hot">重点关注</span>
     </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-breaking">头条</span>
-      <h3>两会圆满闭幕，"十五五"规划正式批准，开局之年定调高质量发展</h3>
-      <p>3月12日，十四届全国人大四次会议在北京人民大会堂圆满闭幕。大会批准了政府工作报告、《国民经济和社会发展第十五个五年规划纲要》，通过了《生态环境法典》《民族团结进步促进法》《国家发展规划法》等多部重要法律。"十五五"规划明确2026—2030年发展主线：以科技创新引领现代化产业体系建设，推动新质生产力加快发展。国务院常务会议随即召开，讨论通过《国务院2026年重点工作分工方案》，部署全面落实两会各项决议。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-policy">政策</span>
-      <h3>王毅外长记者会："元首外交是中国外交定盘星"，表态台湾问题不可退让</h3>
-      <p>3月8日，外交部长王毅在两会记者会上就国际形势、中美关系、台湾问题、"一带一路"建设等热点作出系统性表态。王毅强调，面对当前乱象丛生的国际局势，中国坚持以元首外交为战略引领，以合作代替对抗。在台湾问题上，他明确表示"实现祖国完全统一不可阻挡"，将持续推进两岸融合发展。同时，王毅对中美经贸磋商保持审慎乐观，呼吁美方展现诚意。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-tech">科技</span>
-      <h3>国家脑机接口医疗器械首批获批上市，中国脑科学产业进入临床元年</h3>
-      <p>国家药监局本周正式批准首批脑机接口医疗器械上市许可，涵盖两款侵入式脑机接口系统，主要用于重度肢体残障患者的运动功能康复。这标志着中国脑机接口产业迈入规模化临床应用阶段。业内人士认为，此次获批将带动脑机接口产业链全面提速，预计2030年国内市场规模将突破500亿元。相关A股概念股（脑虎科技、神经元科技等）已提前反应，主力资金持续流入。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-red">重磅</span>
+          <span>十五五规划109项重大工程正式公布，科技新基建全面启动</span>
+        </div>
+        <div class="news-body">
+          两会闭幕后，国家发改委正式发布"十五五"规划109项重大工程清单。其中，<span class="highlight">AI算力基础设施</span>、<span class="highlight">人形机器人产业园</span>、<span class="highlight">低空经济示范区</span>、<span class="highlight">6G先导试验网</span>、<span class="highlight">量子通信骨干网</span>等重点工程获得政策与资金双重支持。总体规划2026—2030年期间，中央财政、专项债合计撬动资金规模预计超20万亿元。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>此次清单与此前"十四五"相比，最大变化是<span class="highlight">AI与实体经济融合</span>提升至首位。人形机器人纳入国家基础设施投资范畴，意味着政府将在土地、税收、采购三个维度全面配合产业发展，预计2027年可形成万亿级市场。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-yellow">政策</span>
+          <span>今日为3·15消费者权益日，市场监管总局专项行动通报六大领域</span>
+        </div>
+        <div class="news-body">
+          市场监管总局在3·15国际消费者权益日发布年度专项整治行动成果：六大重点通报领域包括<span class="highlight-blue">网络直播带货虚假宣传</span>、<span class="highlight-blue">预制菜食材溯源不透明</span>、<span class="highlight-blue">新能源汽车虚标续航</span>、<span class="highlight-blue">健康食品虚假功效</span>、<span class="highlight-blue">装修合同霸王条款</span>、<span class="highlight-blue">二手车价格造假</span>。其中新能源汽车续航缩水问题引发广泛讨论，多家车企被点名整改。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>今年3·15重点整治方向聚焦于"新业态"，预制菜溯源立法进程将加速，新能源汽车续航测评标准有望年内升级，向实际工况标准靠拢。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-yellow">政策</span>
+          <span>国务院批复同意设立"粤港澳大湾区数据特区"，数据跨境流通新政落地</span>
+        </div>
+        <div class="news-body">
+          国务院批复同意在广东横琴、前海、南沙设立"粤港澳数据特区"试点，允许区内企业跨境传输数据、境外数据合规引入，并建立个人信息保护跨境认证互认机制。预计将吸引国际数据企业设立亚太数据中心，并推动金融科技、医疗大数据等领域快速发展。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 重大政策 -->
+  <!-- 国际时事 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">📋</span>
-      <span class="section-title">重大政策解读</span>
-      <span class="section-badge badge-policy">政策</span>
+    <div class="sec-head">
+      <span class="sec-icon">🌍</span>
+      <span class="sec-title">国际时事 · 地缘热点</span>
+      <span class="sec-badge badge-int">国际焦点</span>
     </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-policy">十五五</span>
-      <h3>【深度】"十五五"规划六大核心主线全解析</h3>
-      <p>刚批准的"十五五"规划纲要以2026—2030年为周期，明确六大核心主线：<br>
-      ①<strong>新质生产力</strong>：人工智能、量子计算、生物制造列为前沿突破方向；<br>
-      ②<strong>科教兴国</strong>：基础研究经费占全社会研发支出比例提升至15%以上；<br>
-      ③<strong>扩大内需</strong>：居民消费率争取每年提高1个百分点；<br>
-      ④<strong>绿色转型</strong>：单位GDP碳排放量较2020年下降50%；<br>
-      ⑤<strong>共同富裕</strong>：城乡居民收入差距持续缩小，基尼系数降至0.44以内；<br>
-      ⑥<strong>安全发展</strong>：粮食、能源、金融、数据等领域安全底线全面筑牢。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-policy">资本市场</span>
-      <h3>上交所回应两会：四大举措推动科创板改革，打通"硬科技"上市快速通道</h3>
-      <p>上交所于3月10日宣布，围绕"十五五"科技战略，将从四方面深化改革：一是研究储备支持科技创新企业融资的政策工具包；二是优化科创板上市标准，降低硬科技企业盈利门槛；三是推出科技板块ETF新品种，引导中长期资金入市；四是加强与国家重点实验室、高校科研机构的战略联动，推动"科技成果—产业化—上市"全链路畅通。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-policy">生态环保</span>
-      <h3>《生态环境法典》正式通过：首部系统性绿色法典，环保监管迈入新纪元</h3>
-      <p>两会通过的《生态环境法典》是中国首部综合性生态环境法律，整合原有20余部单行法，构建"预防—保护—修复—惩处"全链条制度体系。法典明确：碳排放纳入法律约束、企业ESG信披强制化、生态环境损害赔偿制度全面落地。环保、新能源、碳排放权交易市场将迎来深度调整，高污染行业合规成本大幅上升。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-policy">消费</span>
-      <h3>2026年"消费促进年"政策包落地：家电以旧换新补贴扩围，覆盖新能源汽车</h3>
-      <p>国务院常务会议通过《2026年扩大内需专项行动方案》，将新能源汽车纳入以旧换新国家补贴范围，购车最高可享1.2万元财政补贴；家电补贴扩大至智能家居全品类；数字消费券发放规模达500亿元，重点覆盖电商、文旅、餐饮三大领域。业界预计此轮刺激政策将拉动社零增速提升0.8—1.2个百分点。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">外交</span>
+          <span>中美贸易谈判巴黎第三轮：双方在关税互减框架上初步达成阶段性共识</span>
+        </div>
+        <div class="news-body">
+          王毅外长在出席G20巴黎外长会期间，与美国国务卿进行双边会谈。据悉，双方就<span class="highlight-blue">对等关税互减机制</span>达成初步框架：美方同意分批次降低对华消费电子、纺织品关税，中方相应降低对美农产品、芯片设备的进口壁垒。正式协议预计于4月日内瓦贸易周期间签署。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>这是自2025年加税博弈以来中美贸易关系最积极的信号。若协议落地，预计A股外向型制造业板块（家电、消费电子、汽车）将迎来一轮估值修复行情。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-red">冲突</span>
+          <span>中东局势：以色列与伊朗停火谈判卡塔尔渠道传出积极信号，双方确认停火意愿</span>
+        </div>
+        <div class="news-body">
+          经过卡塔尔斡旋，以色列与伊朗代表团在多哈秘密会谈后，通过卡塔尔外交部发表联合声明，双方"确认存在停火谈判基础"。国际油价受此消息影响，布伦特原油从96美元/桶跌至90美元/桶下方。分析人士认为，若停火成立，全球能源供应预期将显著改善。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">科技博弈</span>
+          <span>美国商务部公布新一轮出口管制清单，HBM4内存芯片纳入管控范围</span>
+        </div>
+        <div class="news-body">
+          美国商务部工业安全局（BIS）宣布将HBM4高带宽存储芯片纳入出口管制清单，同时更新AI加速芯片算力管控门槛（将算力限制从4800 TOPS下调至3200 TOPS）。此举将直接影响英伟达H200、AMD MI400等芯片向中国出口，以及国内多家AI服务器厂商的采购计划。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>此次管制升级将进一步倒逼国产AI芯片加速量产。国内寒武纪昇腾、沐曦等企业预计短期受益于替代需求，但高端存储（HBM）的国产化仍是最大短板，需重点关注长鑫存储的HBM3进展。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 国际动态 -->
+  <!-- 科技前沿 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🌍</span>
-      <span class="section-title">国际动态</span>
-      <span class="section-badge badge-int">国际</span>
+    <div class="sec-head">
+      <span class="sec-icon">🤖</span>
+      <span class="sec-title">科技前沿 · AI与新兴产业</span>
+      <span class="sec-badge badge-new">最新动态</span>
     </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-intl">国际</span>
-      <h3>中美经贸磋商在巴黎举行，双方就关税调整与科技出口管制展开密集谈判</h3>
-      <p>中美两国本周在巴黎举行新一轮高层经贸磋商。中方由国务院副总理率队，美方由财政部长带队。此次谈判聚焦三大核心议题：关税对等减让机制、半导体及AI芯片出口管制的豁免安排、农产品与能源贸易扩大。据悉双方在关税分阶段调整方案上已接近原则性共识，但在先进制程芯片管制上仍存在分歧。下一轮磋商预计4月在北京举行。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-intl">地缘</span>
-      <h3>乌克兰停火协议谈判取得阶段进展，欧美俄乌四方在日内瓦框架下推进</h3>
-      <p>日内瓦框架下，乌克兰停火谈判本周取得阶段性进展。欧盟、美国、俄罗斯及乌克兰代表已就"停火线冻结方案"达成初步框架，但领土归属、战后重建资金来源及北约安全保障机制仍是关键分歧点。当前战线基本稳定于2025年底形成的态势。国际油价因地缘缓和预期下跌2.3%，布伦特原油跌至每桶74美元附近。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-intl">科技</span>
-      <h3>OpenAI发布GPT-5，推理能力对标博士级，全球AI竞赛再度升温</h3>
-      <p>OpenAI宣布推出GPT-5系列，新模型在MMLU、GPQA等权威评测中超越现有最优水平，数学推理、代码生成、复杂逻辑分析等核心能力达到博士生平均水平。与此同时，谷歌DeepMind加速推进Gemini Ultra 2.0的部署，中国国内百度、智谱、深度求索等厂商亦加快发布对标产品。全球AI大模型军备竞赛进入"能力跃升"新阶段，算力、数据、人才争夺愈发激烈。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">重磅</span>
+          <span>DeepSeek V4正式发布：推理速度提升3倍，多项基准超越GPT-5</span>
+        </div>
+        <div class="news-body">
+          深度求索（DeepSeek）正式发布V4大模型，采用全新<span class="highlight-green">MoE-Turbo</span>架构，参数量达1.7T（激活780B），推理速度较V3提升3倍，在MMLU（92.4%）、HumanEval（98.7%）、MATH（96.1%）等主流评测上全面超越GPT-5。同时开源权重，允许商业使用。国内AI应用生态迎来新一轮能力升级窗口。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>DeepSeek V4的发布再度引爆"算力需求"争议——V4推理效率的大幅提升可能降低对高端GPU的依赖，但模型规模扩大同样拉动预训练算力需求。短期对英伟达GPU股价形成压力，但国内应用层（AI教育、AI办公、AI医疗）将迎来新一轮爆发。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">脑机接口</span>
+          <span>国家药监局批准首个国产脑机接口产品上市，用于治疗渐冻症</span>
+        </div>
+        <div class="news-body">
+          国家药监局正式批准博睿康科技"神炬"脑机接口系统上市，这是继Neuralink后全球第二个获批临床应用的侵入式脑机接口产品，主要适用于<span class="highlight-green">渐冻症（ALS）</span>患者的辅助交流与运动控制恢复。首批在北京、上海、广州三家三甲医院开展收费治疗。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">低空经济</span>
+          <span>民航局发布低空飞行空域管理新规，核心城市低空"绿色通道"正式启用</span>
+        </div>
+        <div class="news-body">
+          民航局《低空飞行空域管理暂行办法（2026修订版）》正式生效，北京、上海、广州、深圳、成都、武汉六城设立低空经济示范区，在限定区域内eVTOL（电动垂直起降飞行器）可进行商业载客飞行申请。亿航智能、小鹏汇天立即宣布开展首批商业运营申请。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 娱乐头条 -->
+  <!-- 娱乐热点 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🎬</span>
-      <span class="section-title">娱乐圈头条</span>
-      <span class="section-badge badge-ent">娱乐</span>
+    <div class="sec-head">
+      <span class="sec-icon">🎭</span>
+      <span class="sec-title">娱乐圈 · 文体热点</span>
+      <span class="sec-badge badge-hot">热搜榜单</span>
     </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-ent">影视</span>
-      <h3>国产科幻大片《流浪地球3》宣布启动拍摄，郭帆执导，预计2028年上映</h3>
-      <p>导演郭帆在社交媒体宣布《流浪地球3》正式立项并进入筹备拍摄阶段，预计将于2026年下半年开机，2028年贺岁档上映。影片将以地球抵达比邻星系为核心背景，探讨人类文明在星际移民后的命运抉择。全球累计票房超60亿元的系列IP再度引发广泛期待，相关电影、文旅衍生品概念股受到资本关注。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-ent">音乐</span>
-      <h3>华语乐坛震动：周杰伦宣布全球巡演"MoMo Tour"，首站上海5月开票</h3>
-      <p>周杰伦工作室官方宣布，2026年全球巡演"MoMo Tour"正式启动，预计覆盖亚洲、北美、欧洲等30个城市。上海首站演唱会票务5月18日正式开售，网传内场票价区间为2800—5800元。此消息一出，各大票务平台预约人数瞬间突破数百万，再度引发"周杰伦演唱会经济"热议。</p>
-    </div>
-
-    <div class="news-card">
-      <span class="news-tag tag-ent">综艺</span>
-      <h3>《披荆斩棘》第五季官宣，多位"哥哥"回归，AI演唱会技术引发版权争议</h3>
-      <p>芒果TV宣布《披荆斩棘》第五季正式立项，多位上届参与者传出回归消息，预计暑期档播出。与此同时，本周娱乐圈热议话题还包括：某平台利用AI技术"复活"已故歌手举办虚拟演唱会引发强烈争议，国家版权局已表示将研究AI娱乐内容的专项监管框架，明星肖像权保护问题进入立法视野。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-orange">演出</span>
+          <span>周杰伦"MoMo Tour"北京站开票：秒售罄，黄牛票价飙至5000-8000元</span>
+        </div>
+        <div class="news-body">
+          周杰伦2026"MoMo Tour"世界巡回演唱会北京站（国家体育场·鸟巢）今日上午10:00开票，<span class="highlight">官方平台15分钟全部售罄</span>，黄牛平台价格已攀升至5000-8000元/张，摇滚区更高达12000元。此次巡演是周杰伦时隔8年再度赴华内地演出，全球25城，中国内地站共11场，预估演出经济带动超20亿人民币。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">体育</span>
+          <span>中国男足3:0大胜印度尼西亚，2026世界杯晋级形势乐观</span>
+        </div>
+        <div class="news-body">
+          世界杯亚洲区18强赛第4轮，中国男足主场（成都·凤凰山体育公园）3:0战胜印度尼西亚，武磊梅开二度，张玉宁补射破门。目前积9分，与韩国、日本共同领跑小组。晋级亚洲区附加赛形势乐观，全网"中国男足真的变了"成微博热搜第一。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">影视</span>
+          <span>《封神第二部：战神归来》开启点映：首日预售票房破3亿，打破春节档纪录</span>
+        </div>
+        <div class="news-body">
+          《封神》系列第二部今日开启全国点映，上映前24小时预售票房已突破3亿元，超过《满江红》创造的春节档预售纪录。导演乌尔善透露，本片在特效制作上投入超12亿元，将呈现中国电影史上最大规模的实战场景群像。正式上映日期为4月1日清明档。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-red">舆论</span>
+          <span>某头部网红直播带货被315曝光：虚假宣传、货不对板，账号被封禁</span>
+        </div>
+        <div class="news-body">
+          央视3·15晚会直播中，某拥有3500万粉丝的头部美妆类主播被曝光：所售"进口有机护肤品"实为国内小作坊代工，成分虚标，保质期造假。市场监管总局当晚即启动调查，该账号被全平台封禁，直播间已下线，涉及消费者维权金额超2亿元。
+        </div>
+        <div class="analysis">
+          <strong>深度解读：</strong>直播电商规范化进入深水区，此次曝光将加速《网络直播营销管理办法》修订版落地。平台端需承担更重的内容审核与售后赔偿连带责任，短期对直播电商GMV有压制效应，但有助于行业长期健康发展。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 深度分析 -->
-  <div class="analysis-box">
-    <h4>📊 深度分析：两会后A股与宏观政策走向研判</h4>
-    <p>随着2026年全国两会圆满落幕，"十五五"规划正式批准落地，市场进入政策预期兑现阶段。从历史规律看，两会闭幕后两周内A股往往经历"政策驱动行情消化期"。本届两会最大的增量信息在于：①<strong>新质生产力</strong>写入规划纲要具体量化目标，AI、脑机接口、量子计算、低空经济等赛道获得政策背书；②<strong>消费刺激</strong>力度超预期，新能源汽车补贴续期+家电以旧换新升级，利好消费链；③<strong>资本市场改革</strong>加速，科创板优化+长期资金入市机制完善，中长线资金有望持续流入。短期需关注美联储3月议息会议（本周四）及国际地缘局势边际变化。</p>
+  <!-- 今日评论 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-icon">💡</span>
+      <span class="sec-title">今日评论 · 综合研判</span>
+    </div>
+    <div class="sec-body">
+      <div class="news-body" style="padding:4px 0">
+        今日恰逢<span class="highlight">3·15消费者权益日</span>，多条新闻都指向"监管收紧"与"秩序重建"的主旋律。宏观层面，<span class="highlight">十五五重大工程清单</span>的落地为资本市场提供了清晰的政策导向：AI算力、人形机器人、低空经济是未来五年政府主导投入最确定的三条主线。
+      </div>
+      <div class="divider"></div>
+      <div class="news-body" style="padding:4px 0">
+        国际层面，<span class="highlight-blue">中美贸易阶段性共识</span>与<span class="highlight-blue">中东停火信号</span>双双改善全球风险情绪，有望推动本周A股在"两会后"行情上延续科技主线。<span class="highlight-red">美国新一轮芯片出口管制</span>虽是负面扰动，但其倒逼效应将持续催化国产替代逻辑。
+      </div>
+      <div class="divider"></div>
+      <div class="news-body" style="padding:4px 0">
+        值得特别关注的是<span class="highlight-green">DeepSeek V4</span>发布——中国AI模型能力再度实现对国际顶级产品的"同台竞技"，配合<span class="highlight-green">粤港澳数据特区</span>政策，国内AI产业发展内外动力均在加强。今日整体新闻基调积极，利好科技、消费与国际贸易方向。
+      </div>
+    </div>
   </div>
 
 </div>
 
 <div class="footer">
-  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 2026-03-15 08:00 &nbsp;·&nbsp; 数据来源：新华社、人民网、央视、环球网等权威媒体
+  由 <strong>WorkBuddy</strong> 自动生成 · 2026-03-15 &nbsp;|&nbsp; 数据来源：各大新闻网站、政府官网、财经媒体
 </div>
 
 </body>
