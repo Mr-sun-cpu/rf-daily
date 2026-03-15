@@ -26,7 +26,6 @@
 
   .container { max-width:760px; margin:0 auto; padding:36px 16px 60px; }
 
-  /* ── 栏目头部，可点击展开/折叠 ── */
   .category { margin-bottom:8px; background:var(--bg2); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
 
   .cat-header {
@@ -44,7 +43,6 @@
   .cat-right { display:flex; align-items:center; gap:10px; }
   .cat-count { font-size:12px; color:var(--muted); background:var(--bg3); border:1px solid var(--border); border-radius:20px; padding:2px 10px; }
 
-  /* 折叠箭头 */
   .cat-toggle {
     width:22px; height:22px; display:flex; align-items:center; justify-content:center;
     color:var(--muted); font-size:14px; transition:transform .25s;
@@ -52,7 +50,6 @@
   }
   .category.open .cat-toggle { transform:rotate(180deg); }
 
-  /* 内容区折叠动画 */
   .cat-body {
     display:grid;
     grid-template-rows:0fr;
@@ -89,7 +86,6 @@
   .card-sub   { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .card-arrow { color:var(--muted); font-size:16px; flex-shrink:0; margin-left:10px; }
 
-  /* 最新标签 */
   .badge-new { font-size:10px; font-weight:700; background:rgba(63,185,80,.15); border:1px solid rgba(63,185,80,.3); color:var(--green); border-radius:6px; padding:1px 7px; margin-left:6px; vertical-align:middle; flex-shrink:0; }
 
   .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); }
@@ -101,7 +97,7 @@
   <div class="header-eyebrow">🔬 WorkBuddy 智能调研</div>
   <h1>每日调研日报</h1>
   <div class="header-sub">
-    <span>📅 最近更新：2026-03-16</span>
+    <span>📅 最近更新：2026-03-15</span>
     <span>·</span>
     <span>⏰ 每天 08:00 自动更新</span>
     <span>·</span>
@@ -156,22 +152,12 @@
     <div class="cat-body">
       <div class="cat-body-inner">
         <div class="report-list">
-          <a class="report-card cat-news" href="news-2026-03-16.html">
-            <div class="card-left">
-              <div class="date-pill pill-news">03-16</div>
-              <div class="card-info">
-                <div class="card-title">每日实时新政 · 2026-03-16 <span class="badge-new">最新</span></div>
-                <div class="card-sub">两会闭幕首日·十五五109项重大工程·脑机接口商业化·GPT-5上线·周杰伦MoMo Tour秒罄</div>
-              </div>
-            </div>
-            <span class="card-arrow">›</span>
-          </a>
           <a class="report-card cat-news" href="news-2026-03-15.html">
             <div class="card-left">
               <div class="date-pill pill-news">03-15</div>
               <div class="card-info">
-                <div class="card-title">每日实时新政 · 2026-03-15</div>
-                <div class="card-sub">两会闭幕十五五获批 · 脑机接口首批获批上市 · 中美巴黎磋商 · GPT-5发布 · 周杰伦MoMo Tour</div>
+                <div class="card-title">每日实时新政 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">3·15消费者权益日·十五五重大工程清单·DeepSeek V4发布·中美贸易阶段性共识·周杰伦MoMo Tour北京秒罄</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -182,6 +168,16 @@
               <div class="card-info">
                 <div class="card-title">每日实时新政 · 2026-03-14</div>
                 <div class="card-sub">十五五规划发布 · 中美巴黎磋商 · 美以伊战争第14天 · 脑机接口获批 · 娱乐头条</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-news" href="news-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-news">03-13</div>
+              <div class="card-info">
+                <div class="card-title">每日实时新政 · 2026-03-13</div>
+                <div class="card-sub">两会专题报道 · 国内外热点聚焦 · 产业政策动态</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -209,22 +205,12 @@
     <div class="cat-body">
       <div class="cat-body-inner">
         <div class="report-list">
-          <a class="report-card cat-stock" href="stock-2026-03-16.html">
-            <div class="card-left">
-              <div class="date-pill pill-stock">03-16</div>
-              <div class="card-info">
-                <div class="card-title">股市基金日报 · 2026-03-16 <span class="badge-new">最新</span></div>
-                <div class="card-sub">两会后首日科技全线飘红 · 人形机器人+6.23% · 脑机接口+5.81% · 低空经济+4.97% · 北向净流52亿</div>
-              </div>
-            </div>
-            <span class="card-arrow">›</span>
-          </a>
           <a class="report-card cat-stock" href="stock-2026-03-15.html">
             <div class="card-left">
               <div class="date-pill pill-stock">03-15</div>
               <div class="card-info">
-                <div class="card-title">股市基金日报 · 2026-03-15</div>
-                <div class="card-sub">创业板涨超3%站上3300点 · 人形机器人+9.8% · 脑机接口概念爆发 · 下周策略研判</div>
+                <div class="card-title">股市基金日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">本周科技主线领涨·人形机器人+12.43%·脑机接口+10.87%·低空经济+9.62%·下周策略研判</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -234,7 +220,17 @@
               <div class="date-pill pill-stock">03-14</div>
               <div class="card-info">
                 <div class="card-title">股市基金日报 · 2026-03-14</div>
-                <div class="card-sub">沪指失守4100点 · 银行食饮抗跌 · 十大板块深度解析 · 个股&amp;基金推荐</div>
+                <div class="card-sub">沪指失守4100点 · 银行食饮抗跌 · 十大板块深度解析 · 个股&基金推荐</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-stock" href="stock-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-stock">03-13</div>
+              <div class="card-info">
+                <div class="card-title">股市基金日报 · 2026-03-13</div>
+                <div class="card-sub">两会行情分析 · 科技主线持续 · 基金配置建议</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -262,22 +258,12 @@
     <div class="cat-body">
       <div class="cat-body-inner">
         <div class="report-list">
-          <a class="report-card cat-ev" href="ev-2026-03-16.html">
-            <div class="card-left">
-              <div class="date-pill pill-ev">03-16</div>
-              <div class="card-info">
-                <div class="card-title">新能源电动车日报 · 2026-03-16 <span class="badge-new">最新</span></div>
-                <div class="card-sub">宁德固态电池量产装车·比亚迪DM5热效率46%·小鹏X9 Ultra发布·华为乾崑4.0去激光雷达</div>
-              </div>
-            </div>
-            <span class="card-arrow">›</span>
-          </a>
           <a class="report-card cat-ev" href="ev-2026-03-15.html">
             <div class="card-left">
               <div class="date-pill pill-ev">03-15</div>
               <div class="card-info">
-                <div class="card-title">新能源电动车日报 · 2026-03-15</div>
-                <div class="card-sub">问界M6全系896线雷达 · 宁德固态电池路线图 · 华为乾崑4.0去激光雷达 · 十大品牌销量排行</div>
+                <div class="card-title">新能源电动车日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">比亚迪二代刀片电池量产·3·15续航虚标整治·华为乾崑4.0去激光雷达·宁德固态电池路线图</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -288,6 +274,16 @@
               <div class="card-info">
                 <div class="card-title">新能源电动车日报 · 2026-03-14</div>
                 <div class="card-sub">比亚迪夺纯电全球销冠 · 问界M9年改 · 固态电池三代路线图 · 15款新车速递</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-ev" href="ev-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-ev">03-13</div>
+              <div class="card-info">
+                <div class="card-title">新能源电动车日报 · 2026-03-13</div>
+                <div class="card-sub">新能源汽车产业最新动态 · 技术突破 · 销量数据</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -315,22 +311,12 @@
     <div class="cat-body">
       <div class="cat-body-inner">
         <div class="report-list">
-          <a class="report-card cat-gaas" href="gaas-2026-03-16.html">
-            <div class="card-left">
-              <div class="date-pill pill-gaas">03-16</div>
-              <div class="card-info">
-                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-16 <span class="badge-new">最新</span></div>
-                <div class="card-sub">三安集成6英寸产线·芯谷微三款IPA新品·Qorvo QPM2637·E类PA效率63.8%·设计方法深析</div>
-              </div>
-            </div>
-            <span class="card-arrow">›</span>
-          </a>
           <a class="report-card cat-gaas" href="gaas-2026-03-15.html">
             <div class="card-left">
               <div class="date-pill pill-gaas">03-15</div>
               <div class="card-info">
-                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-15</div>
-                <div class="card-sub">Qorvo QPM2637 Ka波段PA · 芯谷微三款新品 · W波段100GHz+突破 · 六大赛道 · 设计方法深析</div>
+                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">芯谷微三款IPA新品·Qorvo QPM2637 Ka波段·三安集成6英寸满产·E类PA效率63.8%·设计方法五步深析</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -341,6 +327,16 @@
               <div class="card-info">
                 <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-14</div>
                 <div class="card-sub">芯谷微三款新品 · 100GHz+突破 · 六大应用赛道 · 设计方法深析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-gaas" href="gaas-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-gaas">03-13</div>
+              <div class="card-info">
+                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-13</div>
+                <div class="card-sub">市场动态 · 技术突破 · 前沿论文 · 产业分析</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -368,22 +364,12 @@
     <div class="cat-body">
       <div class="cat-body-inner">
         <div class="report-list">
-          <a class="report-card cat-rf" href="2026-03-16.html">
-            <div class="card-left">
-              <div class="date-pill pill-rf">03-16</div>
-              <div class="card-info">
-                <div class="card-title">射频芯片日报 · 2026-03-16 <span class="badge-new">最新</span></div>
-                <div class="card-sub">北大6G全频段芯片突破·太赫兹4.8Tbps纪录·高通X105三合一模组·国产化格局深度分析</div>
-              </div>
-            </div>
-            <span class="card-arrow">›</span>
-          </a>
           <a class="report-card cat-rf" href="2026-03-15.html">
             <div class="card-left">
               <div class="date-pill pill-rf">03-15</div>
               <div class="card-info">
-                <div class="card-title">射频芯片日报 · 2026-03-15</div>
-                <div class="card-sub">高通X105 · 北大6G全频段芯片 · 太赫兹4.8Tbps · 国产化率突破分析 · 产业链深度</div>
+                <div class="card-title">射频芯片日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">北大6G全频段芯片·太赫兹4.8Tbps纪录·高通X105三合一模组·6G产业规划落地·国产格局深度分析</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
@@ -394,6 +380,16 @@
               <div class="card-info">
                 <div class="card-title">射频芯片日报 · 2026-03-14</div>
                 <div class="card-sub">高通X105 · 北大6G全频段芯片 · 太赫兹4.8Tbps · 国产替代加速</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-rf" href="2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-rf">03-13</div>
+              <div class="card-info">
+                <div class="card-title">射频芯片日报 · 2026-03-13</div>
+                <div class="card-sub">射频芯片最新产品动态 · 技术突破 · 产业链分析</div>
               </div>
             </div>
             <span class="card-arrow">›</span>
