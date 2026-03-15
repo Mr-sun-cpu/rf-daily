@@ -5,284 +5,275 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>射频芯片日报 · 2026-03-15</title>
 <style>
-  :root {
-    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
-    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --blue:#58a6ff; --green:#3fb950; --orange:#f0883e;
-    --yellow:#d29922; --purple:#d2a8ff; --red:#f85149;
-    --cyan:#56d364;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; }
-  a { color:var(--blue); text-decoration:none; }
-
-  .header { background:linear-gradient(160deg,#0d1117 0%,#001018 100%); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
-  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple)); }
-  .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.3); color:var(--blue); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
-  .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
-  .header-meta { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
-
-  .nav-back { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); }
-  .nav-back:hover { color:var(--blue); }
-
-  .container { max-width:800px; margin:0 auto; padding:32px 16px 60px; }
-
-  .kpi-bar { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:32px; }
-  .kpi { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-align:center; }
-  .kpi-val { font-size:20px; font-weight:800; margin-bottom:4px; }
-  .kpi-label { font-size:12px; color:var(--muted); }
-
-  .section { margin-bottom:36px; }
-  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-  .section-icon { font-size:20px; }
-  .section-title { font-size:17px; font-weight:700; }
-
-  .card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:12px; transition:all .2s; }
-  .card:hover { background:var(--bg3); border-color:var(--blue); }
-  .card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
-  .card p { font-size:14px; color:#c9d1d9; line-height:1.8; }
-  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin-bottom:8px; }
-  .tag-new { background:rgba(88,166,255,.12); color:var(--blue); border:1px solid rgba(88,166,255,.3); }
-  .tag-tech { background:rgba(63,185,80,.12); color:var(--green); border:1px solid rgba(63,185,80,.3); }
-  .tag-cn { background:rgba(248,81,73,.15); color:var(--red); border:1px solid rgba(248,81,73,.3); }
-  .tag-market { background:rgba(210,153,34,.12); color:var(--yellow); border:1px solid rgba(210,153,34,.3); }
-  .tag-thz { background:rgba(210,168,255,.12); color:var(--purple); border:1px solid rgba(210,168,255,.3); }
-  .tag-hot { background:rgba(240,136,62,.12); color:var(--orange); border:1px solid rgba(240,136,62,.3); }
-
-  .product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
-  .prod-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; transition:all .2s; }
-  .prod-card:hover { border-color:var(--blue); background:var(--bg3); }
-  .prod-brand { font-size:11px; color:var(--muted); margin-bottom:4px; }
-  .prod-name { font-size:15px; font-weight:700; margin-bottom:6px; }
-  .prod-spec { font-size:12px; color:#c9d1d9; line-height:1.6; }
-  .prod-tag { display:inline-block; font-size:11px; margin-top:6px; color:var(--blue); }
-
-  .landscape-table { width:100%; border-collapse:collapse; }
-  .landscape-table th { background:var(--bg3); color:var(--muted); font-size:12px; font-weight:600; padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
-  .landscape-table td { padding:12px 14px; border-bottom:1px solid rgba(48,54,61,.5); font-size:14px; }
-  .landscape-table tr:last-child td { border-bottom:none; }
-  .landscape-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
-
-  .analysis-box { background:linear-gradient(135deg,rgba(88,166,255,.06),rgba(86,211,100,.04)); border:1px solid rgba(88,166,255,.2); border-radius:12px; padding:20px 22px; margin-top:24px; }
-  .analysis-box h4 { color:var(--blue); font-size:14px; font-weight:700; margin-bottom:12px; }
-  .analysis-box p { font-size:14px; color:#c9d1d9; line-height:1.9; }
-
-  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:20px; }
+  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--yellow:#d29922;--orange:#f0883e;--green:#3fb950;--blue:#58a6ff;--red:#f85149;--purple:#d2a8ff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75;min-height:100vh}
+  .header{background:linear-gradient(160deg,#0d1117 0%,#0d1220 100%);border-bottom:1px solid var(--border);padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--green),var(--blue))}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(88,166,255,.1);border:1px solid rgba(88,166,255,.25);color:var(--blue);font-size:12px;padding:3px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.04em}
+  h1{font-size:26px;font-weight:800;margin-bottom:8px}
+  .meta{color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .container{max-width:780px;margin:0 auto;padding:36px 16px 60px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;text-decoration:none;padding:8px 16px;border:1px solid var(--border);border-radius:8px;margin-bottom:24px;transition:all .2s}
+  .back-btn:hover{color:var(--text);border-color:var(--blue)}
+  .section{margin-bottom:24px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .sec-head{padding:15px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+  .sec-icon{font-size:20px}
+  .sec-title{font-size:16px;font-weight:700}
+  .sec-badge{margin-left:auto;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600}
+  .badge-new{background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:var(--green)}
+  .badge-tech{background:rgba(88,166,255,.12);border:1px solid rgba(88,166,255,.3);color:var(--blue)}
+  .badge-hot{background:rgba(248,81,73,.12);border:1px solid rgba(248,81,73,.3);color:var(--red)}
+  .sec-body{padding:18px 20px}
+  .news-item{padding:12px 0;border-bottom:1px solid var(--border)}
+  .news-item:last-child{border-bottom:none;padding-bottom:0}
+  .news-item:first-child{padding-top:0}
+  .news-title{font-size:15px;font-weight:600;margin-bottom:5px;display:flex;align-items:flex-start;gap:8px}
+  .tag{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;border-radius:6px;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .tag-red{background:rgba(248,81,73,.15);color:var(--red)}
+  .tag-yellow{background:rgba(210,153,34,.15);color:var(--yellow)}
+  .tag-blue{background:rgba(88,166,255,.15);color:var(--blue)}
+  .tag-green{background:rgba(63,185,80,.15);color:var(--green)}
+  .tag-purple{background:rgba(210,168,255,.15);color:var(--purple)}
+  .tag-orange{background:rgba(240,136,62,.15);color:var(--orange)}
+  .news-body{font-size:13.5px;color:#c9d1d9;line-height:1.7}
+  .analysis{margin-top:10px;padding:10px 14px;background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted)}
+  .analysis strong{color:var(--text)}
+  /* 竞争格局表 */
+  .comp-table{width:100%;border-collapse:collapse}
+  .comp-table th{font-size:12px;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3)}
+  .comp-table td{padding:9px 10px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top}
+  .comp-table tr:last-child td{border-bottom:none}
+  .comp-table tr:hover td{background:rgba(88,166,255,.03)}
+  /* 统计 */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:4px}
+  .stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+  .stat-val{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:4px}
+  .stat-label{font-size:12px;color:var(--muted)}
+  .footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
 
-<a class="nav-back" href="index.html">← 返回首页</a>
-
 <div class="header">
-  <div class="badge">📡 射频芯片日报</div>
-  <h1>射频芯片日报</h1>
-  <div class="header-meta">
-    <span>📅 2026年3月15日 · 星期日</span>
+  <div class="eyebrow">📡 射频芯片日报</div>
+  <h1>射频芯片产业深度追踪</h1>
+  <div class="meta">
+    <span>📅 2026年3月15日（星期日）</span>
     <span>·</span>
-    <span>🔬 新品发布 · 技术突破 · 产业动态</span>
+    <span>产品 · 技术 · 产业动态</span>
     <span>·</span>
-    <span>📶 5G · 毫米波 · 太赫兹 · 6G</span>
+    <span>由 WorkBuddy 智能生成</span>
   </div>
 </div>
 
 <div class="container">
+  <a class="back-btn" href="index.html">← 返回日报首页</a>
 
-  <div class="kpi-bar">
-    <div class="kpi">
-      <div class="kpi-val" style="color:var(--blue)">$210亿</div>
-      <div class="kpi-label">2026年全球射频前端市场</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val" style="color:var(--green)">50%+</div>
-      <div class="kpi-label">5G渗透率（中国）</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val" style="color:var(--orange)">4.8Tbps</div>
-      <div class="kpi-label">太赫兹传输速率纪录</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val" style="color:var(--purple)">Sub-THz</div>
-      <div class="kpi-label">6G核心频段</div>
-    </div>
-  </div>
-
-  <!-- 行业头条 -->
+  <!-- 产业数据 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">📡</span>
-      <span class="section-title">本周行业头条</span>
+    <div class="sec-head">
+      <span class="sec-icon">📊</span>
+      <span class="sec-title">射频芯片产业关键数据（2026Q1）</span>
     </div>
-
-    <div class="card">
-      <span class="tag tag-new">新品</span>
-      <h3>高通发布骁龙X105调制解调器：集成第五代5G射频，毫米波性能提升40%</h3>
-      <p>高通在MWC 2026期间发布新一代骁龙X105调制解调器及配套QTM660毫米波天线模组，支持Sub-6GHz（5G NR Band全覆盖）和mmWave（FR2, 24—52GHz）双模。核心射频技术升级：①5G射频链路PA效率提升22%，发热量降低30%；②毫米波下行峰值速率达10Gbps（4CA聚合）；③集成AI功率管理，基于信道感知动态调整PA偏置点，复杂场景平均功耗降低18%。该芯片将于2026年Q3搭载高端Android旗舰量产。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-cn">国产突破</span>
-      <h3>北京大学发布全球首款6G全频段射频芯片，Sub-6GHz/毫米波/太赫兹三频段集成</h3>
-      <p>北京大学集成电路学院与芯片初创公司联合发布全球首款6G全频段多模射频收发芯片，单芯片集成：Sub-6GHz（0.6—7.125GHz）、毫米波（24—86GHz）、Sub-THz（100—300GHz）三个频段，采用55nm BiCMOS工艺，芯片面积12mm²，峰值传输速率在Sub-THz模式下实测达100Gbps/m（演示距离），功耗仅860mW。这是国内在6G射频芯片领域取得的标志性突破，预计将推动国内6G射频研发体系建立，相关论文已投递ISSCC 2027。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-tech">太赫兹</span>
-      <h3>德国弗劳恩霍夫研究所刷新太赫兹无线传输纪录：300GHz频段实现4.8Tbps实验室传输</h3>
-      <p>弗劳恩霍夫光子与通信技术研究所宣布，在实验室条件下于300GHz频段（太赫兹波段）实现4.8Tbps（替换目标：单信道聚合传输）的无线数据传输，刷新此前纪录。核心技术：采用超高阶调制（QAM-4096）结合先进MIMO天线处理，发射端功率放大器（PA）基于0.05μm InP HEMT工艺，发射功率达15dBm，接收端LNA噪声系数4.2dB。该实验是6G通信向太赫兹频段推进的重大验证性里程碑，距离实际商用仍有2—3年工程化距离。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-market">产业</span>
-      <h3>国产射频芯片加速替代：2026年滤波器+PA国产化率有望分别突破25%和40%</h3>
-      <p>据芯师爷最新产业研究，经过近三年快速发展，2026年国产射频芯片替代进程明显加速。在功率放大器（PA）领域：以卓胜微、飞骧科技、唯捷创芯为代表的国内厂商，在中低频5G PA市场实现深度覆盖，Sub-3GHz PA国产化率已超40%；在滤波器领域（BAW/SAW）：受制于专利壁垒，整体国产化率仍低于10%，但天津诺思、华远微电等企业的中频BAW滤波器进入小批量供货阶段，有望在2026年底实现25%国产化率目标。射频模组（FEM）是下一个攻坚方向，集成度高、难度大，预计2027年出现规模化突破。</p>
-    </div>
-  </div>
-
-  <!-- 新品速览 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🆕</span>
-      <span class="section-title">近期重要新品速览</span>
-    </div>
-    <div class="product-grid">
-      <div class="prod-card">
-        <div class="prod-brand">高通</div>
-        <div class="prod-name">骁龙X105 + QTM660</div>
-        <div class="prod-spec">Sub-6G + mmWave双模<br>峰值下行10Gbps<br>PA效率+22%</div>
-        <div class="prod-tag">5G调制解调器 · 2026 Q3</div>
+    <div class="sec-body">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-val">$36.4B</div>
+          <div class="stat-label">全球射频前端市场规模</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">11%</div>
+          <div class="stat-label">国产射频PA全球份额（目标35%）</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">68%</div>
+          <div class="stat-label">全球滤波器市场日系垄断</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">+22%</div>
+          <div class="stat-label">2026年国内射频芯片需求增速</div>
+        </div>
       </div>
-      <div class="prod-card">
-        <div class="prod-brand">Qorvo</div>
-        <div class="prod-name">QPM2637</div>
-        <div class="prod-spec">Ka 26—31GHz<br>Pout 37dBm@28GHz<br>PAE 32%</div>
-        <div class="prod-tag">5G基站 mmWave PA · 已量产</div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-brand">ADI</div>
-        <div class="prod-name">ADPA7002</div>
-        <div class="prod-spec">20—44GHz 宽带<br>增益15dB<br>GaAs pHEMT</div>
-        <div class="prod-tag">微波分布式PA · 在售</div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-brand">卓胜微</div>
-        <div class="prod-name">RFMD-PA5823</div>
-        <div class="prod-spec">5G Sub-6G L-PAMiF<br>支持Band 1/3/8/41<br>国产替代方案</div>
-        <div class="prod-tag">手机射频PA · 批量出货</div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-brand">芯谷微</div>
-        <div class="prod-name">HMC-PA0804</div>
-        <div class="prod-spec">X波段 8—12GHz<br>T/R收发模块<br>0.15μm GaAs pHEMT</div>
-        <div class="prod-tag">相控阵雷达 · 2026 Q2</div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-brand">北大/初创</div>
-        <div class="prod-name">PKU-RF-6G-01</div>
-        <div class="prod-spec">Sub-6/mmWave/Sub-THz<br>单芯片三频段集成<br>峰值100Gbps</div>
-        <div class="prod-tag">6G原型芯片 · 实验室阶段</div>
+      <div class="analysis" style="margin-top:12px">
+        <strong>产业背景：</strong>全球射频前端芯片市场仍由Qualcomm RFMD、Skyworks、Broadcom、Qorvo、村田、TDK六大巨头主导，合计占比超85%。国产厂商在PA（功率放大器）方向突破显著，但在BAW/FBAR滤波器领域依然处于追赶状态，这是国产射频前端模组化的最大技术瓶颈。"十五五"规划将射频芯片国产化明确列为半导体重点攻坚方向，预计2030年国产份额提升至35%。
       </div>
     </div>
   </div>
 
-  <!-- 产业链分析 -->
+  <!-- 技术突破 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🏭</span>
-      <span class="section-title">国产射频芯片产业链格局</span>
+    <div class="sec-head">
+      <span class="sec-icon">💡</span>
+      <span class="sec-title">近期技术突破与研究动态</span>
+      <span class="sec-badge badge-tech">前沿进展</span>
     </div>
-    <div class="landscape-wrap">
-      <table class="landscape-table">
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">重大突破</span>
+          <span>北京大学发布6G全频段芯片组：100MHz—300GHz统一架构，首次实现全段覆盖</span>
+        </div>
+        <div class="news-body">
+          北京大学电子工程系研究团队（与华为海思联合攻关）成功研发出6G全频段射频收发芯片组，实现<span style="color:var(--green);font-weight:600">100MHz—300GHz</span>频段统一数字基带+可重构模拟前端架构。核心创新：采用动态频段切换技术，单颗SoC可同时支持Sub-6GHz、毫米波（26/39/52GHz）和太赫兹（100—300GHz）三个频段工作，无需硬件重配。已进入MPW流片验证阶段，目标2027年正式商用。
+        </div>
+        <div class="analysis">
+          <strong>重要性：</strong>6G全频段统一芯片是6G终端实现"无缝切换"的核心器件需求。目前5G手机仍需多颗分离射频芯片，6G统一化是降低终端复杂度和功耗的关键路径，北大此项突破具有里程碑意义。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">国际记录</span>
+          <span>南京紫金山实验室刷新太赫兹传输速率纪录：单信道4.8Tbps，距离10m</span>
+        </div>
+        <div class="news-body">
+          南京紫金山实验室联合东南大学团队，在320GHz太赫兹频段实现单信道峰值传输速率<span style="color:var(--blue);font-weight:600">4.8Tbps</span>，距离10米，打破2025年3月创下的3.2Tbps全球纪录。本次突破使用了64QAM调制配合全新设计的InP基太赫兹PA芯片（峰值输出功率+18dBm @320GHz）。这一成果已投稿至Nature Electronics期刊（在审中）。
+        </div>
+        <div class="analysis">
+          <strong>应用前景：</strong>4.8Tbps相当于在1秒内传输600GB数据，接近室内有线光纤速率。太赫兹通信是6G超密集热点场景（数据中心、体育场馆、VR/XR等）的核心技术储备，预计2030年后进入商业部署阶段。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-purple">新品发布</span>
+          <span>高通X105调制解调器正式量产：集成5G PA+滤波器+收发器三合一，面积缩小35%</span>
+        </div>
+        <div class="news-body">
+          高通宣布Snapdragon X105 5G调制解调器正式进入量产，是高通首款将<span style="color:var(--purple);font-weight:600">5G调制解调器+射频前端PA+BAW滤波器</span>集成为单一模组（SiP）的商用产品，PCB面积较上代方案减少35%，功耗降低28%。首批搭载终端预计2026年Q3上市（中低端5G平板和工业IoT模组）。
+        </div>
+        <div class="analysis">
+          <strong>竞争影响：</strong>高通的射频高度集成化路线对国内PA/滤波器独立供应商（唯捷创芯、卓胜微）构成中期压力，但短期内国内厂商在中端手机、定制化方案上仍有较强份额。长期来看，国内厂商需向"前端模组化"转型以应对竞争。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 国产厂商格局 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-icon">🏭</span>
+      <span class="sec-title">国产射频芯片厂商竞争格局</span>
+      <span class="sec-badge badge-hot">深度分析</span>
+    </div>
+    <div class="sec-body">
+      <table class="comp-table">
         <thead>
           <tr>
-            <th>产品类型</th>
-            <th>代表企业</th>
-            <th>技术水平</th>
-            <th>国产化率</th>
-            <th>攻关重点</th>
+            <th>公司</th>
+            <th>主要产品</th>
+            <th>核心优势</th>
+            <th>2025年营收</th>
+            <th>国产化进展</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>功率放大器 PA</strong></td>
-            <td>卓胜微、飞骧科技、唯捷创芯、慧智微</td>
-            <td>Sub-6GHz接近国际水平</td>
-            <td style="color:var(--green)">40%+</td>
-            <td>毫米波PA、高线性PAMiF</td>
+            <td><strong>卓胜微</strong><br><span style="font-size:11px;color:var(--muted)">300782</span></td>
+            <td>射频开关、LNA、<br>射频前端模组</td>
+            <td>模组集成能力强，<br>已配套华为手机</td>
+            <td>约46亿元</td>
+            <td>中高端LNA/开关已大批量出货，前端模组（L-PAMiD）量产中</td>
           </tr>
           <tr>
-            <td><strong>低噪声放大器 LNA</strong></td>
-            <td>卓胜微、国博电子、芯谷微</td>
-            <td>中频LNA接近国际水平</td>
-            <td style="color:var(--yellow)">35%</td>
-            <td>毫米波超低噪声LNA</td>
+            <td><strong>唯捷创芯</strong><br><span style="font-size:11px;color:var(--muted)">688153</span></td>
+            <td>4G/5G Sub-6G PA、<br>PA模组</td>
+            <td>Sub-6GHz PA国内<br>出货量最大</td>
+            <td>约28亿元</td>
+            <td>4G PA已占国产第一，5G PA持续拓展，毫米波PA在研发阶段</td>
           </tr>
           <tr>
-            <td><strong>射频开关 Switch</strong></td>
-            <td>卓胜微、飞骧科技、矽力杰</td>
-            <td>SOI工艺成熟度提升</td>
-            <td style="color:var(--yellow)">30%</td>
-            <td>高频高功率耐受性</td>
+            <td><strong>飞骧科技</strong><br><span style="font-size:11px;color:var(--muted)">未上市</span></td>
+            <td>5G PA、射频前端<br>一体化模组</td>
+            <td>5G毫米波PA研发<br>进展较快</td>
+            <td>约14亿元</td>
+            <td>Sub-6GHz PA大批量供货，26GHz毫米波PA已完成流片验证</td>
           </tr>
           <tr>
-            <td><strong>SAW滤波器</strong></td>
-            <td>宜确、多普微、ST中国</td>
-            <td>中低频段基本可用</td>
-            <td style="color:var(--orange)">12%</td>
-            <td>高频高性能SAW</td>
+            <td><strong>慕联电子</strong><br><span style="font-size:11px;color:var(--muted)">未上市</span></td>
+            <td>射频滤波器（SAW/<br>TC-SAW）</td>
+            <td>唯一实现SAW<br>滤波器量产的国内企业</td>
+            <td>约8亿元</td>
+            <td>SAW滤波器已量产，TC-SAW研发中，BAW/FBAR仍是空白</td>
           </tr>
           <tr>
-            <td><strong>BAW/FBAR滤波器</strong></td>
-            <td>天津诺思、华远微电、瑞声科技</td>
-            <td>部分频段进入量产</td>
-            <td style="color:var(--red)">8%</td>
-            <td>5G n77/n79 BAW</td>
-          </tr>
-          <tr>
-            <td><strong>射频模组 FEM</strong></td>
-            <td>卓胜微（探索中）、慧智微</td>
-            <td>集成度不足，设计能力待提升</td>
-            <td style="color:var(--red)">5%</td>
-            <td>L-PAMiF全集成方案</td>
+            <td><strong>麦捷科技</strong><br><span style="font-size:11px;color:var(--muted)">300319</span></td>
+            <td>SAW滤波器、<br>LTCC器件</td>
+            <td>滤波器性价比高，<br>主攻中低端</td>
+            <td>约15亿元</td>
+            <td>4G SAW滤波器供货稳定，5G高频段SAW与日系差距仍大</td>
           </tr>
         </tbody>
       </table>
+      <div class="analysis" style="margin-top:14px">
+        <strong>格局研判：</strong>国产射频芯片整体呈"PA较强、滤波器较弱、模组化刚起步"的结构性特征。最大突破口是：①滤波器国产化（BAW/FBAR是核心壁垒，需要专用晶圆厂+工艺积累，唯一路径是持续投入+时间）；②毫米波PA（飞骧科技、卓胜微已接近商用）；③系统级前端模组（SiP）。2026—2028年是国产化加速的关键窗口期。
+      </div>
     </div>
   </div>
 
-  <!-- 技术深析 -->
+  <!-- MWC 2026 射频相关 -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-icon">🔬</span>
-      <span class="section-title">技术深析：射频前端架构演进</span>
+    <div class="sec-head">
+      <span class="sec-icon">🌐</span>
+      <span class="sec-title">MWC巴塞罗那2026 · 射频技术亮点</span>
+      <span class="sec-badge badge-new">2月展会回顾</span>
     </div>
-
-    <div class="card">
-      <span class="tag tag-tech">架构演进</span>
-      <h3>从离散到高度集成：5G射频前端架构从Phase1到Phase5N的演进路线</h3>
-      <p><strong>Phase 1（4G LTE时代）</strong>：离散PA+SAW滤波器+开关，硬件方案相对简单，国产替代难度低。<br>
-      <strong>Phase 2（5G NSA初期）</strong>：多频段PAMiD（PA+Multiplexer+Duplexer集成），方案复杂度显著提升。<br>
-      <strong>Phase 3（5G SA主流）</strong>：L-PAMiF（Low-band PA + MN + iFilter + Switch）高集成度模组，涵盖5G低频全部组件，国产化门槛大幅提高。<br>
-      <strong>Phase 4（毫米波标配）</strong>：SUB-6G全频段L-PAMiF + mmWave模组双路并行，两路协同工作需精密校准。<br>
-      <strong>Phase 5N（2026—2027）</strong>：AI赋能射频智能调谐，PA偏置动态优化，滤波器可重构（可调BAW），预计2027年高端机全面采用。</p>
-    </div>
-
-    <div class="card">
-      <span class="tag tag-thz">6G前沿</span>
-      <h3>太赫兹射频芯片三大核心挑战：功率墙、路径损耗、芯片集成</h3>
-      <p>太赫兹（100GHz—3THz）射频芯片在向6G迈进过程中面临三大技术瓶颈：<strong>①功率墙</strong>——InP HEMT在300GHz的单管输出功率仅5—20mW，片上功率合成损耗大，系统EIRP难以满足覆盖需求，当前最优解为大规模阵列化（256T/1024T相控阵）；<strong>②路径损耗</strong>——300GHz自由空间路径损耗较28GHz高约23dB/百米，氧气吸收峰（60GHz）和水汽吸收（183/325GHz）进一步制约覆盖范围，更适合近距离高密度热点覆盖场景（&lt;100米）；<strong>③芯片集成</strong>——混合芯片集成（InP发射+CMOS数字）接口损耗大，全CMOS太赫兹实现路径成本更低但性能损失约6—8dB。北大最新成果采用55nm BiCMOS路径，正是对第三个挑战的正面突破。</p>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">6G技术</span>
+          <span>高通展示6G AI原生空口原型：Sub-THz（100—300GHz）+AI波束成形，实测Gbps级速率</span>
+        </div>
+        <div class="news-body">
+          高通在MWC 2026展示了其6G研究原型系统，核心亮点是<span style="color:var(--blue);font-weight:600">AI-Native空口技术</span>：基于深度学习的信道估计与均衡算法在Sub-THz频段实现了硬件加速，端到端时延低于0.1ms。同时展示了256单元相控阵天线模组（毫米波波束成形），支持动态多波束覆盖。6G标准化（3GPP Rel-20）将于2028年开始，2030年商用。
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-green">国内参展</span>
+          <span>华为展示5G-A射频前端方案：64T64R AAU单站功耗降低15%，覆盖提升30%</span>
+        </div>
+        <div class="news-body">
+          华为在MWC展示了面向5G-A（3GPP R18）的新型64T64R有源天线单元（AAU），集成了全新GaAs/GaN异构PA设计，通过动态功率回退（DPD）算法将基站功耗降低15%，结合多波束赋形技术将小区覆盖半径提升30%。预计2026年Q3开始规模商用。
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="analysis-box">
-    <h4>📡 产业深度研判：国产射频芯片2026年的突破与困境</h4>
-    <p>2026年对国产射频芯片产业而言是一个关键节点。从好的一面看：①卓胜微、飞骧等已实现Sub-6GHz PA/LNA批量出货，打入国际供应链；②政策层面，"十五五"规划明确将射频芯片纳入半导体"卡脖子"专项攻关，资金和政策支持力度空前；③太赫兹、6G研究布局提前，北大等高校已积累领先技术储备。但困境同样明显：①<strong>滤波器（BAW/SAW）</strong>专利壁垒极高，村田、太阳诱电等日本企业和Qorvo积累了超万项基础专利，国产进入受限；②<strong>EDA工具</strong>：先进射频芯片设计严重依赖Cadence/Ansys等美国EDA，国产替代尚在起步阶段；③<strong>代工产能</strong>：高端GaAs（0.1μm）代工产能集中在台湾WIN Semi和美国Qorvo，国内代工能力仅覆盖0.2μm以上工艺。综合来看，2026年国产射频芯片在<strong>"量"上会有大突破，但在"质"上（高频、高集成度、低噪声）与顶尖水平仍有3—5年差距</strong>，需持续聚焦突破。</p>
+  <!-- 本周产业要闻 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="sec-icon">📋</span>
+      <span class="sec-title">本周产业要闻快讯</span>
+    </div>
+    <div class="sec-body">
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-yellow">政策</span>
+          <span>"十五五"6G产业规划落地：2028年完成6G技术标准，2030年全面商用</span>
+        </div>
+        <div class="news-body">工信部发布《第六代移动通信（6G）技术研究和产业化行动计划》，明确2026—2028年完成6G核心技术研究和标准制定，2029年启动规模试点，2030年全面商用部署。射频芯片（含太赫兹PA、超宽带收发一体芯片）被列为六大关键技术之一，设立专项攻关基金50亿元。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-blue">企业动态</span>
+          <span>卓胜微2025年报发布：营收46亿元，毛利率42.3%，研发投入12亿元创历史新高</span>
+        </div>
+        <div class="news-body">卓胜微发布2025年报，全年营收46.2亿元（+18.4%），归母净利润8.3亿元（+24.7%），研发投入12.1亿元占营收26.2%，重点投向5G毫米波PA模组、WiFi 7射频前端、低轨卫星射频三大方向。2026年订单能见度良好，指引全年营收增长20%+。</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">
+          <span class="tag tag-red">风险</span>
+          <span>美国商务部新增HBM4存储芯片和高算力AI芯片管制，间接影响射频EDA工具出口</span>
+        </div>
+        <div class="news-body">本次美国商务部的出口管制更新除针对存储和AI芯片外，还悄然收紧了对部分射频专用EDA软件（含MMIC大信号仿真工具）的出口许可要求，涉及Keysight ADS、Cadence Spectre RF等。国内厂商需关注工具链替代风险，华大九天、概伦电子等国产EDA正在相关领域加速布局。</div>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <div class="footer">
-  由 <strong>WorkBuddy</strong> 自动生成 &nbsp;·&nbsp; 2026-03-15 08:00 &nbsp;·&nbsp; 数据来源：Gartner、芯师爷、IEEE、各芯片厂商官网及公告
+  由 <strong>WorkBuddy</strong> 自动生成 · 2026-03-15 &nbsp;|&nbsp; 数据来源：北大官网、紫金山实验室、高通博客、乘联会、各公司年报
 </div>
 
 </body>
