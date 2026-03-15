@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日调研日报</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --orange:#f0883e; --purple:#d2a8ff; --yellow:#d29922;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; min-height:100vh; }
+
+  .header { background:linear-gradient(160deg,#0d1117 0%,#161b22 100%); border-bottom:1px solid var(--border); padding:44px 20px 32px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--yellow),var(--orange),var(--green),var(--blue),var(--purple)); }
+  .header-eyebrow { display:inline-flex; align-items:center; gap:6px; background:rgba(88,166,255,.1); border:1px solid rgba(88,166,255,.25); color:var(--blue); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:16px; letter-spacing:.04em; }
+  .header h1 { font-size:28px; font-weight:800; margin-bottom:8px; letter-spacing:-.02em; }
+  .header-sub { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+
+  .stats-bar { display:flex; justify-content:center; gap:28px; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg2); flex-wrap:wrap; }
+  .stat-item { text-align:center; }
+  .stat-item a { text-decoration:none; color:inherit; display:block; padding:4px 8px; border-radius:8px; transition:background .15s; }
+  .stat-item a:hover { background:var(--bg3); }
+  .stat-num { font-size:20px; font-weight:700; }
+  .stat-label { font-size:11px; color:var(--muted); margin-top:1px; }
+
+  .container { max-width:760px; margin:0 auto; padding:36px 16px 60px; }
+
+  .category { margin-bottom:8px; background:var(--bg2); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+
+  .cat-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px; cursor:pointer; user-select:none;
+    transition:background .15s;
+  }
+  .cat-header:hover { background:var(--bg3); }
+
+  .cat-title { display:flex; align-items:center; gap:10px; }
+  .cat-icon { font-size:20px; }
+  .cat-name { font-size:16px; font-weight:700; }
+  .cat-desc { font-size:12px; color:var(--muted); }
+
+  .cat-right { display:flex; align-items:center; gap:10px; }
+  .cat-count { font-size:12px; color:var(--muted); background:var(--bg3); border:1px solid var(--border); border-radius:20px; padding:2px 10px; }
+
+  .cat-toggle {
+    width:22px; height:22px; display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-size:14px; transition:transform .25s;
+    flex-shrink:0;
+  }
+  .category.open .cat-toggle { transform:rotate(180deg); }
+
+  .cat-body {
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .28s ease;
+    border-top:0px solid var(--border);
+  }
+  .category.open .cat-body {
+    grid-template-rows:1fr;
+    border-top-width:1px;
+  }
+  .cat-body-inner { overflow:hidden; }
+
+  .report-list { display:flex; flex-direction:column; gap:0; padding:0 12px 12px; padding-top:10px; }
+
+  .report-card { display:flex; align-items:center; justify-content:space-between; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:13px 16px; text-decoration:none; color:var(--text); transition:all .2s; margin-bottom:7px; }
+  .report-card:last-child { margin-bottom:0; }
+  .report-card:hover { background:var(--bg3); transform:translateX(2px); }
+  .report-card.cat-news:hover  { border-color:var(--yellow); }
+  .report-card.cat-stock:hover { border-color:var(--orange); }
+  .report-card.cat-ev:hover    { border-color:var(--green); }
+  .report-card.cat-rf:hover    { border-color:var(--blue); }
+  .report-card.cat-gaas:hover  { border-color:var(--purple); }
+
+  .card-left { display:flex; align-items:center; gap:14px; flex:1; min-width:0; }
+  .date-pill { font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; white-space:nowrap; flex-shrink:0; }
+  .pill-news  { background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); }
+  .pill-stock { background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.3); color:var(--orange); }
+  .pill-ev    { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.3);  color:var(--green); }
+  .pill-rf    { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.3); color:var(--blue); }
+  .pill-gaas  { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.3); color:var(--purple); }
+
+  .card-info { flex:1; min-width:0; }
+  .card-title { font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px; }
+  .card-sub   { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card-arrow { color:var(--muted); font-size:16px; flex-shrink:0; margin-left:10px; }
+
+  .badge-new { font-size:10px; font-weight:700; background:rgba(63,185,80,.15); border:1px solid rgba(63,185,80,.3); color:var(--green); border-radius:6px; padding:1px 7px; margin-left:6px; vertical-align:middle; flex-shrink:0; }
+
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">🔬 WorkBuddy 智能调研</div>
+  <h1>每日调研日报</h1>
+  <div class="header-sub">
+    <span>📅 最近更新：2026-03-15</span>
+    <span>·</span>
+    <span>⏰ 每天 08:00 自动更新</span>
+    <span>·</span>
+    <span>📂 5 个栏目</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <a href="#cat-news" onclick="openCat('cat-news')">
+      <div class="stat-num" style="color:var(--yellow)">3</div>
+      <div class="stat-label">每日新政</div>
+    </a>
+  </div>
+  <div class="stat-item">
+    <a href="#cat-stock" onclick="openCat('cat-stock')">
+      <div class="stat-num" style="color:var(--orange)">3</div>
+      <div class="stat-label">股市基金</div>
+    </a>
+  </div>
+  <div class="stat-item">
+    <a href="#cat-ev" onclick="openCat('cat-ev')">
+      <div class="stat-num" style="color:var(--green)">3</div>
+      <div class="stat-label">新能源电动车</div>
+    </a>
+  </div>
+  <div class="stat-item">
+    <a href="#cat-rf" onclick="openCat('cat-rf')">
+      <div class="stat-num" style="color:var(--blue)">3</div>
+      <div class="stat-label">射频芯片</div>
+    </a>
+  </div>
+  <div class="stat-item">
+    <a href="#cat-gaas" onclick="openCat('cat-gaas')">
+      <div class="stat-num" style="color:var(--purple)">3</div>
+      <div class="stat-label">GaAs MMIC</div>
+    </a>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">15</div>
+    <div class="stat-label">报告总数</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 每日新政 -->
+  <div class="category open" id="cat-news">
+    <div class="cat-header" onclick="toggleCat('cat-news')">
+      <div class="cat-title">
+        <span class="cat-icon">📰</span>
+        <div>
+          <div class="cat-name">每日实时新政</div>
+          <div class="cat-desc">国内外要闻 · 重大政策 · 时事热点 · 娱乐头条</div>
+        </div>
+      </div>
+      <div class="cat-right">
+        <span class="cat-count">3 篇</span>
+        <span class="cat-toggle">▼</span>
+      </div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <div class="report-list">
+          <a class="report-card cat-news" href="news-2026-03-15.html">
+            <div class="card-left">
+              <div class="date-pill pill-news">03-15</div>
+              <div class="card-info">
+                <div class="card-title">每日实时新政 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">3·15消费者权益日·十五五重大工程清单·DeepSeek V4发布·中美贸易阶段性共识·周杰伦MoMo Tour北京秒罄</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-news" href="news-2026-03-14.html">
+            <div class="card-left">
+              <div class="date-pill pill-news">03-14</div>
+              <div class="card-info">
+                <div class="card-title">每日实时新政 · 2026-03-14</div>
+                <div class="card-sub">十五五规划发布 · 中美巴黎磋商 · 美以伊战争第14天 · 脑机接口获批 · 娱乐头条</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-news" href="news-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-news">03-13</div>
+              <div class="card-info">
+                <div class="card-title">每日实时新政 · 2026-03-13</div>
+                <div class="card-sub">两会专题报道 · 国内外热点聚焦 · 产业政策动态</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 股市基金 -->
+  <div class="category open" id="cat-stock">
+    <div class="cat-header" onclick="toggleCat('cat-stock')">
+      <div class="cat-title">
+        <span class="cat-icon">📈</span>
+        <div>
+          <div class="cat-name">股市基金</div>
+          <div class="cat-desc">行情解析 · 板块推荐 · 个股基金</div>
+        </div>
+      </div>
+      <div class="cat-right">
+        <span class="cat-count">3 篇</span>
+        <span class="cat-toggle">▼</span>
+      </div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <div class="report-list">
+          <a class="report-card cat-stock" href="stock-2026-03-15.html">
+            <div class="card-left">
+              <div class="date-pill pill-stock">03-15</div>
+              <div class="card-info">
+                <div class="card-title">股市基金日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">本周科技主线领涨·人形机器人+12.43%·脑机接口+10.87%·低空经济+9.62%·下周策略研判</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-stock" href="stock-2026-03-14.html">
+            <div class="card-left">
+              <div class="date-pill pill-stock">03-14</div>
+              <div class="card-info">
+                <div class="card-title">股市基金日报 · 2026-03-14</div>
+                <div class="card-sub">沪指失守4100点 · 银行食饮抗跌 · 十大板块深度解析 · 个股&基金推荐</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-stock" href="stock-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-stock">03-13</div>
+              <div class="card-info">
+                <div class="card-title">股市基金日报 · 2026-03-13</div>
+                <div class="card-sub">两会行情分析 · 科技主线持续 · 基金配置建议</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新能源电动车 -->
+  <div class="category open" id="cat-ev">
+    <div class="cat-header" onclick="toggleCat('cat-ev')">
+      <div class="cat-title">
+        <span class="cat-icon">⚡</span>
+        <div>
+          <div class="cat-name">新能源电动车</div>
+          <div class="cat-desc">行业动态 · 前沿科技 · 新车速递</div>
+        </div>
+      </div>
+      <div class="cat-right">
+        <span class="cat-count">3 篇</span>
+        <span class="cat-toggle">▼</span>
+      </div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <div class="report-list">
+          <a class="report-card cat-ev" href="ev-2026-03-15.html">
+            <div class="card-left">
+              <div class="date-pill pill-ev">03-15</div>
+              <div class="card-info">
+                <div class="card-title">新能源电动车日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">比亚迪二代刀片电池量产·3·15续航虚标整治·华为乾崑4.0去激光雷达·宁德固态电池路线图</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-ev" href="ev-2026-03-14.html">
+            <div class="card-left">
+              <div class="date-pill pill-ev">03-14</div>
+              <div class="card-info">
+                <div class="card-title">新能源电动车日报 · 2026-03-14</div>
+                <div class="card-sub">比亚迪夺纯电全球销冠 · 问界M9年改 · 固态电池三代路线图 · 15款新车速递</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-ev" href="ev-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-ev">03-13</div>
+              <div class="card-info">
+                <div class="card-title">新能源电动车日报 · 2026-03-13</div>
+                <div class="card-sub">新能源汽车产业最新动态 · 技术突破 · 销量数据</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GaAs MMIC -->
+  <div class="category open" id="cat-gaas">
+    <div class="cat-header" onclick="toggleCat('cat-gaas')">
+      <div class="cat-title">
+        <span class="cat-icon">🔬</span>
+        <div>
+          <div class="cat-name">GaAs MMIC 前沿技术追踪</div>
+          <div class="cat-desc">市场动态 · 新技术方向 · 前沿论文 · 芯片设计深析</div>
+        </div>
+      </div>
+      <div class="cat-right">
+        <span class="cat-count">3 篇</span>
+        <span class="cat-toggle">▼</span>
+      </div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <div class="report-list">
+          <a class="report-card cat-gaas" href="gaas-2026-03-15.html">
+            <div class="card-left">
+              <div class="date-pill pill-gaas">03-15</div>
+              <div class="card-info">
+                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">芯谷微三款IPA新品·Qorvo QPM2637 Ka波段·三安集成6英寸满产·E类PA效率63.8%·设计方法五步深析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-gaas" href="gaas-2026-03-14.html">
+            <div class="card-left">
+              <div class="date-pill pill-gaas">03-14</div>
+              <div class="card-info">
+                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-14</div>
+                <div class="card-sub">芯谷微三款新品 · 100GHz+突破 · 六大应用赛道 · 设计方法深析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-gaas" href="gaas-2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-gaas">03-13</div>
+              <div class="card-info">
+                <div class="card-title">GaAs MMIC 前沿技术追踪 · 2026-03-13</div>
+                <div class="card-sub">市场动态 · 技术突破 · 前沿论文 · 产业分析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 射频芯片 -->
+  <div class="category open" id="cat-rf">
+    <div class="cat-header" onclick="toggleCat('cat-rf')">
+      <div class="cat-title">
+        <span class="cat-icon">📡</span>
+        <div>
+          <div class="cat-name">射频芯片</div>
+          <div class="cat-desc">新品发布 · 技术突破 · 产业动态</div>
+        </div>
+      </div>
+      <div class="cat-right">
+        <span class="cat-count">3 篇</span>
+        <span class="cat-toggle">▼</span>
+      </div>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <div class="report-list">
+          <a class="report-card cat-rf" href="2026-03-15.html">
+            <div class="card-left">
+              <div class="date-pill pill-rf">03-15</div>
+              <div class="card-info">
+                <div class="card-title">射频芯片日报 · 2026-03-15 <span class="badge-new">最新</span></div>
+                <div class="card-sub">北大6G全频段芯片·太赫兹4.8Tbps纪录·高通X105三合一模组·6G产业规划落地·国产格局深度分析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-rf" href="2026-03-14.html">
+            <div class="card-left">
+              <div class="date-pill pill-rf">03-14</div>
+              <div class="card-info">
+                <div class="card-title">射频芯片日报 · 2026-03-14</div>
+                <div class="card-sub">高通X105 · 北大6G全频段芯片 · 太赫兹4.8Tbps · 国产替代加速</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+          <a class="report-card cat-rf" href="2026-03-13.html">
+            <div class="card-left">
+              <div class="date-pill pill-rf">03-13</div>
+              <div class="card-info">
+                <div class="card-title">射频芯片日报 · 2026-03-13</div>
+                <div class="card-sub">射频芯片最新产品动态 · 技术突破 · 产业链分析</div>
+              </div>
+            </div>
+            <span class="card-arrow">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>WorkBuddy</strong> 每日自动生成 &nbsp;·&nbsp; 每天 08:00 更新
+</div>
+
+<script>
+  function toggleCat(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+  function openCat(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('open');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+</script>
+
+</body>
+</html>
