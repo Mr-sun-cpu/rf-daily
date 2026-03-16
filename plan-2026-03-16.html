@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>射频芯片内容矩阵变现策划书 · 2026-03-16</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --orange:#f0883e;
+    --purple:#d2a8ff; --yellow:#d29922; --red:#f85149;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.8; min-height:100vh; }
+
+  /* ── Header ── */
+  .header { background:linear-gradient(160deg,#0d1117 0%,#161b22 100%); border-bottom:1px solid var(--border); padding:44px 20px 32px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--yellow),var(--orange),var(--green),var(--blue),var(--purple)); }
+  .header-eyebrow { display:inline-flex; align-items:center; gap:6px; background:rgba(210,169,255,.1); border:1px solid rgba(210,169,255,.25); color:var(--purple); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:16px; letter-spacing:.04em; }
+  .header h1 { font-size:26px; font-weight:800; margin-bottom:8px; letter-spacing:-.02em; }
+  .header-sub { color:var(--muted); font-size:13px; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+  /* ── Back link ── */
+  .back-bar { max-width:800px; margin:0 auto; padding:14px 16px 0; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px; text-decoration:none; transition:color .15s; }
+  .back-link:hover { color:var(--blue); }
+
+  /* ── Content ── */
+  .container { max-width:800px; margin:0 auto; padding:32px 16px 80px; }
+
+  /* Section */
+  .section { margin-bottom:32px; background:var(--bg2); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  .section-header { display:flex; align-items:center; gap:12px; padding:20px 24px 16px; border-bottom:1px solid var(--border); }
+  .section-icon { font-size:22px; }
+  .section-title { font-size:17px; font-weight:700; }
+  .section-body { padding:20px 24px; }
+
+  /* Typography */
+  p { margin-bottom:12px; color:var(--text); }
+  p:last-child { margin-bottom:0; }
+  strong { color:#fff; font-weight:600; }
+  .highlight { background:rgba(88,166,255,.1); border-left:3px solid var(--blue); padding:12px 16px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px; color:var(--blue); }
+
+  /* Tables */
+  .table-wrap { overflow-x:auto; margin:8px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { background:var(--bg3); color:var(--muted); font-weight:600; text-align:left; padding:10px 14px; border-bottom:1px solid var(--border); font-size:12px; letter-spacing:.03em; text-transform:uppercase; }
+  td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(255,255,255,.02); }
+  .tag-yes { color:var(--green); font-weight:600; }
+  .tag-mid { color:var(--yellow); font-weight:600; }
+  .tag-no  { color:var(--red); font-weight:600; }
+
+  /* Sub-sections */
+  .sub-card { background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin-bottom:14px; }
+  .sub-card:last-child { margin-bottom:0; }
+  .sub-title { font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .badge { font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .badge-blue { background:rgba(88,166,255,.15); color:var(--blue); }
+  .badge-green { background:rgba(63,185,80,.15); color:var(--green); }
+  .badge-purple { background:rgba(210,169,255,.15); color:var(--purple); }
+  .badge-orange { background:rgba(240,136,62,.15); color:var(--orange); }
+
+  /* Lists */
+  ul, ol { padding-left:20px; margin:8px 0 12px; }
+  ul li, ol li { margin-bottom:6px; font-size:14px; }
+  ul li::marker { color:var(--muted); }
+  ol li::marker { color:var(--blue); font-weight:600; }
+
+  /* Checklist */
+  .checklist { list-style:none; padding:0; margin:8px 0; }
+  .checklist li { display:flex; align-items:flex-start; gap:8px; padding:5px 0; font-size:14px; border-bottom:1px solid rgba(48,54,61,.6); }
+  .checklist li:last-child { border-bottom:none; }
+  .checklist li::before { content:'☐'; color:var(--muted); font-size:15px; flex-shrink:0; margin-top:1px; }
+
+  /* Timeline phases */
+  .phase-row { display:flex; gap:14px; margin-bottom:14px; }
+  .phase-label { flex-shrink:0; width:90px; text-align:right; }
+  .phase-tag { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; }
+  .phase-tag.p1 { background:rgba(63,185,80,.15); color:var(--green); }
+  .phase-tag.p2 { background:rgba(88,166,255,.15); color:var(--blue); }
+  .phase-tag.p3 { background:rgba(240,136,62,.15); color:var(--orange); }
+  .phase-line { flex:1; }
+  .phase-goal { font-size:14px; font-weight:600; margin-bottom:4px; }
+  .phase-detail { font-size:13px; color:var(--muted); }
+
+  /* Principles */
+  .principle { display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--border); }
+  .principle:last-child { border-bottom:none; }
+  .principle-num { flex-shrink:0; width:28px; height:28px; background:rgba(88,166,255,.15); color:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; }
+  .principle-text { font-size:14px; }
+  .principle-text strong { display:block; margin-bottom:3px; font-size:15px; }
+
+  /* Footer */
+  .footer { text-align:center; color:var(--muted); font-size:12px; padding:32px 20px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">💡 内部策划文档</div>
+  <h1>射频芯片内容矩阵变现策划书</h1>
+  <div class="header-sub">
+    <span>📅 2026-03-16</span>
+    <span>·</span>
+    <span>v1.0</span>
+    <span>·</span>
+    <span>基于现有资产，可立即启动</span>
+  </div>
+</div>
+
+<div class="back-bar">
+  <a class="back-link" href="index.html">← 返回日报首页</a>
+</div>
+
+<div class="container">
+
+  <!-- 一、资产盘点 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📦</span>
+      <span class="section-title">一、现有资产盘点</span>
+    </div>
+    <div class="section-body">
+      <div class="highlight">核心判断：内容生产已全自动化，唯一的瓶颈是「发布」和「变现」两个动作还没接上。</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>资产</th><th>现状</th><th>评估</th></tr></thead>
+          <tbody>
+            <tr><td>AI全自动日报（5个栏目）</td><td>每天 07:30 自动生成、推送 GitHub Pages</td><td><span class="tag-yes">✅ 已跑通</span></td></tr>
+            <tr><td>公众号文章</td><td>每天自动生成 MD 稿</td><td><span class="tag-mid">⚠ 缺发布动作</span></td></tr>
+            <tr><td>知乎回答草稿</td><td>每天自动生成</td><td><span class="tag-mid">⚠ 缺发布动作</span></td></tr>
+            <tr><td>小红书图文卡片</td><td>每天自动生成 HTML 卡片</td><td><span class="tag-mid">⚠ 缺发布动作</span></td></tr>
+            <tr><td>微信通知</td><td>每天自动发送 Server 酱通知</td><td><span class="tag-yes">✅ 自用中</span></td></tr>
+            <tr><td>GitHub Pages 网站</td><td>rf-site，含完整历史索引</td><td><span class="tag-mid">⚠ 无流量入口</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 二、目标 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🎯</span>
+      <span class="section-title">二、6个月目标</span>
+    </div>
+    <div class="section-body">
+      <div class="phase-row">
+        <div class="phase-label"><span class="phase-tag p1">第1-2月</span></div>
+        <div class="phase-line">
+          <div class="phase-goal">冷启动</div>
+          <div class="phase-detail">公众号粉丝破 500 · 小红书破 1000 粉</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-label"><span class="phase-tag p2">第3-4月</span></div>
+        <div class="phase-line">
+          <div class="phase-goal">起量</div>
+          <div class="phase-detail">公众号粉丝破 2000 · 知乎垂直问题上首页</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-label"><span class="phase-tag p3">第5-6月</span></div>
+        <div class="phase-line">
+          <div class="phase-goal">变现</div>
+          <div class="phase-detail">付费社群 50 人起步 · 月流水 5000+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三、分平台方案 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📱</span>
+      <span class="section-title">三、分平台落地方案</span>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-card">
+        <div class="sub-title">💬 微信公众号 <span class="badge badge-blue">核心阵地</span></div>
+        <p><strong>定位：</strong>射频/半导体工程师的每日情报站，有深度、有观点、不废话。</p>
+        <p><strong>发布 SOP（每天 5 分钟）：</strong></p>
+        <ol>
+          <li>收到 08:30 微信通知，打开公众号后台</li>
+          <li>复制 <code>自媒体内容/YYYY-MM-DD-公众号.md</code> 粘贴到草稿箱</li>
+          <li>上传封面图（小红书封面卡截图直接复用）</li>
+          <li>点发布，完成</li>
+        </ol>
+        <p style="margin-top:10px"><strong>涨粉策略：</strong>文末加关注引导语 · 分享到 3-5 个行业群 · 投稿「芯东西」「半导体行业观察」借流量</p>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">📕 小红书 <span class="badge badge-green">快速起号</span></div>
+        <p><strong>定位：</strong>职场科技向，面向「想了解芯片但没时间深读」的受众。</p>
+        <p><strong>发布 SOP（每天 10 分钟）：</strong></p>
+        <ol>
+          <li>打开 <code>自媒体内容/YYYY-MM-DD-小红书/</code> 目录</li>
+          <li>浏览器打开各 HTML 卡片，Win+Shift+S 截图</li>
+          <li>上传小红书，复制 <code>xhs_copy.md</code> 文案</li>
+          <li>打标签：<code>#射频芯片 #半导体 #芯片日报 #科技人 #职场干货</code></li>
+          <li>发布</li>
+        </ol>
+        <p style="margin-top:10px"><strong>涨粉技巧：</strong>前两周每天评论 10 篇同类博主笔记 · 主页简介放网站链接</p>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">📝 知乎 <span class="badge badge-purple">SEO长尾</span></div>
+        <p><strong>定位：</strong>垂直深度问答，建立「射频领域资深从业者」人设。</p>
+        <p><strong>策略：</strong>每周发 2-3 篇 · 优先回答「国产射频芯片」「5G前端模组」等长期热门问题（比新问题权重高）· 开头加一句个人经验句增加真实感</p>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">🌐 GitHub Pages <span class="badge badge-orange">SEO沉淀</span></div>
+        <p><strong>一次性优化（1-2小时）：</strong></p>
+        <ul>
+          <li>index.html 加 <code>&lt;meta name="description"&gt;</code> 和优化 title</li>
+          <li>提交 sitemap.xml 到 Google Search Console</li>
+          <li>小红书/知乎主页放网站链接，带外链权重</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 四、变现路径 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <span class="section-title">四、变现路径</span>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-card">
+        <div class="sub-title"><span class="phase-tag p1" style="font-size:11px">阶段一 0-2月</span> &nbsp;先积累，不收钱</div>
+        <p>专注内容发布和粉丝增长，完全不提付费。目标是建立信任感和内容口碑。</p>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title"><span class="phase-tag p2" style="font-size:11px">阶段二 3-4月</span> &nbsp;小额测试</div>
+        <p><strong>方案A · 知识星球（低门槛验证）：</strong>定价 99元/年，提供日报提前1小时推送 + 每周深度分析 + 提问。目标先招募 50 人，年收入约 5000 元。</p>
+        <p style="margin-top:8px"><strong>方案B · 微信社群（高粘性）：</strong>入群费 199元/半年，提供日报推送 + 同行交流 + 招聘/求职信息共享。射频工程师更看重人脉。</p>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title"><span class="phase-tag p3" style="font-size:11px">阶段三 5-6月</span> &nbsp;放大变现</div>
+        <p><strong>企业订阅服务（最高单价）：</strong>面向卓胜微、唯捷创芯、飞骧科技等国产射频厂商市场/产品团队，每周行业动态简报 + 季度竞品报告，定价 2000-5000 元/月/家，获客通过 LinkedIn + 行业展会 + 知乎引流。</p>
+        <p style="margin-top:8px"><strong>行业报告（长尾销售）：</strong>「国产射频芯片竞争格局年度报告」PDF，定价 299-499 元，1周可产出，一次制作长期销售。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 五、30天清单 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">✅</span>
+      <span class="section-title">五、30天启动清单</span>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-card">
+        <div class="sub-title">第1周：账号注册 + 首发</div>
+        <ul class="checklist">
+          <li>注册微信公众号（订阅号，更容易过审）</li>
+          <li>注册小红书账号，完善主页简介和头像</li>
+          <li>公众号发第一篇文章（用 2026-03-16 的稿子）</li>
+          <li>小红书发第一篇图文（用 2026-03-16 的卡片）</li>
+          <li>知乎发第一篇回答</li>
+        </ul>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">第2周：建立发布节奏</div>
+        <ul class="checklist">
+          <li>每天 5-10 分钟发布 SOP，不间断坚持</li>
+          <li>加入 5 个射频/半导体微信群，开始分享文章</li>
+          <li>小红书每天评论同类博主，积累曝光</li>
+        </ul>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">第3-4周：优化复盘</div>
+        <ul class="checklist">
+          <li>统计公众号阅读量最高的 3 篇，分析标题规律</li>
+          <li>统计小红书点赞最高的 3 篇，找出高表现内容类型</li>
+          <li>微调公众号/小红书生成提示词，偏向高表现风格</li>
+        </ul>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-title">第5-8周：准备变现</div>
+        <ul class="checklist">
+          <li>建立知识星球或微信社群</li>
+          <li>公众号粉丝达 500 后开始引导付费</li>
+          <li>起草企业订阅销售话术</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 六、风险 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">⚠️</span>
+      <span class="section-title">六、风险与应对</span>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>风险</th><th>可能性</th><th>应对</th></tr></thead>
+          <tbody>
+            <tr><td>内容质量不稳定（AI 幻觉）</td><td><span class="tag-mid">中</span></td><td>每天 5 分钟速读公众号稿，发现明显错误就改</td></tr>
+            <tr><td>发布坚持不下去</td><td><span class="tag-no">高</span></td><td>SOP 压缩到 5 分钟，门槛越低越容易持续</td></tr>
+            <tr><td>涨粉太慢</td><td><span class="tag-mid">中</span></td><td>投稿「芯东西」等大号借流量，一篇顶一个月自然增长</td></tr>
+            <tr><td>付费转化率低</td><td><span class="tag-mid">中</span></td><td>先用星球测试，成本几乎为零，验证需求再扩大</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 七、核心原则 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🧭</span>
+      <span class="section-title">七、核心原则</span>
+    </div>
+    <div class="section-body">
+      <div class="principle">
+        <div class="principle-num">1</div>
+        <div class="principle-text"><strong>不要等完美再发布</strong>今天的稿子就是今天发，不用二次润色，时效性比打磨更重要。</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">2</div>
+        <div class="principle-text"><strong>SOP 越短越好</strong>超过 15 分钟的 SOP 坚持不了两周，能砍就砍。</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">3</div>
+        <div class="principle-text"><strong>先人后钱</strong>前 3 个月不要推销任何付费，先积累信任和口碑。</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">4</div>
+        <div class="principle-text"><strong>垂直比宽泛值钱</strong>射频工程师圈子小，但付费意愿强、信息不对称大，远比泛科技更适合变现。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  射频芯片日报 · 内部策划文档 · 2026-03-16 · <a href="index.html" style="color:var(--blue);text-decoration:none">返回首页</a>
+</div>
+
+</body>
+</html>
