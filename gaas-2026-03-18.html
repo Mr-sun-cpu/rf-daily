@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaAs MMIC前沿技术追踪 - 2026年3月18日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            color: #e8eaed;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #00d4ff;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .date { color: #8892b0; font-size: 1.1em; }
+        .section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,212,255,0.1);
+        }
+        .section-title {
+            font-size: 1.4em;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #00d4ff;
+            border-radius: 2px;
+        }
+        .news-item {
+            padding: 20px;
+            background: rgba(0,212,255,0.05);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 3px solid #00d4ff;
+        }
+        .news-title {
+            font-size: 1.1em;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .news-content {
+            color: #8892b0;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0,212,255,0.15);
+            color: #00d4ff;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+            margin-right: 8px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,212,255,0.1);
+        }
+        .spec-table th {
+            color: #00d4ff;
+            font-weight: 600;
+            background: rgba(0,212,255,0.05);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05));
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .highlight-title {
+            color: #00d4ff;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .tech-card {
+            background: rgba(0,212,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .tech-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #8892b0;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(0,212,255,0.1);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GaAs MMIC前沿技术追踪</h1>
+            <div class="date">2026年3月18日 星期三</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">国产厂商动态</div>
+            <div class="news-item">
+                <div class="news-title">三安集成6英寸GaAs产线满产运行</div>
+                <div class="news-content">三安光电旗下三安集成宣布其6英寸GaAs MMIC产线已满产运行，月产能达3万片。产品覆盖5G基站PA、WiFi 6/7 FEM、卫星通信等领域，客户包括华为、中兴、OPPO等头部厂商。</div>
+                <span class="tag">三安集成</span>
+                <span class="tag">产能</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">华光瑞芯发布三款Ka波段PA新品</div>
+                <div class="news-content">成都华光瑞芯发布三款Ka波段功率放大器芯片，工作频率26.5-40GHz，输出功率达32dBm，PAE超过35%。采用0.15μm GaAs pHEMT工艺，主要应用于卫星通信和5G毫米波基站。</div>
+                <span class="tag">华光瑞芯</span>
+                <span class="tag">新品</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">芯谷微IPA系列三款新品量产</div>
+                <div class="news-content">芯谷微宣布其IPA（集成功率放大器）系列三款新品正式进入量产阶段，覆盖Sub-6GHz和毫米波频段，集成PA、LNA、开关和移相器，可大幅简化5G基站射频前端设计。</div>
+                <span class="tag">芯谷微</span>
+                <span class="tag">量产</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">国际前沿</div>
+            <div class="news-item">
+                <div class="news-title">Qorvo发布QPM2637 Ka波段高功率PA</div>
+                <div class="news-content">Qorvo推出QPM2637 Ka波段功率放大器模块，工作频段27-31GHz，饱和输出功率达42dBm，功率附加效率（PAE）38%。采用GaAs pHEMT工艺，主要面向卫星通信和雷达应用。</div>
+                <span class="tag">Qorvo</span>
+                <span class="tag">Ka波段</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Keysight发布新一代毫米波GaAs放大器</div>
+                <div class="news-content">是德科技发布新一代毫米波GaAs MMIC放大器系列，覆盖18-110GHz，噪声系数低至2.5dB，增益达25dB。产品面向5G毫米波测试、卫星通信和汽车雷达应用。</div>
+                <span class="tag">Keysight</span>
+                <span class="tag">测试测量</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">技术突破</div>
+            <div class="tech-card">
+                <div class="tech-title">E类功率放大器效率突破63.8%</div>
+                <p style="color: #8892b0;">国内研究团队基于0.1μm GaAs工艺成功设计出E类功率放大器，在28GHz频段实现63.8%的功率附加效率，创同类器件新高。该成果为5G毫米波基站和终端的能效优化提供重要参考。</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-title">非均匀分布式功率合成技术</div>
+                <p style="color: #8892b0;">基于非均匀分布式功率合成（NDPA）方法的毫米波PA在100-114GHz频段实现高增益和高输出功率，采用0.1μm GaAs工艺，为太赫兹通信前端设计提供新思路。</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-title">19-21GHz高线性度PA设计</div>
+                <p style="color: #8892b0;">基于0.15μm GaAs pHEMT工艺研制的高线性度PA，在19-21GHz频段实现优异线性度指标，适用于高峰均比信号传输场景，如5G NR和卫星通信。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">新品参数对比</div>
+            <table class="spec-table">
+                <tr>
+                    <th>型号</th>
+                    <th>厂商</th>
+                    <th>频段(GHz)</th>
+                    <th>输出功率(dBm)</th>
+                    <th>PAE(%)</th>
+                    <th>工艺</th>
+                </tr>
+                <tr>
+                    <td>QPM2637</td>
+                    <td>Qorvo</td>
+                    <td>27-31</td>
+                    <td>42</td>
+                    <td>38</td>
+                    <td>GaAs pHEMT</td>
+                </tr>
+                <tr>
+                    <td>HGR-Ka32</td>
+                    <td>华光瑞芯</td>
+                    <td>26.5-40</td>
+                    <td>32</td>
+                    <td>35</td>
+                    <td>0.15μm GaAs</td>
+                </tr>
+                <tr>
+                    <td>XG-IPA5G</td>
+                    <td>芯谷微</td>
+                    <td>3.5-6.0</td>
+                    <td>28</td>
+                    <td>32</td>
+                    <td>GaAs HBT</td>
+                </tr>
+                <tr>
+                    <td>TJ-DA2045</td>
+                    <td>天健九方</td>
+                    <td>24-45</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>GaAs MMIC</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">设计方法精要</div>
+            <p><strong>GaAs MMIC功率放大器五步设计法：</strong></p>
+            <p style="margin-top: 10px;">1. <strong>器件选型</strong>：根据频段和功率需求选择pHEMT或HBT工艺，pHEMT适合高频高功率，HBT适合高线性度。</p>
+            <p style="margin-top: 8px;">2. <strong>负载牵引分析</strong>：通过Load Pull确定最佳负载阻抗，平衡输出功率、效率和线性度。</p>
+            <p style="margin-top: 8px;">3. <strong>匹配网络设计</strong>：采用分布式和集总元件结合，实现宽带匹配和低损耗。</p>
+            <p style="margin-top: 8px;">4. <strong>稳定性保障</strong>：通过K因子和μ因子分析确保全频段无条件稳定。</p>
+            <p style="margin-top: 8px;">5. <strong>热管理优化</strong>：考虑自热效应和沟道温度，设计合理的热沉和散热结构。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">市场展望</div>
+            <div class="news-item">
+                <div class="news-title">GaAs MMIC市场规模持续扩大</div>
+                <div class="news-content">据Yole Développement预测，全球GaAs MMIC市场将从2025年的18亿美元增长至2030年的42亿美元，年复合增长率达18.5%。5G基站、卫星通信、汽车雷达是主要增长驱动力。</div>
+                <span class="tag">市场</span>
+                <span class="tag">预测</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">国产替代加速推进</div>
+                <div class="news-content">随着三安集成、华光瑞芯、芯谷微等国产厂商技术突破和产能扩张，GaAs MMIC国产化率有望从2025年的25%提升至2030年的50%以上，在Sub-6GHz领域已实现全面替代。</div>
+                <span class="tag">国产替代</span>
+                <span class="tag">趋势</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>GaAs MMIC前沿技术追踪 | 数据来源：各厂商官网、Yole、IEEE文献</p>
+            <p style="margin-top: 10px;">Generated on 2026-03-18</p>
+        </div>
+    </div>
+</body>
+</html>
