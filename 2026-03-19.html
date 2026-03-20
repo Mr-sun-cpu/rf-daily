@@ -1,270 +1,223 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>射频芯片日报 - 2026年3月19日</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
-            color: #e8eaed;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 2px solid #00d4ff;
-            margin-bottom: 40px;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            background: linear-gradient(90deg, #00d4ff, #0099cc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .date { color: #8892b0; font-size: 1.1em; }
-        .section {
-            background: rgba(255,255,255,0.03);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(0,212,255,0.1);
-        }
-        .section-title {
-            font-size: 1.4em;
-            color: #00d4ff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: #00d4ff;
-            border-radius: 2px;
-        }
-        .news-item {
-            padding: 20px;
-            background: rgba(0,212,255,0.05);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 3px solid #00d4ff;
-        }
-        .news-title {
-            font-size: 1.1em;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        .news-content {
-            color: #8892b0;
-            font-size: 0.95em;
-            line-height: 1.8;
-        }
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(0,212,255,0.15);
-            color: #00d4ff;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-top: 10px;
-            margin-right: 8px;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05));
-            border: 1px solid rgba(0,212,255,0.2);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-        .highlight-title {
-            color: #00d4ff;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-        .company-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .company-card {
-            background: rgba(0,212,255,0.05);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(0,212,255,0.1);
-        }
-        .company-name {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .company-code {
-            color: #00d4ff;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-        .company-desc {
-            color: #8892b0;
-            font-size: 0.9em;
-            line-height: 1.7;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .stat-card {
-            background: rgba(0,212,255,0.05);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #00d4ff;
-        }
-        .stat-label {
-            color: #8892b0;
-            font-size: 0.9em;
-            margin-top: 8px;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #8892b0;
-            font-size: 0.9em;
-            border-top: 1px solid rgba(0,212,255,0.1);
-            margin-top: 40px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        .back-link:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>射频芯片日报 · 2026-03-19</title>
+<style>
+::root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--blue:#58a6ff;--green:#3fb950;--orange:#f0883e;--purple:#d2a8ff;--yellow:#d29922;--red:#f85149;--cyan:#39d3d3;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.8;min-height:100vh;}
+.header{background:linear-gradient(160deg,#0d1117 0%,#161b22 100%);border-bottom:1px solid var(--border);padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden;}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple));}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;margin-bottom:16px;}
+.back-link:hover{color:var(--blue);}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(88,166,255,.1);border:1px solid rgba(88,166,255,.25);color:var(--blue);font-size:12px;padding:3px 14px;border-radius:20px;margin-bottom:16px;}
+h1{font-size:26px;font-weight:800;margin-bottom:8px;}
+.meta{color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
+.container{max-width:800px;margin:0 auto;padding:36px 16px 60px;}
+.section{margin-bottom:32px;}
+.section-title{font-size:18px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px;transition:border-color .2s;}
+.card:hover{border-color:var(--blue);}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.card-title{font-size:15px;font-weight:700;line-height:1.5;}
+.tag{font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;}
+.tag-new{background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.3);color:var(--green);}
+.tag-tech{background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.3);color:var(--blue);}
+.tag-market{background:rgba(240,136,62,.15);border:1px solid rgba(240,136,62,.3);color:var(--orange);}
+.tag-cn{background:rgba(210,153,34,.15);border:1px solid rgba(210,153,34,.3);color:var(--yellow);}
+.tag-intl{background:rgba(210,168,255,.15);border:1px solid rgba(210,168,255,.3);color:var(--purple);}
+.card-body{color:#c9d1d9;font-size:14px;line-height:1.8;}
+.analysis{background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin-top:12px;font-size:13px;color:var(--muted);}
+.analysis strong{color:var(--blue);}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:28px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+.stat-num{font-size:20px;font-weight:800;margin-bottom:4px;}
+.stat-label{font-size:11px;color:var(--muted);}
+.data-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px;}
+.data-table th{background:var(--bg3);padding:8px 12px;text-align:left;color:var(--muted);border-bottom:1px solid var(--border);}
+.data-table td{padding:9px 12px;border-bottom:1px solid var(--border);}
+.data-table tr:last-child td{border-bottom:none;}
+.highlight{color:var(--blue);font-weight:700;}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:5px;}
+.badge-leader{background:rgba(248,81,73,.15);color:var(--red);}
+.badge-growth{background:rgba(63,185,80,.15);color:var(--green);}
+.badge-track{background:rgba(88,166,255,.15);color:var(--blue);}
+.footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
+</style>
 </head>
 <body>
-    <div class="container">
-        <a class="back-link" href="index.html">← 返回首页</a>
-        <div class="header">
-            <h1>射频芯片日报</h1>
-            <div class="date">2026年3月19日 星期四</div>
-        </div>
+<div class="header">
+  <a class="back-link" href="index.html">← 返回首页</a>
+  <div class="eyebrow">📡 射频芯片日报</div>
+  <h1>射频芯片日报</h1>
+  <div class="meta">
+    <span>📅 2026年03月19日（周四）</span>
+    <span>·</span>
+    <span>国产替代 · 市场动态 · 技术前沿</span>
+  </div>
+</div>
 
-        <div class="section">
-            <div class="section-title">今日焦点</div>
-            <div class="news-item">
-                <div class="news-title">Skyworks与Qorvo合并推进：国产射频迎来最佳替代窗口</div>
-                <div class="news-content">2025年10月，美国两大射频芯片巨头Skyworks（思佳讯）与Qorvo（科沃）官宣合并，合并后新公司估值约220亿美元，将成全球最大射频芯片企业。监管审批正在推进中，预计2026年下半年完成。此次合并对国产射频是重大利好：手机厂商此前在两家之间"二选一"，合并后供应链集中风险加大，华米OV等客户加速寻找国产"备胎"，卓胜微、唯捷创芯等迎来替代窗口期。</div>
-                <span class="tag">Skyworks</span>
-                <span class="tag">Qorvo</span>
-                <span class="tag">国产替代</span>
-            </div>
-            <div class="news-item">
-                <div class="news-title">三大国际芯片巨头4月集体涨价，最高达85%</div>
-                <div class="news-content">德州仪器（TI）、恩智浦（NXP）、英飞凌（Infineon）相继发出调价通知，宣布自2026年4月1日起上调产品售价，其中TI模拟芯片部分型号涨幅高达85%。业内分析认为，本轮涨价由产能收缩、成本上涨及地缘博弈共同驱动，将进一步加速国内厂商从欧美供应商切换至国产的进程，半导体材料设备板块同步受益。</div>
-                <span class="tag">TI涨价</span>
-                <span class="tag">国产替代加速</span>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="section">
-            <div class="section-title">卓胜微深度：从Fabless到IDM的百亿豪赌</div>
-            <div class="company-grid">
-                <div class="company-card">
-                    <div class="company-name">卓胜微（300782）</div>
-                    <div class="company-code">射频前端龙头 | IDM转型中</div>
-                    <div class="company-desc">
-                        <strong>核心突破：</strong>国内唯一实现L-PAMiD量产，MAX-SAW滤波器打破海外垄断，自建晶圆厂推进中。<br><br>
-                        <strong>当前困境：</strong>股价较高点下滑77%，25亿存货压顶，从Fabless转IDM的重资产投入短期压制利润。<br><br>
-                        <strong>核心逻辑：</strong>高端模组 + 自建产能 = 长期护城河，L-PAMiD合并Skyworks/Qorvo替代窗口期双催化。
-                    </div>
-                </div>
-                <div class="company-card">
-                    <div class="company-name">唯捷创芯（688153）</div>
-                    <div class="company-code">PA专家 | 联发科深度绑定</div>
-                    <div class="company-desc">
-                        <strong>核心优势：</strong>国内PA龙头，4G/5G PA市占率领先，L-PAMiF量产，车载射频布局中。<br><br>
-                        <strong>近期动态：</strong>3月19日跌1.95%，近3日主力净流入-200万，短期承压；长期受益Skyworks/Qorvo合并供应链重构。<br><br>
-                        <strong>关注点：</strong>5G L-PAMiD研发进度，WiFi 7 FEM出货量。
-                    </div>
-                </div>
-                <div class="company-card">
-                    <div class="company-name">飞骧科技</div>
-                    <div class="company-code">拟科创板IPO | 全品类布局</div>
-                    <div class="company-desc">
-                        <strong>核心优势：</strong>PA/开关/LNA全品类，荣耀/传音深度合作，5G模组快速跟进。<br><br>
-                        <strong>近期动态：</strong>科创板IPO进程中，募资重点投向5G射频模组和车载射频研发。<br><br>
-                        <strong>关注点：</strong>IPO时间节点，高端客户突破进展。
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="section">
+<div class="section-title">
+  <span>📊</span> 核心数据
+</div>
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--cyan);">256亿</div>
+    <div class="stat-label">2026全球市场规模</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--green);">13.1%</div>
+    <div class="stat-label">年复合增长率</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--orange);">11%</div>
+    <div class="stat-label">国产替代空间</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--purple);">2.8万</div>
+    <div class="stat-label">低轨卫星规划</div>
+  </div>
+</div>
+</div>
 
-        <div class="section">
-            <div class="section-title">卫星射频新赛道</div>
-            <div class="news-item">
-                <div class="news-title">中国成功发射卫星互联网低轨20组卫星，射频需求进入爆发期</div>
-                <div class="news-content">3月13日，我国在海南商业航天发射场用长征八号甲成功将卫星互联网低轨20组卫星送入预定轨道。中国星网GW星座规划1.3万颗、上海垣信"千帆"星座1.5万颗，低轨卫星组网加速。每颗卫星需配备高性能射频前端，LEO卫星射频芯片需求预计2027年进入百亿量级，成为继手机之后射频行业最重要增量市场。</div>
-                <span class="tag">低轨卫星</span>
-                <span class="tag">LEO</span>
-                <span class="tag">射频需求</span>
-            </div>
-            <div class="news-item">
-                <div class="news-title">国数微电子：为低轨卫星装上"国产芯"</div>
-                <div class="news-content">青岛国数微电子研发出全自主国产化射频收发芯片，已通过低轨卫星互联网应用验证，成为国内少数具备卫星射频收发芯片量产能力的厂商之一。该芯片覆盖Ka/Ku频段，支持高速双向通信，填补国内空白。卫星射频芯片因工作环境极端（高辐射、宽温区），技术壁垒显著高于手机射频。</div>
-                <span class="tag">国数微电子</span>
-                <span class="tag">卫星射频</span>
-                <span class="tag">Ka/Ku频段</span>
-            </div>
-        </div>
+<div class="section">
+<div class="section-title">
+  <span>🔥</span> 今日要闻
+</div>
 
-        <div class="highlight-box">
-            <div class="highlight-title">国产化进程关键指标</div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">220亿</div>
-                    <div class="stat-label">Skyworks+Qorvo合并估值（美元）</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">85%</div>
-                    <div class="stat-label">TI部分产品最高涨幅</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">2.8万颗</div>
-                    <div class="stat-label">中国两大星座规划卫星总数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">11%</div>
-                    <div class="stat-label">国产射频全球市占率（2025）</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="highlight-box">
-            <div class="highlight-title">今日观点</div>
-            <p>1. <strong>双催化叠加</strong>：Skyworks/Qorvo合并 + 欧美巨头涨价，同步发酵，国产射频芯片面临近年来最好的替代时间窗口，供应链重构加速。</p>
-            <p style="margin-top: 10px;">2. <strong>卫星是下一个蓝海</strong>：手机射频市场已进入存量竞争，低轨卫星射频需求是真正的增量——且技术壁垒高、毛利率丰厚，先入者优势明显。</p>
-            <p style="margin-top: 10px;">3. <strong>卓胜微赌注的逻辑</strong>：从Fabless到IDM的转型短期"流血"，但当竞争格局重塑（外资整合、国内政策加持），重资产反而是护城河。</p>
-        </div>
-
-        <div class="footer">
-            射频芯片研究院 · 每日自动生成 · 2026-03-19 &nbsp;|&nbsp; <a href="index.html" style="color:#00d4ff;">返回日报首页</a>
-        </div>
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">国际大厂动态：Skyworks+Qorvo合并审批推进</div>
+    <span class="tag tag-intl">国际</span>
+  </div>
+  <div class="card-body">
+    <p>射频前端两大巨头<span style="color:var(--purple);">Skyworks</span>与<span style="color:var(--purple);">Qorvo</span>的合并计划正在各国监管机构审批中，交易估值约<span style="color:var(--cyan);">220亿美元</span>。合并完成后将形成射频前端领域新的超级巨头。</p>
+    <div class="analysis">
+      <strong>影响分析：</strong>合并完成后，射频前端集中度将进一步提升，手机厂商为了供应链安全，将加速寻找<span style="color:var(--green);">国产替代方案</span>，这为国内射频厂商带来历史性机遇。
     </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">国际原厂涨价：TI/NXP/英飞凌4月涨价最高85%</div>
+    <span class="tag tag-market">市场</span>
+  </div>
+  <div class="card-body">
+    <p>据供应链消息，<span style="color:var(--orange);">德州仪器（TI）</span>、<span style="color:var(--orange);">恩智浦（NXP）</span>、<span style="color:var(--orange);">英飞凌</span>三大模拟芯片巨头均宣布将在<span style="color:var(--yellow);">2026年4月</span>调整产品价格，部分产品涨幅高达<span style="color:var(--red);">85%</span>。</p>
+    <div class="analysis">
+      <strong>影响分析：</strong>涨价产品主要集中在<span style="color:var(--cyan);">功率放大器、射频开关、低噪声放大器</span>等领域。涨价原因包括：上游晶圆产能紧张、物流成本上涨、地缘政治因素。国产替代从"可以换"变成"必须换"。
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">中国低轨卫星发射加速，射频芯片需求爆发</div>
+    <span class="tag tag-cn">国产</span>
+  </div>
+  <div class="card-body">
+    <p>中国卫星网络集团公布<span style="color:var(--cyan);">2.8万颗</span>低轨卫星星座规划，近期发射节奏明显加速。卫星射频前端作为核心配套，单星价值量约<span style="color:var(--green);">150万元</span>，预计将带来<span style="color:var(--cyan);">百亿级</span>新增市场。</p>
+    <div class="analysis">
+      <strong>影响分析：</strong>低轨卫星主要使用<span style="color:var(--purple);">Ka/Ku频段</span>，对射频前端的带宽、线性度、功耗提出更高要求。GaAs、氮化镓工艺将成为主流技术路线。
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="section-title">
+  <span>🔬</span> 技术进展
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">芯谷微电子发布高线性GaAs MMIC功率放大器</div>
+    <span class="tag tag-tech">技术</span>
+  </div>
+  <div class="card-body">
+    <p>芯谷微电子发布三款基于<span style="color:var(--cyan);">砷化镓（GaAs）</span>工艺的高线性MMIC功率放大器芯片，覆盖<span style="color:var(--green);">基站、卫星通信、雷达</span>等应用场景。核心技术指标达到国际先进水平。</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">射频芯片技术进入"四浪叠加"关键期</div>
+    <span class="tag tag-tech">技术</span>
+  </div>
+  <div class="card-body">
+    <p>行业分析指出，射频芯片正步入<span style="color:var(--yellow);">超高频、超集成、软件定义、异构封装</span>四浪叠加期。2025-2028年是关键技术窗口，2028-2030年将锁定产业格局。</p>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="section-title">
+  <span>💡</span> 投资机会
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">国产射频厂商迎来替代窗口期</div>
+    <span class="tag tag-new">机会</span>
+  </div>
+  <div class="card-body">
+    <table class="data-table">
+      <tr>
+        <th>标的</th>
+        <th>代码</th>
+        <th>看点</th>
+      </tr>
+      <tr>
+        <td>卓胜微</td>
+        <td>688126</td>
+        <td>L-PAMiD量产突破，进入国产手机旗舰</td>
+      </tr>
+      <tr>
+        <td>唯捷创芯</td>
+        <td>688153</td>
+        <td>PA模组龙头，射频前端全面布局</td>
+      </tr>
+      <tr>
+        <td>麦捷科技</td>
+        <td>300319</td>
+        <td>滤波器突破，SAW/BAW双线布局</td>
+      </tr>
+      <tr>
+        <td>武汉凡谷</td>
+        <td>002194</td>
+        <td>射频器件老牌，进入华为供应链</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="section-title">
+  <span>📈</span> 明日提示
+</div>
+<div class="card">
+  <div class="card-body">
+    <p>• <span style="color:var(--blue);">一季报季开启</span>：关注射频厂商产能利用率和毛利率变化</p>
+    <p>• <span style="color:var(--green);">卓胜微L-PAMiD</span>：出货量是核心观察指标</p>
+    <p>• <span style="color:var(--purple);">卫星互联网</span>：关注新的发射任务和招标进展</p>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  📡 射频芯片日报 · 2026年3月19日 · 每日9:00更新
+</div>
+
+</div>
 </body>
 </html>
