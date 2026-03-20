@@ -1,102 +1,247 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日实时新政日报 - 2026年3月19日</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
-            color: #e8eaed;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .header { text-align: center; padding: 40px 0; border-bottom: 2px solid #00d4ff; margin-bottom: 40px; }
-        .header h1 { font-size: 2.5em; background: linear-gradient(90deg, #00d4ff, #0099cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        .date { color: #8892b0; font-size: 1.1em; }
-        .section { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(0,212,255,0.1); }
-        .section-title { font-size: 1.4em; color: #00d4ff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .section-title::before { content: ''; width: 4px; height: 24px; background: #00d4ff; border-radius: 2px; }
-        .news-item { padding: 20px; background: rgba(0,212,255,0.05); border-radius: 12px; margin-bottom: 15px; border-left: 3px solid #00d4ff; }
-        .news-title { font-size: 1.1em; color: #fff; margin-bottom: 10px; font-weight: 600; }
-        .news-content { color: #8892b0; font-size: 0.95em; line-height: 1.8; }
-        .tag { display: inline-block; padding: 4px 12px; background: rgba(0,212,255,0.15); color: #00d4ff; border-radius: 20px; font-size: 0.8em; margin-top: 10px; margin-right: 8px; }
-        .highlight-box { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05)); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 25px; margin: 25px 0; }
-        .highlight-title { color: #00d4ff; font-size: 1.2em; margin-bottom: 15px; }
-        .footer { text-align: center; padding: 30px; color: #8892b0; font-size: 0.9em; border-top: 1px solid rgba(0,212,255,0.1); margin-top: 40px; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #00d4ff; text-decoration: none; font-size: 0.9em; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日实时新政 · 2026-03-19</title>
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --bg4:#2d333b;
+    --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --green:#3fb950; --red:#f85149;
+    --yellow:#d29922; --purple:#d2a8ff; --orange:#f0883e; --teal:#39d353;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; line-height:1.7; }
+
+  .header { background:linear-gradient(160deg,#0d1117,#161b22); border-bottom:1px solid var(--border); padding:40px 20px 28px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:0;left:0;right:0;height:3px; background:linear-gradient(90deg,#f85149,#d29922,#3fb950,#58a6ff,#d2a8ff); }
+  .header-back { position:absolute; top:18px; left:20px; color:var(--blue); text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; }
+  .header-back:hover { color:var(--text); }
+  .header-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); font-size:12px; padding:3px 14px; border-radius:20px; margin-bottom:14px; }
+  .header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+  .header-meta { color:var(--muted); font-size:13px; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; }
+
+  .quick-nav { background:var(--bg2); border-bottom:1px solid var(--border); padding:12px 20px; display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .nav-pill { display:inline-flex; align-items:center; gap:5px; background:var(--bg3); border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-size:12px; color:var(--muted); text-decoration:none; transition:all .2s; white-space:nowrap; }
+  .nav-pill:hover { color:var(--text); border-color:var(--muted); }
+
+  .container { max-width:860px; margin:0 auto; padding:32px 16px 60px; }
+
+  .section { margin-bottom:40px; }
+  .section-header { display:flex; align-items:center; gap:12px; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .section-icon { font-size:22px; }
+  .section-title { font-size:18px; font-weight:800; }
+  .section-badge { font-size:11px; padding:2px 10px; border-radius:20px; font-weight:600; }
+
+  .badge-danger  { background:rgba(248,81,73,.12);  border:1px solid rgba(248,81,73,.3);  color:var(--red); }
+  .badge-warning { background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.3); color:var(--yellow); }
+  .badge-info    { background:rgba(88,166,255,.12);  border:1px solid rgba(88,166,255,.3);  color:var(--blue); }
+  .badge-success { background:rgba(63,185,80,.12);  border:1px solid rgba(63,185,80,.3);  color:var(--green); }
+  .badge-purple  { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.3); color:var(--purple); }
+
+  .news-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; margin-bottom:14px; overflow:hidden; transition:border-color .2s; }
+  .news-card:hover { border-color:var(--bg4); }
+  .news-card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:18px 20px 14px; }
+  .news-card-title { font-size:15px; font-weight:700; line-height:1.5; flex:1; }
+  .news-tag { font-size:11px; padding:2px 8px; border-radius:6px; white-space:nowrap; flex-shrink:0; margin-top:2px; }
+  .tag-hot    { background:rgba(248,81,73,.12); border:1px solid rgba(248,81,73,.25); color:var(--red); }
+  .tag-policy { background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.25); color:var(--blue); }
+  .tag-intl   { background:rgba(210,153,34,.12); border:1px solid rgba(210,153,34,.25); color:var(--yellow); }
+  .tag-tech   { background:rgba(63,185,80,.12); border:1px solid rgba(63,185,80,.25); color:var(--green); }
+  .tag-ent    { background:rgba(210,168,255,.12); border:1px solid rgba(210,168,255,.25); color:var(--purple); }
+  .tag-social { background:rgba(240,136,62,.12); border:1px solid rgba(240,136,62,.25); color:var(--orange); }
+
+  .news-divider { height:1px; background:var(--border); margin:0 20px; opacity:.6; }
+
+  .news-body { padding:14px 20px 18px; }
+  .news-summary { font-size:13px; color:#c9d1d9; line-height:1.85; margin-bottom:12px; }
+  .news-analysis { background:var(--bg3); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:12px 16px; }
+  .news-analysis-label { font-size:11px; color:var(--yellow); font-weight:700; letter-spacing:.06em; margin-bottom:6px; }
+  .news-analysis-text { font-size:13px; color:#c9d1d9; line-height:1.8; }
+
+  .hl-red    { color:var(--red);    font-weight:600; }
+  .hl-blue   { color:var(--blue);   font-weight:600; }
+  .hl-green  { color:var(--green);  font-weight:600; }
+  .hl-yellow { color:var(--yellow); font-weight:600; }
+  .hl-purple { color:var(--purple); font-weight:600; }
+  .hl-orange { color:var(--orange); font-weight:600; }
+
+  .summary-box { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin-bottom:16px; }
+  .summary-box h3 { font-size:15px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .summary-list { display:flex; flex-direction:column; gap:8px; }
+  .summary-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#c9d1d9; line-height:1.7; }
+  .summary-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:8px; }
+
+  .disclaimer { background:rgba(210,153,34,.07); border:1px solid rgba(210,153,34,.2); border-radius:10px; padding:12px 18px; font-size:12px; color:var(--yellow); line-height:1.7; margin-top:28px; }
+
+  .footer { text-align:center; padding:24px 20px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:8px; }
+  .footer a { color:var(--blue); text-decoration:none; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <a class="back-link" href="index.html">← 返回首页</a>
-        <div class="header">
-            <h1>每日实时新政日报</h1>
-            <div class="date">2026年3月19日 星期四 | 半导体·科技·产业政策</div>
-        </div>
 
-        <div class="section">
-            <div class="section-title">重磅政策</div>
-            <div class="news-item">
-                <div class="news-title">十五五规划半导体专项：关键芯片国产化率2030年目标50%+</div>
-                <div class="news-content">十五五规划正式将半导体产业列为战略优先发展领域，射频芯片、存储芯片、高端逻辑芯片被重点提及。规划明确2030年关键芯片国产化率达50%以上，政策导向从"支持"转向"自主可控"。配套措施包括：重大专项资金加码、国家大基金三期加速出手、产学研联动平台建设提速。</div>
-                <span class="tag">十五五</span>
-                <span class="tag">半导体</span>
-                <span class="tag">国产化50%</span>
-            </div>
-            <div class="news-item">
-                <div class="news-title">工信部：推进6G标准制定，太赫兹频段纳入优先研究范畴</div>
-                <div class="news-content">工信部发布《6G技术研发推进方案》，明确将太赫兹（THz）通信、智能超表面（RIS）、通感一体化列为6G三大核心技术方向。方案要求2027年前完成关键器件研发验证，2030年推进小规模商用测试。射频前端作为6G最核心的硬件底座，国产厂商获得历史性技术窗口期。</div>
-                <span class="tag">工信部</span>
-                <span class="tag">6G</span>
-                <span class="tag">太赫兹</span>
-            </div>
-        </div>
+<div class="header">
+  <a class="header-back" href="index.html">← 返回首页</a>
+  <div class="header-badge">📰 每日实时新政</div>
+  <h1>每日实时新政</h1>
+  <div class="header-meta">
+    <span>📅 2026年03月19日（周四）</span>
+    <span>·</span>
+    <span>国内 · 国际 · 政策 · 热点 · 财经</span>
+  </div>
+</div>
 
-        <div class="section">
-            <div class="section-title">产业政策动态</div>
-            <div class="news-item">
-                <div class="news-title">国家大基金三期加速布局：重点方向包括射频前端与先进封装</div>
-                <div class="news-content">国家集成电路产业投资基金三期（大基金三期）加速出手，重点布局方向涵盖射频前端、先进封装（Chiplet）、存储芯片、RISC-V生态。业内人士透露，射频前端领域预计将有2-3家国内领军企业获得重点支持，配合十五五政策形成"政策+资金"双轮驱动。</div>
-                <span class="tag">大基金三期</span>
-                <span class="tag">射频前端</span>
-                <span class="tag">先进封装</span>
-            </div>
-            <div class="news-item">
-                <div class="news-title">商务部应对半导体关税新动向：建立"白名单"供应商替代机制</div>
-                <div class="news-content">商务部会同工信部正在研究建立关键半导体器件"白名单"替代机制，对被列入白名单的国产替代产品给予优先采购政策和税收优惠。该机制预计率先在政府采购和国有企业采购领域落地，覆盖射频芯片、MCU、模拟芯片等品类，国内射频厂商迎来政策性需求释放。</div>
-                <span class="tag">商务部</span>
-                <span class="tag">白名单</span>
-                <span class="tag">优先采购</span>
-            </div>
-        </div>
+<div class="quick-nav">
+  <a class="nav-pill" href="2026-03-19.html">📡 射频日报</a>
+  <a class="nav-pill" href="stock-2026-03-19.html">📈 股市</a>
+  <a class="nav-pill" href="ev-2026-03-19.html">🚗 新能源车</a>
+  <a class="nav-pill" href="gaas-2026-03-19.html">🔬 GaAs技术</a>
+</div>
 
-        <div class="section">
-            <div class="section-title">地方产业园区动态</div>
-            <div class="news-item">
-                <div class="news-title">深圳湾科技城：射频芯片产业集群获批，首批15家企业入驻</div>
-                <div class="news-content">深圳市政府批准在深圳湾科技城设立射频芯片产业集群专区，首批入驻企业包括射频设计、滤波器制造、模组集成等全链条企业共15家。专区将享受研发补贴、厂房租金减免、高端人才引进绿色通道等优惠政策，目标3年内形成百亿级产业集群。</div>
-                <span class="tag">深圳</span>
-                <span class="tag">产业集群</span>
-                <span class="tag">射频芯片园</span>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="highlight-box">
-            <div class="highlight-title">政策要点速览</div>
-            <p>✅ <strong>十五五规划</strong>：2030年关键芯片国产化率≥50%，射频芯片重点列入</p>
-            <p style="margin-top: 8px;">✅ <strong>6G推进方案</strong>：太赫兹/RIS/通感一体化为核心，2030年小规模商用</p>
-            <p style="margin-top: 8px;">✅ <strong>大基金三期</strong>：射频前端为重点布局赛道之一</p>
-            <p style="margin-top: 8px;">✅ <strong>白名单替代机制</strong>：政府/国企优先采购国产射频，政策性需求释放</p>
-            <p style="margin-top: 8px;">✅ <strong>深圳产业集群</strong>：地方配套政策跟进，形成区域集聚效应</p>
-        </div>
-
-        <div class="footer">
-            射频芯片研究院 · 每日自动生成 · 2026-03-19 &nbsp;|&nbsp; <a href="index.html" style="color:#00d4ff;">返回日报首页</a>
-        </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <span class="section-title">今日热点</span>
+      <span class="section-badge badge-danger">热</span>
     </div>
+    
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">油价24日将迎年内第六轮调整：预计每升上涨约1.6元，重回"9元时代"</div>
+        <span class="news-tag tag-hot">热门</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">国内油价24日将迎年内第六轮调整，预计每升上涨约1.6元，或将重回"9元时代"，加满一箱油或多花100元。国际油价持续波动，国内油价跟随上涨。</div>
+        <div class="news-analysis">
+          <div class="news-analysis-label">影响分析</div>
+          <div class="news-analysis-text">油价上涨将直接影响物流运输成本，进一步推高CPI通胀压力。同时将加速新能源汽车的市场渗透，对 EV 板块形成利好。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">中办、国办：第二轮土地承包到期后再延长30年</div>
+        <span class="news-tag tag-policy">政策</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">中办、国办发布关于做好第二轮土地承包到期后再延长30年试点工作的意见，明确继续延长承包期30年，稳定农村土地承包关系，保障农民财产权益。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🏛️</span>
+      <span class="section-title">国内政策</span>
+      <span class="section-badge badge-info">政策</span>
+    </div>
+    
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">证监会：进一步深化重点领域腐败治理</div>
+        <span class="news-tag tag-policy">财经</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">证监会3月17日召开2026年全面从严治党暨纪检监察工作会议，会议提到将进一步深化重点领域腐败治理，加强资本市场监管。</div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">外交部：中美双方将继续就特朗普总统访华保持沟通</div>
+        <span class="news-tag tag-intl">国际</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">外交部表示，中美双方将继续就特朗普总统访华保持沟通，落实两国元首达成的重要共识，推动中美关系稳定发展。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <span class="section-title">国际动态</span>
+      <span class="section-badge badge-warning">国际</span>
+    </div>
+    
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">中东局势升级：以色列攻击伊朗天然气田，霍尔木兹海峡紧张</div>
+        <span class="news-tag tag-intl">热</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">以色列对伊朗天然气田发动攻击，霍尔木兹海峡紧张局势升级。国际能源市场波动加剧，原油供应面临不确定性。</div>
+        <div class="news-analysis">
+          <div class="news-analysis-label">市场影响</div>
+          <div class="news-analysis-text">中东冲突升级导致国际油价短线波动，若冲突持续可能推动油价进一步上涨，影响全球通胀走势。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🎬</span>
+      <span class="section-title">科技热点</span>
+      <span class="section-badge badge-success">科技</span>
+    </div>
+    
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">2026央视315晚会曝光清单：食品安全等领域问题被点名</div>
+        <span class="news-tag tag-social">热点</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">2026年央视315晚会曝光了食品安全、虚假宣传等问题，涉及多个行业领域，引起社会广泛关注。</div>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-card-title">算电协同概念逆势走强，华电辽能5天4板</div>
+        <span class="news-tag tag-tech">财经</span>
+      </div>
+      <div class="news-body">
+        <div class="news-summary">A股市场震荡调整，算电协同概念逆势走强，华电辽能5天4板，韶能股份2连板。电力、AI算力协同成为市场新热点。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3><span style="font-size:18px;">📋</span> 今日要闻摘要</h3>
+    <div class="summary-list">
+      <div class="summary-item">
+        <span class="summary-dot" style="background:var(--red);"></span>
+        <span>油价24日预计上涨1.6元/升，重回9元时代</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-dot" style="background:var(--yellow);"></span>
+        <span>土地承包延长30年政策出台</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-dot" style="background:var(--blue);"></span>
+        <span>中东局势升级，国际油价波动</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-dot" style="background:var(--green);"></span>
+        <span>算电协同概念逆势走强</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ 免责声明：本日报内容仅供参考，不构成投资建议。股市有风险，投资需谨慎。
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="index.html">← 返回首页</a> · 每日实时新政 · 2026年3月19日
+</div>
+
 </body>
 </html>
