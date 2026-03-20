@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaAs MMIC前沿技术追踪 - 2026年3月20日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%); color: #e8eaed; line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 2px solid #00d4ff; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; background: linear-gradient(90deg, #00d4ff, #0099cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .date { color: #8892b0; font-size: 1.1em; }
+        .section { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(0,212,255,0.1); }
+        .section-title { font-size: 1.4em; color: #00d4ff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 24px; background: #00d4ff; border-radius: 2px; }
+        .news-item { padding: 20px; background: rgba(0,212,255,0.05); border-radius: 12px; margin-bottom: 15px; border-left: 3px solid #00d4ff; }
+        .news-title { font-size: 1.1em; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .news-content { color: #8892b0; font-size: 0.95em; line-height: 1.8; }
+        .tag { display: inline-block; padding: 4px 12px; background: rgba(0,212,255,0.15); color: #00d4ff; border-radius: 20px; font-size: 0.8em; margin-top: 10px; margin-right: 8px; }
+        .highlight-box { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05)); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 25px; margin: 25px 0; }
+        .highlight-title { color: #00d4ff; font-size: 1.2em; margin-bottom: 15px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .tech-card { background: rgba(0,212,255,0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(0,212,255,0.1); }
+        .tech-name { font-size: 1em; font-weight: 600; color: #00d4ff; margin-bottom: 8px; }
+        .tech-desc { color: #8892b0; font-size: 0.88em; line-height: 1.7; }
+        .footer { text-align: center; padding: 30px; color: #8892b0; font-size: 0.9em; border-top: 1px solid rgba(0,212,255,0.1); margin-top: 40px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #00d4ff; text-decoration: none; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← 返回首页</a>
+        <div class="header">
+            <h1>GaAs MMIC前沿技术追踪</h1>
+            <div class="date">2026年3月20日 星期五 | 化合物半导体 · 微波毫米波 · 本周技术综述</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">本周核心技术话题：卫星射频前端工艺挑战</div>
+            <div class="news-item">
+                <div class="news-title">低轨卫星射频前端：GaAs vs GaN vs SiGe的三方博弈</div>
+                <div class="news-content">低轨卫星射频前端（星载）和用户终端（地面）对射频工艺需求截然不同。<br><br>
+                <strong>星载发射端</strong>：高功率、高效率优先→GaN HEMT首选，输出功率可达数十瓦，PAE超过50%；<br><br>
+                <strong>星载接收端（LNA）</strong>：超低噪声优先→InP HEMT或GaAs PHEMT，噪声系数低至0.5dB以下；<br><br>
+                <strong>地面终端（手持/车载）</strong>：低功耗、低成本、高集成优先→SiGe或GaAs HBT，与CMOS工艺易于集成。<br><br>
+                三条工艺路线并行，中国厂商各有布局，三安光电（GaAs/GaN）、中电科55所（GaN/InP）、卓胜微（GaAs HBT）是核心参与者。</div>
+                <span class="tag">GaN HEMT</span>
+                <span class="tag">InP LNA</span>
+                <span class="tag">SiGe集成</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">抗辐射加固GaAs MMIC：卫星射频的隐性技术壁垒</div>
+                <div class="news-content">低轨卫星运行在大气层外，需承受宇宙射线和太阳高能粒子的辐射轰击，要求芯片具备TID（总剂量耐受）>100krad和SEU（单粒子翻转）免疫能力。普通商用GaAs MMIC不具备抗辐射能力，需要特殊的版图设计、工艺改进和封装屏蔽。国内中电科13所、航天科技等机构已掌握抗辐射GaAs MMIC研制能力，民用卫星企业正在与之对接商业化路径。</div>
+                <span class="tag">抗辐射加固</span>
+                <span class="tag">TID</span>
+                <span class="tag">SEU</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">本周技术前沿速览</div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-name">GaAs PHEMT LNA</div>
+                    <div class="tech-desc">低噪声放大器（LNA）核心工艺，0.15μm GaAs pHEMT可实现1dB以下噪声系数，广泛用于卫星接收链路和基站前端。国内三安光电已提供GaAs pHEMT代工服务。</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-name">GaN on SiC PA</div>
+                    <div class="tech-desc">高功率射频PA首选，击穿电压高、热导率好、功率密度大。适用于基站PA、雷达发射器、卫星发射链路。中电科13所量产0.25μm GaN on SiC工艺。</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-name">InP HEMT</div>
+                    <div class="tech-desc">截止频率超600GHz，是目前毫米波/太赫兹LNA唯一工艺选择。价格昂贵，主要用于军用/科研。中科院微系统所已完成部分毫米波InP HEMT芯片流片验证。</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-name">BAW/FBAR滤波器</div>
+                    <div class="tech-desc">5G高频段滤波器核心工艺，国产化率最低（&lt;5%）。楚微科技、汉天下等企业攻关中，Q值和温漂指标与博通/Qorvo仍有差距，预计2027-2028年实现小批量替代。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">产业链周动态</div>
+            <div class="news-item">
+                <div class="news-title">MOCVD设备出口管制：倒逼国内设备加速突破</div>
+                <div class="news-content">美国更新出口管制清单，GaAs/GaN外延生长的核心设备MOCVD（金属有机化学气相沉积）受限范围扩大。短期影响：三安光电、中晟通微等扩产计划受到设备获取约束。中期应对：中国中晟光电等国内MOCVD设备厂商迎来历史性替代机遇，在国家重点研发计划资金支持下加速国产设备验证，预计2026年底实现部分机台的国产化替代。</div>
+                <span class="tag">MOCVD</span>
+                <span class="tag">国产设备</span>
+                <span class="tag">出口管制</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">本周GaAs/GaN行业论文精选：Ka频段GaN PA效率突破65%</div>
+                <div class="news-content">电子科技大学最新研究在Ka频段（26.5-40GHz）GaN HEMT功率放大器设计上取得突破，通过谐波调谐技术将PAE（功率附加效率）提升至65%，超过同频段国际领先水平（通常为55-60%）。该成果发表于IEEE Microwave and Wireless Components Letters，对未来毫米波5G基站和卫星发射模块设计具有重要参考价值。</div>
+                <span class="tag">Ka频段</span>
+                <span class="tag">GaN PA</span>
+                <span class="tag">PAE 65%</span>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">本周GaAs MMIC要点总结</div>
+            <p>1. <strong>卫星射频工艺分层清晰</strong>：星载发射端用GaN，接收端用InP/GaAs pHEMT，地面终端用GaAs HBT/SiGe，各有最优工艺选择，国内三条路线均有布局。</p>
+            <p style="margin-top: 10px;">2. <strong>抗辐射是卫星射频的隐性壁垒</strong>：技术难度高，民用转化路径正在打通，中电科军工积累是国内的核心优势。</p>
+            <p style="margin-top: 10px;">3. <strong>MOCVD设备管制是短期约束，长期是国产化催化剂</strong>：中晟光电等国内设备商加速验证，2026年底有望部分替代。</p>
+            <p style="margin-top: 10px;">4. <strong>Ka频段GaN PA效率新突破</strong>：国内毫米波功放研发实力进入国际先进行列，为5G-A/6G基站和卫星通信提供器件储备。</p>
+        </div>
+
+        <div class="footer">
+            射频芯片研究院 · 每日自动生成 · 2026-03-20 &nbsp;|&nbsp; <a href="index.html" style="color:#00d4ff;">返回日报首页</a>
+        </div>
+    </div>
+</body>
+</html>
