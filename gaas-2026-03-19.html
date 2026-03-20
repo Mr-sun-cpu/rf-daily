@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaAs MMIC前沿技术追踪 - 2026年3月19日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            color: #e8eaed;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 2px solid #00d4ff; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; background: linear-gradient(90deg, #00d4ff, #0099cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .date { color: #8892b0; font-size: 1.1em; }
+        .section { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(0,212,255,0.1); }
+        .section-title { font-size: 1.4em; color: #00d4ff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 24px; background: #00d4ff; border-radius: 2px; }
+        .news-item { padding: 20px; background: rgba(0,212,255,0.05); border-radius: 12px; margin-bottom: 15px; border-left: 3px solid #00d4ff; }
+        .news-title { font-size: 1.1em; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .news-content { color: #8892b0; font-size: 0.95em; line-height: 1.8; }
+        .tag { display: inline-block; padding: 4px 12px; background: rgba(0,212,255,0.15); color: #00d4ff; border-radius: 20px; font-size: 0.8em; margin-top: 10px; margin-right: 8px; }
+        .highlight-box { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05)); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 25px; margin: 25px 0; }
+        .highlight-title { color: #00d4ff; font-size: 1.2em; margin-bottom: 15px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .tech-card { background: rgba(0,212,255,0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(0,212,255,0.1); }
+        .tech-name { font-size: 1em; font-weight: 600; color: #00d4ff; margin-bottom: 8px; }
+        .tech-desc { color: #8892b0; font-size: 0.88em; line-height: 1.7; }
+        .footer { text-align: center; padding: 30px; color: #8892b0; font-size: 0.9em; border-top: 1px solid rgba(0,212,255,0.1); margin-top: 40px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #00d4ff; text-decoration: none; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← 返回首页</a>
+        <div class="header">
+            <h1>GaAs MMIC前沿技术追踪</h1>
+            <div class="date">2026年3月19日 星期四 | 化合物半导体 · 微波毫米波 · 射频前端</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">本周技术前沿</div>
+            <div class="news-item">
+                <div class="news-title">卓胜微L-PAMiD模组中的GaAs HBT工艺解析</div>
+                <div class="news-content">卓胜微量产的L-PAMiD模组中，功率放大器（PA）核心采用GaAs HBT（异质结双极晶体管）工艺实现。GaAs HBT相比硅基CMOS，在射频功率效率（PAE）、线性度（OIP3）、噪声方面具有显著优势，是5G Sub-6GHz PA的主流工艺。卓胜微自建晶圆厂核心定位即GaAs HBT产线，掌握工艺自主权是其从Fabless转IDM的关键战略支撑。</div>
+                <span class="tag">GaAs HBT</span>
+                <span class="tag">L-PAMiD</span>
+                <span class="tag">PAE效率</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">GaN vs GaAs：卫星射频前端的工艺路线之争</div>
+                <div class="news-content">低轨卫星射频前端工艺路线出现分化：GaN（氮化镓）以高功率、高效率见长，适合星载大功率发射端；GaAs以低噪声、高线性度见长，适合接收端LNA和移动终端PA。国内中电科55所、三安光电布局GaN HEMT工艺，卓胜微、稳懋半导体布局GaAs HBT，两条路线并行推进，各有应用赛道。</div>
+                <span class="tag">GaN HEMT</span>
+                <span class="tag">卫星前端</span>
+                <span class="tag">工艺路线</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">国产GaAs Foundry现状</div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-name">稳懋半导体（台湾）</div>
+                    <div class="tech-desc">全球最大GaAs晶圆代工厂，国内射频设计公司（卓胜微等）的主要代工伙伴。6英寸GaAs HBT产线，月产能约12万片，技术节点0.15μm。</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-name">三安光电（大陆）</div>
+                    <div class="tech-desc">国内最具代表性的化合物半导体Foundry，GaAs/GaN/InP全工艺覆盖，助力国内射频设计公司减少对台湾代工依赖，战略意义重大。</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-name">中电科13所/55所</div>
+                    <div class="tech-desc">军工背景，GaAs/GaN MMIC自主可控先驱，毫米波频段研发实力最强，技术向民用射频产业转化在加速推进。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">关键器件技术进展</div>
+            <div class="news-item">
+                <div class="news-title">BAW滤波器：国产化最后一块硬骨头</div>
+                <div class="news-content">BAW（体声波）滤波器是5G射频前端中技术壁垒最高的器件，长期被博通（Avago）和Qorvo垄断。国内无线茂（WISOL）、楚微科技、汉天下等企业正在攻关，部分产品已进入小批量量产阶段，但良率和一致性与国际水平仍有2-3年差距。Qorvo与Skyworks合并或倒逼下游客户加快BAW国产切换节奏，成为国内BAW厂商的重要催化剂。</div>
+                <span class="tag">BAW滤波器</span>
+                <span class="tag">博通</span>
+                <span class="tag">国产攻关</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">InP HEMT：太赫兹电路的核心工艺</div>
+                <div class="news-content">北大6G全频段芯片采用28nm CMOS实现Sub-6G集成，但在太赫兹（>100GHz）频段，InP HEMT（磷化铟高电子迁移率晶体管）工艺仍是性能最优选择——截止频率可达600GHz以上。中国科学院微系统所、中电科13所在InP HEMT工艺上持续投入，已实现部分毫米波段的芯片研制，太赫兹收发组件的完全国产化预计在2028-2030年实现。</div>
+                <span class="tag">InP HEMT</span>
+                <span class="tag">太赫兹</span>
+                <span class="tag">截止频率600GHz</span>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">工艺对比速查</div>
+            <p><strong>GaAs HBT</strong>：Sub-6GHz PA首选，PAE高，线性好，成本适中。代表产品：L-PAMiD PA核心。</p>
+            <p style="margin-top: 8px;"><strong>GaN HEMT</strong>：高功率/高效率，适合基站前端和卫星发射，耐高温。代表：基站PA、卫星发射模块。</p>
+            <p style="margin-top: 8px;"><strong>BAW/FBAR</strong>：5G高频滤波器核心，国产化率最低，攻关重点。代表：n77/n78频段滤波器。</p>
+            <p style="margin-top: 8px;"><strong>InP HEMT</strong>：毫米波/太赫兹LNA最优工艺，截止频率>500GHz，价格高，主要用于军工/6G预研。</p>
+        </div>
+
+        <div class="footer">
+            射频芯片研究院 · 每日自动生成 · 2026-03-19 &nbsp;|&nbsp; <a href="index.html" style="color:#00d4ff;">返回日报首页</a>
+        </div>
+    </div>
+</body>
+</html>
