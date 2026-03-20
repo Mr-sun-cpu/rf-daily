@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>射频芯片日报 - 2026年3月20日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%); color: #e8eaed; line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 2px solid #00d4ff; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; background: linear-gradient(90deg, #00d4ff, #0099cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .date { color: #8892b0; font-size: 1.1em; }
+        .section { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(0,212,255,0.1); }
+        .section-title { font-size: 1.4em; color: #00d4ff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 24px; background: #00d4ff; border-radius: 2px; }
+        .news-item { padding: 20px; background: rgba(0,212,255,0.05); border-radius: 12px; margin-bottom: 15px; border-left: 3px solid #00d4ff; }
+        .news-title { font-size: 1.1em; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .news-content { color: #8892b0; font-size: 0.95em; line-height: 1.8; }
+        .tag { display: inline-block; padding: 4px 12px; background: rgba(0,212,255,0.15); color: #00d4ff; border-radius: 20px; font-size: 0.8em; margin-top: 10px; margin-right: 8px; }
+        .highlight-box { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05)); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 25px; margin: 25px 0; }
+        .highlight-title { color: #00d4ff; font-size: 1.2em; margin-bottom: 15px; }
+        .company-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .company-card { background: rgba(0,212,255,0.05); border-radius: 12px; padding: 25px; border: 1px solid rgba(0,212,255,0.1); }
+        .company-name { font-size: 1.2em; font-weight: 600; color: #fff; margin-bottom: 10px; }
+        .company-code { color: #00d4ff; font-size: 0.9em; margin-bottom: 15px; }
+        .company-desc { color: #8892b0; font-size: 0.9em; line-height: 1.7; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-card { background: rgba(0,212,255,0.05); border-radius: 12px; padding: 20px; text-align: center; }
+        .stat-value { font-size: 1.8em; font-weight: bold; color: #00d4ff; }
+        .stat-label { color: #8892b0; font-size: 0.9em; margin-top: 8px; }
+        .footer { text-align: center; padding: 30px; color: #8892b0; font-size: 0.9em; border-top: 1px solid rgba(0,212,255,0.1); margin-top: 40px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #00d4ff; text-decoration: none; font-size: 0.9em; }
+        .badge-new { display: inline-block; background: #ff6b6b; color: #fff; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← 返回首页</a>
+        <div class="header">
+            <h1>射频芯片日报 <span class="badge-new">今日</span></h1>
+            <div class="date">2026年3月20日 星期五</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">今日焦点</div>
+            <div class="news-item">
+                <div class="news-title">全球射频半导体市场规模突破256亿美元，卫星+车载双轮驱动新增量</div>
+                <div class="news-content">据Fortune Business Insights最新报告，2025年全球射频半导体市场规模达256.1亿美元，预计2026年增至277.8亿美元，2034年达329.7亿美元，CAGR约13.1%。亚太地区（以中国为核心）持续主导全球市场，国内厂商在Sub-6GHz PA/开关的全面替代基础上，正向车载射频、低轨卫星射频两大新增量市场大力进军。</div>
+                <span class="tag">市场规模256亿$</span>
+                <span class="tag">CAGR 13.1%</span>
+                <span class="tag">亚太主导</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">卫星射频芯片进入商业化爆发前夜：低轨卫星组网加速</div>
+                <div class="news-content">2026年以来，中国星网和千帆星座组网发射节奏明显加快，3月13日成功发射低轨20组卫星。低轨卫星（LEO）射频前端需求巨大：每颗卫星搭载数十颗射频芯片，覆盖Ka/Ku/L频段，需满足高可靠性、抗辐射、宽温区要求。国内国数微电子、中电科等企业的卫星射频收发芯片加快商业化进程，预计2027年进入规模放量阶段。</div>
+                <span class="tag">低轨卫星</span>
+                <span class="tag">Ka/Ku频段</span>
+                <span class="tag">商业化爆发</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">周回顾：本周射频三大关键事件</div>
+            <div class="news-item">
+                <div class="news-title">① TI/NXP/英飞凌三巨头4月涨价（最高85%）</div>
+                <div class="news-content">欧美三大芯片厂涨价通知全面落地，4月1日生效。TI模拟芯片最高涨幅85%，直接推高国内下游客户切换国产的意愿。市场判断本轮涨价将是2026年国产替代加速的最强催化剂之一，射频板块为核心受益赛道。</div>
+                <span class="tag">涨价85%</span>
+                <span class="tag">国产替代催化</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">② Skyworks+Qorvo合并监管审批推进，220亿美元射频巨头成形</div>
+                <div class="news-content">合并案正在接受全球主要监管机构审查，预计2026年Q3完成。合并后的新公司市占率将突破全球射频前端市场20%，对华米OV等客户的定价话语权大幅增强，倒逼手机厂商提前储备国产射频备用供应商，卓胜微、唯捷创芯等将直接受益。</div>
+                <span class="tag">合并审批</span>
+                <span class="tag">供应链重构</span>
+            </div>
+            <div class="news-item">
+                <div class="news-title">③ 北大6G全频段芯片：太赫兹赛道国内领先优势确立</div>
+                <div class="news-content">北京大学团队研发的6G全频段射频芯片（4.8Tbps，28nm CMOS，Sub-6G至THz单芯片集成）成为本周最具影响力的技术新闻。该成果标志着国内在6G核心硬件赛道已具备国际竞争力，为未来6G标准制定提供了国产底气。</div>
+                <span class="tag">北大</span>
+                <span class="tag">6G芯片</span>
+                <span class="tag">4.8Tbps</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">下周前瞻</div>
+            <div class="company-grid">
+                <div class="company-card">
+                    <div class="company-name">一季报季开启</div>
+                    <div class="company-code">业绩验证期</div>
+                    <div class="company-desc">射频芯片龙头将陆续披露2026年一季报，卓胜微L-PAMiD出货量、唯捷创芯收入增速是核心观测指标，也是机构配置节奏的重要参考。</div>
+                </div>
+                <div class="company-card">
+                    <div class="company-name">4月涨价落地</div>
+                    <div class="company-code">切换订单释放</div>
+                    <div class="company-desc">TI/NXP/Infineon涨价4月生效，下游客户切换国产订单将在Q2开始集中释放，需跟踪国内厂商的交付和产能利用率变化。</div>
+                </div>
+                <div class="company-card">
+                    <div class="company-name">低轨卫星发射计划</div>
+                    <div class="company-code">需求持续放量</div>
+                    <div class="company-desc">星网和千帆星座发射节奏预计维持高频，卫星射频芯片进入批量备货周期，国数微电子等卫星射频标的受到机构持续关注。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">本周数据速览</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">256亿</div>
+                    <div class="stat-label">全球射频半导体市场规模（美元，2025）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">TI涨幅峰值</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">220亿</div>
+                    <div class="stat-label">Skyworks+Qorvo合并估值（美元）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.8Tbps</div>
+                    <div class="stat-label">北大6G芯片传输速率</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">今日/本周核心判断</div>
+            <p>1. <strong>2026年是国产射频加速替代的关键节点</strong>：外资整合（Skyworks/Qorvo合并）+ 欧美涨价（TI/NXP/Infineon）+ 政策加持（十五五/大基金三期），三大催化剂首次叠加，下游切换意愿达到历史高位。</p>
+            <p style="margin-top: 10px;">2. <strong>卫星射频是最重要的新增量</strong>：手机射频存量博弈，卫星射频才是接下来3-5年增量最确定的赛道，且技术壁垒高、竞争格局好。</p>
+            <p style="margin-top: 10px;">3. <strong>6G预研看北大成果落地节奏</strong>：从实验室到产业化通常需5-8年，太赫兹射频的商业化窗口约在2030-2032年，提前布局的企业（三安/中电科13所）具有先发优势。</p>
+        </div>
+
+        <div class="footer">
+            射频芯片研究院 · 每日自动生成 · 2026-03-20 &nbsp;|&nbsp; <a href="index.html" style="color:#00d4ff;">返回日报首页</a>
+        </div>
+    </div>
+</body>
+</html>
