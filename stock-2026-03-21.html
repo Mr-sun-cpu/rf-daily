@@ -6,71 +6,103 @@
     <title>股市行情日报 - 2026年3月21日</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a0a0a 0%, #2d1010 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
         .header { text-align: center; padding: 40px 20px; color: #fff; }
         .header h1 { font-size: 36px; margin-bottom: 10px; background: linear-gradient(90deg, #ff6b6b, #ffa502); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .header .date { color: #888; font-size: 14px; }
+        .index-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .index-item { flex: 1; min-width: 150px; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+        .index-name { color: #888; font-size: 12px; margin-bottom: 6px; }
+        .index-value { font-size: 22px; font-weight: 700; }
+        .index-change { font-size: 13px; margin-top: 4px; }
+        .up   { color: #f85149; }
+        .down { color: #3fb950; }
         .card { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1); }
-        .card h2 { color: #ff6b6b; font-size: 20px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .card h2 { color: #ffa502; font-size: 18px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .card ul { list-style: none; }
-        .card li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; line-height: 1.6; }
+        .card li { padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c9d1d9; line-height: 1.6; font-size: 14px; }
         .card li:last-child { border-bottom: none; }
-        .tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 8px; }
-        .tag-up { background: #ff4757; color: #fff; }
-        .tag-down { background: #2ed573; color: #fff; }
-        .highlight { color: #ff6b6b; font-weight: bold; }
-        .green { color: #2ed573; }
-        .footer { text-align: center; padding: 30px; color: #666; font-size: 12px; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-right: 8px; font-weight: 600; }
+        .tag-up    { background: rgba(248,81,73,0.2);  color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+        .tag-down  { background: rgba(63,185,80,0.2);  color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+        .tag-hot   { background: rgba(255,165,2,0.2);  color: #ffa502; border: 1px solid rgba(255,165,2,0.3); }
+        .highlight { color: #ffa502; font-weight: 600; }
+        .footer { text-align: center; padding: 30px; color: #484f58; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>股市行情日报</h1>
-            <p class="date">2026年3月21日 | 射频芯片日报</p>
+            <h1>📈 股市行情日报</h1>
+            <p class="date">2026年3月21日（周六）· 数据截至 3月20日收盘</p>
         </div>
-        
+
+        <div class="index-bar">
+            <div class="index-item">
+                <div class="index-name">上证指数</div>
+                <div class="index-value down">3994</div>
+                <div class="index-change down">▼ −0.30%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">深证成指</div>
+                <div class="index-value down">13842</div>
+                <div class="index-change down">▼ −0.58%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">创业板指</div>
+                <div class="index-value up">3310</div>
+                <div class="index-change up">▲ +0.21%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">北证50</div>
+                <div class="index-value down">1345</div>
+                <div class="index-change down">▼ −0.22%</div>
+            </div>
+        </div>
+
         <div class="card">
-            <h2>昨日市场回顾（3月19日）</h2>
+            <h2>3月20日市场复盘</h2>
             <ul>
-                <li><span class="tag tag-down">大跌</span><span class="highlight">A股三大指数集体重挫</span>：上证指数盘中失守4000点大关，深证成指大跌逾2%</li>
-                <li><span class="tag tag-down">普跌</span><span class="highlight">超4900只个股下跌</span>：A股总市值一天蒸发（新浪财经）</li>
-                <li><span class="tag tag-down">缩量</span>沪深两市成交额2.05万亿，较前一交易日缩量1618亿</li>
-                <li><span class="tag tag-up">涨停</span>沪深两市涨停28只，较昨日减少29只</li>
+                <li><span class="tag tag-down">弱势</span><span class="highlight">沪指跌1.24%，近4800只个股飘绿</span>：大盘延续调整，沪指60日均线告破，北向资金小幅流出（新浪财经）</li>
+                <li><span class="tag tag-down">缩量</span><span class="highlight">沪深成交额约2.03万亿</span>：较前一日缩量，市场观望情绪浓厚</li>
+                <li><span class="tag tag-up">反弹</span><span class="highlight">创业板指逆势收红+0.21%</span>：科技成长风格相对抗跌，AI算力概念活跃</li>
+                <li><span class="tag tag-hot">关注</span><span class="highlight">中证指数3月23日发布新指数</span>：中证智选盈利价值等权重指数上线，有望吸引配置资金</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>热点板块</h2>
+            <h2>🔥 热点板块</h2>
             <ul>
-                <li><span class="highlight">算力产业链爆发</span>：CPO概念领涨，情绪出现回暖</li>
-                <li><span class="highlight">瑞斯康达反包涨停</span>：录得7天4板，成为市场焦点</li>
-                <li><span class="highlight">70只股涨停</span>：超3500只个股上涨，市场情绪回暖</li>
+                <li><span class="tag tag-up">领涨</span><span class="highlight">算力·CPO概念</span>：CPO（共封装光学）板块领涨，算力产业链情绪回暖，瑞斯康达录得7天4板</li>
+                <li><span class="tag tag-up">活跃</span><span class="highlight">AI应用生态</span>：大模型商业化加速落地，AI办公、教育、医疗等应用赛道持续获增量资金</li>
+                <li><span class="tag tag-down">压力</span><span class="highlight">消费电子弱势</span>：需求端复苏不及预期，中低端消费电子板块短期承压</li>
+                <li><span class="tag tag-hot">观察</span><span class="highlight">油价波动放大板块轮动</span>：3月原油价格剧烈波动，化工、能源、交运主题基金轮番受益（证券时报）</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>射频相关板块</h2>
+            <h2>📊 情绪与资金指标</h2>
             <ul>
-                <li><span class="highlight">卓胜微（300782）</span>：3月20日触及涨停，涨幅20%，总市值509.05亿元</li>
-                <li><span class="highlight">射频芯片板块</span>：受益于国产替代和卫星通信需求</li>
-                <li><span class="highlight">MLCC概念</span>：村田涨价带动，板块持续活跃</li>
+                <li>5日平均每日涨停：<span class="up">46只</span>（处于低位，市场情绪偏弱）</li>
+                <li>250日平均每日涨停：<span class="up">63只</span>（对比均值仍有差距）</li>
+                <li>3月第3周：外资持续观望，国内公募保持仓位稳定</li>
+                <li><span class="highlight">牛市轮动规律提示</span>：3月历史均涨幅+2.1%，当前偏弱，关注季报行情催化（雪球分析）</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>市场情绪指标</h2>
+            <h2>📅 下周关键事件</h2>
             <ul>
-                <li>5日平均每日涨停：<span class="green">46只</span></li>
-                <li>250日平均每日涨停：<span class="green">63.23只</span></li>
-                <li>市场状态：短线情绪波动加大，建议关注业绩确定性</li>
+                <li>3月23日：中证新指数正式发布，相关ETF基金可能调仓</li>
+                <li>3月底：年报季进入密集披露期，业绩超预期个股关注度上升</li>
+                <li>4月初：一季度GDP数据预计公布，宏观预期将重新定价</li>
             </ul>
         </div>
-        
+
         <div class="footer">
-            <p>来源：新浪财经、东方财富、乐咕乐股网</p>
-            <p>射频芯片日报 · 每日更新</p>
+            <p>来源：新浪财经、东方财富、雪球、证券时报、乐咕乐股网</p>
+            <p>射频芯片日报 · 股市行情板块 · 每日独立更新</p>
         </div>
     </div>
 </body>
