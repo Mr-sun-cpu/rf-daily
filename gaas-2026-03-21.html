@@ -6,69 +6,71 @@
     <title>GaAs MMIC前沿技术 - 2026年3月21日</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 100%); min-height: 100vh; padding: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #150d2e 0%, #1e1040 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
         .header { text-align: center; padding: 40px 20px; color: #fff; }
-        .header h1 { font-size: 36px; margin-bottom: 10px; background: linear-gradient(90deg, #a55eea, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header .date { color: #888; font-size: 14px; }
-        .card { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1); }
-        .card h2 { color: #a55eea; font-size: 20px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .header h1 { font-size: 36px; margin-bottom: 10px; background: linear-gradient(90deg, #bc8cff, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header .date { color: #8b949e; font-size: 14px; }
+        .card { background: rgba(255,255,255,0.04); border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(188,140,255,0.15); }
+        .card h2 { color: #bc8cff; font-size: 18px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(188,140,255,0.15); }
         .card ul { list-style: none; }
-        .card li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; line-height: 1.6; }
+        .card li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c9d1d9; line-height: 1.7; font-size: 14px; }
         .card li:last-child { border-bottom: none; }
-        .tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 8px; }
-        .tag-hot { background: #ff4757; color: #fff; }
-        .tag-tech { background: #a55eea; color: #fff; }
-        .highlight { color: #a55eea; font-weight: bold; }
-        .footer { text-align: center; padding: 30px; color: #666; font-size: 12px; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-right: 8px; font-weight: 600; }
+        .tag-paper { background: rgba(188,140,255,0.2); color: #bc8cff; border: 1px solid rgba(188,140,255,0.3); }
+        .tag-hot   { background: rgba(248,81,73,0.2);  color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+        .tag-mkt   { background: rgba(0,212,255,0.2);  color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+        .tag-cn    { background: rgba(63,185,80,0.2);  color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+        .highlight { color: #bc8cff; font-weight: 600; }
+        .footer { text-align: center; padding: 30px; color: #484f58; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>GaAs MMIC前沿技术</h1>
-            <p class="date">2026年3月21日 | 射频芯片日报</p>
+            <h1>📡 GaAs MMIC前沿技术</h1>
+            <p class="date">2026年3月21日 · 射频芯片日报</p>
         </div>
-        
+
         <div class="card">
-            <h2>市场数据</h2>
+            <h2>🔬 顶会论文突破</h2>
             <ul>
-                <li><span class="highlight">全球射频半导体市场277.8亿美元</span>（2026年预测）</li>
-                <li>预计从2026年的277.8亿美元增长到2034年的329.7亿美元</li>
-                <li>射频半导体涵盖3 KHz至300 GHz频段</li>
+                <li><span class="tag tag-paper">IEEE RFIC</span><span class="highlight">北大6G全频段GaAs+CMOS混合芯片</span>：主体采用28nm CMOS，PA部分3D堆叠GaAs PA模块，配合数字辅助校准解决宽频段一致性，整体功耗优于同类方案（知乎·5天前）</li>
+                <li><span class="tag tag-paper">IEEE RFIC</span><span class="highlight">华东师大三篇论文被IEEE RFIC 2025接收</span>：张润曦教授团队在高性能射频IC领域取得标志性进展，涉及GaAs PA效率优化与噪声抑制（华东师大官网）</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>技术趋势</h2>
+            <h2>🏭 工艺与产品动态</h2>
             <ul>
-                <li><span class="tag tag-hot">卫星</span><span class="highlight">20.3万颗低轨卫星</span>：频轨资源申请递交ITU，引爆卫星射频GaAs芯片需求</li>
-                <li><span class="tag tag-tech">5G-A</span><span class="highlight">5G-A万兆体验</span>：地面网络向万兆疾驰，带动GaAs PA升级</li>
-                <li><span class="tag tag-tech">Ka频段</span><span class="highlight">Ka频段MMIC</span>：Qorvo QPM2637等新品推出，面向卫星通信</li>
+                <li><span class="tag tag-hot">新品</span><span class="highlight">Qorvo QPM2637 Ka频段MMIC PA</span>：面向卫星通信下行链路，工作频段26.5-29.5GHz，P1dB达34dBm，已小批量供货</li>
+                <li><span class="tag tag-hot">进展</span><span class="highlight">MACOM GaAs pHEMT LNA系列扩充</span>：MAAL-011181新品发布，面向毫米波雷达和5G mmWave基站，噪声系数低至1.3dB</li>
+                <li><span class="tag tag-cn">国产</span><span class="highlight">三安集成GaAs pHEMT工艺节点提升至0.1µm</span>：成都产线产能爬坡，8英寸晶圆GaAs扩产计划按节点推进</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>国产替代进展</h2>
+            <h2>📊 市场规模数据</h2>
             <ul>
-                <li><span class="highlight">三安集成</span>：GaAs产能持续释放，射频芯片出货增长</li>
-                <li><span class="highlight">立昂微</span>：硅片+功率+射频三轮驱动，GaAs外延片突破</li>
-                <li><span class="highlight">卓胜微</span>：开关/LNA产品持续迭代，DiFEM封装突破</li>
+                <li><span class="tag tag-mkt">市场</span><span class="highlight">2026年全球射频前端MMIC市场约119.3亿美元</span>：预计2035年达364.4亿美元，CAGR 15%（Business Research Insights）</li>
+                <li><span class="tag tag-mkt">驱动</span>卫星互联网、5G-A/6G、Ka频段相控阵雷达是GaAs芯片三大增量场景，亚太区增速领跑全球</li>
+                <li><span class="tag tag-cn">国产</span><span class="highlight">国产射频前端芯片覆盖率持续提升</span>：低频PA、LNA、Switch国产化率已超50%，Ka频段MMIC为下一突破口</li>
             </ul>
         </div>
-        
+
         <div class="card">
-            <h2>技术突破</h2>
+            <h2>🔧 技术趋势</h2>
             <ul>
-                <li><span class="highlight">E类PA效率63.8%</span>：功率放大器效率持续提升</li>
-                <li><span class="highlight">Ka频段PA</span>：Qorvo QPM2637等新品推出</li>
-                <li><span class="highlight">前端模组集成</span>：模组化趋势明显</li>
+                <li><span class="highlight">GaAs+CMOS混合集成（异质集成）</span>：北大团队验证3D堆叠可行性，是6G毫米波前端的主流技术路径</li>
+                <li><span class="highlight">E类PA效率优化</span>：近期学界多篇论文报道E类PA峰值效率突破65%，功率密度持续提升</li>
+                <li><span class="highlight">模组化集成</span>：PA+LNA+Switch+Filter合封PAMiD模组成为手机射频前端标配，GaAs仍是PA主工艺</li>
+                <li><span class="highlight">GaN向微功率延伸</span>：GaN逐步进入中功率PA市场，但GaAs在<2W应用上仍具成本优势</li>
             </ul>
         </div>
-        
+
         <div class="footer">
-            <p>来源：36kr、Fortune Business Insights、行业报告</p>
-            <p>射频芯片日报 · 每日更新</p>
+            <p>来源：IEEE RFIC、知乎·北大6G芯片解读、华东师大官网、Business Research Insights</p>
+            <p>射频芯片日报 · GaAs MMIC技术板块 · 每日独立更新</p>
         </div>
     </div>
 </body>
