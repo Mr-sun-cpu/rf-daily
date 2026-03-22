@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GaAs MMIC前沿技术追踪 - 2026年3月22日</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%);
+      min-height: 100vh;
+      color: #e8eaf6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 2px solid #e91e63;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header .date {
+      font-size: 20px;
+      color: #7c8ca0;
+      margin-top: 10px;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: rgba(26, 31, 58, 0.6);
+      border: 1px solid rgba(233, 30, 99, 0.2);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: rgba(233, 30, 99, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+    }
+    .card h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #e91e63;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .card li {
+      padding: 10px 0;
+      padding-left: 20px;
+      position: relative;
+      color: #c5cbe3;
+      line-height: 1.6;
+    }
+    .card li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #e91e63;
+      font-weight: bold;
+    }
+    .highlight {
+      background: linear-gradient(135deg, rgba(233, 30, 99, 0.1) 0%, rgba(194, 24, 91, 0.05) 100%);
+      border: 1px solid rgba(233, 30, 99, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .highlight h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #e91e63;
+    }
+    .highlight p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #c5cbe3;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .comparison-table th {
+      background: rgba(233, 30, 99, 0.1);
+      color: #e91e63;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 2px solid #e91e63;
+    }
+    .comparison-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(233, 30, 99, 0.1);
+      color: #c5cbe3;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #7c8ca0;
+      font-size: 14px;
+      border-top: 1px solid rgba(233, 30, 99, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>GaAs MMIC前沿技术追踪</h1>
+      <div class="date">2026年3月22日</div>
+    </div>
+
+    <div class="highlight">
+      <h2>技术趋势：GaN崛起，GaAs稳固</h2>
+      <p>2026年3月，氮化镓（GaN）正以惊人的速度从"替代技术"蜕变为"必需技术"。在高频高功率场景，GaN凭借高电子迁移率和饱和速度，导通电阻更小，效率显著。与此同时，GaAs工艺仍在毫米波MMIC领域保持稳固地位，与GaN形成互补。</p>
+    </div>
+
+    <div class="content-grid">
+      <div class="card">
+        <h2>GaN（氮化镓）突破</h2>
+        <ul>
+          <li>从"替代技术"蜕变为"必需技术"</li>
+          <li>高电子迁移率，饱和速度出色</li>
+          <li>导通电阻更小，工作效率高</li>
+          <li>适用于高频高功率场景</li>
+          <li>小米射频团队论文入选IEDM 2025</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>GaAs（砷化镓）应用</h2>
+        <ul>
+          <li>毫米波MMIC主流工艺</li>
+          <li>覆盖DC~110GHz频段</li>
+          <li>部分产品已达量产阶段</li>
+          <li>在卫星通信、雷达领域优势显著</li>
+          <li>与GaN形成技术互补</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>MMIC技术进展</h2>
+        <ul>
+          <li>设计、测试、建模核心技术突破</li>
+          <li>业务频段覆盖DC~110GHz</li>
+          <li>量产化能力持续提升</li>
+          <li>成本控制与良率优化</li>
+          <li>与先进封装技术融合</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>GaN vs GaAs 技术对比</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>特性</th>
+            <th>GaN（氮化镓）</th>
+            <th>GaAs（砷化镓）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>功率密度</td>
+            <td>★★★★★</td>
+            <td>★★★☆☆</td>
+          </tr>
+          <tr>
+            <td>频率范围</td>
+            <td>★★★★☆</td>
+            <td>★★★★★</td>
+          </tr>
+          <tr>
+            <td>效率</td>
+            <td>★★★★★</td>
+            <td>★★★★☆</td>
+          </tr>
+          <tr>
+            <td>成本</td>
+            <td>★★☆☆☆</td>
+            <td>★★★★☆</td>
+          </tr>
+          <tr>
+            <td>成熟度</td>
+            <td>★★★☆☆</td>
+            <td>★★★★★</td>
+          </tr>
+          <tr>
+            <td>主要应用</td>
+            <td>高功率放大、基站、卫星</td>
+            <td>毫米波MMIC、低噪声放大、混频</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>学术前沿</h2>
+      <ul>
+        <li>小米手机射频团队论文入选IEDM 2025</li>
+        <li>探索氮化镓高电子迁移率晶体管技术</li>
+        <li>为6G时代铺路：毫米波与太赫兹技术</li>
+        <li>GaN/GaAs异构集成研究进展</li>
+        <li>化合物半导体器件与MMIC最新发展</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>产业应用</h2>
+      <ul>
+        <li>卫星射频：20.3万颗低轨卫星需求爆发</li>
+        <li>车载毫米波雷达：自动驾驶核心传感器</li>
+        <li>5G基站：高频段PA需求增长</li>
+        <li>相控阵雷达：GaN优势显著</li>
+        <li>卫星通信终端：低成本化趋势</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>数据来源：Yole、集邦咨询、小米科技、IMAIBJ、EEFocus</p>
+      <p>更新时间：2026年3月22日 07:00</p>
+    </div>
+  </div>
+</body>
+</html>
