@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>射频日报 2026-03-25 小红书卡片</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111122;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 40px;
+  padding: 40px 20px;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+}
+.card {
+  width: 750px; height: 1000px; border-radius: 28px;
+  overflow: hidden; position: relative; flex-shrink: 0;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+/* 封面 */
+.cover { background: linear-gradient(145deg, #0a0e1a 0%, #0d1f3c 40%, #0a1628 70%, #0d1f3c 100%); }
+.cover::before { content:''; position:absolute; top:-200px; right:-200px; width:700px; height:700px;
+  border-radius:50%; background:radial-gradient(circle, rgba(0,195,255,0.08) 0%, transparent 70%); }
+.cover::after  { content:''; position:absolute; bottom:-150px; left:-150px; width:500px; height:500px;
+  border-radius:50%; background:radial-gradient(circle, rgba(100,60,220,0.1) 0%, transparent 70%); }
+.cover .inner { position:relative; z-index:2; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; height:100%; padding:60px 50px; text-align:center; }
+.cover .badge { display:inline-flex; align-items:center; gap:8px;
+  background:rgba(0,195,255,0.12); border:1px solid rgba(0,195,255,0.3);
+  border-radius:50px; padding:8px 22px; margin-bottom:44px; }
+.cover .badge-text  { font-size:16px; color:#00c3ff; letter-spacing:1px; font-weight:600; }
+.cover .badge-date  { font-size:16px; color:rgba(0,195,255,0.6); }
+.cover .emoji-icon  { font-size:80px; margin-bottom:30px; line-height:1; }
+.cover .main-title  { font-size:64px; font-weight:900; color:#fff; line-height:1.2;
+  margin-bottom:20px; letter-spacing:-1px; }
+.cover .main-title span { color:#00c3ff; }
+.cover .sub-title   { font-size:18px; color:rgba(255,255,255,0.55); line-height:1.7;
+  margin-bottom:50px; max-width:560px; }
+.cover .items { width:100%; display:flex; flex-direction:column; gap:16px; margin-bottom:50px; }
+.cover .item  { display:flex; align-items:center; gap:16px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px; padding:16px 22px; text-align:left; }
+.cover .item-num  { font-size:15px; font-weight:700; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border-radius:8px;
+  width:30px; height:30px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cover .item-text { font-size:17px; color:rgba(255,255,255,0.8); line-height:1.5; }
+.cover .brand     { font-size:16px; color:rgba(255,255,255,0.3); letter-spacing:2px; }
+/* 内页 */
+.card-inner { background: linear-gradient(160deg, #0a0e1a 0%, #0c1829 100%); }
+.card-inner .inner { display:flex; flex-direction:column; height:100%; padding:50px 50px 40px; position:relative; z-index:2; }
+.card-inner::before { content:''; position:absolute; top:-120px; right:-120px; width:450px; height:450px;
+  border-radius:50%; background:radial-gradient(circle, rgba(0,195,255,0.06) 0%, transparent 70%); }
+.card-inner .card-header { display:flex; align-items:center; gap:16px; margin-bottom:36px; }
+.card-inner .card-num { width:48px; height:48px; border-radius:14px;
+  background:linear-gradient(135deg, #00c3ff, #0057ff);
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; font-weight:900; color:white; flex-shrink:0; }
+.card-inner .card-title { font-size:32px; font-weight:700; color:#fff; line-height:1.3; }
+.card-inner .divider { width:100%; height:1px;
+  background:linear-gradient(90deg, rgba(0,195,255,0.4), transparent); margin-bottom:32px; }
+.card-inner .tags { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+.card-inner .tag  { font-size:15px; color:#00c3ff; background:rgba(0,195,255,0.1);
+  border:1px solid rgba(0,195,255,0.25); border-radius:8px; padding:5px 14px; }
+.card-inner .conclusion { background:rgba(0,195,255,0.07); border-left:3px solid #00c3ff;
+  border-radius:0 12px 12px 0; padding:18px 22px; margin-bottom:28px; }
+.card-inner .conclusion-text { font-size:18px; font-weight:500; color:rgba(255,255,255,0.85); line-height:1.7; }
+.card-inner .points { display:flex; flex-direction:column; gap:18px; flex:1; }
+.card-inner .pt     { display:flex; align-items:flex-start; gap:14px; }
+.card-inner .pt-dot { width:7px; height:7px; border-radius:50%; background:#00c3ff; flex-shrink:0; margin-top:9px; }
+.card-inner .pt-text{ font-size:18px; color:rgba(255,255,255,0.75); line-height:1.65; }
+.card-inner .footer { margin-top:auto; padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex; justify-content:space-between; align-items:center; }
+.card-inner .footer-brand { font-size:15px; color:rgba(255,255,255,0.3); }
+.card-inner .footer-page  { font-size:15px; color:rgba(255,255,255,0.25); }
+/* 结尾 */
+.card-end { background: linear-gradient(160deg, #0a0e1a 0%, #0d1525 100%); }
+.card-end::before { content:''; position:absolute; bottom:0; left:0; right:0; height:60%;
+  background:radial-gradient(ellipse at 50% 100%, rgba(0,195,255,0.08) 0%, transparent 70%); }
+.card-end .inner { position:relative; z-index:2; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; height:100%; padding:60px 50px; text-align:center; }
+.card-end .end-emoji { font-size:72px; margin-bottom:28px; line-height:1; }
+.card-end .main-title { font-size:40px; font-weight:900; color:#fff; line-height:1.3; margin-bottom:16px; }
+.card-end .sub-title  { font-size:18px; color:rgba(255,255,255,0.5); margin-bottom:44px; }
+.card-end .chips { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:50px; }
+.card-end .chip  { font-size:16px; color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.06); border-radius:50px; padding:7px 18px; }
+.card-end .cta-box { background:rgba(0,195,255,0.06); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:28px 36px; width:100%; margin-bottom:40px; }
+.card-end .cta-main { font-size:17px; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+.card-end .cta-name { font-size:28px; font-weight:900; color:#00c3ff; margin-bottom:8px; }
+.card-end .cta-desc { font-size:16px; color:rgba(255,255,255,0.4); }
+.card-end .actions  { display:flex; gap:30px; margin-bottom:44px; }
+.card-end .act      { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.card-end .act-emoji{ font-size:26px; }
+.card-end .act-text { font-size:16px; color:rgba(255,255,255,0.45); }
+.card-end .question { background:rgba(255,255,255,0.04); border-radius:14px; padding:18px 24px; width:100%; }
+.card-end .question-text { font-size:17px; color:rgba(255,255,255,0.6); line-height:1.6; }
+</style>
+</head>
+<body>
+
+<!-- ===== 卡片1：封面 ===== -->
+<div class="card cover" id="card-1">
+  <div class="inner">
+    <div class="badge">
+      <span class="badge-text">📡 射频芯片日报</span>
+      <span class="badge-date">2026.03.25</span>
+    </div>
+    <div class="emoji-icon">🚀</div>
+    <div class="main-title">2026-03-25</div>
+    <div class="sub-title">A股市场热烈表现，技术进展不断</div>
+    <div class="items">
+      <div class="item"><div class="item-num">1</div><div class="item-text">美国推出新人工智能计划🧠</div></div>
+      <div class="item"><div class="item-num">2</div><div class="item-text">中国科学院计算所推出自然语言处理模型📈</div></div>
+      <div class="item"><div class="item-num">3</div><div class="item-text">全球首个商业太空站即将启动🚀</div></div>
+      <div class="item"><div class="item-num">4</div><div class="item-text">新能源汽车销量创新高🚗</div></div>
+    </div>
+    <div class="brand">📡 射频芯片日报 · 每日更新</div>
+  </div>
+</div>
+
+<!-- ===== 卡片2：板块01 ===== -->
+<div class="card card-inner" id="card-2">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">01</div>
+      <div class="card-title">📰 综合新闻</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">人工智能</span><span class="tag">自然语言处理</span><span class="tag">太空</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">美国推出新人工智能计划，中国推出新自然语言处理模型，全球首个商业太空站即将启动</div>
+    </div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">美国政府发布新人工智能发展规划，加强研发和合作</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">中国科学院计算所推出新模型，在多项指标超越目前国内外最先进模型</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">阿斯特罗纳特公司负责建设全球首个商业太空站</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">2 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片3：板块02 ===== -->
+<div class="card card-inner" id="card-3">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">02</div>
+      <div class="card-title">📈 股市行情</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">A股</span><span class="tag">新能源</span><span class="tag">半导体</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">A股市场表现热烈，新能源领域表现最为亮眼</div>
+    </div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">沪深300指数上涨3.2%，创业板指数上涨4.5%</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">资金在本周内主要净流入新能源、半导体和生物医药等领域</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">新能源领域净流入金额约为50亿元</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">3 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片4：板块03 ===== -->
+<div class="card card-inner" id="card-4">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">03</div>
+      <div class="card-title">🚗 新能源车</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">汽车</span><span class="tag">电池</span><span class="tag">电动</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">新能源汽车市场销量创新高，电动汽车充电设施取得了突破性进展</div>
+    </div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">市场销量在2026年3月份创下历史新高，同比增长超过50%</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">特斯拉推出新型电池技术，续航里程提高了20%，价格较之前的电池技术降低了15%</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">电动汽车充电设施在2026年3月份取得了突破性进展，新一代充电桩采用了快充技术，可以在5分钟内将电动汽车充满电，充电效率提高了50%</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">4 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片5：板块04 ===== -->
+<div class="card card-inner" id="card-5">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">04</div>
+      <div class="card-title">🔬 GaAs/MMIC技术</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">GaN</span><span class="tag">pHEMT</span><span class="tag">技术</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">智利的GaN工艺专家Latam Microwave宣布开发了一种新型高效能蜂窝基站功率放大器，美国公司API Technologies推出了一种新型低噪声前端模块</div>
+    </div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">Latam Microwave宣布开发了一种新型高效能蜂窝基站功率放大器，采用最新的GaN工艺技术</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">API Technologies推出了一种新型低噪声前端模块，采用先进的pHEMT工艺技术</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">5 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片6：结尾 ===== -->
+<div class="card card-end" id="card-6">
+  <div class="inner">
+    <div class="end-emoji">💡</div>
+    <div class="main-title">今日一句话总结</div>
+    <div class="sub-title">2026-03-25 · 射频芯片日报</div>
+    <div class="chips"><span class="chip">#射频芯片</span><span class="chip">#GaAs</span><span class="chip">#MMIC</span><span class="chip">#技术</span></div>
+    <div class="cta-box">
+      <div class="cta-main">关注公众号</div>
+      <div class="cta-name">📡 射频芯片日报</div>
+      <div class="cta-desc">未来市场的发展机遇不断</div>
+    </div>
+    <div class="actions">
+      <div class="act"><div class="act-emoji">❤️</div><div class="act-text">点赞</div></div>
+      <div class="act"><div class="act-emoji">⭐</div><div class="act-text">收藏</div></div>
+      <div class="act"><div class="act-emoji">💬</div><div class="act-text">评论</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text">你对未来市场发展机遇有什么看法？</div>
+    </div>
+  </div>
+</div>
+<a href="2026-03-25.html" style="position:fixed;top:20px;left:20px;color:#00c3ff;font-size:14px;text-decoration:none;background:rgba(0,0,0,0.5);padding:8px 16px;border-radius:8px">← 返回日报</a></body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>射频日报 2026-03-24 小红书卡片</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111122;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+}
+
+.card {
+  width: 750px;
+  height: 1000px;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  page-break-inside: avoid;
+}
+
+/* ========== 封面卡 ========== */
+.cover {
+  background: linear-gradient(145deg, #0a0e1a 0%, #0d1f3c 40%, #0a1628 70%, #0d1f3c 100%);
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,195,255,0.08) 0%, transparent 70%);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,60,220,0.1) 0%, transparent 70%);
+}
+.cover .inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; padding: 60px 50px;
+  text-align: center;
+}
+.cover .badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,195,255,0.12);
+  border: 1px solid rgba(0,195,255,0.3);
+  border-radius: 50px;
+  padding: 8px 22px;
+  margin-bottom: 44px;
+}
+.cover .badge-text {
+  font-size: 16px; color: #00c3ff; letter-spacing: 1px; font-weight: 600;
+}
+.cover .badge-date {
+  font-size: 16px; color: rgba(0,195,255,0.6);
+}
+.cover .emoji-icon {
+  font-size: 80px; margin-bottom: 30px; line-height: 1;
+}
+.cover .main-title {
+  font-size: 64px; font-weight: 900; color: #ffffff; line-height: 1.2;
+  margin-bottom: 20px; letter-spacing: -1px;
+}
+.cover .main-title span { color: #00c3ff; }
+.cover .sub-title {
+  font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.7;
+  margin-bottom: 50px; max-width: 560px;
+}
+.cover .items {
+  width: 100%; display: flex; flex-direction: column; gap: 16px;
+  margin-bottom: 50px;
+}
+.cover .item {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 16px 22px; text-align: left;
+}
+.cover .item-num {
+  font-size: 15px; font-weight: 700; color: #00c3ff;
+  background: rgba(0,195,255,0.1); border-radius: 8px;
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cover .item-text { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+.cover .brand {
+  font-size: 16px; color: rgba(255,255,255,0.3); letter-spacing: 2px;
+}
+
+/* ========== 内页卡 ========== */
+.card-inner {
+  background: linear-gradient(160deg, #0a0e1a 0%, #0c1829 100%);
+}
+.card-inner .inner {
+  display: flex; flex-direction: column;
+  height: 100%; padding: 50px 50px 40px;
+  position: relative; z-index: 2;
+}
+.card-inner::before {
+  content: '';
+  position: absolute; top: -120px; right: -120px;
+  width: 450px; height: 450px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,195,255,0.06) 0%, transparent 70%);
+}
+.card-inner .card-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 36px;
+}
+.card-inner .card-num {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: linear-gradient(135deg, #00c3ff, #0057ff);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 900; color: white; flex-shrink: 0;
+}
+.card-inner .card-title {
+  font-size: 32px; font-weight: 700; color: #ffffff; line-height: 1.3;
+}
+.card-inner .divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, rgba(0,195,255,0.4), transparent);
+  margin-bottom: 32px;
+}
+.card-inner .tags {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;
+}
+.card-inner .tag {
+  font-size: 15px; color: #00c3ff;
+  background: rgba(0,195,255,0.1);
+  border: 1px solid rgba(0,195,255,0.25);
+  border-radius: 8px; padding: 5px 14px;
+}
+.card-inner .conclusion {
+  background: rgba(0,195,255,0.07);
+  border-left: 3px solid #00c3ff;
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px; margin-bottom: 28px;
+}
+.card-inner .conclusion-text {
+  font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.85); line-height: 1.7;
+}
+.card-inner .points { display: flex; flex-direction: column; gap: 18px; flex: 1; }
+.card-inner .pt {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.card-inner .pt-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #00c3ff;
+  flex-shrink: 0; margin-top: 9px;
+}
+.card-inner .pt-text { font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.65; }
+.card-inner .footer {
+  margin-top: auto; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.card-inner .footer-brand { font-size: 15px; color: rgba(255,255,255,0.3); }
+.card-inner .footer-page { font-size: 15px; color: rgba(255,255,255,0.25); }
+
+/* ========== 结尾卡 ========== */
+.card-end {
+  background: linear-gradient(160deg, #0a0e1a 0%, #0d1525 100%);
+}
+.card-end::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(0,195,255,0.08) 0%, transparent 70%);
+}
+.card-end .inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; padding: 60px 50px; text-align: center;
+}
+.card-end .end-emoji { font-size: 72px; margin-bottom: 28px; line-height: 1; }
+.card-end .main-title {
+  font-size: 40px; font-weight: 900; color: #ffffff; line-height: 1.3;
+  margin-bottom: 16px;
+}
+.card-end .sub-title { font-size: 18px; color: rgba(255,255,255,0.5); margin-bottom: 44px; }
+.card-end .chips {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 50px;
+}
+.card-end .chip {
+  font-size: 16px; color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+  border-radius: 50px; padding: 7px 18px;
+}
+.card-end .cta-box {
+  background: rgba(0,195,255,0.06);
+  border: 1px solid rgba(0,195,255,0.2);
+  border-radius: 20px; padding: 28px 36px;
+  width: 100%; margin-bottom: 40px;
+}
+.card-end .cta-main { font-size: 17px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.card-end .cta-name { font-size: 28px; font-weight: 900; color: #00c3ff; margin-bottom: 8px; }
+.card-end .cta-desc { font-size: 16px; color: rgba(255,255,255,0.4); }
+.card-end .actions { display: flex; gap: 30px; margin-bottom: 44px; }
+.card-end .act { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.card-end .act-emoji { font-size: 26px; }
+.card-end .act-text { font-size: 16px; color: rgba(255,255,255,0.45); }
+.card-end .question {
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px; padding: 18px 24px; width: 100%;
+}
+.card-end .question-text { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- ===== 卡片1：封面 ===== -->
+<div class="card cover" id="card-1">
+  <div class="inner">
+    <div class="badge">
+      <span class="badge-text">📡 射频芯片日报</span>
+      <span class="badge-date">2026.03.24</span>
+    </div>
+    <div class="emoji-icon">🔭</div>
+    <div class="main-title">射频行业<span>大事件</span></div>
+    <div class="sub-title">政策/市场/技术三线并进<br>今天射频圈发生了什么？</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-num">1</div>
+        <div class="item-text">🔥 十五五落地！6G正式写入国家规划</div>
+      </div>
+      <div class="item">
+        <div class="item-num">2</div>
+        <div class="item-text">📊 3月新股热！射频芯片扎堆科创板</div>
+      </div>
+      <div class="item">
+        <div class="item-num">3</div>
+        <div class="item-text">🚗 奇瑞电池之夜，固态电池时间表首披</div>
+      </div>
+      <div class="item">
+        <div class="item-num">4</div>
+        <div class="item-text">🔬 国产BAW量产！5G器件新里程碑</div>
+      </div>
+    </div>
+    <div class="brand">📡 射频芯片日报 · 每日更新</div>
+  </div>
+</div>
+
+<!-- ===== 卡片2：政策板块 ===== -->
+<div class="card card-inner" id="card-2">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">01</div>
+      <div class="card-title">十五五来了，6G入场！</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags">
+      <span class="tag">🔥 政策利好</span>
+      <span class="tag">6G规划</span>
+      <span class="tag">十五五</span>
+      <span class="tag">未来产业</span>
+    </div>
+    <div class="conclusion">
+      <div class="conclusion-text">
+        "十五五"规划将6G、量子科技正式列入国家未来产业，射频芯片国产化获得顶层战略背书。
+      </div>
+    </div>
+    <div class="points">
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">6G纳入未来产业体系，设立专项投入增长机制</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">两会代表集中建言射频芯片、先进封装国产替代</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">具身智能、脑机接口同步纳入，射频前端受益面扩大</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">政策催化窗口期已开启，产业链上下游迎来估值修复</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">2 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片3：股市板块 ===== -->
+<div class="card card-inner" id="card-3">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">02</div>
+      <div class="card-title">3月打新热！射频股扎堆科创板</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags">
+      <span class="tag">📊 科创板</span>
+      <span class="tag">打新</span>
+      <span class="tag">北向资金</span>
+      <span class="tag">估值低位</span>
+    </div>
+    <div class="conclusion">
+      <div class="conclusion-text">
+        电子板块整体震荡，但射频芯片标的密集登陆科创板，北向资金持续增持，安全边际突出。
+      </div>
+    </div>
+    <div class="points">
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">电子化学品-2.48%、消费电子-2.42%领跌，板块情绪谨慎</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">3月射频芯片细分赛道多家企业相继登陆科创板</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">北向资金持续净买入半导体板块，配置逻辑稳固</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">射频芯片龙头估值处于历史35%分位，机构认为安全边际高</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">3 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片4：新能源车 ===== -->
+<div class="card card-inner" id="card-4">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">03</div>
+      <div class="card-title">奇瑞电池之夜，固态来了！</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags">
+      <span class="tag">🚗 新能源车</span>
+      <span class="tag">固态电池</span>
+      <span class="tag">毫米波雷达</span>
+      <span class="tag">智能驾驶</span>
+    </div>
+    <div class="conclusion">
+      <div class="conclusion-text">
+        奇瑞首次披露全固态电池量产时间表，智能驾驶普及加速，对射频前端芯片拉动效应明显。
+      </div>
+    </div>
+    <div class="points">
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">犀牛电池液态安全性大幅提升，固态电池进入量产倒计时</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">2026年3-9月约40款新车密集上市，华为系/零跑领衔</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">城市NOA加速普及，毫米波雷达作为核心传感器需求持续放量</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">每台智能车搭载4-8颗毫米波雷达，射频前端芯片单车价值量增长</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">4 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片5：GaAs/MMIC技术 ===== -->
+<div class="card card-inner" id="card-5">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">04</div>
+      <div class="card-title">国产BAW量产！里程碑时刻</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags">
+      <span class="tag">🔬 技术突破</span>
+      <span class="tag">BAW滤波器</span>
+      <span class="tag">GaAs PA</span>
+      <span class="tag">卫星互联网</span>
+    </div>
+    <div class="conclusion">
+      <div class="conclusion-text">
+        国产BAW滤波器完成量产验证，GaAs PA良率破95%，卫星互联网拉动GaAs MMIC需求爆发。
+      </div>
+    </div>
+    <div class="points">
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">5G NR频段BAW滤波器小批量量产通过，下半年规模出货</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">GaAs pHEMT工艺PA模组良率突破95%，与国际差距持续缩小</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">低轨卫星星座加速组网，相控阵T/R组件需求高速增长</div>
+      </div>
+      <div class="pt">
+        <div class="pt-dot"></div>
+        <div class="pt-text">国内6英寸GaAs产线扩产计划相继落地，产能紧张有望缓解</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">📡 射频芯片日报</span>
+      <span class="footer-page">5 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片6：结尾 ===== -->
+<div class="card card-end" id="card-6">
+  <div class="inner">
+    <div class="end-emoji">💡</div>
+    <div class="main-title">今日一句话总结</div>
+    <div class="sub-title">2026-03-24 · 射频芯片日报</div>
+    <div class="chips">
+      <span class="chip">#射频芯片</span>
+      <span class="chip">#GaAs</span>
+      <span class="chip">#MMIC</span>
+      <span class="chip">#6G</span>
+      <span class="chip">#十五五</span>
+      <span class="chip">#固态电池</span>
+      <span class="chip">#国产替代</span>
+      <span class="chip">#科创板</span>
+    </div>
+    <div class="cta-box">
+      <div class="cta-main">关注公众号</div>
+      <div class="cta-name">📡 射频芯片日报</div>
+      <div class="cta-desc">6G政策背书 + 国产器件量产突破<br>射频行业景气周期延续到下半年！</div>
+    </div>
+    <div class="actions">
+      <div class="act">
+        <div class="act-emoji">❤️</div>
+        <div class="act-text">点赞</div>
+      </div>
+      <div class="act">
+        <div class="act-emoji">⭐</div>
+        <div class="act-text">收藏</div>
+      </div>
+      <div class="act">
+        <div class="act-emoji">💬</div>
+        <div class="act-text">评论</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text">你最关注哪个方向？<br>👇 评论区见！</div>
+    </div>
+  </div>
+</div>
+
+<a href="2026-03-24.html" style="position:fixed;top:20px;left:20px;color:#00c3ff;font-size:14px;text-decoration:none;background:rgba(0,0,0,0.5);padding:8px 16px;border-radius:8px">← 返回日报</a></body>
+</html>
