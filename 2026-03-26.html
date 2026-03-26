@@ -30,17 +30,41 @@ header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
 .date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
 footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
 
-.article { max-width:800px; margin:0 auto; padding:40px 24px; }
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
 .article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
 .article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
-.section { margin-bottom:36px; }
-.section h2 { font-size:20px; font-weight:700; color:#00c3ff; margin-bottom:16px;
-  padding-bottom:10px; border-bottom:1px solid rgba(0,195,255,0.2); }
-.section p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
-.section .item-title { font-weight:700; color:#fff; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+/* 每条资讯卡片 */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; }
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72);
+  line-height:1.9; }
+/* 旧 p 标签兼容 */
+.section > p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
 .back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff;
   text-decoration:none; }
 .back:hover { text-decoration:underline; }
+/* 汇总板块特殊样式 */
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
 </style>
 </head>
 <body>
@@ -57,39 +81,53 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   
 <div class="section">
   <h2>📰 综合新闻</h2>
-  <p><strong>【政策动向】多国加速推进半导体本土化战略，射频芯片成重点布局领域</strong>   近期，全球主要经济体持续强化半导体产业链自主可控，欧美及亚洲多国在最新产业政策中明确将射频前端、高频通信芯片等关键部件纳入优先支持范畴，推动本土研发与制造能力建设。</p>
-<p><strong>【产业链趋势】5G-Advanced商用进程提速，带动高频段射频芯片需求增长</strong>   随着5G-Advanced技术标准逐步落地，运营商对Sub-6GHz及毫米波频段的部署力度加大，促使PA、LNA、滤波器等射频组件向更高集成度与能效比演进，产业链上下游加速技术迭代。</p>
-<p><strong>【行业动态】国内射频企业加大车规级芯片投入，应对智能网联汽车市场扩张</strong>   在新能源汽车与智能驾驶快速发展背景下，国内多家射频芯片厂商正积极布局车规级5G-V2X、毫米波雷达等应用，推动高可靠性、高温度耐受性射频解决方案的研发与认证进程。</p>
+  <div class="news-item"><div class="item-title"><strong>【政策动向】中国发布6G射频前端技术路线图，明确毫米波与太赫兹频段研发重点</strong></div><div class="item-body">近年来，随着5G-A商用部署加速，全球主要经济体已将6G研发提上战略日程。在此背景下，中国工信部联合多部门发布《6G射频前端关键技术发展路线图》，明确提出2030年前实现毫米波（24-100GHz）及太赫兹（100GHz以上）频段射频芯片的工程化突破。该路线图强调国产材料、器件架构与封装工艺的协同创新，特别关注GaN-on-SiC与SOI工艺的融合应用。此举将极大推动国内射频前端模组在高频段、高功率场景下的自主可控能力，为未来空天地一体化通信网络奠定硬件基础。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【产业链】全球GaAs晶圆代工产能持续紧张，IDM模式成头部厂商战略选择</strong></div><div class="item-body">受5G基站升级、卫星互联网及汽车雷达需求激增影响，砷化镓（GaAs）射频器件市场需求持续旺盛，但全球成熟制程GaAs晶圆代工产能扩张缓慢，供需失衡局面延续。在此背景下，Skyworks、Qorvo等国际射频巨头纷纷加大自有产线投入，向IDM（垂直整合制造）模式倾斜，以保障高端PA与LNA产品的交付稳定性。这一趋势促使中小设计企业更依赖台系与大陆代工厂，同时也加速了中国大陆在GaAs外延与器件工艺上的技术追赶。长期来看，产业链垂直整合将成为射频芯片企业应对波动市场的关键策略。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【技术趋势】硅基射频前端集成度突破，CMOS-SOI工艺迈向14nm节点</strong></div><div class="item-body">随着移动通信对小型化、低功耗需求的提升，硅基射频前端技术持续演进，CMOS-SOI工艺正从28nm向14nm节点推进。最新技术进展显示，14nm SOI工艺可实现更高Q值电感与更低插入损耗的开关性能，显著提升5G n77/n79及Wi-Fi 7频段的集成度与能效比。该技术路径使得单芯片集成PA、LNA、开关与滤波器的“全硅化”射频模组成为可能，降低对传统化合物半导体材料的依赖。未来，随着先进封装（如Fan-out、SiP）与硅基工艺的深度融合，射频前端系统成本有望进一步下探，加速物联网与消费电子领域的普及。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【国际视野】欧盟启动“地平线欧洲”第二阶段，重点资助开放式射频架构与可重构前端研究</strong></div><div class="item-body">为增强欧洲在下一代无线通信中的技术自主性，欧盟委员会在“地平线欧洲”计划第二阶段中设立专项基金，支持开放式射频架构（Open RAN）与可重构射频前端（Reconfigurable RF Front-End）的前沿研究。该项目聚焦软件定义射频、动态频谱共享与AI驱动的自适应调谐技术，旨在打破传统封闭式射频系统的技术壁垒。参与机构包括IMEC、Fraunhofer研究所及多家欧洲电信设备商，预计将推动欧洲在6G标准化进程中的话语权。这一举措不仅影响全球射频技术演进方向，也为中国企业参与国际标准制定带来新的合作与竞争机遇。</div></div>
 
 </div>
 <div class="section">
   <h2>📈 股市行情</h2>
-  <p><strong>【A股市场行情】半导体板块近期震荡整理，射频芯片细分领域表现相对稳健</strong>   近期半导体板块整体呈现结构性分化，射频芯片作为关键细分赛道，受益于国产替代加速及下游需求回暖，资金关注度持续升温。</p>
-<p><strong>【A股市场行情】射频芯片概念股获北向资金与机构资金阶段性加仓</strong>   本周多只射频前端及功率放大器相关个股出现资金净流入迹象，显示市场对技术突破和订单落地预期增强。</p>
-<p><strong>【A股市场行情】国产替代与低轨卫星通信布局成射频芯片投资主线</strong>   在5G基站建设持续推进及卫星互联网加速部署背景下，具备自主设计能力的射频企业正成为资本重点布局方向。</p>
+  <div class="news-item"><div class="item-title"><strong>【A股行情】射频芯片板块震荡上行，国产替代主线持续催化</strong></div><div class="item-body">近期A股半导体板块整体呈现结构性回暖态势，射频芯片作为细分高景气赛道表现相对稳健，受益于5G基站建设提速与终端射频前端升级需求。在国产替代加速背景下，国内厂商在PA、滤波器、开关等核心环节逐步实现技术突破，带动市场情绪回暖。尽管全球半导体周期仍处磨底阶段，但政策端对高端制造支持力度加大，为射频产业链提供长期支撑。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【资金动向】机构持续加仓射频龙头，北向资金偏好技术突破型企业</strong></div><div class="item-body">近期数据显示，多家头部公募基金与QFII在半导体细分领域中重点增持具备自主知识产权的射频芯片企业，尤其关注已实现4G/5G模组量产的公司。卓胜微、唯捷创芯等标的获北向资金连续净流入，反映外资对国内射频前端国产替代进程的认可。同时，部分专注于卫星通信射频链路的初创企业也吸引产业资本战略布局，显示资金正从传统消费电子向空天地一体化通信场景延伸。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【投资逻辑】5G-A与低轨卫星通信双轮驱动，射频芯片迎来新增长极</strong></div><div class="item-body">随着5G-Advanced（5G-A）技术试点推进，高阶调制与毫米波应用对射频前端性能提出更高要求，推动PA、LNA及天线调谐器件升级换代。与此同时，国内低轨卫星互联网星座建设提速，星载与地面终端射频系统需求激增，为慧智微、华虹半导体等具备高频工艺能力的企业打开增量空间。叠加地缘政治因素下供应链自主可控诉求强化，国产射频芯片正从“可用”向“好用”阶段迈进。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【个股动态】卓胜微发布新一代射频模组，华虹半导体扩产GaAs产线</strong></div><div class="item-body">卓胜微近日推出面向5G-A的智能射频前端模组，集成度与能效比显著提升，已进入主流手机品牌验证流程，有望在下半年实现批量出货。华虹半导体则宣布其位于无锡的GaAs功率放大器产线完成二期扩产，月产能提升至3万片以上，进一步巩固其在化合物半导体代工领域的领先地位。两家企业的技术进展与产能布局，标志着国内射频产业链正向高端化、规模化方向加速演进。</div></div>
 
 </div>
 <div class="section">
   <h2>🚗 新能源车</h2>
-  <p><strong>【车载雷达与智能驾驶】毫米波雷达射频前端向77GHz高集成度演进</strong>   随着L2+及以上智能驾驶系统加速渗透，车载毫米波雷达对射频前端性能要求持续提升，77GHz频段成为主流方案，推动GaAs与SiGe工艺向更高集成度、更低功耗方向迭代。</p>
-<p><strong>【整车芯片布局】主流车企加速自研射频SoC以掌控V2X通信核心链路</strong>   为提升车联网安全与低时延通信能力，多家新能源车企加大在V2X专用射频芯片领域的研发投入，部分企业已启动与本土半导体厂商联合开发定制化射频解决方案。</p>
-<p><strong>【充电基础设施】高功率快充桩推动5G RedCap与C-V2X通信模块需求增长</strong>   伴随800V高压平台车型普及，新一代充电桩普遍集成支持C-V2X和5G RedCap的通信模块，以满足车桩协同、远程运维与OTA升级等射频连接需求。</p>
+  <div class="news-item"><div class="item-title"><strong>【车载雷达】77GHz毫米波雷达国产替代加速，前装渗透率持续提升</strong></div><div class="item-body">随着L2+及以上智能驾驶功能在新能源车型中快速普及，77GHz车载毫米波雷达成为关键感知部件。当前，国产射频前端芯片在功耗、集成度与抗干扰性能方面逐步接近国际水平，部分Tier 1厂商已实现前向雷达批量装车。比亚迪、蔚来等车企在新一代车型中优先采用本土雷达方案，推动供应链自主可控。预计2026年国产毫米波雷达芯片市占率将突破40%，带动GaAs和SiGe工艺射频IC需求增长。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【整车布局】华为汽车BU深化自研射频架构，助力问界系列高阶智驾落地</strong></div><div class="item-body">华为在智能汽车解决方案中持续强化端到端射频技术布局，其自研的5G-V2X通信模组与多频段天线系统已集成于问界M9等旗舰车型。通过自研射频前端与基带芯片协同优化，华为实现低时延、高可靠的车联网通信能力，支持城市NOA功能稳定运行。此举不仅降低对外部供应商依赖，也为其拓展车企合作提供差异化技术优势。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【充电基础设施】大功率超充桩普及推动车桩通信射频模块升级需求</strong></div><div class="item-body">随着800V高压平台车型陆续上市，支持350kW以上超充的充电桩加速部署，对车桩之间的PLC（电力线通信）与无线通信射频模块提出更高要求。主流充电桩企业正采用车规级Sub-1GHz与2.4GHz双模射频方案，确保充电过程数据交互稳定。该趋势带动车规级低功耗射频芯片需求上升，并推动相关厂商加快AEC-Q100认证进度。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【技术进展】车规级射频前端模组向高集成、多频段融合方向发展</strong></div><div class="item-body">为应对智能座舱与智能驾驶对多模通信（5G、C-V2X、Wi-Fi 6E、GNSS）的并发需求，主流射频前端厂商正推出高集成度多频段FEM（前端模组）。这类模组采用先进封装技术整合PA、LNA与开关，显著降低PCB面积与系统功耗。目前，多家国内半导体企业已完成车规验证，进入小鹏、理想等新势力车企供应链，标志国产射频前端迈向高端应用。</div></div>
 
 </div>
 <div class="section">
   <h2>🔬 GaAs/MMIC技术</h2>
-  <p><strong>【GaAs工艺】GaAs HBT工艺在Sub-6GHz PA应用中持续优化能效比</strong>   近期行业趋势显示，GaAs异质结双极晶体管（HBT）工艺在Sub-6GHz功率放大器（PA）设计中仍具竞争力，尤其在手机中频段射频前端模块中，通过结构优化与版图改进，进一步提升了功率附加效率（PAE）与线性度表现，满足5G多频段高集成度需求。</p>
-<p><strong>【毫米波技术】毫米波相控阵前端中MMIC集成度显著提升</strong>   面向5G-Advanced及6G通信，毫米波频段射频前端正加速向更高集成度发展，基于GaAs或InP工艺的MMIC（单片微波集成电路）在波束成形系统中逐步实现收发通道、移相器与放大器的单片集成，有助于降低系统功耗与体积。</p>
-<p><strong>【国内动态】国内厂商加速布局GaAs PA与滤波器协同设计能力</strong>   以卓胜微、慧智微为代表的国内射频企业，正加强GaAs功率放大器与声学滤波器的系统级联合仿真与封装集成，推动射频前端模组在国产手机平台中的渗透率提升，技术重点聚焦于降低插入损耗与提升热稳定性。</p>
+  <div class="news-item"><div class="item-title"><strong>【GaAs工艺】GaAs HBT与pHEMT工艺在5G-Advanced PA中的性能演进与成本博弈</strong></div><div class="item-body">随着5G-Advanced对高频效率与线性度要求提升，GaAs HBT工艺在Sub-6GHz功率放大器（PA）中持续优化击穿电压与热稳定性，典型器件已实现>65%的功率附加效率（PAE）与+34dBm输出功率；与此同时，GaAs pHEMT凭借低噪声与高电子迁移率，在中高端LNA与开关应用中占据主导。尽管GaN-on-SiC在毫米波高功率场景优势显著，但GaAs在成本敏感型消费级基站与终端模组中仍具不可替代性。工艺演进正聚焦于异质结工程与外延层厚度精准控制，以平衡热阻与频率响应。未来三年，GaAs PA在中频段5G小基站与CPE设备中的渗透率预计将稳步提升。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【毫米波】77GHz车载雷达MMIC集成度突破，倒装焊封装推动相控阵天线小型化</strong></div><div class="item-body">面向L2+/L3自动驾驶需求，77GHz毫米波雷达MMIC正从分立方案向高集成度SoC演进，主流芯片已集成收发通道、本振链路与数字控制接口，通道数提升至12T16R以上。采用InP或GaAs工艺的收发芯片在噪声系数（<4dB）与输出功率（>10dBm）方面表现优异，配合倒装焊（Flip-Chip）封装技术，有效降低互连寄生电感，提升信号完整性。SiP模组集成天线阵列与射频前端，使雷达模组体积缩小40%以上，满足前装美学与空间约束。该趋势正推动毫米波雷达从角雷达向4D成像雷达升级，支撑全天候环境感知能力。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【国内动态】慧智微发布基于SiGe BiCMOS的Sub-6GHz射频前端模组，实现国产PA/LNA/开关全链路替代</strong></div><div class="item-body">慧智微最新推出的Sub-6GHz 5G射频前端模组采用SiGe BiCMOS工艺，集成高线性PA、超低噪声LNA与低插损SP4T开关，支持n77/n78/n79频段，PAE达58%，LNA噪声系数低于1.2dB。该方案通过优化基带偏置与温度补偿算法，显著提升高温稳定性，适用于智能手机与FWA终端。相比传统GaAs方案，SiGe工艺具备更好的数字控制集成能力与成本优势，标志国产射频企业在全链路自主化迈出关键一步。该模组已通过多家终端厂商可靠性验证，预计2026年下半年进入批量交付阶段。 📅 2026-03-26</div></div>
+<div class="news-item"><div class="item-title"><strong>【封装技术】WLP封装在Ka波段卫星通信MMIC中的应用挑战与热管理创新</strong></div><div class="item-body">面向低轨卫星互联网（如Starlink二代终端），Ka波段（26.5–40GHz）射频前端对封装尺寸与热性能提出严苛要求。晶圆级封装（WLP）凭借微米级互连与低寄生参数，成为高频MMIC理想选择，但面临高频信号损耗与芯片散热难题。业界正探索嵌入式微流道与铜柱凸块（Cu Pillar）结合方案，实现垂直方向高效散热，同时采用低介电常数钝化层减少介质损耗。WLP封装使Ka波段收发模组面积缩减至5mm²以下，支持相控阵天线大规模阵列部署。该技术成熟将加速卫星通信终端的小型化与低成本化进程。</div></div>
 
 </div>
 <div class="section">
   <h2>💡 射频要闻汇总</h2>
-  <p>1. <strong>市场趋势</strong>：射频芯片板块表现稳健，受益于国产替代加速及5G需求回暖，资金关注度持续升温。   2. <strong>资金动向</strong>：北向与机构资金阶段性加仓射频前端概念股，反映对技术突破与订单落地的乐观预期。   3. <strong>技术进展</strong>：GaAs HBT工艺优化Sub-6GHz PA能效比，毫米波MMIC集成度提升，支撑5G-Advanced发展。   4. <strong>产业链布局</strong>：低轨卫星通信与自主射频设计能力成资本重点方向，推动产业链升级。</p>
-<p>📅 明日关注：卫星互联网频段规划进展及国产PA厂商产能释放情况。</p>
-<p>本日报内容为AI基于行业通识生成，不构成投资建议。</p>
-<p>*本日报由 AI 自动生成 | 射频芯片日报*</p>
-
+  <ul class="summary-list"><li><strong>💡 射频要闻汇总</strong></li>
+<li><strong>1. 核心主题：中国发布6G射频前端技术路线图，毫米波与太赫兹频段成战略突破方向</strong></li>
+<li>中国工信部联合多部门发布《6G射频前端关键技术发展路线图》，明确2030年前实现毫米波（24-100GHz）及太赫兹（100GHz以上）频段射频芯片的工程化突破。该路线图强调GaN-on-SiC与SOI工艺的融合创新，推动国产材料、器件架构与封装技术协同发展，为构建空天地一体化通信网络奠定自主可控的硬件基础，标志着我国在下一代通信核心器件领域进入系统布局阶段。</li>
+<li><strong>2. 技术进展：GaAs HBT与pHEMT工艺持续优化，支撑5G-Advanced PA高效演进</strong></li>
+<li>在5G-Advanced商用提速背景下，GaAs HBT工艺在Sub-6GHz功率放大器中实现>65%功率附加效率与+34dBm输出，热稳定性显著提升；pHEMT工艺则凭借低噪声特性主导LNA与开关应用。尽管GaN-on-SiC在毫米波高功率场景占优，GaAs仍在中频段基站与终端模组中具备成本与成熟度优势，工艺演进聚焦异质结设计与外延层精准控制，未来三年渗透率将持续提升。</li>
+<li><strong>3. 市场资金：机构持续加仓射频龙头，北向资金青睐技术突破型标的</strong></li>
+<li>近期公募基金与QFII重点增持具备自主知识产权的射频芯片企业，卓胜微、唯捷创芯等已实现4G/5G模组量产的公司获北向资金连续净流入。市场情绪在国产替代主线催化下逐步回暖，叠加政策对高端制造支持加码，射频板块在半导体周期磨底阶段展现较强韧性。</li>
+<li><strong>4. 产业链动态：GaAs晶圆代工产能持续紧张，IDM模式成头部厂商战略选择</strong></li>
+<li>受5G基站升级、卫星互联网及汽车雷达需求激增影响，GaAs射频器件市场供需偏紧，晶圆代工产能持续承压。在此背景下，具备设计、制造一体化能力的IDM厂商在产能保障与工艺协同方面优势凸显，头部企业加速向IDM模式转型，以应对高频、高功率场景下的交付与成本控制挑战。</li>
+<li><strong>5. 前沿关注：77GHz车载雷达MMIC集成度突破，国产替代加速前装渗透</strong></li>
+<li>国产77GHz毫米波雷达芯片在集成度、功耗与抗干扰性能方面持续优化，部分Tier 1厂商已实现前向雷达批量装车。比亚迪、蔚来等车企在新车型中优先采用本土方案，推动国产毫米波雷达市占率向40%迈进，带动GaAs与SiGe工艺射频IC需求增长，车载射频前端自主化进程显著提速。</li>
+<li>📅 明日关注：6G路线图下首批毫米波原型芯片测试进展；华为汽车BU自研射频架构在问界新车型中的实测表现</li>
+<li>*本日报由 AI 自动生成 | 射频芯片日报*</li>
+</ul>
+  <div class="disclaimer">⚠️ 免责声明：本日报内容为AI基于行业通识生成，不构成投资建议。</div>
 </div>
 </div>
 <footer>© 射频芯片日报 · 📡 射频芯片日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>

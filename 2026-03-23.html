@@ -30,17 +30,41 @@ header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
 .date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
 footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
 
-.article { max-width:800px; margin:0 auto; padding:40px 24px; }
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
 .article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
 .article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
-.section { margin-bottom:36px; }
-.section h2 { font-size:20px; font-weight:700; color:#00c3ff; margin-bottom:16px;
-  padding-bottom:10px; border-bottom:1px solid rgba(0,195,255,0.2); }
-.section p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
-.section .item-title { font-weight:700; color:#fff; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+/* 每条资讯卡片 */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; }
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72);
+  line-height:1.9; }
+/* 旧 p 标签兼容 */
+.section > p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
 .back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff;
   text-decoration:none; }
 .back:hover { text-decoration:underline; }
+/* 汇总板块特殊样式 */
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
 </style>
 </head>
 <body>
@@ -57,40 +81,35 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   
 <div class="section">
   <h2>📰 综合新闻</h2>
-  <p><strong>【重要考察】习近平在雄安新区考察并主持召开座谈会</strong></p>
-<p>国家领导人在河北雄安新区考察，强调坚持高质量建设、高水平管理、高质量疏解发展并举，加快建设绿色生态宜居新城区。</p>
-<p><strong>【产业政策】"十五五"规划纲要明确新能源战略地位</strong></p>
-<p>2026年政府工作报告明确将新能源汽车纳入新质生产力、绿色发展等重点领域，智能化、电动化成为核心发展方向。</p>
+  <div class="news-item"><div class="item-title"><strong>【重要考察】习近平在雄安新区考察并主持召开座谈会</strong></div><div class="item-body">国家领导人在河北雄安新区考察，强调坚持高质量建设、高水平管理、高质量疏解发展并举，加快建设绿色生态宜居新城区。</div></div>
+<div class="news-item"><div class="item-title"><strong>【产业政策】"十五五"规划纲要明确新能源战略地位</strong></div><div class="item-body">2026年政府工作报告明确将新能源汽车纳入新质生产力、绿色发展等重点领域，智能化、电动化成为核心发展方向。</div></div>
 
 </div>
 <div class="section">
   <h2>📈 股市行情</h2>
-  <p><strong>【板块机会】半导体设备材料板块持续关注</strong></p>
-<p>近一个月北向资金净买入半导体板块超50亿元，射频相关个股获得重点关注。射频芯片设计龙头当前估值处于历史35%分位附近，安全边际较高。</p>
+  <div class="news-item"><div class="item-title"><strong>【板块机会】半导体设备材料板块持续关注</strong></div><div class="item-body">近一个月北向资金净买入半导体板块超50亿元，射频相关个股获得重点关注。射频芯片设计龙头当前估值处于历史35%分位附近，安全边际较高。</div></div>
 
 </div>
 <div class="section">
   <h2>🚗 新能源车</h2>
-  <p><strong>【市场数据】2月新能源乘用车零售渗透率超45%</strong></p>
-<p>乘联会数据显示，2月新能源乘用车零售销量同比增长28%，渗透率突破45%创历史新高。预计全年新能源车销量有望突破1500万辆。</p>
-<p><strong>【智能化】城市NOA加速普及</strong></p>
-<p>华为、小鹏、理想等车企加速城市领航辅助驾驶(NOA)落地，毫米波雷达作为核心传感器需求持续放量。</p>
+  <div class="news-item"><div class="item-title"><strong>【市场数据】2月新能源乘用车零售渗透率超45%</strong></div><div class="item-body">乘联会数据显示，2月新能源乘用车零售销量同比增长28%，渗透率突破45%创历史新高。预计全年新能源车销量有望突破1500万辆。</div></div>
+<div class="news-item"><div class="item-title"><strong>【智能化】城市NOA加速普及</strong></div><div class="item-body">华为、小鹏、理想等车企加速城市领航辅助驾驶(NOA)落地，毫米波雷达作为核心传感器需求持续放量。</div></div>
 
 </div>
 <div class="section">
   <h2>🔬 GaAs/MMIC技术</h2>
-  <p><strong>【产业动态】国产滤波器进入量产阶段</strong></p>
-<p>国内多家射频芯片厂商宣布，应用于5G NR的BAW滤波器已进入小批量量产阶段，预计下半年实现规模出货。</p>
-<p><strong>【新兴应用】卫星互联网带动相控阵天线需求</strong></p>
-<p>Starlink、OneWeb等低轨卫星互联网加速部署，地面终端相控阵天线对GaAs MMIC需求显著增长。</p>
+  <div class="news-item"><div class="item-title"><strong>【产业动态】国产滤波器进入量产阶段</strong></div><div class="item-body">国内多家射频芯片厂商宣布，应用于5G NR的BAW滤波器已进入小批量量产阶段，预计下半年实现规模出货。</div></div>
+<div class="news-item"><div class="item-title"><strong>【新兴应用】卫星互联网带动相控阵天线需求</strong></div><div class="item-body">Starlink、OneWeb等低轨卫星互联网加速部署，地面终端相控阵天线对GaAs MMIC需求显著增长。</div></div>
 
 </div>
 <div class="section">
   <h2>💡 射频要闻汇总</h2>
-  <p>1. <strong>产能动态</strong>：多家化合物半导体厂商Q2产能已被预订一空 2. <strong>技术标准</strong>：5G R18标准冻结在即，毫米波新增频段带来新需求 3. <strong>应用创新</strong>：76-81GHz汽车雷达MMIC向更高集成度演进</p>
-<p><strong>📅 明日预告</strong>：关注半导体板块一季报业绩预告</p>
-<p><strong>免责声明</strong>：本日报仅供参考，不构成投资建议</p>
-
+  <ul class="summary-list"><li>1. <strong>产能动态</strong>：多家化合物半导体厂商Q2产能已被预订一空</li>
+<li>2. <strong>技术标准</strong>：5G R18标准冻结在即，毫米波新增频段带来新需求</li>
+<li>3. <strong>应用创新</strong>：76-81GHz汽车雷达MMIC向更高集成度演进</li>
+<li><strong>📅 明日预告</strong>：关注半导体板块一季报业绩预告</li>
+</ul>
+  <div class="disclaimer"><strong>免责声明</strong>：本日报仅供参考，不构成投资建议</div>
 </div>
 </div>
 <footer>© 射频芯片日报 · 📡 射频芯片日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>

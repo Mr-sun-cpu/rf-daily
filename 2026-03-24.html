@@ -30,17 +30,41 @@ header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
 .date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
 footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
 
-.article { max-width:800px; margin:0 auto; padding:40px 24px; }
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
 .article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
 .article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
-.section { margin-bottom:36px; }
-.section h2 { font-size:20px; font-weight:700; color:#00c3ff; margin-bottom:16px;
-  padding-bottom:10px; border-bottom:1px solid rgba(0,195,255,0.2); }
-.section p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
-.section .item-title { font-weight:700; color:#fff; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+/* 每条资讯卡片 */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; }
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72);
+  line-height:1.9; }
+/* 旧 p 标签兼容 */
+.section > p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:12px; }
 .back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff;
   text-decoration:none; }
 .back:hover { text-decoration:underline; }
+/* 汇总板块特殊样式 */
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
 </style>
 </head>
 <body>
@@ -57,43 +81,35 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   
 <div class="section">
   <h2>📰 综合新闻</h2>
-  <p><strong>【十五五开局】政府工作报告明确6G、量子科技为未来产业重点</strong></p>
-<p>2026年两会通过的"十五五"规划纲要正式落地，明确将6G、量子科技、具身智能、脑机接口纳入未来产业培育体系，并建立未来产业投入增长和风险分担机制。射频通信领域迎来政策催化窗口期。</p>
-<p><strong>【科技政策】两会代表委员集中建言半导体自主创新</strong></p>
-<p>多位全国人大代表、政协委员在两会期间就半导体供应链安全提出议案，呼吁加快射频芯片、先进封装等关键领域国产替代进程，破除制约新质生产力发展的体制机制障碍。</p>
+  <div class="news-item"><div class="item-title"><strong>【十五五开局】政府工作报告明确6G、量子科技为未来产业重点</strong></div><div class="item-body">2026年两会通过的"十五五"规划纲要正式落地，明确将6G、量子科技、具身智能、脑机接口纳入未来产业培育体系，并建立未来产业投入增长和风险分担机制。射频通信领域迎来政策催化窗口期。</div></div>
+<div class="news-item"><div class="item-title"><strong>【科技政策】两会代表委员集中建言半导体自主创新</strong></div><div class="item-body">多位全国人大代表、政协委员在两会期间就半导体供应链安全提出议案，呼吁加快射频芯片、先进封装等关键领域国产替代进程，破除制约新质生产力发展的体制机制障碍。</div></div>
 
 </div>
 <div class="section">
   <h2>📈 股市行情</h2>
-  <p><strong>【板块回调】电子行业整体承压，半导体板块震荡整理</strong></p>
-<p>据3月20日A股电子行业数据，电子化学品（-2.48%）和消费电子（-2.42%）领跌，六大板块指数全线收跌。市场情绪偏谨慎，资金短期观望。</p>
-<p><strong>【打新热点】3月射频芯片标的扎堆科创板上市</strong></p>
-<p>3月新股市场以半导体硬科技为核心主线，射频芯片细分赛道多家企业登陆科创板。市场分析人士指出，算力与光通信、半导体与芯片板块仍是资金重点关注方向，估值修复逻辑完整。</p>
-<p><strong>【资金面】北向资金净流入半导体板块，长线配置价值凸显</strong></p>
-<p>近期外资持续增持半导体板块，当前射频芯片设计龙头估值处于历史35%分位附近，机构普遍认为安全边际较高，中长期配置性价比突出。</p>
+  <div class="news-item"><div class="item-title"><strong>【板块回调】电子行业整体承压，半导体板块震荡整理</strong></div><div class="item-body">据3月20日A股电子行业数据，电子化学品（-2.48%）和消费电子（-2.42%）领跌，六大板块指数全线收跌。市场情绪偏谨慎，资金短期观望。</div></div>
+<div class="news-item"><div class="item-title"><strong>【打新热点】3月射频芯片标的扎堆科创板上市</strong></div><div class="item-body">3月新股市场以半导体硬科技为核心主线，射频芯片细分赛道多家企业登陆科创板。市场分析人士指出，算力与光通信、半导体与芯片板块仍是资金重点关注方向，估值修复逻辑完整。</div></div>
+<div class="news-item"><div class="item-title"><strong>【资金面】北向资金净流入半导体板块，长线配置价值凸显</strong></div><div class="item-body">近期外资持续增持半导体板块，当前射频芯片设计龙头估值处于历史35%分位附近，机构普遍认为安全边际较高，中长期配置性价比突出。</div></div>
 
 </div>
 <div class="section">
   <h2>🚗 新能源车</h2>
-  <p><strong>【电池技术】奇瑞发布犀牛电池与全固态电池布局，安全性大幅提升</strong></p>
-<p>3月18日，2026奇瑞汽车电池之夜在芜湖举行，发布新一代犀牛电池，液态安全性能显著增强，并首次公开全固态电池量产时间表。毫米波雷达与电池管理系统的集成化趋势进一步加速。</p>
-<p><strong>【市场展望】2026年3月至9月约40款新车密集上市</strong></p>
-<p>据市场预测，华为系、零跑双子星、搭载固态电池技术的多款车型将于今年上半年上市。智能驾驶NOA功能持续普及，毫米波雷达作为核心传感器需求持续放量，对射频前端芯片拉动效应明显。</p>
+  <div class="news-item"><div class="item-title"><strong>【电池技术】奇瑞发布犀牛电池与全固态电池布局，安全性大幅提升</strong></div><div class="item-body">3月18日，2026奇瑞汽车电池之夜在芜湖举行，发布新一代犀牛电池，液态安全性能显著增强，并首次公开全固态电池量产时间表。毫米波雷达与电池管理系统的集成化趋势进一步加速。</div></div>
+<div class="news-item"><div class="item-title"><strong>【市场展望】2026年3月至9月约40款新车密集上市</strong></div><div class="item-body">据市场预测，华为系、零跑双子星、搭载固态电池技术的多款车型将于今年上半年上市。智能驾驶NOA功能持续普及，毫米波雷达作为核心传感器需求持续放量，对射频前端芯片拉动效应明显。</div></div>
 
 </div>
 <div class="section">
   <h2>🔬 GaAs/MMIC技术</h2>
-  <p><strong>【国产突破】BAW滤波器进入小批量量产，5G NR器件实现国产替代新里程碑</strong></p>
-<p>国内多家射频芯片厂商确认，应用于5G NR频段的BAW体声波滤波器已完成小批量量产验证，预计下半年实现规模出货。与此同时，基于GaAs pHEMT工艺的PA模组良率已突破95%，与国际头部厂商差距持续缩小。</p>
-<p><strong>【新兴应用】低轨卫星互联网带动GaAs MMIC相控阵需求爆发</strong></p>
-<p>随着Starlink、银河航天等低轨卫星互联网星座加速组网，地面终端对相控阵天线需求显著增长。GaAs/GaN MMIC在T/R组件中的核心地位进一步巩固，国内多家代工厂产能利用率持续走高，6英寸GaAs产线扩产计划相继落地。</p>
+  <div class="news-item"><div class="item-title"><strong>【国产突破】BAW滤波器进入小批量量产，5G NR器件实现国产替代新里程碑</strong></div><div class="item-body">国内多家射频芯片厂商确认，应用于5G NR频段的BAW体声波滤波器已完成小批量量产验证，预计下半年实现规模出货。与此同时，基于GaAs pHEMT工艺的PA模组良率已突破95%，与国际头部厂商差距持续缩小。</div></div>
+<div class="news-item"><div class="item-title"><strong>【新兴应用】低轨卫星互联网带动GaAs MMIC相控阵需求爆发</strong></div><div class="item-body">随着Starlink、银河航天等低轨卫星互联网星座加速组网，地面终端对相控阵天线需求显著增长。GaAs/GaN MMIC在T/R组件中的核心地位进一步巩固，国内多家代工厂产能利用率持续走高，6英寸GaAs产线扩产计划相继落地。</div></div>
 
 </div>
 <div class="section">
   <h2>💡 射频要闻汇总</h2>
-  <p>今日射频行业的核心关注点集中在三个方向：一是政策层面，"十五五"规划将6G列入未来产业，射频芯片国产化进程获得顶层战略背书；二是技术层面，国产BAW滤波器量产突破和GaAs MMIC产能提升标志着供应链自主可控程度稳步提升；三是应用层面，新能源车智能驾驶与卫星互联网两大下游赛道正同步拉动射频前端需求，行业景气周期有望延续至2026年下半年。</p>
-<p>*本日报由 AI 自动生成 | 射频芯片日报 | 2026-03-24*</p>
-
+  <ul class="summary-list"><li>今日射频行业的核心关注点集中在三个方向：一是政策层面，"十五五"规划将6G列入未来产业，射频芯片国产化进程获得顶层战略背书；二是技术层面，国产BAW滤波器量产突破和GaAs MMIC产能提升标志着供应链自主可控程度稳步提升；三是应用层面，新能源车智能驾驶与卫星互联网两大下游赛道正同步拉动射频前端需求，行业景气周期有望延续至2026年下半年。</li>
+<li>*本日报由 AI 自动生成 | 射频芯片日报 | 2026-03-24*</li>
+</ul>
+  
 </div>
 </div>
 <footer>© 射频芯片日报 · 📡 射频芯片日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>
