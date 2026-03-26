@@ -3,84 +3,411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>📡 射频芯片日报 - 每日射频行业精选</title>
+<title>📡 射频芯片日报 - 五栏看板</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
-header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
-  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
-  display:flex; align-items:center; justify-content:space-between; }
-header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
-header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
-.container { max-width:900px; margin:0 auto; padding:40px 24px; }
-.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
-  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
-  padding:24px 28px; margin-bottom:20px; cursor:pointer;
-  transition:border-color .2s, box-shadow .2s; }
-.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
-.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
-.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
-  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
-.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
-.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
-.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
-  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
-  text-decoration:none; }
-.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
-footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+body { background:#080d18; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; overflow-x:auto; }
+header { background:linear-gradient(135deg,#0d1f3c,#080d18);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:18px 32px;
+  display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+header h1 { font-size:22px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:13px; color:rgba(255,255,255,0.35); margin-top:3px; }
+
+/* ── 看板布局 ── */
+.kanban { display:flex; gap:14px; padding:24px 20px 40px; min-width:1100px; align-items:flex-start; }
+.col { flex:1; min-width:0; display:flex; flex-direction:column; gap:0; }
+.col-header { padding:14px 16px 12px; border-radius:12px 12px 0 0; display:flex; align-items:center; justify-content:space-between; position:sticky; top:66px; z-index:10; }
+.col-header .col-title { font-size:15px; font-weight:800; }
+.col-header .col-count { font-size:12px; opacity:0.7; background:rgba(255,255,255,0.1); border-radius:20px; padding:2px 9px; }
+.col-body { border-radius:0 0 12px 12px; padding:10px 10px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-top:none; overflow-y:auto; max-height:calc(100vh - 140px); }
+
+/* ── 每条资讯卡片 ── */
+.kcard { background:#0d1729; border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px; padding:12px 14px; margin-bottom:10px;
+  transition:border-color .18s, transform .18s; cursor:pointer; text-decoration:none; display:block; }
+.kcard:hover { border-color:rgba(255,255,255,0.22); transform:translateY(-1px); }
+.kcard .kc-date { font-size:11px; color:rgba(255,255,255,0.35);
+  background:rgba(255,255,255,0.05); border-radius:20px; padding:1px 8px;
+  display:inline-block; margin-bottom:7px; }
+.kcard .kc-title { font-size:13.5px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.kcard .kc-body { font-size:12.5px; color:rgba(255,255,255,0.58); line-height:1.75;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+.kcard .kc-more { font-size:11.5px; margin-top:6px; opacity:0.5; }
+
+footer { text-align:center; padding:28px; font-size:12px; color:rgba(255,255,255,0.2); }
 </style>
 </head>
 <body>
 <header>
   <div>
     <h1>📡 射频芯片日报</h1>
-    <div class="sub">射频行业每日精选 · 共 5 期</div>
+    <div class="sub">射频行业每日精选 · 共 5 期 · 五栏看板</div>
   </div>
-  <div style="font-size:13px;color:rgba(255,255,255,0.3)">最后更新: 2026-03-26</div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.25)">更新: 2026-03-26</div>
 </header>
-<div class="container">
-  <h2 style="font-size:18px;font-weight:700;margin-bottom:24px;color:rgba(255,255,255,0.7)">往期日报</h2>
-  
-<div class="date-card" onclick="location.href='2026-03-26.html'">
-  <div class="dc-top">
-    <div class="dc-date">📅 2026-03-26</div>
-    <div class="dc-badge">✅ 已生成</div>
+<div class="kanban">
+  <div class="col">
+  <div class="col-header" style="background:linear-gradient(135deg,#00c3ff22,#00c3ff0a);border:1px solid #00c3ff33;">
+    <span class="col-title" style="color:#00c3ff">📰 综合新闻</span>
+    <span class="col-count">14 条</span>
   </div>
-  <div class="dc-summary">**💡 射频要闻汇总**</div>
-  <div class="dc-links"><a class="dc-link" href="2026-03-26.html">📄 日报</a><a class="dc-link" href="xhs-2026-03-26.html">📱 小红书卡片</a></div>
+  <div class="col-body">
+    <a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">政策动向中国发布6G射频前端技术路线图，明确毫米波与太赫兹频段研发重点</div>
+  <div class="kc-body">近年来，随着5G-A商用部署加速，全球主要经济体已将6G研发提上战略日程。在此背景下，中国工信部联合多部门发布《6G射频前端关键技术发展路线图》，明确提出2030年前实现毫米波（24-100GHz）及太赫兹（100GHz以上）频段射频芯片的</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">产业链全球GaAs晶圆代工产能持续紧张，IDM模式成头部厂商战略选择</div>
+  <div class="kc-body">受5G基站升级、卫星互联网及汽车雷达需求激增影响，砷化镓（GaAs）射频器件市场需求持续旺盛，但全球成熟制程GaAs晶圆代工产能扩张缓慢，供需失衡局面延续。在此背景下，Skyworks、Qorvo等国际射频巨头纷纷加大自有产线投入，向IDM</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">技术趋势硅基射频前端集成度突破，CMOS-SOI工艺迈向14nm节点</div>
+  <div class="kc-body">随着移动通信对小型化、低功耗需求的提升，硅基射频前端技术持续演进，CMOS-SOI工艺正从28nm向14nm节点推进。最新技术进展显示，14nm SOI工艺可实现更高Q值电感与更低插入损耗的开关性能，显著提升5G n77/n79及Wi-Fi</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">国际视野欧盟启动“地平线欧洲”第二阶段，重点资助开放式射频架构与可重构前端研究</div>
+  <div class="kc-body">为增强欧洲在下一代无线通信中的技术自主性，欧盟委员会在“地平线欧洲”计划第二阶段中设立专项基金，支持开放式射频架构（Open RAN）与可重构射频前端（Reconfigurable RF Front-End）的前沿研究。该项目聚焦软件定义射</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【美国推出新的人工智能发展规划】
+美国政府日前发布新的人工智能发展规划，旨在加强人工智能技术研发和应用，强化与其他国家的技术合作。计划将着重于促进人工智能在医疗、教育等领域的应用。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【国内推出新的自然语言处理模型】
+中国科学院计算所日前宣布推出新的自然语言处理模型，该模型在多项指标上超越了目前国内外最先进的模型。该模型将被广泛应用于智能客服、智能翻译等领域。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【全球首个商业太空站即将启动】
+预计在2026年的第三季度，全球首个商业太空站将正式启动。该太空站由美国阿斯特罗纳特公司负责建设，将为未来的太空旅游和太空科研提供支持。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">十五五开局政府工作报告明确6G、量子科技为未来产业重点</div>
+  <div class="kc-body">2026年两会通过的"十五五"规划纲要正式落地，明确将6G、量子科技、具身智能、脑机接口纳入未来产业培育体系，并建立未来产业投入增长和风险分担机制。射频通信领域迎来政策催化窗口期。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">科技政策两会代表委员集中建言半导体自主创新</div>
+  <div class="kc-body">多位全国人大代表、政协委员在两会期间就半导体供应链安全提出议案，呼吁加快射频芯片、先进封装等关键领域国产替代进程，破除制约新质生产力发展的体制机制障碍。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">重要考察习近平在雄安新区考察并主持召开座谈会</div>
+  <div class="kc-body">国家领导人在河北雄安新区考察，强调坚持高质量建设、高水平管理、高质量疏解发展并举，加快建设绿色生态宜居新城区。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">产业政策"十五五"规划纲要明确新能源战略地位</div>
+  <div class="kc-body">2026年政府工作报告明确将新能源汽车纳入新质生产力、绿色发展等重点领域，智能化、电动化成为核心发展方向。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">政策动向三部门联合部署规范新能源汽车产业竞争秩序</div>
+  <div class="kc-body">工业和信息化部、国家发展改革委、国家市场监督管理总局近日召开新能源汽车行业企业座谈会。会议要求深入贯彻习近平总书记关于新能源汽车产业发展的重要指示，持续强化创新驱动，巩固深化规范产业竞争秩序工作成效，加强价格监测和成本调查。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">产业动态蔚来自研芯片量产超55万颗</div>
+  <div class="kc-body">蔚来汽车CEO李斌透露，蔚来自研激光雷达芯片已实现量产突破，累计交付超过55万颗。这标志着国产车企在智能驾驶芯片领域取得重要进展，进一步降低整车成本。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">国际形势霍尔木兹海峡通行引发关注</div>
+  <div class="kc-body">伊朗国防委员会发表声明，非交战国船只通过霍尔木兹海峡需提前协调。这一消息对全球能源运输和国际贸易产生潜在影响，需持续关注。</div>
+  <div class="kc-more">查看全文 →</div>
+</a>
+  </div>
+</div><div class="col">
+  <div class="col-header" style="background:linear-gradient(135deg,#00e5a022,#00e5a00a);border:1px solid #00e5a033;">
+    <span class="col-title" style="color:#00e5a0">📈 股市行情</span>
+    <span class="col-count">14 条</span>
+  </div>
+  <div class="col-body">
+    <a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">A股行情射频芯片板块震荡上行，国产替代主线持续催化</div>
+  <div class="kc-body">近期A股半导体板块整体呈现结构性回暖态势，射频芯片作为细分高景气赛道表现相对稳健，受益于5G基站建设提速与终端射频前端升级需求。在国产替代加速背景下，国内厂商在PA、滤波器、开关等核心环节逐步实现技术突破，带动市场情绪回暖。尽管全球半导体周</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">资金动向机构持续加仓射频龙头，北向资金偏好技术突破型企业</div>
+  <div class="kc-body">近期数据显示，多家头部公募基金与QFII在半导体细分领域中重点增持具备自主知识产权的射频芯片企业，尤其关注已实现4G/5G模组量产的公司。卓胜微、唯捷创芯等标的获北向资金连续净流入，反映外资对国内射频前端国产替代进程的认可。同时，部分专注于</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">投资逻辑5G-A与低轨卫星通信双轮驱动，射频芯片迎来新增长极</div>
+  <div class="kc-body">随着5G-Advanced（5G-A）技术试点推进，高阶调制与毫米波应用对射频前端性能提出更高要求，推动PA、LNA及天线调谐器件升级换代。与此同时，国内低轨卫星互联网星座建设提速，星载与地面终端射频系统需求激增，为慧智微、华虹半导体等具备</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">个股动态卓胜微发布新一代射频模组，华虹半导体扩产GaAs产线</div>
+  <div class="kc-body">卓胜微近日推出面向5G-A的智能射频前端模组，集成度与能效比显著提升，已进入主流手机品牌验证流程，有望在下半年实现批量出货。华虹半导体则宣布其位于无锡的GaAs功率放大器产线完成二期扩产，月产能提升至3万片以上，进一步巩固其在化合物半导体代</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【大盘指数】 2026年3月25日，A股市场表现热烈，沪深300指数上涨3.2%，创业板指数上涨4.5%。沪指和深指也分别上涨2.8%和3.5%。市场预期未来仍然乐观，部分投资者对中概股、新能源和半导体等领域表现出了持续关注。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【资金动向】 资金在本周内主要净流入了新能源、半导体和生物医药等领域，其中新能源领域表现最为亮眼，净流入金额约为50亿元。此外，一些互联网创新股和电子商务股也吸引了一部分资金，但总体表现相对平稳。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【市场情绪】 总体而言，市场情绪乐观，投资者对于经济复苏和新技术发展持续关注。部分投资者对于个别行业的超额预期表现出了一定的担忧，但大多数投资者仍然乐观看好未来A股市场的发展。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">板块回调电子行业整体承压，半导体板块震荡整理</div>
+  <div class="kc-body">据3月20日A股电子行业数据，电子化学品（-2.48%）和消费电子（-2.42%）领跌，六大板块指数全线收跌。市场情绪偏谨慎，资金短期观望。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">打新热点3月射频芯片标的扎堆科创板上市</div>
+  <div class="kc-body">3月新股市场以半导体硬科技为核心主线，射频芯片细分赛道多家企业登陆科创板。市场分析人士指出，算力与光通信、半导体与芯片板块仍是资金重点关注方向，估值修复逻辑完整。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">资金面北向资金净流入半导体板块，长线配置价值凸显</div>
+  <div class="kc-body">近期外资持续增持半导体板块，当前射频芯片设计龙头估值处于历史35%分位附近，机构普遍认为安全边际较高，中长期配置性价比突出。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">板块机会半导体设备材料板块持续关注</div>
+  <div class="kc-body">近一个月北向资金净买入半导体板块超50亿元，射频相关个股获得重点关注。射频芯片设计龙头当前估值处于历史35%分位附近，安全边际较高。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">市场概况通信服务、存储芯片板块走强</div>
+  <div class="kc-body">3月18日A股三大指数集体收涨，创业板指涨超2%。盘面上看，通信服务、存储芯片概念表现强势，多只相关个股涨停。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">行业机会射频前端市场持续扩容</div>
+  <div class="kc-body">据Global Growth Insights预测，2026-2035年射频前端MMIC市场将保持两位数增长。超过68%的电信运营商正积极在5G基站中部署射频前端MMIC，毫米波和6GHz以下频段需求旺盛。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">投资逻辑关注国产替代主线</div>
+  <div class="kc-body">当前国际形势下，射频芯片国产替代逻辑持续强化。具备GaAs/GaN工艺能力的国内厂商有望受益于订单转移和产能扩张。</div>
+  <div class="kc-more">查看全文 →</div>
+</a>
+  </div>
+</div><div class="col">
+  <div class="col-header" style="background:linear-gradient(135deg,#f5a62322,#f5a6230a);border:1px solid #f5a62333;">
+    <span class="col-title" style="color:#f5a623">🚗 新能源车</span>
+    <span class="col-count">14 条</span>
+  </div>
+  <div class="col-body">
+    <a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">车载雷达77GHz毫米波雷达国产替代加速，前装渗透率持续提升</div>
+  <div class="kc-body">随着L2+及以上智能驾驶功能在新能源车型中快速普及，77GHz车载毫米波雷达成为关键感知部件。当前，国产射频前端芯片在功耗、集成度与抗干扰性能方面逐步接近国际水平，部分Tier 1厂商已实现前向雷达批量装车。比亚迪、蔚来等车企在新一代车型中</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">整车布局华为汽车BU深化自研射频架构，助力问界系列高阶智驾落地</div>
+  <div class="kc-body">华为在智能汽车解决方案中持续强化端到端射频技术布局，其自研的5G-V2X通信模组与多频段天线系统已集成于问界M9等旗舰车型。通过自研射频前端与基带芯片协同优化，华为实现低时延、高可靠的车联网通信能力，支持城市NOA功能稳定运行。此举不仅降低</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">充电基础设施大功率超充桩普及推动车桩通信射频模块升级需求</div>
+  <div class="kc-body">随着800V高压平台车型陆续上市，支持350kW以上超充的充电桩加速部署，对车桩之间的PLC（电力线通信）与无线通信射频模块提出更高要求。主流充电桩企业正采用车规级Sub-1GHz与2.4GHz双模射频方案，确保充电过程数据交互稳定。该趋势</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">技术进展车规级射频前端模组向高集成、多频段融合方向发展</div>
+  <div class="kc-body">为应对智能座舱与智能驾驶对多模通信（5G、C-V2X、Wi-Fi 6E、GNSS）的并发需求，主流射频前端厂商正推出高集成度多频段FEM（前端模组）。这类模组采用先进封装技术整合PA、LNA与开关，显著降低PCB面积与系统功耗。目前，多家国</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【标题】新能源汽车市场销量创新高
+新能源汽车市场持续强劲增长，市场销量在2026年3月份创下历史新高，同比增长超过50%。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【标题】特斯拉推出新型电池技术
+特斯拉在2026年3月20日推出了新型电池技术，该技术将使得电池续航里程提高20%，且价格较之前的电池技术降低了15%。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【标题】电动汽车充电设施突破性进展
+电动汽车充电设施在2026年3月份取得了突破性进展，新一代充电桩采用了快充技术，可以在5分钟内将电动汽车充满电，充电效率提高了50%。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">电池技术奇瑞发布犀牛电池与全固态电池布局，安全性大幅提升</div>
+  <div class="kc-body">3月18日，2026奇瑞汽车电池之夜在芜湖举行，发布新一代犀牛电池，液态安全性能显著增强，并首次公开全固态电池量产时间表。毫米波雷达与电池管理系统的集成化趋势进一步加速。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">市场展望2026年3月至9月约40款新车密集上市</div>
+  <div class="kc-body">据市场预测，华为系、零跑双子星、搭载固态电池技术的多款车型将于今年上半年上市。智能驾驶NOA功能持续普及，毫米波雷达作为核心传感器需求持续放量，对射频前端芯片拉动效应明显。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">市场数据2月新能源乘用车零售渗透率超45%</div>
+  <div class="kc-body">乘联会数据显示，2月新能源乘用车零售销量同比增长28%，渗透率突破45%创历史新高。预计全年新能源车销量有望突破1500万辆。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">智能化城市NOA加速普及</div>
+  <div class="kc-body">华为、小鹏、理想等车企加速城市领航辅助驾驶(NOA)落地，毫米波雷达作为核心传感器需求持续放量。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">政策利好工信部发布减免购置税车型目录</div>
+  <div class="kc-body">工信部发布第28批减免车辆购置税新能源汽车车型目录，覆盖比亚迪、特斯拉、蔚来、小鹏等多品牌热门车型。预计将进一步刺激新能源汽车消费。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">产业发展小米汽车新一代SU7即将发布</div>
+  <div class="kc-body">小米汽车宣布，新一代SU7"准现车"锁定订单已开放。新车在智能座舱和辅助驾驶方面有明显升级，售价区间预计与现款持平。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">市场格局新能源汽车进入2.0时代</div>
+  <div class="kc-body">业内分析认为，2026年新能源汽车产业进入"中场战事"阶段，2030年将迈入3.0时代。核心特征为低碳化爆发、智能化优化、电动化深化。</div>
+  <div class="kc-more">查看全文 →</div>
+</a>
+  </div>
+</div><div class="col">
+  <div class="col-header" style="background:linear-gradient(135deg,#c97bff22,#c97bff0a);border:1px solid #c97bff33;">
+    <span class="col-title" style="color:#c97bff">🔬 GaAs/MMIC</span>
+    <span class="col-count">13 条</span>
+  </div>
+  <div class="col-body">
+    <a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">GaAs工艺GaAs HBT与pHEMT工艺在5G-Advanced PA中的性</div>
+  <div class="kc-body">随着5G-Advanced对高频效率与线性度要求提升，GaAs HBT工艺在Sub-6GHz功率放大器（PA）中持续优化击穿电压与热稳定性，典型器件已实现>65%的功率附加效率（PAE）与+34dBm输出功率；与此同时，GaAs pHEMT</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">毫米波77GHz车载雷达MMIC集成度突破，倒装焊封装推动相控阵天线小型化</div>
+  <div class="kc-body">面向L2+/L3自动驾驶需求，77GHz毫米波雷达MMIC正从分立方案向高集成度SoC演进，主流芯片已集成收发通道、本振链路与数字控制接口，通道数提升至12T16R以上。采用InP或GaAs工艺的收发芯片在噪声系数（<4dB）与输出功率（></div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">国内动态慧智微发布基于SiGe BiCMOS的Sub-6GHz射频前端模组，实现</div>
+  <div class="kc-body">慧智微最新推出的Sub-6GHz 5G射频前端模组采用SiGe BiCMOS工艺，集成高线性PA、超低噪声LNA与低插损SP4T开关，支持n77/n78/n79频段，PAE达58%，LNA噪声系数低于1.2dB。该方案通过优化基带偏置与温度</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title">封装技术WLP封装在Ka波段卫星通信MMIC中的应用挑战与热管理创新</div>
+  <div class="kc-body">面向低轨卫星互联网（如Starlink二代终端），Ka波段（26.5–40GHz）射频前端对封装尺寸与热性能提出严苛要求。晶圆级封装（WLP）凭借微米级互连与低寄生参数，成为高频MMIC理想选择，但面临高频信号损耗与芯片散热难题。业界正探索</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【GaN工艺技术进展：新型高效能蜂窝基站功率放大器】
+
+智利的GaN工艺专家Latam Microwave宣布开发了一种新型高效能蜂窝基站功率放大器。该产品采用最新的GaN工艺技术，能够提供高输出功率和高效率，同时降低功耗和发热量，可以为5</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">【pHEMT工艺技术进展：新型低噪声前端模块】
+
+美国公司API Technologies宣布推出了一种新型低噪声前端模块，该产品采用了先进的pHEMT工艺技术，能够提供卓越的性能和可靠性。该模块具有低噪声特性和高灵敏度，可以应用于卫星通信</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">国产突破BAW滤波器进入小批量量产，5G NR器件实现国产替代新里程碑</div>
+  <div class="kc-body">国内多家射频芯片厂商确认，应用于5G NR频段的BAW体声波滤波器已完成小批量量产验证，预计下半年实现规模出货。与此同时，基于GaAs pHEMT工艺的PA模组良率已突破95%，与国际头部厂商差距持续缩小。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title">新兴应用低轨卫星互联网带动GaAs MMIC相控阵需求爆发</div>
+  <div class="kc-body">随着Starlink、银河航天等低轨卫星互联网星座加速组网，地面终端对相控阵天线需求显著增长。GaAs/GaN MMIC在T/R组件中的核心地位进一步巩固，国内多家代工厂产能利用率持续走高，6英寸GaAs产线扩产计划相继落地。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">产业动态国产滤波器进入量产阶段</div>
+  <div class="kc-body">国内多家射频芯片厂商宣布，应用于5G NR的BAW滤波器已进入小批量量产阶段，预计下半年实现规模出货。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title">新兴应用卫星互联网带动相控阵天线需求</div>
+  <div class="kc-body">Starlink、OneWeb等低轨卫星互联网加速部署，地面终端相控阵天线对GaAs MMIC需求显著增长。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">技术突破华东师大团队在射频IC领域取得标志性进展</div>
+  <div class="kc-body">华东师范大学通信与电子工程学院张润曦教授团队在高性能射频集成电路领域取得重大突破，三篇创新性论文被IEEE射频集成电路研讨会(RFIC)收录。研究成果涵盖高线性度PA、低噪声放大器等领域。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">工艺进展国产5G毫米波前端芯片取得新突破</div>
+  <div class="kc-body">国内团队在GaAs基异构芯片集成技术上取得进展，晶准通信推出的双通道毫米波PA功率密度接近0.8W/mm²，达到国际先进水平。</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title">市场前景5G基础设施带动MMIC需求爆发</div>
+  <div class="kc-body">5G小基站和宏基站对射频前端MMIC的需求持续增长，毫米波频段应用场景不断拓展，智能驾驶、卫星互联网等新兴领域也为MMIC市场注入新动能。</div>
+  <div class="kc-more">查看全文 →</div>
+</a>
+  </div>
+</div><div class="col">
+  <div class="col-header" style="background:linear-gradient(135deg,#ff6b6b22,#ff6b6b0a);border:1px solid #ff6b6b33;">
+    <span class="col-title" style="color:#ff6b6b">💡 射频要闻汇总</span>
+    <span class="col-count">5 条</span>
+  </div>
+  <div class="col-body">
+    <a class="kcard" href="2026-03-26.html">
+  <span class="kc-date">📅 2026-03-26</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">💡 射频要闻汇总
+
+1. 核心主题：中国发布6G射频前端技术路线图，毫米波与太赫兹频段成战略突破方向  
+中国工信部联合多部门发布《6G射频前端关键技术发展路线图》，明确2030年前实现毫米波（24-100GHz）及太赫兹（100GHz以上</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-25.html">
+  <span class="kc-date">📅 2026-03-25</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">今日射频行业综合要闻：市场表现热烈，A股市场涨幅导跌，沪深300指数上涨3.2%，创业板指数上涨4.5%。市场预期乐观，投资者关注中概股、新能源和半导体领域。资金净流入新能源、半导体和生物医药等领域，尤其是新能源领域，净流入金额约为50亿元</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-24.html">
+  <span class="kc-date">📅 2026-03-24</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">今日射频行业的核心关注点集中在三个方向：一是政策层面，"十五五"规划将6G列入未来产业，射频芯片国产化进程获得顶层战略背书；二是技术层面，国产BAW滤波器量产突破和GaAs MMIC产能提升标志着供应链自主可控程度稳步提升；三是应用层面，新</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-23.html">
+  <span class="kc-date">📅 2026-03-23</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">1. 产能动态：多家化合物半导体厂商Q2产能已被预订一空
+2. 技术标准：5G R18标准冻结在即，毫米波新增频段带来新需求
+3. 应用创新：76-81GHz汽车雷达MMIC向更高集成度演进
+
+
+📅 明日预告：关注半导体板块一季报业绩预告
 </div>
-<div class="date-card" onclick="location.href='2026-03-25.html'">
-  <div class="dc-top">
-    <div class="dc-date">📅 2026-03-25</div>
-    <div class="dc-badge">✅ 已生成</div>
+  <div class="kc-more">查看全文 →</div>
+</a><a class="kcard" href="2026-03-22.html">
+  <span class="kc-date">📅 2026-03-22</span>
+  <div class="kc-title"></div>
+  <div class="kc-body">1. 国产替代加速：射频芯片产业链上游设备和材料国产化进程加快
+2. 产能扩张：多家化合物半导体厂商宣布扩产计划
+3. 技术迭代：GaN on SiC、GaAs HBT等工艺持续优化
+4. 应用拓展：卫星通信、车载雷达、6G预研成为新增长点</div>
+  <div class="kc-more">查看全文 →</div>
+</a>
   </div>
-  <div class="dc-summary">今日射频行业综合要闻：市场表现热烈，A股市场涨幅导跌，沪深300指数上涨3.2%，创业板指数上涨4.5%。市场预期乐观，投资者关注中概股、新能源和半导体领域。资...</div>
-  <div class="dc-links"><a class="dc-link" href="2026-03-25.html">📄 日报</a><a class="dc-link" href="xhs-2026-03-25.html">📱 小红书卡片</a></div>
-</div>
-<div class="date-card" onclick="location.href='2026-03-24.html'">
-  <div class="dc-top">
-    <div class="dc-date">📅 2026-03-24</div>
-    <div class="dc-badge">✅ 已生成</div>
-  </div>
-  <div class="dc-summary">今日射频行业的核心关注点集中在三个方向：一是政策层面，"十五五"规划将6G列入未来产业，射频芯片国产化进程获得顶层战略背书；二是技术层面，国产BAW滤波器量产突...</div>
-  <div class="dc-links"><a class="dc-link" href="2026-03-24.html">📄 日报</a><a class="dc-link" href="xhs-2026-03-24.html">📱 小红书卡片</a></div>
-</div>
-<div class="date-card" onclick="location.href='2026-03-23.html'">
-  <div class="dc-top">
-    <div class="dc-date">📅 2026-03-23</div>
-    <div class="dc-badge">✅ 已生成</div>
-  </div>
-  <div class="dc-summary">1. **产能动态**：多家化合物半导体厂商Q2产能已被预订一空</div>
-  <div class="dc-links"><a class="dc-link" href="2026-03-23.html">📄 日报</a></div>
-</div>
-<div class="date-card" onclick="location.href='2026-03-22.html'">
-  <div class="dc-top">
-    <div class="dc-date">📅 2026-03-22</div>
-    <div class="dc-badge">✅ 已生成</div>
-  </div>
-  <div class="dc-summary">1. **国产替代加速**：射频芯片产业链上游设备和材料国产化进程加快</div>
-  <div class="dc-links"><a class="dc-link" href="2026-03-22.html">📄 日报</a></div>
 </div>
 </div>
 <footer>© 射频芯片日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">GitHub Pages</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
