@@ -65,6 +65,16 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 .summary-list li:last-child { border-bottom:none; }
 .disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
   padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.nav-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.nav-tab { font-size:14px; font-weight:600; color:var(--col); background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:7px 18px;
+  text-decoration:none; transition:background .18s, border-color .18s; }
+.nav-tab:hover { background:rgba(255,255,255,0.1); border-color:var(--col); }
+.xhs-btn { display:inline-block; margin-bottom:32px; font-size:14px; font-weight:600;
+  color:#ff6b8a; background:rgba(255,107,138,0.08); border:1px solid rgba(255,107,138,0.25);
+  border-radius:8px; padding:8px 20px; text-decoration:none; }
+.xhs-btn:hover { background:rgba(255,107,138,0.16); }
 </style>
 </head>
 <body>
@@ -78,8 +88,15 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   <a class="back" href="index.html">← 返回首页</a>
   <h1>📰 每日资讯日报 | 2026-03-23</h1>
   <div class="meta">📅 2026-03-23 &nbsp;|&nbsp; 🤖 AI 自动生成 &nbsp;|&nbsp; 📰 每日资讯日报</div>
+  <nav class="nav-bar"><a class="nav-tab" href="#news" style="--col:#00c3ff">🌏 每日时政</a>
+<a class="nav-tab" href="#stock" style="--col:#00e5a0">📈 股市基金</a>
+<a class="nav-tab" href="#ev" style="--col:#f5a623">🚗 新能源汽车</a>
+<a class="nav-tab" href="#gaas" style="--col:#c97bff">🔬 GaAs/MMIC</a>
+<a class="nav-tab" href="#rf" style="--col:#ff6b6b">📡 射频芯片</a>
+</nav>
   
-<div class="section">
+  
+<div class="section" id="misc">
   <h2>📰 综合新闻</h2>
   <div class="news-item"><div class="item-title"><strong>【政策动向】多国加速布局6G频谱规划，毫米波与太赫兹频段成焦点</strong></div><div class="item-body">随着全球6G研发进入关键技术验证阶段，美、欧、日、韩等主要经济体近期密集发布频谱战略草案，重点聚焦于100GHz以上太赫兹频段及70-100GHz毫米波扩展区间的可用性研究。此举旨在为未来超高速、超低延迟通信预留物理层资源，避免重蹈5G初期频谱碎片化覆辙。对射频芯片行业而言，高频段通信将极大推动GaAs、GaN及先进CMOS工艺在功率放大器、低噪声放大器及波束成形芯片上的技术迭代需求。长期来看，掌握高频材料体系与集成封装能力的企业将在6G生态中占据先发优势。</div></div>
 <div class="news-item"><div class="item-title"><strong>【产业链】国产射频前端模组良率突破关键节点，中高端市场替代进程提速</strong></div><div class="item-body">国内主流射频模组厂商在滤波器-功放-开关集成工艺上取得显著进展，部分企业已实现Sub-6GHz频段PA+LNA+Switch三合一模组量产良率稳定在85%以上，接近国际领先水平。这一突破得益于本土Foundry在BCD工艺平台上的持续投入以及EDA工具链的逐步完善。随着国产手机品牌加大本土供应链导入力度，国产射频前端在中高端机型中的渗透率有望在未来两年内实现翻倍增长，进一步压缩海外厂商市场份额。</div></div>
@@ -88,7 +105,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>📈 股市行情</h2>
   <div class="news-item"><div class="item-title"><strong>【A股行情】半导体板块震荡整理，射频芯片细分领域韧性凸显</strong></div><div class="item-body">近期A股半导体板块整体呈现结构性分化态势，受全球晶圆产能调整及终端需求波动影响，部分高估值标的出现回调。然而，射频前端芯片作为5G通信与卫星互联的核心环节，展现出较强抗跌性，尤其在国产替代加速背景下，相关标的获得资金持续关注。从技术面看，射频板块估值已逐步回归合理区间，叠加下游基站建设与手机新机周期启动预期，中长期配置价值逐步显现。</div></div>
 <div class="news-item"><div class="item-title"><strong>【资金动向】北向资金加仓射频龙头，卓胜微、慧智微获机构密集调研</strong></div><div class="item-body">近期北向资金在半导体板块呈现“弃高就低”策略，对估值合理的射频芯片企业加大配置力度，其中卓胜微与慧智微连续多日位列深股通净买入前列。与此同时，多家头部公募及私募机构近期集中调研唯捷创芯与华虹半导体，重点关注其6英寸GaAs产线扩产进展及车规级射频模组量产情况。资金动向显示，市场对具备IDM能力与工艺平台协同效应的企业偏好明显提升。</div></div>
@@ -97,7 +114,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>🚗 新能源车</h2>
   <div class="news-item"><div class="item-title"><strong>【车载雷达】77GHz毫米波雷达芯片国产化率持续提升，4D成像雷达成高阶智驾标配</strong></div><div class="item-body">随着L2+及以上智能驾驶系统加速渗透，车载毫米波雷达正从传统3发4收向4D成像雷达演进，对射频前端线性度、相位噪声和通道一致性提出更高要求。国内厂商在77GHz MMIC（单片微波集成电路）领域已实现批量供货，部分企业完成车规级AEC-Q100认证，逐步替代进口方案。华为、森思泰克等企业推出的集成式射频SoC进一步降低系统成本，推动4D雷达在20万元以上新能源车型中快速普及。</div></div>
 <div class="news-item"><div class="item-title"><strong>【整车布局】比亚迪与地平线联合发布下一代智能座舱射频通信模组，支持5G+V2X双模连接</strong></div><div class="item-body">为应对城市NOA（导航辅助驾驶）对低时延、高可靠通信的需求，比亚迪与地平线合作开发新一代车载通信模组，集成5G NR和C-V2X直连通信功能，采用自研射频前端与基带协同设计。该模组已通过IATF 16949及3GPP R16标准验证，计划搭载于2026年Q3上市的腾势N9车型。此举标志着车企在车联网射频系统层面正从采购转向深度联合开发，强化供应链自主可控能力。</div></div>
@@ -106,7 +123,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="gaas">
   <h2>🔬 GaAs/MMIC技术</h2>
   <div class="news-item"><div class="item-title"><strong>【GaAs工艺】GaAs HBT与GaN HEMT在Sub-6GHz PA中的性能博弈进入新阶段</strong></div><div class="item-body">随着5G-Advanced商用部署加速，Sub-6GHz频段对功率放大器（PA）的效率与线性度提出更高要求。GaAs HBT凭借成熟的工艺平台和优异的热稳定性，在中高功率场景仍具成本优势，尤其在3.5GHz频段手机PA模组中占据主流。而GaN HEMT凭借更高的功率密度和击穿电压，正逐步渗透至宏基站与CPE设备的高功率PA设计，其功率附加效率（PAE）在6GHz以下可达65%以上。当前行业趋势显示，GaAs与GaN并非完全替代关系，而是依据输出功率等级与应用场景形成互补格局。未来三年，GaAs工艺将向更高ft/fmax的pHEMT结构演进，以支撑更宽带宽的载波聚合需求。</div></div>
 <div class="news-item"><div class="item-title"><strong>【毫米波】77GHz车载雷达MMIC集成度突破，推动4D成像雷达普及</strong></div><div class="item-body">面向L2+/L3级自动驾驶，77GHz毫米波雷达正从传统3发4收向12发16收甚至更高通道数的4D成像雷达升级。最新MMIC方案采用SiGe BiCMOS与GaAs pHEMT混合集成架构，在单芯片上实现多通道收发、本振分配与数字控制功能，相位噪声低于-95dBc/Hz@1MHz偏移。通过倒装焊（Flip-Chip）与晶圆级封装（WLP）技术，模组尺寸缩小40%，同时提升热管理能力与信号完整性。该趋势显著降低系统BOM成本，使成像雷达在15万元以下车型中具备量产可行性，预计2027年渗透率将超30%。</div></div>
@@ -115,7 +132,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>💡 射频要闻汇总</h2>
   <div class="news-item"><div class="item-body"><strong>💡 射频要闻汇总</strong></div></div>
 <div class="news-item"><div class="item-title"><strong>【核心主题】多国加速布局6G频谱，高频通信推动射频技术迭代</strong></div><div class="item-body">全球主要经济体近期密集发布6G频谱战略草案，重点聚焦70-100GHz毫米波及100GHz以上太赫兹频段，旨在为未来超高速通信预留物理层资源。此举将显著提升对高频射频前端芯片的性能要求，推动GaAs、GaN及先进CMOS工艺在功率放大器与波束成形芯片上的技术升级，掌握高频材料与集成封装能力的企业有望抢占6G生态先机。</div></div>
@@ -127,6 +144,6 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   <div class="disclaimer">⚠️ 免责声明：本日报内容为AI基于行业通识生成，不构成投资建议。</div>
 </div>
 </div>
-<footer>© 射频芯片日报 · 📰 每日资讯日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>
+<footer>© 📰 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
 </body>
 </html>

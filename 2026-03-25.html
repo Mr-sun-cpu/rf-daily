@@ -65,6 +65,16 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 .summary-list li:last-child { border-bottom:none; }
 .disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
   padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.nav-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.nav-tab { font-size:14px; font-weight:600; color:var(--col); background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:7px 18px;
+  text-decoration:none; transition:background .18s, border-color .18s; }
+.nav-tab:hover { background:rgba(255,255,255,0.1); border-color:var(--col); }
+.xhs-btn { display:inline-block; margin-bottom:32px; font-size:14px; font-weight:600;
+  color:#ff6b8a; background:rgba(255,107,138,0.08); border:1px solid rgba(255,107,138,0.25);
+  border-radius:8px; padding:8px 20px; text-decoration:none; }
+.xhs-btn:hover { background:rgba(255,107,138,0.16); }
 </style>
 </head>
 <body>
@@ -78,8 +88,15 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   <a class="back" href="index.html">← 返回首页</a>
   <h1>📰 每日资讯日报 | 2026-03-25</h1>
   <div class="meta">📅 2026-03-25 &nbsp;|&nbsp; 🤖 AI 自动生成 &nbsp;|&nbsp; 📰 每日资讯日报</div>
+  <nav class="nav-bar"><a class="nav-tab" href="#news" style="--col:#00c3ff">🌏 每日时政</a>
+<a class="nav-tab" href="#stock" style="--col:#00e5a0">📈 股市基金</a>
+<a class="nav-tab" href="#ev" style="--col:#f5a623">🚗 新能源汽车</a>
+<a class="nav-tab" href="#gaas" style="--col:#c97bff">🔬 GaAs/MMIC</a>
+<a class="nav-tab" href="#rf" style="--col:#ff6b6b">📡 射频芯片</a>
+</nav>
+  <a class="xhs-btn" href="xhs-2026-03-25.html">📱 查看小红书卡片 →</a>
   
-<div class="section">
+<div class="section" id="misc">
   <h2>📰 综合新闻</h2>
   <div class="news-item"><div class="item-title"><strong>【政策动向】中国发布第三代半导体产业高质量发展三年行动计划</strong></div><div class="item-body">为强化射频与功率器件自主可控能力，国家工信部联合多部门发布《第三代半导体产业高质量发展三年行动计划（2026—2028）》，明确将氮化镓（GaN）和碳化硅（SiC）射频器件列为重点攻关方向。该计划提出建设3-5个国家级射频材料与应用创新中心，并加大对6G通信、卫星互联网等高端场景的示范应用支持。此举有望加速国内GaN-on-SiC外延片与MMIC芯片的产业化进程，缓解高端射频前端对外依赖。长期来看，政策引导将推动射频产业链从“跟跑”向“并跑”乃至局部“领跑”转变。</div></div>
 <div class="news-item"><div class="item-title"><strong>【产业链】全球GaAs晶圆代工产能持续向中国大陆转移</strong></div><div class="item-body">受地缘政治与成本优势驱动，国际主流GaAs代工厂正加速在中国大陆布局6英寸及以上晶圆产线，部分厂商已启动8英寸中试线建设。目前中国大陆GaAs衬底与外延产能占全球比重已突破35%，并在PA（功率放大器）和LNA（低噪声放大器）等中低端射频器件实现批量出货。这一趋势不仅降低了国内手机与物联网模组厂商的供应链风险，也为本土IDM模式射频企业提供了更灵活的产能选择。未来两年，随着5G RedCap与Sub-6GHz基站需求回升，本土GaAs产业链有望迎来结构性增长机遇。</div></div>
@@ -88,7 +105,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>📈 股市行情</h2>
   <div class="news-item"><div class="item-title"><strong>【A股行情】射频芯片板块震荡上行，国产替代主线持续催化</strong></div><div class="item-body">近期A股半导体板块整体表现强于大盘，其中射频前端细分领域受益于5G基站建设提速及终端机型升级，呈现结构性走强态势。卓胜微、唯捷创芯等龙头企业在Q1财报预期改善带动下，股价获得支撑，市场情绪逐步回暖。随着国内手机品牌加速导入本土射频方案，板块估值修复逻辑正在强化，中长期成长确定性较高。</div></div>
 <div class="news-item"><div class="item-title"><strong>【资金动向】北向资金连续增持射频标的，慧智微获机构密集调研</strong></div><div class="item-body">近一周北向资金显著净流入半导体板块，其中射频前端企业成为重点配置方向，唯捷创芯、慧智微均现身沪深港通增持榜单。多家券商研究所发布报告指出，卫星通信与毫米波技术商用落地加速，推动射频芯片需求多元化，吸引中长期资金布局。慧智微近期接待超20家机构调研，市场对其在5G RedCap及车载射频领域的突破高度关注。</div></div>
@@ -97,7 +114,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>🚗 新能源车</h2>
   <div class="news-item"><div class="item-title"><strong>【车载雷达】77GHz毫米波雷达芯片国产化率持续提升，本土厂商加速车规认证</strong></div><div class="item-body">随着智能驾驶等级向L2+/L3演进，车载毫米波雷达需求持续增长，77GHz成为前装主流频段。国内射频芯片厂商在MMIC（单片微波集成电路）领域取得突破，部分企业已通过AEC-Q100车规认证并进入Tier 1供应链。当前，华为、森思泰克、楚微半导体等正加快多通道雷达SoC研发，推动成本下降与性能优化。预计2026年国产毫米波雷达芯片在自主品牌车型中的渗透率将显著提升，助力智能驾驶系统降本增效。</div></div>
 <div class="news-item"><div class="item-title"><strong>【整车布局】比亚迪与联发科深化合作，联合开发智能座舱5G+V2X通信模组</strong></div><div class="item-body">比亚迪持续推进智能网联技术自研，近期与联发科达成战略合作，共同开发集成5G NR和C-V2X功能的高性能通信模组。该模组将搭载于2026年新款高端电动车型，支持低延迟车路协同与远程OTA升级。此举标志着车企在车联网射频前端与通信协议栈层面加强垂直整合，减少对海外芯片厂商依赖。未来双方还计划探索卫星通信与6G预研技术，抢占下一代智能汽车通信制高点。</div></div>
@@ -106,7 +123,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="gaas">
   <h2>🔬 GaAs/MMIC技术</h2>
   <div class="news-item"><div class="item-title"><strong>【GaAs工艺】GaAs HBT工艺在Sub-6GHz PA中实现效率与线性度协同优化</strong></div><div class="item-body">近期行业技术进展显示，基于GaAs异质结双极晶体管（HBT）工艺的功率放大器在Sub-6GHz频段（如n77/n79）中通过新型偏置电路与谐波调谐技术，实现了功率附加效率（PAE）突破55%，同时三阶交调失真（IMD3）优于-40dBc。该设计采用多级增益级联与动态偏压控制，有效缓解了高功率输出下的热退化问题。相较于SiGe BiCMOS方案，GaAs HBT在高频增益和热稳定性方面仍具优势，尤其适用于5G基站与CPE设备中的高线性PA模组。随着国内代工厂工艺成熟度提升，GaAs PA在中高端移动通信市场的渗透率有望进一步增长。</div></div>
 <div class="news-item"><div class="item-title"><strong>【毫米波】77GHz MMIC收发前端集成度提升，推动车载雷达向4D成像演进</strong></div><div class="item-body">面向车载77GHz毫米波雷达应用，新一代MMIC收发芯片通过InP与GaAs混合集成工艺，将发射通道、接收通道、本振分配网络与数字控制逻辑整合于单芯片，尺寸缩减至3.2×2.8mm²。该设计支持4发4收（4T4R）架构，输出功率达13dBm，噪声系数低于4.5dB，满足ISO 21448预期功能安全要求。高集成度不仅降低系统BOM成本，还提升了波束成形精度与多目标分辨能力，为L3+自动驾驶提供关键感知支撑。目前主流Tier 1厂商正加速验证此类MMIC方案，预计2027年将进入大规模前装量产阶段。</div></div>
@@ -115,13 +132,13 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="misc">
   <h2>💡 射频要闻汇总</h2>
   <div class="news-item"><div class="item-body"><strong>【💡 射频要闻汇总】</strong> <strong>核心主题</strong>：国家发布第三代半导体三年行动计划，明确将GaN与SiC射频器件作为战略重点，推动6G与卫星通信高端应用示范，加速高端射频前端自主可控进程，标志着我国射频产业链正从技术跟跑向并跑乃至局部领跑跃迁。 <strong>技术进展</strong>：GaAs HBT工艺在Sub-6GHz功率放大器中实现PAE超55%与优异线性度，通过动态偏压与谐波调谐技术突破性能瓶颈；同时77GHz MMIC收发前端集成度提升，支撑车载雷达向4D成像演进，为高集成度毫米波系统奠定基础。 <strong>市场资金</strong>：A股射频芯片板块结构性走强，北向资金连续增持唯捷创芯、慧智微等标的，机构密集调研聚焦5G RedCap与车载射频突破，反映市场对国产替代与新技术落地的高度预期。 <strong>产业链动态</strong>：全球GaAs晶圆代工产能加速向中国大陆转移，6英寸及以上产线布局提速，8英寸中试线启动建设；本土厂商在77GHz毫米波雷达芯片领域通过车规认证，进入Tier 1供应链，国产渗透率持续提升。 <strong>政策与监管</strong>：工信部联合多部门发布《第三代半导体产业高质量发展三年行动计划（2026—2028）》，提出建设3-5个国家级射频材料与应用创新中心，强化GaN-on-SiC外延与MMIC芯片攻关，政策引导产业链协同突破。 <strong>前沿关注</strong>：6G通信与卫星互联网成为GaN射频器件重点应用场景，叠加车载毫米波雷达向高集成SoC演进，射频前端正迈向“高频、高效、高可靠”新阶段，技术融合与场景拓展值得长期跟踪。 📅 明日关注：关注比亚迪与联发科联合开发智能座舱射频方案的进展；跟踪国内GaAs 8英寸中试线量产验证情况。   *本日报由 AI 自动生成 | 射频芯片日报*</div></div>
 
   <div class="disclaimer">⚠️ 免责声明：本日报内容为AI基于行业通识生成，不构成投资建议。</div>
 </div>
 </div>
-<footer>© 射频芯片日报 · 📰 每日资讯日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>
+<footer>© 📰 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
 </body>
 </html>

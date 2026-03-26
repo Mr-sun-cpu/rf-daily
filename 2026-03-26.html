@@ -65,6 +65,16 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 .summary-list li:last-child { border-bottom:none; }
 .disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
   padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.nav-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.nav-tab { font-size:14px; font-weight:600; color:var(--col); background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:7px 18px;
+  text-decoration:none; transition:background .18s, border-color .18s; }
+.nav-tab:hover { background:rgba(255,255,255,0.1); border-color:var(--col); }
+.xhs-btn { display:inline-block; margin-bottom:32px; font-size:14px; font-weight:600;
+  color:#ff6b8a; background:rgba(255,107,138,0.08); border:1px solid rgba(255,107,138,0.25);
+  border-radius:8px; padding:8px 20px; text-decoration:none; }
+.xhs-btn:hover { background:rgba(255,107,138,0.16); }
 </style>
 </head>
 <body>
@@ -78,8 +88,15 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   <a class="back" href="index.html">← 返回首页</a>
   <h1>📰 每日资讯日报 | 2026-03-26</h1>
   <div class="meta">📅 2026-03-26 &nbsp;|&nbsp; 🤖 AI 自动生成 &nbsp;|&nbsp; 📰 每日资讯日报</div>
+  <nav class="nav-bar"><a class="nav-tab" href="#news" style="--col:#00c3ff">🌏 每日时政</a>
+<a class="nav-tab" href="#stock" style="--col:#00e5a0">📈 股市基金</a>
+<a class="nav-tab" href="#ev" style="--col:#f5a623">🚗 新能源汽车</a>
+<a class="nav-tab" href="#gaas" style="--col:#c97bff">🔬 GaAs/MMIC</a>
+<a class="nav-tab" href="#rf" style="--col:#ff6b6b">📡 射频芯片</a>
+</nav>
+  <a class="xhs-btn" href="xhs-2026-03-26.html">📱 查看小红书卡片 →</a>
   
-<div class="section">
+<div class="section" id="news">
   <h2>🌏 每日时政</h2>
   <div class="news-item"><div class="item-title"><strong>【国内要闻】全国生态环境保护大会在京召开，部署新一轮生态文明建设重点任务</strong></div><div class="item-body">正文：会议强调当前我国生态文明建设仍处于压力叠加、负重前行的关键阶段，需统筹污染治理、生态保护与应对气候变化。会议提出将加快构建现代环境治理体系，强化重点区域联防联控机制。此举标志着国家在“双碳”目标推进中进一步夯实制度基础，推动绿色发展向纵深迈进。</div></div>
 <div class="news-item"><div class="item-title"><strong>【政策解读】国务院印发《关于深化户籍制度改革促进城乡融合发展的指导意见》</strong></div><div class="item-body">正文：该政策旨在破除城乡二元结构壁垒，推动农业转移人口全面融入城市。核心内容包括放宽大城市落户限制、完善居住证制度、保障随迁子女平等受教育权利。分析认为，此举将加速新型城镇化进程，释放内需潜力，助力共同富裕目标实现。</div></div>
@@ -88,7 +105,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="stock">
   <h2>📈 股市基金</h2>
   <div class="news-item"><div class="item-title"><strong>【分析维度】大盘走势</strong></div><div class="item-body">（大盘走势）   近期A股呈现震荡上行格局，主要受政策预期改善与年报业绩超预期个股带动，上证指数在3150点附近反复整固，创业板指受益于科技成长股回暖表现相对强势。市场情绪逐步修复，但量能尚未有效放大，显示投资者仍偏谨慎。核心驱动逻辑在于经济复苏节奏超预期叠加流动性边际宽松，叠加“两会”后产业政策持续落地，提振市场信心。</div></div>
 <div class="news-item"><div class="item-title"><strong>【分析维度】资金流向与板块轮动</strong></div><div class="item-body">（资金流向/板块轮动）   主力资金近期明显向科技成长与高端制造方向倾斜，人工智能、半导体、机器人等赛道获北向资金与融资余额双增，而传统周期板块如煤炭、房地产资金流出压力仍存。板块轮动节奏加快，从前期高股息防御转向“新质生产力”主题，显示市场风险偏好有所提升。ETF资金持续净流入科创50与创业板指，反映中长期资金布局意愿增强。</div></div>
@@ -96,7 +113,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   <div class="disclaimer">⚠️ 免责声明：以上分析仅供参考，不构成投资建议，据此操作风险自担。</div>
 </div>
-<div class="section">
+<div class="section" id="ev">
   <h2>🚗 新能源汽车</h2>
   <div class="news-item"><div class="item-title"><strong>【新车发布】比亚迪海狮07 EV正式上市，主打智能与长续航</strong></div><div class="item-body">比亚迪海狮07 EV定位为中型纯电SUV，搭载e平台3.0 Evo技术，CLTC续航最高达700公里，支持800V高压快充，10%-80%充电仅需18分钟。新车配备DiPilot 600高阶智能驾驶系统，支持城市NOA功能，起售价22.98万元。其一体化车身设计与智能座舱体验显著提升，适合追求科技与续航平衡的家庭用户，建议关注高配智驾版性价比。</div></div>
 <div class="news-item"><div class="item-title"><strong>【行业动态】蔚来与吉利达成换电战略合作，共建第三方换电网络</strong></div><div class="item-body">双方将共同推动换电标准统一，计划年内在长三角、珠三角新增300座兼容换电站，覆盖主流B级及以上电动车型。此举有望打破品牌壁垒，提升用户补能效率，缓解“换电不通用”痛点。对消费者而言，未来跨品牌换电便利性将显著增强，尤其利好多车家庭及高频长途用户。</div></div>
@@ -106,7 +123,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="gaas">
   <h2>🔬 GaAs/MMIC技术</h2>
   <div class="news-item"><div class="item-title"><strong>【行业动态】三安集成加速布局6英寸GaN-on-SiC产线，切入5G基站与卫星通信高端市场</strong></div><div class="item-body">三安集成近期完成6英寸GaN-on-SiC外延与器件产线的全面验证，月产能突破3,000片，良率稳定在85%以上，重点面向5G宏基站功率放大器和低轨卫星通信载荷市场。该产线采用高温MOCVD外延与深槽刻蚀隔离工艺，支持100V以上高压工作，输出功率密度达8W/mm@3.5GHz。此举标志着国产化合物半导体在高端射频领域实现从“替代”向“并跑”跨越，有望缓解Qorvo、MACOM在Sub-6GHz GaN PA市场的垄断压力。</div></div>
 <div class="news-item"><div class="item-title"><strong>【新产品解析】Qorvo发布超宽带Doherty PA模块，覆盖2.3–7.2GHz，效率突破58%</strong></div><div class="item-body">该模块基于0.15μm GaAs pHEMT工艺，集成自适应偏置与数字预失真（DPD）接口，在4G/5G多频段基站中实现平均输出功率48dBm，ACLR优于-50dBc。采用新型谐波调谐网络与热沉嵌入式封装，热阻低至3.2°C/W，支持-40°C至+85°C全温域稳定工作。其宽频带Doherty架构通过可调耦合器实现负载调制动态优化，显著提升高峰均比信号下的能量效率，适用于Massive MIMO射频单元。</div></div>
@@ -116,7 +133,7 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
 
   
 </div>
-<div class="section">
+<div class="section" id="rf">
   <h2>📡 射频芯片</h2>
   <div class="news-item"><div class="item-title"><strong>【产品动态】Qorvo发布新一代GaN-on-SiC射频前端模块，支持6G sub-THz频段</strong></div><div class="item-body">正文：Qorvo于近期推出基于GaN-on-SiC工艺的射频前端模块，支持140-220GHz频段，适用于6G早期原型系统及卫星通信回传链路。该模块集成PA、LNA与SPDT开关，输出功率达1W@180GHz，效率较传统Si基方案提升40%以上。主要面向国防、低轨卫星及6G试验网络部署。此举标志GaN-on-SiC正式进入sub-THz商用化验证阶段，为高频段射频系统提供高可靠性解决方案。</div></div>
 <div class="news-item"><div class="item-title"><strong>【公司战略】Skyworks深化与中国手机品牌合作，布局5G-A射频前端全链路集成</strong></div><div class="item-body">正文：Skyworks近期与国内主流智能手机厂商达成战略合作，提供从收发器到天线调谐的完整5G-A（5G-Advanced）射频前端解决方案。其最新平台支持3CC CA（三载波聚合）与UL-MIMO增强，上行速率提升30%。公司正将部分封测产能向东南亚转移，以优化供应链韧性。此举反映Skyworks在高端市场持续巩固技术壁垒，同时应对地缘政治带来的制造分散化趋势。</div></div>
@@ -127,6 +144,6 @@ footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255
   
 </div>
 </div>
-<footer>© 射频芯片日报 · 📰 每日资讯日报 · <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a></footer>
+<footer>© 📰 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
 </body>
 </html>
