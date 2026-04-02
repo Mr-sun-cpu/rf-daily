@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-02</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-02</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-02 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Embedded hypervisor market set for 12% CAGR as AI and 5G drive adoption</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-02</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>嵌入式虚拟机市场正迎来高速增长，受AI与5G推动，2025至2035年复合年增长率达12%，市场规模将从252.5亿美元增至895.6亿美元。该趋势源于工业、汽车和通信等领域对实时、安全、可扩展计算架构的迫切需求。随着边缘计算与智能终端融合加深，国产芯片厂商在虚拟化技术上的布局将直接影响未来竞争力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/embedded-hypervisor-market-set-for-12-cagr-as-ai-and-5g-drive-adoption/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Nvidia and Marvell expand AI infrastructure ecosystem with NVLink Fusion partnership</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-02</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英伟达与美满电子宣布战略合作，通过NVLink Fusion平台将美满的芯片技术接入英伟达AI工厂与AI-RAN生态，并涉及20亿美元投资。此举强化了英伟达在高性能计算互联架构中的主导地位，美满借此切入AI基础设施核心供应链。对中国半导体企业而言，凸显了在高速互联与异构计算领域自主技术突破的紧迫性。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nvidia-and-marvell-expand-ai-infrastructure-ecosystem-with-nvlink-fusion-partnership/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Equinix expands AI data centers to support GPU workloads</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-02</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Equinix正扩大数据中心容量以应对AI与云基础设施对高密度GPU部署的激增需求，反映出推理负载对供电、散热及互联架构带来的结构性挑战。此举凸显全球算力基础设施正加速向AI优化转型，传统数据中心面临能效与密度升级压力。对国内IDC运营商而言，需加快液冷、智能配电等新技术布局，以承接大模型时代的高功耗算力需求。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/equinix-expands-ai-data-centers-to-support-gpu-workloads/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">binder triangular moulding strengthens M16 and M12 connectors</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-02</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>德国binder公司推出三角形模塑结构，用于改进型M16及M12 K/L编码工业连接器，旨在应对频繁弯折、振动等严苛工况。该设计通过优化应力分布，显著提升线缆抗疲劳性能，延长使用寿命。此举体现了工业连接器向高可靠性、长寿命发展的趋势，对国产连接器厂商在结构设计创新方面具有借鉴意义，尤其在机器人、自动化设备等高端应用领域。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/binder-triangular-moulding-m16-m12-connectors/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Isolated DC/DC modules raise power density</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>德州仪器（TI）采用IsoShield多芯片封装技术的隔离型DC/DC模块显著提升了功率密度。该技术通过优化内部布局与热管理，在缩小封装体积的同时实现高效电能转换，适用于汽车电子、工业电源等高可靠性场景。此举凸显了先进封装在功率器件小型化中的关键作用，为国内厂商突破功率密度瓶颈提供了技术路径参考。</p></div>
+  <a class="intel-link" href="https://www.edn.com/isolated-dc-dc-modules-raise-power-density/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Soft Sensor Gives Robots a Better Sense of Touch</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>新型柔性传感系统显著提升人形机器人手部操作的精细度，使其能完成更类人的复杂任务。该技术通过高灵敏度柔性材料捕捉压力与形变数据，结合边缘计算实现实时触觉反馈。在半导体层面，这推动了MEMS与柔性电子集成工艺的发展，为国产机器人核心传感器国产化带来突破机遇，尤其在医疗与精密装配领域应用前景广阔。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/soft-sensor-gives-robots-a-better-sense-of-touch/?utm_source=rss&utm_medium=rss&utm_campaign=soft-sensor-gives-robots-a-better-sense-of-touch" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Tower Semiconductor Announces Plans to Expand 300mm Capacity in Japan</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Tower半导体宣布扩大日本300mm晶圆产能，并与合作伙伴签署长期互供协议。此举旨在强化其在特种工艺领域的全球布局，提升功率器件、模拟芯片等产品的供应稳定性。日本成熟的半导体生态与政策支持为扩产提供有利条件，同时反映出全球IDM正加速产能区域化以应对供应链风险。对中国射频企业而言，需关注特种工艺产能竞争加剧带来的代工资源紧张趋势。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/tower-semiconductor-announces-plans-to-expand-300mm-capacity-in-japan/?utm_source=rss&utm_medium=rss&utm_campaign=tower-semiconductor-announces-plans-to-expand-300mm-capacity-in-japan" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Lapse in Key Digital Trade Measure Undermines Economic Growth, Innovation</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>半导体行业协会CEO约翰·纽弗对世贸组织部长级会议未能就永久禁止数字贸易关税达成共识表示失望，此举可能阻碍全球经济增长与技术创新。该协议若达成，将保障半导体产品跨境数据流动免税，降低产业链成本。此次谈判破裂或延缓5G、AI等依赖半导体技术的领域发展，凸显多边贸易体系在数字时代规则制定上的滞后性，对中国半导体出海构成潜在贸易壁垒。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/lapse-in-key-digital-trade-measure-undermines-economic-growth-innovation/?utm_source=rss&utm_medium=rss&utm_campaign=lapse-in-key-digital-trade-measure-undermines-economic-growth-innovation" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
