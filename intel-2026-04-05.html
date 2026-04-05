@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-05</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-05</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-05 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Reference platform targets robust 10BASE-T1S Ethernet design</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该参考平台旨在推动单对以太网（SPE）在工业自动化和楼宇控制领域的应用落地。由Arrow、Microchip、Bourns和Amphenol联合开发的REF_SPE_T1S平台，为10BASE-T1S以太网提供系统级参考设计，帮助工程师快速验证网络架构的可靠性与互操作性。此举有助于降低SPE技术在实际部署中的工程门槛，加速工业物联网的联网标准化进程。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/reference-platform-targets-robust-10base-t1s-ethernet-design/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">EU approves €500M Luxembourg cleantech manufacturing scheme</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/eu-approves-e500m-luxembourg-cleantech-manufacturing-scheme/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Arcas partners with Seekr to deliver sovereign AI for EU enterprises</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Arcas与Seekr合作，为受严格监管的欧洲企业开发可解释的自主AI系统。此次合作聚焦于满足欧盟日益强化的合规要求，通过提供可审计、可解释的AI解决方案，帮助企业在自动化决策中实现透明化与可控性。此举反映出欧洲市场对“主权AI”——即数据与算法自主可控的AI系统——的迫切需求，也凸显可解释性正成为企业AI落地的关键门槛。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/arcas-partners-with-seekr-to-deliver-sovereign-ai-for-eu-enterprises/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Keysight introduces SBOM manager for cybersecurity compliance</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Keysight推出SBOM管理器以应对日益严格的全球网络安全法规，帮助企业提升软件透明度。该工具专注于生成和维护软件物料清单（SBOM），满足制造商在合规性方面的关键需求。随着各国对软件供应链安全要求趋严，SBOM正成为网络安全合规的核心组成部分，此举凸显Keysight在网络安全治理工具领域的持续布局。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/keysight-introduces-sbom-manager-for-cybersecurity-compliance/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMI Appoints Mary Bischoping as Senior Director of Public Policy and Advocacy</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-03</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMI任命玛丽·比肖平为公共政策与倡导高级总监，标志着该组织在加强全球半导体产业政策协调与行业倡导方面迈出关键一步。作为非营利性国际行业协会，SEMI此举旨在提升其在政府关系、法规制定和产业战略对话中的影响力。该人事安排凸显半导体行业对政策环境日益增长的依赖，尤其在技术标准、供应链安全和跨国合作领域。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/semi-appoints-mary-bischoping-as-senior-director-of-public-policy-and-advocacy/?utm_source=rss&utm_medium=rss&utm_campaign=semi-appoints-mary-bischoping-as-senior-director-of-public-policy-and-advocacy" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Molex Completes Acquisition of Smiths Interconnect</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-03</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Molex完成对Smiths Interconnect的收购，标志着全球连接器行业整合加速。Smiths Interconnect作为英国Smiths集团旗下子公司，在高频、高可靠性互连解决方案领域具备技术积累，此次并购将强化Molex在航空航天、医疗及高端工业市场的布局。该交易有助于Molex拓展欧洲供应链资源，并提升其在高端互连领域的技术协同能力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/molex-completes-acquisition-of-smiths-interconnect/?utm_source=rss&utm_medium=rss&utm_campaign=molex-completes-acquisition-of-smiths-interconnect" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Cohu Announces $30 Million Follow-On Orders for High-Performance Computing Test</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-03</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>科休公司获得客户追加订单，总额达3000万美元，用于高性能计算测试的Eclipse平台，表明其测试设备在高性能计算领域的技术认可度和客户黏性持续提升。该订单反映先进制程与异构集成推动下，半导体测试环节需求稳健增长。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/cohu-announces-30-million-follow-on-orders-for-high-performance-computing-test/?utm_source=rss&utm_medium=rss&utm_campaign=cohu-announces-30-million-follow-on-orders-for-high-performance-computing-test" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ACM Research Introduces ACM Planetary Family Product Portfolio Structure</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-03</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ACM Research推出“Planetary家族”产品组合架构，标志着其围绕核心工艺技术强化以客户为中心的战略布局。该结构化产品矩阵可能整合清洗、薄膜沉积等关键设备模块，提升半导体制造解决方案的系统性与协同性。此举有助于国产设备商突破单点技术局限，向平台化服务能力进阶，对提升国内晶圆厂供应链韧性具有积极意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/acm-research-introduces-acm-planetary-family-product-portfolio-structure/?utm_source=rss&utm_medium=rss&utm_campaign=acm-research-introduces-acm-planetary-family-product-portfolio-structure" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
