@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>射频芯片研究院 2026-04-13 小红书卡片</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0d0f1e;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 48px;
+  padding: 48px 20px;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+}
+.card {
+  width: 750px; height: 1000px; border-radius: 32px;
+  overflow: hidden; position: relative; flex-shrink: 0;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+}
+/* 封面 */
+.cover { background: linear-gradient(145deg, #080d1c 0%, #0c1e3e 40%, #091524 70%, #0c1e3e 100%); }
+.cover::before { content:''; position:absolute; top:-180px; right:-180px; width:680px; height:680px;
+  border-radius:50%; background:radial-gradient(circle, rgba(0,195,255,0.10) 0%, transparent 70%); }
+.cover::after  { content:''; position:absolute; bottom:-130px; left:-130px; width:480px; height:480px;
+  border-radius:50%; background:radial-gradient(circle, rgba(120,60,255,0.12) 0%, transparent 70%); }
+.cover .inner { position:relative; z-index:2; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; height:100%; padding:52px 50px; text-align:center; }
+.cover .badge { display:inline-flex; align-items:center; gap:10px;
+  background:rgba(0,195,255,0.13); border:1px solid rgba(0,195,255,0.35);
+  border-radius:50px; padding:9px 26px; margin-bottom:36px; }
+.cover .badge-text  { font-size:18px; color:#00c3ff; letter-spacing:1.5px; font-weight:700; }
+.cover .badge-date  { font-size:17px; color:rgba(0,195,255,0.65); }
+.cover .emoji-icon  { font-size:88px; margin-bottom:28px; line-height:1; }
+.cover .main-title  { font-size:72px; font-weight:900; color:#fff; line-height:1.15;
+  margin-bottom:18px; letter-spacing:-2px; }
+.cover .main-title span { color:#00c3ff; }
+.cover .sub-title   { font-size:22px; color:rgba(255,255,255,0.60); line-height:1.7;
+  margin-bottom:40px; max-width:580px; }
+.cover .items { width:100%; display:flex; flex-direction:column; gap:14px; margin-bottom:40px; }
+.cover .item  { display:flex; align-items:center; gap:18px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09);
+  border-radius:16px; padding:15px 22px; text-align:left; }
+.cover .item-num  { font-size:16px; font-weight:800; color:#00c3ff;
+  background:rgba(0,195,255,0.12); border-radius:9px;
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cover .item-text { font-size:19px; color:rgba(255,255,255,0.85); line-height:1.55; }
+.cover .brand     { font-size:17px; color:rgba(255,255,255,0.3); letter-spacing:2.5px; }
+/* 内页 ── 卡片高度固定 1000px，内容需自适应 */
+.card-inner { background: linear-gradient(165deg, #080d1c 0%, #0b1628 55%, #060c1a 100%); }
+.card-inner .inner { display:flex; flex-direction:column; height:100%; padding:46px 50px 38px; position:relative; z-index:2; }
+.card-inner::before { content:''; position:absolute; top:-100px; right:-100px; width:400px; height:400px;
+  border-radius:50%; background:radial-gradient(circle, rgba(0,195,255,0.07) 0%, transparent 70%); }
+.card-inner .card-header { display:flex; align-items:center; gap:18px; margin-bottom:28px; }
+.card-inner .card-num { width:52px; height:52px; border-radius:16px;
+  background:linear-gradient(135deg, #00c3ff, #0057ff);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; font-weight:900; color:white; flex-shrink:0; }
+.card-inner .card-title { font-size:36px; font-weight:800; color:#fff; line-height:1.25; }
+.card-inner .divider { width:100%; height:1px;
+  background:linear-gradient(90deg, rgba(0,195,255,0.45), transparent); margin-bottom:24px; }
+.card-inner .tags { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
+.card-inner .tag  { font-size:16px; color:#00c3ff; background:rgba(0,195,255,0.10);
+  border:1px solid rgba(0,195,255,0.28); border-radius:9px; padding:6px 16px; }
+.card-inner .conclusion { background:rgba(0,195,255,0.07); border-left:4px solid #00c3ff;
+  border-radius:0 14px 14px 0; padding:16px 22px; margin-bottom:22px; }
+.card-inner .conclusion-text { font-size:20px; font-weight:600; color:rgba(255,255,255,0.90); line-height:1.65; }
+/* 数据亮点区 */
+.card-inner .data-row { display:flex; gap:14px; margin-bottom:22px; }
+.card-inner .data-chip { flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px; padding:12px 14px; text-align:center; }
+.card-inner .data-val { font-size:26px; font-weight:900; color:#00c3ff; line-height:1; margin-bottom:5px; }
+.card-inner .data-label { font-size:14px; color:rgba(255,255,255,0.45); }
+.card-inner .points { display:flex; flex-direction:column; gap:14px; flex:1; }
+.card-inner .pt     { display:flex; align-items:flex-start; gap:14px; }
+.card-inner .pt-dot { width:8px; height:8px; border-radius:50%; background:#00c3ff; flex-shrink:0; margin-top:8px; }
+.card-inner .pt-text{ font-size:19px; color:rgba(255,255,255,0.80); line-height:1.6; }
+.card-inner .footer { margin-top:auto; padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex; justify-content:space-between; align-items:center; }
+.card-inner .footer-brand { font-size:16px; color:rgba(255,255,255,0.3); }
+.card-inner .footer-page  { font-size:16px; color:rgba(255,255,255,0.25); }
+/* 结尾 */
+.card-end { background: linear-gradient(165deg, #080d1c 0%, #0c1428 100%); }
+.card-end::before { content:''; position:absolute; bottom:0; left:0; right:0; height:65%;
+  background:radial-gradient(ellipse at 50% 100%, rgba(0,195,255,0.09) 0%, transparent 70%); }
+.card-end .inner { position:relative; z-index:2; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; height:100%; padding:56px 50px; text-align:center; }
+.card-end .end-emoji { font-size:80px; margin-bottom:24px; line-height:1; }
+.card-end .main-title { font-size:44px; font-weight:900; color:#fff; line-height:1.25; margin-bottom:14px; }
+.card-end .sub-title  { font-size:20px; color:rgba(255,255,255,0.50); margin-bottom:38px; }
+.card-end .chips { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:44px; }
+.card-end .chip  { font-size:17px; color:rgba(255,255,255,0.65);
+  background:rgba(255,255,255,0.07); border-radius:50px; padding:8px 20px; }
+.card-end .cta-box { background:rgba(0,195,255,0.07); border:1px solid rgba(0,195,255,0.22);
+  border-radius:22px; padding:28px 36px; width:100%; margin-bottom:34px; }
+.card-end .cta-main { font-size:18px; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+.card-end .cta-name { font-size:30px; font-weight:900; color:#00c3ff; margin-bottom:8px; }
+.card-end .cta-desc { font-size:18px; color:rgba(255,255,255,0.45); line-height:1.6; }
+.card-end .actions  { display:flex; gap:36px; margin-bottom:38px; }
+.card-end .act      { display:flex; flex-direction:column; align-items:center; gap:9px; }
+.card-end .act-emoji{ font-size:30px; }
+.card-end .act-text { font-size:17px; color:rgba(255,255,255,0.48); }
+.card-end .question { background:rgba(255,255,255,0.05); border-radius:16px; padding:20px 26px; width:100%; }
+.card-end .question-text { font-size:19px; color:rgba(255,255,255,0.65); line-height:1.65; }
+</style>
+</head>
+<body>
+
+<!-- ===== 卡片1：封面 ===== -->
+<div class="card cover" id="card-1">
+  <div class="inner">
+    <div class="badge">
+      <span class="badge-text">🔬 射频芯片研究院</span>
+      <span class="badge-date">2026.04.13</span>
+    </div>
+    <div class="emoji-icon">📡</div>
+    <div class="main-title">毫米波集成加速</div>
+    <div class="sub-title">GaAs产线升级，6G太赫兹技术路线博弈</div>
+    <div class="items">
+      <div class="item"><div class="item-num">1</div><div class="item-text">📊 GaAs pHEMT产线加速向6英寸迁移，产能集中亚太</div></div>
+      <div class="item"><div class="item-num">2</div><div class="item-text">🔬 InP HEMT噪声优化突破，1/f噪声抑制显著</div></div>
+      <div class="item"><div class="item-num">3</div><div class="item-text">🧊 GaN-on-SiC热管理聚焦声子散射与微流体散热</div></div>
+      <div class="item"><div class="item-num">4</div><div class="item-text">📶 毫米波TR组件向WLP异质集成演进，占板面积压缩</div></div>
+    </div>
+    <div class="brand">🔬 射频芯片研究院 · 每日更新</div>
+  </div>
+</div>
+
+<!-- ===== 卡片2：板块01 ===== -->
+<div class="card card-inner" id="card-2">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">01</div>
+      <div class="card-title">📡 代工产能迁移</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">GaAs</span><span class="tag">pHEMT</span><span class="tag">6英寸</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">GaAs pHEMT产线向6英寸迁移加速，亚太集聚效应增强，供应链韧性成布局核心，产能效率提升30%以上。</div>
+    </div>
+    <div class="data-row"><div class="data-chip"><div class="data-val">6英寸</div><div class="data-label">产线升级</div></div><div class="data-chip"><div class="data-val">30%</div><div class="data-label">效率提升</div></div><div class="data-chip"><div class="data-val">亚太</div><div class="data-label">产能集中</div></div></div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">多家代工厂调整资源配置</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">GaN-on-SiC投资区域化集中</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">InP工艺线产能稳步提升</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">毫米波HEMT结构优化成重点</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">供应链韧性建设受重视</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">6英寸GaAs产线迁移加速</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">🔬 射频芯片研究院</span>
+      <span class="footer-page">2 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片3：板块02 ===== -->
+<div class="card card-inner" id="card-3">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">02</div>
+      <div class="card-title">🔬 毫米波集成</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">WLP</span><span class="tag">TR组件</span><span class="tag">异质集成</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">毫米波TR组件集成向晶圆级封装发展，LNA与PA共设计降低损耗，热管理与EMC挑战加剧，占板面积压缩40%。</div>
+    </div>
+    <div class="data-row"><div class="data-chip"><div class="data-val">40%</div><div class="data-label">面积压缩</div></div><div class="data-chip"><div class="data-val">WLP</div><div class="data-label">封装技术</div></div><div class="data-chip"><div class="data-val">LNA+PA</div><div class="data-label">共设计</div></div></div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">从芯片级互联转向WLP</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">LNA与PA共设计优化匹配</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">数字波束赋形要求更高线性度</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">多层布线基板压缩面积</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">垂直互联技术广泛应用</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">热管理与EMC挑战增加</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">🔬 射频芯片研究院</span>
+      <span class="footer-page">3 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片4：板块03 ===== -->
+<div class="card card-inner" id="card-4">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">03</div>
+      <div class="card-title">💡 InP HEMT噪声</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">InP</span><span class="tag">HEMT</span><span class="tag">低频噪声</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">InP HEMT界面态优化显著抑制1/f噪声延伸，低温工艺降低缺陷密度，为太赫兹接收机噪声系数逼近理论极限提供依据。</div>
+    </div>
+    <div class="data-row"><div class="data-chip"><div class="data-val">1/f</div><div class="data-label">噪声类型</div></div><div class="data-chip"><div class="data-val">太赫兹</div><div class="data-label">频段应用</div></div><div class="data-chip"><div class="data-val">界面态</div><div class="data-label">优化目标</div></div></div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">界面态与体陷阱影响噪声</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">势垒层组分优化关键</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">栅槽刻蚀工艺改进</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">低温工艺降低缺陷密度</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">噪声系数非线性机制受关注</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">可靠性与重复性待平衡</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">🔬 射频芯片研究院</span>
+      <span class="footer-page">4 / 6</span>
+    </div>
+  </div>
+</div>
+<!-- ===== 卡片5：板块04 ===== -->
+<div class="card card-inner" id="card-5">
+  <div class="inner">
+    <div class="card-header">
+      <div class="card-num">04</div>
+      <div class="card-title">📊 6G技术博弈</div>
+    </div>
+    <div class="divider"></div>
+    <div class="tags"><span class="tag">6G</span><span class="tag">太赫兹</span><span class="tag">MMIC</span></div>
+    <div class="conclusion">
+      <div class="conclusion-text">6G太赫兹通信推动多技术路线竞争，InP HEMT噪声优，GaN HEMT功率强，硅基CMOS成本压，三年内智能PA成主流选择。</div>
+    </div>
+    <div class="data-row"><div class="data-chip"><div class="data-val">太赫兹</div><div class="data-label">目标频段</div></div><div class="data-chip"><div class="data-val">智能PA</div><div class="data-label">未来主流</div></div><div class="data-chip"><div class="data-val">三年</div><div class="data-label">技术窗口</div></div></div>
+    <div class="points">
+<div class="pt"><div class="pt-dot"></div><div class="pt-text">InP HEMT噪声系数占优</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">GaN HEMT高功率不可替代</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">硅基毫米波成本持续压缩</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">自适应偏置技术受关注</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">DPD接口集成成趋势</div></div><div class="pt"><div class="pt-dot"></div><div class="pt-text">基站与终端共同演进</div></div>
+    </div>
+    <div class="footer">
+      <span class="footer-brand">🔬 射频芯片研究院</span>
+      <span class="footer-page">5 / 6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 卡片6：结尾 ===== -->
+<div class="card card-end" id="card-6">
+  <div class="inner">
+    <div class="end-emoji">💡</div>
+    <div class="main-title">今日一句话总结</div>
+    <div class="sub-title">2026-04-13 · 射频芯片研究院</div>
+    <div class="chips"><span class="chip">#射频芯片</span><span class="chip">#GaAs</span><span class="chip">#MMIC</span><span class="chip">#6G</span><span class="chip">#国产替代</span></div>
+    <div class="cta-box">
+      <div class="cta-main">关注公众号</div>
+      <div class="cta-name">🔬 射频芯片研究院</div>
+      <div class="cta-desc">GaAs产线升级与毫米波集成并进，6G太赫兹技术路线竞争白热化。</div>
+    </div>
+    <div class="actions">
+      <div class="act"><div class="act-emoji">❤️</div><div class="act-text">点赞</div></div>
+      <div class="act"><div class="act-emoji">⭐</div><div class="act-text">收藏</div></div>
+      <div class="act"><div class="act-emoji">💬</div><div class="act-text">评论</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text">你看好哪种6G太赫兹MMIC技术路线？</div>
+    </div>
+  </div>
+</div>
+<a href="2026-04-13.html" style="position:fixed;top:20px;left:20px;color:#00c3ff;font-size:14px;text-decoration:none;background:rgba(0,0,0,0.5);padding:8px 16px;border-radius:8px">← 返回日报</a></body>
+</html>
