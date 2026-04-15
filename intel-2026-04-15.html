@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-15</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-15</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-15 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">MIT underwater robot teaming targets cable inspection</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>麻省理工学院林肯实验室正在研发一种人机协同系统，将潜水员与自主水下机器人结合，用于海底电缆检测、搜救、港口进入及反水雷等任务。该系统通过分工协作，充分发挥机器人在计算、续航等方面的优势，提升水下作业效率与安全性。这一技术有望推动水下基础设施维护向智能化、协同化方向发展。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/mit-underwater-robot-teaming-cable-inspection/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Intel and Google expand AI infrastructure partnership</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英特尔与谷歌深化多年合作，共同推进下一代人工智能与云基础设施发展，重点优化谷歌全球数据中心在AI负载下的性能、效率与可扩展性。此举表明两大科技巨头正加强底层硬件与云架构协同，以应对AI算力需求激增。对国内企业而言，强化芯片与云平台的垂直整合或成提升AI基础设施竞争力的关键路径。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/intel-and-google-expand-ai-infrastructure-partnership/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEALSQ and Kaynes advance India’s PQC chip hub</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEALSQ与Kaynes合作推进印度后量子加密（PQC）芯片布局，计划在古吉拉特邦Sanand的Kaynes半导体封装测试（OSAT）新设施内建立芯片个性化中心。此举标志着SEALSQ正式切入后量子安全芯片市场，依托本地化制造能力强化抗量子攻击芯片的定制化生产。印度正通过本土半导体生态建设，加速在下一代安全芯片领域的战略卡位。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/sealsq-and-kaynes-advance-indias-pqc-chip-hub/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">8 Wi-Fi security guidelines issued by Wireless Broadband Alliance</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>无线宽带联盟发布8项Wi-Fi安全指南，旨在为运营商和设备商提供统一安全框架，降低网络运营风险。此举反映行业对公共及企业级Wi-Fi安全威胁的重视，推动认证、加密和接入控制等技术的标准化进程。随着Wi-Fi 6/7普及和多接入边缘计算发展，此类指南有助于提升整体网络韧性与用户信任。</p></div>
+  <a class="intel-link" href="https://www.edn.com/8-wi-fi-security-guidelines-issued-by-wireless-broadband-alliance/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AlixLabs Closes 15 M EUR Series A</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AlixLabs完成A轮融资，由Stephen Industries战略投资。此次融资将加速其半导体制造技术的商业化进程，尤其在先进制程和工艺创新领域具备潜力。作为新兴半导体技术公司，AlixLabs获得大额融资反映出市场对下一代芯片制造解决方案的持续关注，或推动其在欧洲半导体生态中的技术布局与产业合作。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/alixlabs-closes-15-m-eur-series-a/?utm_source=rss&utm_medium=rss&utm_campaign=alixlabs-closes-15-m-eur-series-a" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Advantest Announces Opening of Strategic Innovation Center</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>爱德万测试宣布设立战略创新中心，在加州圣何塞园区及附近森尼韦尔新建两座创新中心，强化半导体测试设备研发布局。此举显示头部测试设备商正通过区域化创新网络加速技术迭代，应对先进制程对测试精度与效率的更高要求。国内测试设备企业可借鉴其“贴近客户+前沿研发”双轮驱动模式，提升本地化服务能力与核心技术突破效率。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/advantest-announces-opening-of-strategic-innovation-center/?utm_source=rss&utm_medium=rss&utm_campaign=advantest-announces-opening-of-strategic-innovation-center" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">This Lab’s Research Is A Little Extreme</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>亚利桑那州立大学的极端环境实验室专注于在极端严苛条件下测试半导体技术，凸显材料稳定性和器件可靠性在航天、国防等高端应用中的关键地位。此类研究有助于推动耐辐射、耐高温半导体器件的发展，为下一代高可靠性电子系统提供技术支撑，对提升极端工况下的芯片性能具有重要意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/this-labs-research-is-a-little-extreme/?utm_source=rss&utm_medium=rss&utm_campaign=this-labs-research-is-a-little-extreme" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Lighting the Path for AI: Co‑Packaged Optics Moves from Promise to Production</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>共封装光学（CPO）技术已从长期预期的未来技术转变为AI数据中心迫切的现实需求。这表明，随着AI算力需求激增，传统电互连面临带宽与功耗瓶颈，光互连集成正加速落地。CPO通过将光引擎与芯片封装集成，可显著提升能效与密度，成为支撑下一代AI基础设施的关键路径，标志着光电子在计算系统中的深度嵌入进入实质推进阶段。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/lighting-the-path-for-ai-co-packaged-optics-moves-from-promise-to-production/?utm_source=rss&utm_medium=rss&utm_campaign=lighting-the-path-for-ai-co-packaged-optics-moves-from-promise-to-production" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
