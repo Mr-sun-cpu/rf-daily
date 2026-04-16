@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-16</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-16</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-16 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Give bare-metal multicore processing a try</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题和摘要表明，裸机多核处理技术正受到关注，其核心优势在于提升系统性能与能效表现。所谓“bare-metal”指绕过操作系统直接在硬件上运行应用，可减少中间层开销，尤其适用于对延迟和功耗敏感的场景。多核架构通过并行处理任务，进一步释放计算潜力。该技术对嵌入式系统、边缘计算及实时控制领域具有潜在价值，值得开发者探索实践。</p></div>
+  <a class="intel-link" href="https://www.edn.com/give-bare-metal-multicore-processing-a-try/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">West-MEC Celebrated Opening of Nation’s First K-12 CTE Semiconductor Cleanroom</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>美国西马里科帕教育中心（West-MEC）正式启用其先进制造无尘室，成为全国首个在K-12职业教育体系中设立的大型半导体洁净室，标志着半导体人才培养向基础教育阶段延伸。此举将工程实践与职业课程深度融合，为学生提供半导体制造的真实操作环境。该模式有望推动美国本土半导体人才储备前移，对我国职教体系引入高端制造实训具有借鉴意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/west-mec-celebrated-opening-of-nations-first-k-12-cte-semiconductor-cleanroom/?utm_source=rss&utm_medium=rss&utm_campaign=west-mec-celebrated-opening-of-nations-first-k-12-cte-semiconductor-cleanroom" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Silicon Box Announces Plans to Join Imec Automotive Chiplet Program</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Silicon Box宣布加入imec汽车芯片小芯片计划，表明其正通过与行业领导者合作，推动符合车规级标准的先进封装小芯片技术发展。此举凸显小芯片架构在提升汽车芯片性能与集成度方面的战略价值，也反映imec在构建汽车半导体创新生态中的枢纽作用。对国内而言，强化先进封装与车规认证协同，或是切入高端车载芯片市场的关键路径。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/silicon-box-announces-plans-to-join-imec-automotive-chiplet-program/?utm_source=rss&utm_medium=rss&utm_campaign=silicon-box-announces-plans-to-join-imec-automotive-chiplet-program" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Cadence and NVIDIA Expand Partnership</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Cadence与NVIDIA深化合作，将自主AI、物理仿真与数字孪生技术结合，推动半导体、物理AI系统及AI工厂的研发效率跃升。此次合作凸显EDA与GPU巨头在AI驱动设计流程中的战略协同，通过融合生成式AI与多物理场仿真，有望重塑芯片设计范式，加速从架构探索到制造落地的全链条创新。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/cadence-and-nvidia-expand-partnership/?utm_source=rss&utm_medium=rss&utm_campaign=cadence-and-nvidia-expand-partnership" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Molex Announces Agreement to Acquire Teramount Ltd.</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Molex宣布收购以色列公司Teramount Ltd.，后者专注于开发可拆卸光纤-芯片连接技术，适用于高容量共封装光学（CPO）及其他硅光应用。此次收购表明Molex正加强在高速光互连领域的布局，以应对数据中心和AI驱动的高带宽需求。Teramount的技术有助于提升光模块与芯片间的连接密度与可维护性，推动CPO商业化进程。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/molex-announces-agreement-to-acquire-teramount-ltd/?utm_source=rss&utm_medium=rss&utm_campaign=molex-announces-agreement-to-acquire-teramount-ltd" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">EdgeCortix Announces New Investment from Axiro Semiconductor and MPower Partners</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>EdgeCortix获得Axiro Semiconductor与MPower Partners的新一轮投资，凸显边缘AI芯片领域持续受到资本关注。该公司专注能效优化的边缘AI处理器设计，采用无晶圆厂模式，此次融资将助力其技术迭代与市场拓展。Axiro作为半导体产业资本，MPower则侧重科技投资，双方入局反映对低功耗边缘计算前景的看好，或推动相关生态布局加速。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/edgecortix-announces-new-investment-from-axiro-semiconductor-and-mpower-partners/?utm_source=rss&utm_medium=rss&utm_campaign=edgecortix-announces-new-investment-from-axiro-semiconductor-and-mpower-partners" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Sivers Semiconductors Collaborates With Jabil</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Sivers Semiconductors与全球制造解决方案企业Jabil达成合作，标志着这家专注于毫米波技术的瑞典半导体公司进一步拓展其供应链与工程化能力。此次合作可能聚焦于高频通信、雷达或光电子模块的规模化生产，借助Jabil的全球制造网络加速产品商业化。对于依赖高端射频技术的应用领域而言，此类合作有助于提升技术落地的稳定性与交付效率。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/sivers-semiconductors-collaborates-with-jabil/?utm_source=rss&utm_medium=rss&utm_campaign=sivers-semiconductors-collaborates-with-jabil" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Terry Berke Honored with Si2 Outstanding Contributions Award</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-15</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>核心信息翻译：半导体行业集成倡议机构Silicon Integration Initiative（Si2）授予Terry Berke二十五年来在半导体营销和沟通方面的卓越贡献的Si2优秀贡献奖。 技术/商业背景：Terry Berke是一位资深的半导体行业从业者，在半导体行业中拥有丰富的销售和市场营销经验。Si2是一个行业协作机构，致力于促进半导体行业的发展和创新。 对国内射频产业的影响或启示：这一奖项的授予不仅是对Terry Berke的个人贡献的肯定，也是对半导体行业的一种认可和鼓励。中国的射频产业也需要培养更多的优秀人才，并且建立起更多的行业协作机构，以推动产业的发展和创新。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/terry-berke-honored-with-si2-outstanding-contributions-award/?utm_source=rss&utm_medium=rss&utm_campaign=terry-berke-honored-with-si2-outstanding-contributions-award" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
