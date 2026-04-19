@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-19</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-19</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-19 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Nordic Semiconductor appoints Jo Uthus as EVP of Marketing and Developer Experience</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Nordic Semiconductor新设营销与开发者体验执行副总裁职位，任命Jo Uthus担任该职，旨在强化其低功耗无线连接技术生态系统的开发者支持能力。此举凸显该公司正将开发者群体视为战略核心，通过提升开发者体验推动无线芯片平台的技术采纳与社区建设。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nordic-semiconductor-appoints-jo-uthus-as-evp-of-marketing-and-developer-experience/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AMD partners with France to power AI research and exascale supercomputing</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AMD与法国政府达成合作，旨在推动人工智能研究并扩展先进算力基础设施，强化法国在全球AI生态中的地位。该合作涵盖科研支持、教育推广及初创企业扶持，凸显AMD在高性能计算领域的战略布局。此举将助力法国加速构建自主AI与超算能力，同时深化AMD在欧洲高端技术市场的影响力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/amd-partners-with-france-to-power-ai-research-and-exascale-supercomputing/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">EU updates tech licensing competition rules for the data era</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/eu-updates-tech-licensing-competition-rules-for-the-data-era/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AECC rolls out data first architecture for automotive services</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AECC推出面向汽车服务的数据优先架构，旨在应对智能汽车数据量激增带来的挑战。该架构强调以数据为核心重构车载计算体系，通过白皮书提出系统性方案，助力行业规模化部署数据驱动型服务。此举反映汽车产业正加速向数据密集型架构转型，对车载通信、边缘计算和数据处理技术提出更高要求。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/aecc-rolls-out-data-first-architecture-for-automotive-services/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Infineon rad-hard semiconductors validated in Artemis II mission</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英飞凌抗辐射半导体在NASA阿尔忒弥斯二号任务中通过深空环境验证。此次任务不仅实现了载人绕月飞行，更在实际太空环境中检验了关键电子元器件的可靠性。作为深空探测任务的重要组成部分，抗辐射半导体对保障航天器电子系统在极端辐射条件下的稳定运行至关重要，此次成功验证凸显了英飞凌在航天级芯片领域的技术实力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/infineon-rad-hard-semiconductors-validated-in-artemis-ii-mission/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Teradyne snaps up TestInsight to boost ATE for semiconductors</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-17</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Teradyne收购TestInsight旨在增强其半导体自动测试设备（ATE）能力，重点扩展芯片流片前的验证环节。此次并购反映ATE厂商正通过整合前端验证工具链，提升对先进制程芯片的测试覆盖与效率。对国内ATE企业而言，强化设计-测试协同能力或成差异化竞争关键。</p></div>
+  <a class="intel-link" href="https://www.edn.com/teradyne-snaps-up-testinsight-to-boost-ate-for-semiconductors/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Bluetooth LE throughput: Why real‑world performance falls short of specs</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-17</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题指出蓝牙低功耗（BLE）的实际吞吐量常低于理论规格，摘要暗示连接事件时序、控制器行为及干扰是关键影响因素。这表明BLE性能受限于协议栈调度机制与物理层环境，尤其在密集无线场景中，微秒级时序偏差或信道冲突即可显著降低有效数据速率，凸显实际部署需优化链路参数与抗干扰策略。</p></div>
+  <a class="intel-link" href="https://www.edn.com/bluetooth-le-throughput-why-real-world-performance-falls-short-of-specs/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMIquest Pop-Up Exhibition at Arizona Science Center Extended Through May 31</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-17</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMI基金会宣布，其在亚利桑那科学中心举办的沉浸式STEM互动展览“SEMIquest”将延长展期。该展览通过动手实践激发青少年对半导体科技的兴趣，展期延长有助于扩大公众参与度和教育影响力，体现行业对STEM人才培养的持续投入。此举或推动更多地区引入类似科技普及项目。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/semiquest-pop-up-exhibition-at-arizona-science-center-extended-through-may-31/?utm_source=rss&utm_medium=rss&utm_campaign=semiquest-pop-up-exhibition-at-arizona-science-center-extended-through-may-31" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
