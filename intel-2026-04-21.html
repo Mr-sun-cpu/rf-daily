@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-21</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-21</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-21 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Race Rock sign clamp gets TxDOT approval</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Race Rock推出一款一体式标志杆夹，专为德州公路项目中的三角形滑移底座系统设计，已获得德州交通部（TxDOT）批准。该产品旨在简化分包商的安装流程，提升施工效率与安全性，反映出交通基础设施领域对标准化、易安装配件的持续需求，可能推动同类配件在公共工程中的采用。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/race-rock-sign-clamp-gets-txdot-approval/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMI forum targets Europe’s semiconductor strategy</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMI将于今年夏季在布鲁塞尔举办欧洲政策论坛，聚焦欧洲半导体战略，探讨该地区在全球芯片格局中的定位。此次会议汇聚政策制定者与产业领袖，旨在应对日益复杂的国际竞争与供应链挑战。此举凸显欧洲正积极协调政企资源，推动本土半导体生态建设，以增强技术自主与产业韧性。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/semi-forum-targets-europes-semiconductor-strategy/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Bosch Executive Erik Rein Elected New President of ESIA</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>博世高管埃里克·赖因（Erik Rein）当选欧洲半导体行业协会（ESIA）新任主席，接替因内部职责调整而卸任的迈克尔·布德（Michael Budde）。这一人事变动反映了博世在欧洲半导体产业治理中的持续影响力，也凸显跨国企业高管在行业组织中的关键桥梁作用。ESIA领导层的平稳过渡有助于维持欧洲半导体战略推进的连贯性。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/bosch-executive-erik-rein-elected-new-president-of-esia/?utm_source=rss&utm_medium=rss&utm_campaign=bosch-executive-erik-rein-elected-new-president-of-esia" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Omdia: AMOLED Smartphone Display Shipments Expected to Decline Sharply in 2026</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/omdia-amoled-smartphone-display-shipments-expected-to-decline-sharply-in-2026/?utm_source=rss&utm_medium=rss&utm_campaign=omdia-amoled-smartphone-display-shipments-expected-to-decline-sharply-in-2026" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">New Report Shows South Wales Semiconductor Cluster Now Supports £436m for Welsh Economy and 3,140 Jobs</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>威尔士南部化合物半导体产业集群对地区经济的拉动作用持续增强，最新报告显示其年经济贡献已达4.36亿英镑增加值，并支撑超3000个就业岗位。该集群依托CSconnected平台整合产学研资源，凸显英国在第三代半导体领域的战略布局。这一成果表明，区域性半导体生态建设对地方经济与高技术就业具有显著带动效应，值得国内产业园区借鉴。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/new-report-shows-south-wales-semiconductor-cluster-now-supports-436m-for-welsh-economy-and-3140-jobs/?utm_source=rss&utm_medium=rss&utm_campaign=new-report-shows-south-wales-semiconductor-cluster-now-supports-436m-for-welsh-economy-and-3140-jobs" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Advanced Chip and Circuit Materials Introduces Negative and Near-Zero CTE Materials to Eliminate Thermomechanical Constraints for Large-Format AI Chips</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出，大型AI芯片因电路板与芯片间热膨胀系数（CTE）不匹配而面临扩展瓶颈。新材料引入负或接近零CTE材料，旨在消除热机械应力，提升芯片可靠性与集成度。这一突破对高算力芯片封装技术具有关键意义，尤其适用于需长期稳定运行的大规模AI系统，可能推动先进封装材料技术革新。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/advanced-chip-and-circuit-materials-introduces-negative-and-near-zero-cte-materials-to-eliminate-thermomechanical-constraints-for-large-format-ai-chips/?utm_source=rss&utm_medium=rss&utm_campaign=advanced-chip-and-circuit-materials-introduces-negative-and-near-zero-cte-materials-to-eliminate-thermomechanical-constraints-for-large-format-ai-chips" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Semiconductor Test Vision Using Data</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻提出了一种基于数据的半导体测试新愿景，核心是通过“动态KPI智能”架构实现预测性与自适应测试。该架构整合联邦数据管道、机器学习模型及角色化洞察，旨在提升测试效率与精准度。这反映出半导体测试正从传统固定流程向数据驱动、智能化方向演进，对提升芯片良率与测试经济性具有潜在价值。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/semiconductor-test-vision-using-data/?utm_source=rss&utm_medium=rss&utm_campaign=semiconductor-test-vision-using-data" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Operations Engineering: Hidden Yield Lever in Advanced Semiconductor Packaging</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出，运营工程在先进封装中是一项被忽视的良率提升杠杆。通过早期支持迭代学习和结构化执行，企业能够更顺畅地从工程验证过渡到可重复量产。这表明在封装技术日益复杂的背景下，系统性工程管理对稳定良率、降低试错成本具有关键作用，尤其适用于高密度互连、异构集成等先进工艺场景。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/operations-engineering-hidden-yield-lever-in-advanced-semiconductor-packaging/?utm_source=rss&utm_medium=rss&utm_campaign=operations-engineering-hidden-yield-lever-in-advanced-semiconductor-packaging" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
