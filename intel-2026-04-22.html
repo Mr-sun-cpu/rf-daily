@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-22</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-22</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-22 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Apple CEO transition as Tim Cook hands over to John Ternus</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>苹果确认领导层交接，蒂姆·库克将卸任CEO，由硬件工程高级副总裁约翰·特努斯接任。库克转任执行董事长，标志着苹果进入后库克时代。此次交接为长期规划，体现苹果管理层继任机制的成熟。特努斯作为硬件负责人上位，或预示苹果将更聚焦产品创新与技术整合，延续其高端硬件战略。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/apple-ceo-transition-tim-cook-john-ternus/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">What’s the impact of AI on analog design</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AI对模拟电路设计的影响尚处初期阶段，但已开始改变传统设计流程。标题与摘要表明，人工智能正逐步介入模拟设计领域，可能提升设计效率与精度。尽管当前影响有限，但AI有望优化参数调优、版图生成等复杂任务，推动模拟芯片设计向自动化、智能化演进，为行业带来方法论层面的变革。</p></div>
+  <a class="intel-link" href="https://www.edn.com/whats-the-impact-of-ai-on-analog-design/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Simple circuit interfaces differential capacitance sensor</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻介绍了一种基于SR锁存器和两个RC网络的简易电路，用于差分电容传感器接口设计。相比传统方案，该结构通过双RC网络配合SR锁存器实现电容变化检测，简化了信号调理电路复杂度，适用于对成本和空间敏感的应用场景。这种设计思路为低功耗、高集成度传感器前端开发提供了新路径。</p></div>
+  <a class="intel-link" href="https://www.edn.com/simple-circuit-interfaces-differential-capacitance-sensor/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ISRL USA and AI Infrastructure Partners Sign MOU to Build America’s First Dedicated Semiconductor SubFAB R&D Facility</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ISRL USA与AI Infrastructure Partners签署谅解备忘录，合作建设美国首个专用半导体SubFAB研发设施。该合作将ISRL的中立研发平台与AIIP的基础设施投入结合，旨在解决半导体行业在可持续性方面的关键短板。SubFAB作为晶圆厂支持系统的核心，涵盖气体、化学品与废水处理等关键子系统，此研发设施有望推动美国在半导体制造底层技术上的自主可控与绿色升级。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/isrl-usa-and-ai-infrastructure-partners-sign-mou-to-build-americas-first-dedicated-semiconductor-subfab-rd-facility/?utm_source=rss&utm_medium=rss&utm_campaign=isrl-usa-and-ai-infrastructure-partners-sign-mou-to-build-americas-first-dedicated-semiconductor-subfab-rd-facility" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMICON Southeast Asia 2026 to Convene Leaders in Malaysia to Drive Next Phase of Semiconductor Growth</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMICON Southeast Asia 2026将于5月上旬在吉隆坡MITEC举办，作为东南亚地区半导体与电子制造供应链的核心平台，该展会持续强化马来西亚在区域产业链中的枢纽地位。此举有助于推动当地技术生态整合，吸引国际资源投入，为区域半导体下一阶段发展提供战略对接窗口，凸显东南亚在全球供应链中日益提升的重要性。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/semicon-southeast-asia-2026-to-convene-leaders-in-malaysia-to-drive-next-phase-of-semiconductor-growth/?utm_source=rss&utm_medium=rss&utm_campaign=semicon-southeast-asia-2026-to-convene-leaders-in-malaysia-to-drive-next-phase-of-semiconductor-growth" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Turning the MIPI A-PHY Standard into Camera Design Advantage</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻聚焦MIPI A-PHY标准如何通过传感器集成优化相机设计，在尺寸、功耗和成本方面实现优势。作为车规级高速串行接口标准，A-PHY支持长距离、高可靠性的图像数据传输，其集成化设计可减少外围器件，简化系统架构。这一趋势将推动车载摄像头模组向更高集成度发展，降低整车电子系统复杂度。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/turning-the-mipi-a-phy-standard-into-camera-design-advantage/?utm_source=rss&utm_medium=rss&utm_campaign=turning-the-mipi-a-phy-standard-into-camera-design-advantage" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Safety, Purity and Performance in Semiconductor Cleanroom Environments</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻聚焦半导体洁净室环境中的安全、纯净与性能要求，强调气动双隔膜泵在先进制程中的关键作用。这类泵因无电火花、密封性好，适用于输送高纯度化学品，契合晶圆制造对污染控制的严苛标准。其无泄漏特性可提升生产安全性与材料纯度，助力先进节点工艺的稳定运行，凸显辅助设备在半导体制造中的战略价值。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/safety-purity-and-performance-in-semiconductor-cleanroom-environments/?utm_source=rss&utm_medium=rss&utm_campaign=safety-purity-and-performance-in-semiconductor-cleanroom-environments" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Can Filtration Keep Up with Airborne Molecular Contamination Control Limits?</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>随着空气污染分子控制限值逼近亚ppb级别，传统过滤介质及输送系统面临严峻挑战。当前半导体制造等高精度工业对洁净环境要求日益严苛，现有技术可能难以持续满足超低浓度污染物控制需求。这意味着过滤材料需突破吸附效率极限，同时系统级设计必须优化气流分布与密封性，以防微量分子渗透。行业亟需在材料与工程协同创新上取得进展。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/can-filtration-keep-up-with-airborne-molecular-contamination-control-limits/?utm_source=rss&utm_medium=rss&utm_campaign=can-filtration-keep-up-with-airborne-molecular-contamination-control-limits" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
