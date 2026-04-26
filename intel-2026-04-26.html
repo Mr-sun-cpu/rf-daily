@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-26</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-26</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-26 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Gartner projects IT spending at $6.31 Trillion in 2026 on AI surge</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/gartner-projects-it-spending-at-6-31-trillion-in-2026-on-ai-surge/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Quectel expands IoT reach in Brazil with Vermont partnership</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Quectel通过与巴西Vermont Brasil建立合作伙伴关系，强化其在巴西的物联网布局，旨在推动该地区物联网技术的普及。此次合作将Vermont Brasil定位为Quectel在当地的区域代表，负责推广其全系列无线通信产品。此举有助于Quectel借助本地渠道资源，提升在拉美市场的渗透力和服务响应能力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/quectel-expands-iot-reach-in-brazil-with-vermont-partnership/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Autonomous material handling stack links Thoro and Orbbec</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Thoro在MODEX展会上推出模块化自主平台CoreFlex，结合其软件与Orbbec 3D视觉技术，实现多类工业车辆的无基础设施导航与搬运。该平台通过软硬件协同，提升物料处理系统的灵活性与适应性，适用于复杂动态工业环境。此次合作体现3D感知与自主系统融合趋势，为智能仓储自动化提供可扩展解决方案。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/autonomous-material-handling-stack-links-thoro-and-orbbec/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ROHM advances SiC MOSFETs for high-temperature power systems</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ROHM推出第五代碳化硅（SiC）MOSFET，旨在降低高压功率转换系统中的导通损耗。新一代器件在高温环境下导通电阻较前代降低约30%，显著提升高温工作稳定性。该技术突破有助于提升电动汽车、工业电源等高温高功率应用的能效与可靠性，推动SiC在严苛环境中的商业化进程。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/rohm-advances-sic-mosfets-for-high-temperature-power-systems/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ST targets wide-voltage precision with new op amps</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>意法半导体推出新型双运放TSB192，瞄准宽电压高精度应用市场。该器件在保持低失调电压的同时扩展了工作电压范围，填补了传统精密运放与高电压方案之间的性能空白。此举强化了其在工业传感、电源管理及数据采集等对精度与电压适应性要求较高领域的竞争力，体现模拟芯片向高集成、宽域适应发展的趋势。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/st-targets-wide-voltage-precision-with-new-op-amps/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">NVIDIA and Google Cloud target physical AI factories</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英伟达与谷歌云深化合作，将GPU基础设施、机密计算与谷歌重构的企业级智能体技术整合，共同推动“物理AI工厂”发展。此举显示两大科技巨头正瞄准工业级AI落地场景，通过云端协同架构加速实体产业智能化。合作聚焦可信计算与自动化系统，可能重塑制造业AI部署模式，凸显云边协同在物理世界AI应用中的战略价值。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nvidia-google-cloud-physical-ai-factories/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">OE-A publishes 10th edition of “Roadmap for Flexible and Printed Electronics”</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>OE-A发布第十版“柔性及印刷电子路线图”，标志该技术领域进入成熟发展阶段。作为有机与印刷电子行业协会的权威文件，该路线图系统梳理了技术现状与应用前景，反映行业对柔性电子产业化路径的持续共识。此次更新凸显该技术从实验室向规模化应用过渡的趋势，为材料、器件及制造工艺的标准化提供方向指引。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/oe-a-roadmap-for-flexible-and-printed-electronics/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">HCLTech FY26 revenue rises 3.9% as Advanced AI demand accelerates</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-26</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>HCLTech本财年营收实现温和增长，反映出在宏观经济环境复杂背景下，企业对AI驱动服务的需求持续释放。尽管整体增速平稳，但以恒定汇率计算的增长表明其国际业务具备一定韧性。人工智能相关服务正逐步成为推动其收入结构优化的重要动力，显示传统IT服务商向高附加值技术解决方案转型的趋势正在加速。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/hcltech-fy26-revenue-rises-3-9-as-advanced-ai-demand-accelerates/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
