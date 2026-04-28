@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-28</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-28</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-28 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">MATCH Act targets chip tool exports to China</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>美国两党推动的MATCH法案正通过众议院外交事务委员会审议，旨在以立法形式强化对华半导体设备出口管制，减少商务部工业与安全局（BIS）的自由裁量权。此举意味着对华技术出口限制将从行政管控转向更具强制力的法律框架，可能长期影响全球半导体供应链格局，尤其加大中国获取先进制程设备的难度。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/match-act-chip-tool-exports-china/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Musk teams with Intel for Terafab plans</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>马斯克正与英特尔合作推进“Terafab”计划，旨在为其旗下特斯拉、SpaceX和xAI等公司构建AI芯片的稳定供应链。该计划涉及建设一系列高性能晶圆厂，目标是未来十年内实现每年一太瓦的算力产出。此举反映马斯克正深度布局半导体上游，以应对AI与航天领域对先进制程芯片的长期需求，减少对外部代工的依赖。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/musk-teams-with-intel-for-terafab-plans/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Siemens and TSMC expand AI-driven chip design collaboration</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>西门子与台积电深化合作，将AI驱动的自动化技术扩展至半导体设计全流程，旨在提升先进制程开发效率。此举基于双方既有合作基础，聚焦AI在芯片设计中的深度应用，推动设计流程智能化。此次合作凸显全球半导体巨头正加速整合AI技术以应对先进节点设计复杂度的持续攀升。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/siemens-and-tsmc-expand-ai-driven-chip-design-collaboration/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Altilium EV battery recycling expands with new investment round</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Altilium公司正在扩大电动汽车电池回收业务，新一轮融资在Republic Europe平台启动，此前已获得英国政府1850万英镑资助。此举旨在提升其本土回收能力，强化英国电动汽车产业链的可持续性。作为英国清洁技术企业，Altilium的扩张反映出欧洲对电池资源循环和供应链安全的重视，有望推动区域电池回收技术升级与产业生态构建。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/altilium-ev-battery-recycling-expands-with-new-investment-round/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Credo to unveil AI interconnect solutions at TSMC 2026 Symposium</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>核心信息：Credo Technology Group 将在 TSMC 2026 技术研讨会上展示其最新的人工智能基础设施高速连接解决方案。 技术/商业背景：Credo Technology Group 是一家专注于提供半导体解决方案的公司，其中一项关键技术是高速连接解决方案，用于满足人工智能应用的快速数据传输需求。TSMC 是全球最大的硅片制造商，其技术研讨会是展示最新技术和趋势的重要平台。 对国内射频产业影响或启示：Credo 在 TSMC 2026 技术研讨会上展示其最新的人工智能基础设施高速连接解决方案，可能会推动国内射频产业加速发展，同时也提示我们需要关注人工智能应用对高速连接技术的需求和发展趋势。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/credo-to-unveil-ai-interconnect-solutions-at-tsmc-2026-symposium/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Engineering the perfect flow with peristaltic pumps</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-27</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题“Engineering the perfect flow with peristaltic pumps”表明文章聚焦蠕动泵的精密流体控制工程应用。摘要提及介绍蠕动泵基本原理，结合配图可见其强调泵体结构与流体输送机制。该主题通常涉及医疗设备、实验室仪器等对无污染、高精度流体传输有严苛要求的场景，反映蠕动泵在避免流体接触泵体部件方面的核心优势，适用于对洁净度与稳定性要求较高的工业与科研领域。</p></div>
+  <a class="intel-link" href="https://www.edn.com/engineering-the-perfect-flow-with-peristaltic-pumps/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMIEXPO Heartland 2026 Spotlights Innovation in Next-Generation Automotive Electronics and Smart Manufacturing</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-27</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMIEXPO Heartland 2026聚焦下一代汽车电子与智能制造创新，第二届展会于底特律开幕，重点探讨智能工厂、车用半导体技术及人才发展。作为美国中西部半导体产业的重要平台，该展会凸显汽车电子化趋势下，智能制造与供应链本地化的战略协同，反映产业向高可靠性、自动化生产转型的迫切需求，对推动区域半导体生态整合具有积极意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/semiexpo-heartland-2026-spotlights-innovation-in-next-generation-automotive-electronics-and-smart-manufacturing/?utm_source=rss&utm_medium=rss&utm_campaign=semiexpo-heartland-2026-spotlights-innovation-in-next-generation-automotive-electronics-and-smart-manufacturing" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ACM Research Ships First PECVD SiCN System for Advanced Semiconductor Applications</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-27</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ACM Research成功交付首台PECVD SiCN设备，用于先进半导体应用。其专有的三工位旋转沉积架构可支持后端制程（BEOL）及先进封装等严苛工艺需求。这表明国产半导体设备厂商正突破关键薄膜沉积技术，尤其在碳化硅氮化物这类高壁垒材料领域实现设备国产化突破，有望提升在先进制程和封装市场的竞争力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/acm-research-ships-first-pecvd-sicn-system-for-advanced-semiconductor-applications/?utm_source=rss&utm_medium=rss&utm_campaign=acm-research-ships-first-pecvd-sicn-system-for-advanced-semiconductor-applications" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
