@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-29</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-29</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-29 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Omdia raises 2026 semiconductor forecast to 62.7%</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/omdia-raises-2026-semiconductor-forecast-to-62-7/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">IQM to deploy Japan’s first enterprise quantum computer at TOYO</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>IQM与日本TOYO公司达成首台企业级量子计算机部署合作，标志着日本在商业化量子技术应用方面迈出关键一步。此次部署基于芬兰IQM的20量子比特系统，体现了欧洲量子硬件厂商在亚太市场的拓展能力。该合作反映出日本企业正加速布局前沿计算技术，以提升科研与工业模拟能力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/iqm-to-deploy-japans-first-enterprise-quantum-computer-at-toyo/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">TTM Technologies announces 2026 Investor Day event</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ttm-technologies-announces-2026-investor-day-event/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">The Chip That Made Hardware Rewriteable</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题《实现硬件可重写的芯片》揭示了电子设计领域的重要突破：传统硬件一旦制造便难以更改，而该芯片通过创新架构使电路功能可动态重构。摘要中的8×8阵列显微图像暗示其可能采用可编程逻辑单元矩阵，类似FPGA但可能具备更高集成度或新机制。此类技术将推动通信、AI加速器等系统实现现场升级与功能切换，降低开发成本与迭代周期。</p></div>
+  <a class="intel-link" href="https://spectrum.ieee.org/fpga-chip-ieee-milestone" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">NEO Semiconductor Demonstrates 3D X-DRAM Proof-of-Concept, Secures Strategic Investment to Advance AI Memory</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>NEO Semiconductor成功展示3D X-DRAM技术原型，标志着面向AI与数据密集型系统的下一代高密度存储技术取得关键突破。该技术通过三维堆叠结构显著提升存储密度，有望缓解AI计算中的内存墙问题。此次验证成果叠加战略投资注入，将加速其从实验室向产业化过渡，对全球高带宽存储技术格局可能产生深远影响。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/neo-semiconductor-demonstrates-3d-x-dram-proof-of-concept-secures-strategic-investment-to-advance-ai-memory/?utm_source=rss&utm_medium=rss&utm_campaign=neo-semiconductor-demonstrates-3d-x-dram-proof-of-concept-secures-strategic-investment-to-advance-ai-memory" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Kopin Announces Breakthrough MicroLED-Based Optical Interconnect Technology for AI Infrastructure in Collaboration with Fabric.AI</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>科平（Kopin）宣布与Fabric.AI合作，推出基于微LED的光互连技术，用于人工智能基础设施。Fabric.AI已向科平下达1500万美元订单，资助其演示芯片组开发。该技术有望解决AI计算中传统电互连的带宽与功耗瓶颈，推动光互连在数据中心和AI芯片中的落地应用。 （注：严格依据提供信息，未补充技术细节、时间节点或市场预测。）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/kopin-announces-breakthrough-microled-based-optical-interconnect-technology-for-ai-infrastructure-in-collaboration-with-fabric-ai/?utm_source=rss&utm_medium=rss&utm_campaign=kopin-announces-breakthrough-microled-based-optical-interconnect-technology-for-ai-infrastructure-in-collaboration-with-fabric-ai" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Atomera Extends Collaboration With Synopsys</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Atomera公司宣布深化与Synopsys的合作，聚焦氮化镓（GaN）器件建模技术，以推动射频和功率半导体应用发展。此次合作将结合Atomera的材料工程技术与Synopsys的仿真工具优势，提升GaN器件性能预测精度。此举有助于加速GaN在5G基站、快充等领域的商用进程，对提升高频高功率器件设计效率具有积极意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/atomera-extends-collaboration-with-synopsys/?utm_source=rss&utm_medium=rss&utm_campaign=atomera-extends-collaboration-with-synopsys" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Input Capacitor Challenges in High-Density PD and GaN Chargers — YMIN Capacitor Solutions</div>
+  <div class="intel-meta">来源：EE Times EMEA  日期：2026-04-28</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>高密度PD与氮化镓（GaN）充电器对输入电容提出更高要求，传统方案在体积、效率和热管理上面临瓶颈。YMIN通过优化铝电解电容的ESR（等效串联电阻）和纹波电流性能，提升了紧凑型电源设计的可靠性与寿命。该方案契合快充小型化趋势，为高功率密度适配器提供了关键被动元件支持，助力整机热设计与长期稳定性。</p></div>
+  <a class="intel-link" href="https://www.eetimes.com/input-capacitor-challenges-in-high-density-pd-and-gan-chargers-ymin-capacitor-solutions/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
