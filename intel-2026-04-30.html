@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-04-30</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-04-30</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-04-30 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">TSMC SoIC roadmap targets 2029 chip stacking</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>台积电正推进其SoIC 3D芯片堆叠技术路线图，目标实现更精细的互连间距与更高集成度，以应对AI和高性能计算对先进封装日益增长的需求。随着摩尔定律放缓，先进封装已成为提升芯片性能的关键路径，台积电此举旨在巩固其在异构集成领域的技术领先地位。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/tsmc-soic-roadmap-2029-chip-stacking/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">onsemi and Geely expand SiC collaboration for next-gen EV platforms</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>安森美与吉利扩大SiC合作，聚焦下一代电动与混动平台，深化碳化硅技术在整车平台的集成。此举显示双方在电驱系统效率与功率密度提升上的共同目标，SiC器件对高压快充与能耗优化至关重要。合作将强化吉利在新能源车核心三电领域的自主可控能力，同时提升安森美在亚洲汽车半导体市场的渗透。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/onsemi-and-geely-expand-sic-collaboration-for-next-gen-ev-platforms/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Satellite connected cattle collars expand remote ranching</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Halter推出直连卫星网络的智能牛项圈，将虚拟围栏技术拓展至偏远牧场。该技术摆脱了对地面蜂窝网络和本地基础设施的依赖，使广袤无信号区域的放牧管理成为可能。此举标志着畜牧业远程监控进入卫星直连新阶段，为地广人稀地区的智慧牧业提供了基础设施突破，有望重塑传统放牧模式。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/satellite-connected-cattle-collars-expand-remote-ranching/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SK hynix begins mass production of 192GB AI server memory</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SK海力士已开始量产192GB SOCAMM2内存模块，面向下一代AI服务器，旨在提供更高性能与更低功耗。该产品基于其1cnm（第六代10纳米级）LPDDR5X DRAM工艺，标志着高密度服务器内存技术的进一步演进。此举将增强AI数据中心在内存带宽与能效方面的竞争力，推动高性能计算基础设施升级。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/sk-hynix-begins-mass-production-of-192gb-ai-server-memory/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">2Trust.AI and Carahsoft partner to scale AI governance for public sector</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>2Trust.AI与Carahsoft合作，旨在为公共部门提供AI治理与合规工具，应对日益严格的监管要求。此次合作将借助Carahsoft广泛的政府渠道资源，推动2Trust.AI平台在公共机构的规模化部署。此举反映出公共领域对可信AI治理工具的迫切需求，也凸显AI合规正成为政企合作的新焦点。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/2trust-ai-and-carahsoft-partner-to-scale-ai-governance-for-public-sector/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Rohm shrinks NFC charging for wearables</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Rohm推出ML7670/ML7671无线芯片组，专为可穿戴设备的小型化NFC充电设计，通过高度集成的方案显著缩小了传统无线充电模块的体积。此举顺应了可穿戴市场对轻薄化与无端口设计的需求，利用NFC近场通信技术实现能量传输与数据交互的融合。该进展有望推动智能手表、健康监测器等设备向更紧凑、密封性更强的方向演进。</p></div>
+  <a class="intel-link" href="https://www.edn.com/rohm-shrinks-nfc-charging-for-wearables/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Timing module enables vRAN synchronization</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻介绍Microchip推出一款M.2接口的即插即用定时模块（MD-990-0011-B），旨在为虚拟化无线接入网（vRAN）提供高精度同步支持。vRAN架构对时间同步要求严苛，尤其在分布式单元与射频单元间需维持微秒级对齐。此类模块有助于简化vRAN部署，提升网络时间同步的可靠性与灵活性，推动开放无线接入网的发展。</p></div>
+  <a class="intel-link" href="https://www.edn.com/timing-module-enables-vran-synchronization/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">POLYN Technology Announces Tapeout of Automotive Chip</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-29</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>POLYN Technology完成车规级芯片流片，推出基于模拟神经形态核心的VibroSense工程芯片，用于轮胎摩擦监测。该芯片采用其专有的NASP（神经形态模拟信号处理）技术，属于类脑计算在汽车传感领域的创新应用，凸显低功耗边缘智能在智能网联汽车中的拓展潜力，为国内车规级AI芯片设计提供了新路径。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/polyn-technology-announces-tapeout-of-automotive-chip/?utm_source=rss&utm_medium=rss&utm_campaign=polyn-technology-announces-tapeout-of-automotive-chip" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
