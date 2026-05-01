@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-01</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-01</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-01 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Rohde & Schwarz adds Pulsar signal simulation for LEO navigation</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Rohde & Schwarz在其信号发生器产品线中新增脉冲星信号模拟功能，为设备制造商提供针对Xona公司低轨导航服务的接收机测试方案。此举面向生产与验证环节，反映卫星导航产业正积极布局非传统GNSS（如脉冲星导航）的测试基础设施，以应对未来多源融合定位的技术趋势，尤其在高精度、抗干扰场景中具有潜在应用价值。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/rohde-schwarz-adds-pulsar-signal-simulation-for-leo-navigation/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">UL Solutions builds new testing lab in Germany</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>UL Solutions在德国新建测试实验室，标志着其欧洲业务拓展迈出关键一步。该实验室位于Neu-Isenburg，专注于电磁兼容性与无线技术测试，将服务于多个行业的复杂互联系统。此举顺应了欧洲对智能设备和物联网产品合规性要求日益严格的发展趋势，有助于企业加速产品上市并满足区域认证需求。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ul-solutions-builds-new-testing-lab-in-germany/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">IonQ and Florida LambdaRail roll out US quantum-safe network initiative</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>IonQ与佛罗里达LambdaRail合作推出美国量子安全网络计划，标志着量子通信正从实验室迈向现实基础设施。此次合作以佛罗里达州为试点，构建量子安全通信骨干网，是美国在量子网络领域的重要布局，凸显量子加密技术在保障未来通信安全中的战略价值，为其他州及国家提供了可借鉴的示范路径。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ionq-and-florida-lambdarail-roll-out-us-quantum-safe-network-initiative/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Tower Semiconductor and Axiro push high-efficiency SiGe for next-gen radar</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-01</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Tower Semiconductor与Axiro Semiconductor联合推出面向下一代美国国防系统的高性能硅锗（SiGe）波束成形IC系列，目前已进入量产爬坡阶段。该器件针对雷达与卫星通信（satcom）应用优化，凸显SiGe技术在提升高频能效和集成度方面的优势。此举强化了美国在军用射频前端领域的自主供应链布局，同时推动SiGe工艺在高端雷达系统中的渗透。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/tower-semiconductor-and-axiro-push-high-efficiency-sige-for-next-gen-radar/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">With $1 Cyberattacks on the Rise, Durable Defenses Pay Off</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出，低成本网络攻击日益普遍，凸显构建持久防御体系的重要性。标题强调1美元级攻击的上升趋势，暗示攻击门槛降低、威胁频率上升；摘要中“将新发现软件漏洞转化为攻击”的表述，揭示攻击者正高效利用漏洞进行快速渗透。这表明，面对低成本高频率攻击，企业需建立长期、稳健的安全防护机制，而非依赖临时补救措施。</p></div>
+  <a class="intel-link" href="https://spectrum.ieee.org/ai-cyberattacks-memory-safe-code" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻探讨了高压直流（HVDC）海底电缆在电晕效应和电磁场分布方面的传输性能问题，强调尽管实验室或现场测量被视为电力系统设计的金标准，但其存在固有局限，因此仿真技术成为重要补充手段。这反映出在复杂电磁环境下，结合多物理场仿真可更全面评估电缆系统的可靠性与环境影响。</p></div>
+  <a class="intel-link" href="https://events.bizzabo.com/860041" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Altera Brings Determinism to Physical AI Systems with Latest Release of FPGA AI Suite</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Altera发布FPGA AI Suite 26.1.1版本，旨在为物理AI系统提供确定性支持，凸显FPGA在实时性、低延迟场景中的优势。此次更新强化了AI工作负载在硬件层面的可预测性，适用于工业自动化、机器人等对时序要求严苛的领域。作为纯FPGA厂商，Altera正通过软件栈优化推动FPGA在边缘AI中的落地，反映可编程逻辑器件在异构计算中的独特价值。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/altera-brings-determinism-to-physical-ai-systems-with-latest-release-of-fpga-ai-suite/?utm_source=rss&utm_medium=rss&utm_campaign=altera-brings-determinism-to-physical-ai-systems-with-latest-release-of-fpga-ai-suite" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">PsiQuantum Appoints Lip-Bu Tan to Board of Directors</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-04-30</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>PsiQuantum任命半导体行业资深人士、英特尔首席执行官黄仁勋（Lip-Bu Tan）加入董事会，凸显量子计算领域对传统半导体领导力与产业资源的重视。此举可能强化PsiQuantum在光子量子计算路线上的工程化与量产能力布局，借助黄仁勋在芯片制造与生态整合方面的经验，加速其技术从实验室向商业化落地过渡，提升行业信心与战略协同潜力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/psiquantum-appoints-lip-bu-tan-to-board-of-directors/?utm_source=rss&utm_medium=rss&utm_campaign=psiquantum-appoints-lip-bu-tan-to-board-of-directors" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
