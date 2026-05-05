@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-05</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-05</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-05 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">sensiBel MEMS microphone heads to Silex production</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>挪威光学MEMS传感企业sensiBel与瑞典纯MEMS代工厂Silex Microsystems建立供应链合作，其MEMS麦克风正迈向更高产量阶段。此举标志着sensiBel从技术研发向规模化制造的关键过渡，借助Silex在MEMS代工领域的专业能力，有望提升产品良率与市场交付能力，强化其在高性能麦克风细分领域的竞争力。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/sensibel-mems-microphone-silex-production/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMI: Global silicon wafer shipments jump 13% on AI demand</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/semi-global-silicon-wafer-shipments-jump-13-on-ai-demand/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AI drives photonics innovation</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>人工智能正推动光子学技术加速创新，尤其在数据中心领域，光子技术因能显著降低AI系统功耗而备受关注。通过光互连实现芯片与存储间的高效通信，有助于突破当前AI性能瓶颈。产业界正通过并购整合关键光子技术供应商，以抢占下一代AI基础设施的技术制高点。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ai-drives-photonics-innovation/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Advantech adds Intel Core Series 3 to edge AI systems</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>研华科技在其工业嵌入式板卡和边缘AI系统中引入英特尔酷睿第3系列处理器，旨在为空间和功耗受限的应用场景提供轻量级边缘AI推理支持。此举反映出主流处理器平台正加速向边缘计算渗透，通过提升能效比与计算密度，满足工业AI对实时性与可靠性的双重需求。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/advantech-adds-intel-core-series-3-to-edge-ai-systems/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SNU Researchers Develop Battery-Free Skin-Conformal Wearable System</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-04</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>首尔大学研究人员开发出无需电池的皮肤贴合式可穿戴系统，标志着可穿戴设备在供电难题上取得关键突破。该系统摆脱传统电池束缚，有望提升穿戴舒适性与长期使用可靠性。这一进展对柔性电子与低功耗传感技术的发展具有推动作用，可能为未来医疗监测、人机交互等场景提供更可持续的解决方案。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/snu-researchers-develop-battery-free-skin-conformal-wearable-system/?utm_source=rss&utm_medium=rss&utm_campaign=snu-researchers-develop-battery-free-skin-conformal-wearable-system" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Applied Materials Broadens Advanced Packaging Portfolio with Acquisition of NEXX</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-04</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>应用材料公司通过收购NEXX，将其先进封装设备能力扩展至大面积沉积领域，强化了其在半导体后端工艺中的布局。此次交易显示头部设备商正加速整合封装环节技术，以应对异构集成和2.5D/3D封装需求增长。NEXX在薄膜沉积方面的专长有望补足应用材料在先进封装领域的设备组合。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/applied-materials-broadens-advanced-packaging-portfolio-with-acquisition-of-nexx/?utm_source=rss&utm_medium=rss&utm_campaign=applied-materials-broadens-advanced-packaging-portfolio-with-acquisition-of-nexx" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Siemens Achieves $1B in U.S. Manufacturing Investments</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-04</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/siemens-achieves-1b-in-u-s-manufacturing-investments/?utm_source=rss&utm_medium=rss&utm_campaign=siemens-achieves-1b-in-u-s-manufacturing-investments" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AI Accelerator Spec Maintains Rapid Update Pace</div>
+  <div class="intel-meta">来源：EE Times EMEA  日期：2026-05-04</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AI加速器标准持续快速迭代，新版UALink 2.0规范引入网络内计算、小芯片支持及更智能的管理功能，反映出异构计算互联协议正加速演进。此举有助于提升多芯片AI加速器系统的协同效率与扩展性，推动开放生态建设，降低厂商集成门槛，为下一代高性能计算架构奠定基础。</p></div>
+  <a class="intel-link" href="https://www.eetimes.com/ai-accelerator-spec-maintains-rapid-update-pace/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
