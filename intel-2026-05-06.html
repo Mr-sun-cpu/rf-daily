@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-06</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-06</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-06 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">ROHM targets smart rings with ultra-compact NFC wireless power chipset</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ROHM推出专为智能戒指等超紧凑可穿戴设备设计的NFC无线供电芯片组，集成ML7670接收端与ML7671发射端，利用近场通信技术实现短距离高效充电。该技术瞄准日益增长的微型穿戴设备市场，通过高度集成的低功耗方案解决传统无线充电在体积与能效上的瓶颈。此举凸显NFC在微型化供电场景中的潜力，为国产射频与电源管理芯片在细分领域提供新方向。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/rohm-targets-smart-rings-with-ultra-compact-nfc-wireless-power-chipset/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">China silicon wafers push boosts Eswin capacity</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/china-silicon-wafers-eswin-capacity/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AI robotics sales growth rises as Faraday Future expands into education</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>法拉第未来正加速布局具身智能机器人领域，近期销售增长显现，并拓展至教育市场。这一动向表明，该公司正将AI机器人从概念推向实际应用，尤其在教育场景的探索可能为其开辟新的商业化路径。此举或反映具身智能正逐步从工业场景向更广泛民用领域渗透。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ai-robotics-sales-growth-rises-as-faraday-future-expands-into-education/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Microchip expands dsPIC33A controllers for AI data center power</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Microchip扩展dsPIC33A系列，新增dsPIC33AK256MPS306数字信号控制器，瞄准AI数据中心高密度电源转换、电机控制与智能传感应用。该器件融合实时控制、集成模拟功能及抗量子加密支持，强化了在高性能电源管理中的安全与效率，顺应数据中心对高可靠、高集成度控制芯片的需求趋势。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/microchip-expands-dspic33a-controllers-for-ai-data-center-power/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Sharp Increase in Global Semiconductor Sales in Q1 2026</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/sharp-increase-in-global-semiconductor-sales-in-q1-2026/?utm_source=rss&utm_medium=rss&utm_campaign=sharp-increase-in-global-semiconductor-sales-in-q1-2026" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Uviquity Announces the World’s First Chip-Scale Deep-UV Laser at 229nm</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Uviquity公司宣布推出全球首款芯片级229nm深紫外激光器，采用氮化铝光子集成电路技术，将深紫外光源集成到芯片尺度。这一突破使分析仪器与检测设备在半导体、制药、石化、环保及国防等领域实现小型化与高灵敏度检测成为可能。该技术有望推动高端检测设备的微型化与成本优化，为国产光子芯片在深紫外波段的应用提供新思路。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/uviquity-announces-the-worlds-first-chip-scale-deep-uv-laser-at-229nm/?utm_source=rss&utm_medium=rss&utm_campaign=uviquity-announces-the-worlds-first-chip-scale-deep-uv-laser-at-229nm" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Xanadu and EV Group Partner to Build Industrial-Scale Photonic Quantum Hardware</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Xanadu与EV Group合作开发面向光量子系统的异质集成与晶圆键合工艺，旨在推动光子量子硬件的工业化量产。此次合作聚焦于解决光量子芯片在规模化制造中的关键技术瓶颈，尤其是不同材料体系间的高效集成问题。EV Group在半导体键合设备领域的经验将助力Xanadu实现量子处理器的稳定量产，标志着光量子计算从实验室向工业级制造迈出关键一步。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/xanadu-and-ev-group-partner-to-build-industrial-scale-photonic-quantum-hardware/?utm_source=rss&utm_medium=rss&utm_campaign=xanadu-and-ev-group-partner-to-build-industrial-scale-photonic-quantum-hardware" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">TechniQuip Introduces FlightDeck Operating System</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-05</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>TechniQuip推出FlightDeck操作系统，旨在提升其精密OEM照明设备在半导体、生命科学及医疗领域的智能化控制水平。作为面向高端制造设备的底层系统，FlightDeck可能集成设备管理、状态监控与远程调试功能，反映工业照明向数字化、平台化演进的趋势。此举或推动同类厂商加速软件定义硬件的布局。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/techniquip-introduces-flightdeck-operating-system/?utm_source=rss&utm_medium=rss&utm_campaign=techniquip-introduces-flightdeck-operating-system" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
