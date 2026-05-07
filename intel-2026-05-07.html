@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-07</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-07</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-07 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">SEMI names Julie Rogers to lead ESD Alliance</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-07</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMI任命朱莉·罗杰斯（Julie Rogers）担任电子系统设计联盟（ESDA）执行董事，接替即将转任顾问职务的罗伯特·P·史密斯。此举旨在强化SEMI在EDA及半导体设计生态领域的领导力布局。作为行业权威组织，SEMI通过此次人事调整，进一步整合电子系统设计与制造资源，凸显EDA工具链在先进制程研发中的战略地位，为国内EDA企业参与全球标准制定提供潜在合作契机。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/semi-names-julie-rogers-to-lead-esd-alliance/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">FlexIC RFID inlays bring NFC to paper packaging</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-07</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻表明Tageos与Pragmatic Semiconductor深化合作，推出基于FlexIC技术的RFID产品线，用于支持NFC功能的纸质包装与标签。新品EOS Lite与EOS Zero Lite系列搭载Pragmatic的NFC Connect PR1301芯片，其中EOS-932 Zero Lite PR1301作为重点型号亮相，凸显柔性半导体技术在低成本、环保包装领域的应用拓展，推动智能包装向更轻量化、可回收方向发展。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/flexic-rfid-inlays-bring-nfc-to-paper-packaging/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ΔVbe thermometer outputs 1mV/°C without calibration or op amps</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻介绍了一种ΔVbe温度传感器，可在无需校准或运算放大器的情况下实现1mV/°C的输出灵敏度。这表明模拟电路设计正朝着简化架构、降低功耗与成本的方向发展。省去运放不仅减少元件数量和布局复杂度，也提升了系统可靠性，尤其适用于对空间和功耗敏感的温度传感应用，体现了基础模拟技术在精度与简洁性之间的新平衡。</p></div>
+  <a class="intel-link" href="https://www.edn.com/%ce%b4vbe-thermometer-outputs-1mv-c-without-calibration-or-op-amps/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Ten Technology Enablers Shaping the Future of 6G Wireless</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题指出，十项关键技术正在塑造6G无线通信的未来。摘要提及太赫兹通信、人工智能/机器学习及可重构智能表面等技术方向，表明6G发展将深度融合高频谱利用、智能算法与新型网络架构。这些技术将推动通信系统向更高容量、更低时延和自适应环境演进，为未来网络提供底层支撑。</p></div>
+  <a class="intel-link" href="https://content.knowledgehub.wiley.com/ten-key-enablers-for-6g-wireless-communications/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Advent Diamond and Northrop Grumman Set New Record for Diamond-based Solid-State Limiters</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Advent Diamond与诺斯罗普·格鲁曼公司成功刷新了工程金刚石固态限幅器的性能纪录。这一突破凸显了金刚石在极端射频环境下的优异非线性响应特性，适用于高功率微波防护系统。该进展有望推动金刚石半导体在国防电子和5G基站等关键领域的应用，提升系统抗干扰能力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/advent-diamond-and-northrop-grumman-set-new-record-for-diamond-based-solid-state-limiters/?utm_source=rss&utm_medium=rss&utm_campaign=advent-diamond-and-northrop-grumman-set-new-record-for-diamond-based-solid-state-limiters" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">NVIDIA and Corning Announce Long-Term Partnership To Strengthen U.S. Manufacturing for AI Infrastructure</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英伟达与康宁建立长期合作，旨在强化美国人工智能基础设施制造能力。康宁将通过大幅扩展本土光连接产能并新建三座工厂，显著提升美国在高端光学组件领域的自主供应能力。此举不仅推动AI硬件供应链本土化，也反映美国正加速布局关键技术的国内制造生态，以减少对外依赖并增强产业韧性。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/nvidia-and-corning-announce-long-term-partnership-to-strengthen-u-s-manufacturing-for-ai-infrastructure/?utm_source=rss&utm_medium=rss&utm_campaign=nvidia-and-corning-announce-long-term-partnership-to-strengthen-u-s-manufacturing-for-ai-infrastructure" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SPARK Microsystems Honored with Product Innovation Award by Canada’s Semiconductor Council</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>加拿大半导体委员会授予SPARK Microsystems产品创新奖，表彰其SR1120 LE-UWB无线收发器在下一代短距离无线通信技术中的突破。作为专注低功耗超宽带（LE-UWB）技术的无晶圆厂半导体企业，SPARK此次获奖凸显其在物联网、精准定位等新兴应用领域的创新实力，也反映出加拿大在半导体细分赛道的持续布局。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/spark-microsystems-honored-with-product-innovation-award-by-canadas-semiconductor-council/?utm_source=rss&utm_medium=rss&utm_campaign=spark-microsystems-honored-with-product-innovation-award-by-canadas-semiconductor-council" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Siemens Hardware-Assisted Verification Validates Arm AGI CPU for Scalable Agentic AI</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-06</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>西门子通过硬件辅助验证技术助力Arm完成AGI CPU的验证工作，确保其在可扩展智能体AI负载下的性能表现，为下一代AI基础设施提供生产级支持。此次合作凸显EDA工具在先进AI芯片验证中的关键作用，尤其在应对复杂智能体系统对计算架构的高可靠性需求方面，标志着半导体设计流程与AI硬件协同优化的重要进展。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/siemens-hardware-assisted-verification-validates-arm-agi-cpu-for-scalable-agentic-ai/?utm_source=rss&utm_medium=rss&utm_campaign=siemens-hardware-assisted-verification-validates-arm-agi-cpu-for-scalable-agentic-ai" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
