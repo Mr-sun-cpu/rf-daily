@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-08</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-08</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-08 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Anthropic compute deal taps SpaceXAI Colossus 1</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-08</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Anthropic与SpaceXAI达成算力协议，将全面使用Colossus 1数据中心的全部算力资源。该中心原为xAI建设，现成为Claude模型的重要算力支撑。此举显著增强了Anthropic在大规模AI训练上的基础设施保障，反映出头部AI公司对高性能计算资源的激烈争夺，也凸显SpaceXAI在AI算力生态中的战略布局价值。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/anthropic-compute-deal-spacexai-colossus-1/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Quantum Brilliance CEO Mark Luo on deployable quantum systems and the future of diamond-based computing</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-08</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Quantum Brilliance公司CEO Mark Luo提出了一种可部署的量子系统愿景，其基于合成金刚石构建的紧凑型量子处理器可在室温下运行，区别于传统大型、需极端环境的量子计算机。这一技术路径有望降低量子计算的部署门槛，推动其在边缘计算、移动平台等场景的应用，标志着量子硬件向实用化与小型化迈出关键一步。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/quantum-brilliance-ceo-mark-luo-on-deployable-quantum-systems-and-the-future-of-diamond-based-computing/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMI Summit spotlights Europe’s chiplet and packaging push</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-08</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>欧洲半导体产业正加速布局先进封装与小芯片（chiplet）技术，SEMI 3D与系统峰会重返德国德累斯顿，凸显该地区对异构集成技术的高度重视。此次峰会汇聚芯片制造商、设备供应商及研究机构，反映出欧洲在提升本土半导体制造能力、降低对外部技术依赖方面的战略转向，尤其在先进封装环节寻求突破以增强产业链韧性。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/semi-summit-spotlights-europes-chiplet-and-packaging-push/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AI data center infrastructure drives Pennsylvania energy expansion</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-08</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>AI数据中心基础设施正推动宾夕法尼亚州能源扩张，大型运营商为满足人工智能工作负载需求持续扩大电力容量。UGI能源服务与Prime数据中心合作推进天然气基础设施项目，反映出AI算力增长对区域能源结构的重塑。该合作凸显美国在保障AI算力能源供给方面加速布局，天然气作为过渡能源在数据中心供能中地位提升。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ai-data-center-infrastructure-drives-pennsylvania-energy-expansion/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">NXP CoreRide gains Vector software support for SDV platforms</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-08</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>恩智浦（NXP）的CoreRide平台正获得Vector公司在软件定义汽车（SDV）领域的嵌入式软件支持，双方合作聚焦于预集成软件堆栈、系统集成与区域电子架构（zonal architecture）下的软件更新架构。这一合作有助于加速车企向集中式电子电气架构转型，提升软件定义功能的可扩展性与部署效率，对推动汽车软件生态的标准化具有积极意义。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nxp-coreride-gains-vector-software-support-for-sdv-platforms/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">RF amplifiers expand high-power range</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-07</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻标题指出射频放大器正拓展高功率应用范围，摘要显示R&S公司为其BBA300宽带放大器家族新增了单频段高功率型号。这表明工业级射频系统对高功率、高线性度放大器的需求持续增长，尤其在5G基站、电子战和雷达等场景中。此举有助于提升宽带信号在复杂电磁环境下的传输能力与系统可靠性。</p></div>
+  <a class="intel-link" href="https://www.edn.com/rf-amplifiers-expand-high-power-range/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Controllers bring PQC to boot and root of trust</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-07</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出，控制器正将后量子密码（PQC）技术集成至系统启动与信任根（root of trust）环节。TS1800作为信任根控制器，配合TS50x安全启动控制器，旨在从硬件底层提升设备抗量子计算攻击能力。这表明半导体厂商正加速布局PQC在嵌入式安全领域的应用，以应对未来密码安全挑战，推动可信计算架构升级。</p></div>
+  <a class="intel-link" href="https://www.edn.com/controllers-bring-pqc-to-boot-and-root-of-trust/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Global Semiconductor Sales Increase 25% from Q4 2025 to Q1 2026</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-07</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026/?utm_source=rss&utm_medium=rss&utm_campaign=global-semiconductor-sales-increase-25-from-q4-2025-to-q1-2026" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
