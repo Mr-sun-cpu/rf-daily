@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-13</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-13</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-13 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Nebius starts work on Missouri AI factory campus</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Nebius启动密苏里州AI工厂园区建设，标志着其在美国的首个吉瓦级AI基础设施项目正式落地。该项目位于堪萨斯城附近的独立城，占地约400英亩，顺应了全球对AI算力需求激增的趋势。此举将增强北美地区高性能计算资源的供给能力，可能影响区域AI产业链布局与云服务竞争格局。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nebius-starts-work-on-missouri-ai-factory-campus/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Incedo targets AI native telecom growth in Canada</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/incedo-targets-ai-native-telecom-growth-in-canada/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Infineon challenge puts humanoid robotics in focus</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/infineon-challenge-puts-humanoid-robotics-in-focus/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Red Hat AI and OpenShift services land on IBM Cloud</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>IBM在其企业云产品组合中新增两项基于红帽技术的托管云服务：红帽AI推理服务和红帽OpenShift虚拟化服务。此举表明IBM正通过整合红帽的开源与混合云能力，强化其在AI工作负载和虚拟化场景下的云平台支持，进一步推动企业客户向混合多云架构迁移，同时凸显红帽技术在IBM云战略中的核心地位。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/red-hat-ai-openshift-ibm-cloud/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Ericsson and KDDI advance autonomous networks with AI uplink trial</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>爱立信与KDDI在日本现网完成基于AI的上行链路优化大规模试验，结合爱立信上行干扰优化器（UIO）rApp与第三方rApp，实现了4G/5G网络性能的可量化提升。该试验体现了AI驱动网络自治在干扰管理中的实用化进展，为运营商提升频谱效率与用户体验提供了新路径，也凸显rApp架构在开放网络自动化中的关键作用。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ericsson-and-kddi-advance-autonomous-networks-with-ai-uplink-trial/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">TSMC and Applied Materials team up on AI chip manufacturing R&D</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>台积电与应材深化合作，聚焦AI芯片制造技术研发，双方将在应材硅谷EPIC中心联合开发新材料、设备及工艺技术。此举凸显先进制程对AI芯片性能提升的关键作用，也反映设备商与晶圆厂协同创新在突破技术瓶颈中的重要性。对于国内半导体产业而言，强化设备与制造端的联合研发是提升自主能力的重要路径。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/tsmc-and-applied-materials-team-up-on-ai-chip-manufacturing-rd/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Ouster adds native color LiDAR to Rev8 OS family</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Ouster推出Rev8 OS系列数字激光雷达，基于L4级Ouster Silicon芯片，面向自动驾驶、机器人、智慧基建和工业传感领域，新增原生彩色LiDAR功能，将3D深度数据与色彩信息直接融合。此举标志着激光雷达从纯几何感知向多模态环境理解迈进，有望提升目标识别精度与场景还原能力，推动高阶感知系统在复杂场景中的应用落地。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ouster-adds-native-color-lidar-to-rev8-os-family/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Europe’s Photonics Push Runs Through Spain</div>
+  <div class="intel-meta">来源：EE Times EMEA  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出西班牙正主导欧洲光子学战略布局，通过PIXEurope项目推动光子技术研发向可量产半导体制造能力转化。这一举措凸显欧洲在高端半导体制造领域寻求技术自主的意图，光子学作为下一代芯片互联与传感技术的关键，其产业化进程将直接影响欧洲在全球半导体价值链中的定位。项目以西班牙为枢纽，反映出欧盟在区域技术协同上的新动向。</p></div>
+  <a class="intel-link" href="https://www.eetimes.com/europe-photonics-push-runs-through-spain/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
