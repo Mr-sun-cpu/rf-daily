@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-14</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-14</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-14 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Physical AI BoF from MIPI invites robotics companies</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-14</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>MIPI联盟启动物理AI兴趣小组（BoF），邀请机器人企业参与制定人形机器人接口标准。该小组面向成员及非成员企业开放，旨在探索新兴物理AI系统的接口需求。此举反映MIPI正将标准化触角延伸至机器人领域，推动传感器、通信等底层技术协同，为未来人形机器人生态奠定互联互通基础。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/physical-ai-bof-mipi-robotics-companies/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Qualcomm advances Snapdragon mid-range tiers</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>高通推出骁龙6 Gen 5和骁龙4 Gen 5，进一步升级中端移动平台性能，强化其在主流智能手机市场的竞争力。此举表明高通正通过下放先进架构与能效优化技术，推动中端芯片性能边界拓展，以应对联发科等对手在中端市场的激烈竞争。此举有助于巩固高通在5G普及潮中的供应链地位。</p></div>
+  <a class="intel-link" href="https://www.edn.com/qualcomm-advances-snapdragon-mid-range-tiers/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">FotoNation and SEMIFIVE Announce Strategic Collaboration for Turnkey Development of TriSilica Perceptual AI Chip Family Using Samsung Foundry</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>FotoNation与SEMIFIVE达成战略合作，由后者主导基于三星代工平台为TriSilica系列感知AI芯片提供一站式开发服务。此举凸显定制化AI芯片开发中“设计-代工”协同模式的重要性，尤其针对超低功耗感知场景，通过整合FotoNation的算法优势与SEMIFIVE的芯片实现能力，加速产品落地。对国内而言，类似合作模式可借鉴以提升AI芯片产业化效率。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/fotonation-and-semifive-announce-strategic-collaboration-for-turnkey-development-of-trisilica-perceptual-ai-chip-family-using-samsung-foundry/?utm_source=rss&utm_medium=rss&utm_campaign=fotonation-and-semifive-announce-strategic-collaboration-for-turnkey-development-of-trisilica-perceptual-ai-chip-family-using-samsung-foundry" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">University of Arizona Research Powers New Optical Switching Technology Designed to Reduce Data Center Energy Consumption</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>亚利桑那大学的研究支持了新型光交换技术的开发，旨在降低数据中心能耗。Post-Quantum Tek推出的高速光开关（PQT-HOS）在性能与能效方面实现显著突破，其速度远超现有商用开关，同时能耗大幅降低。该技术有望推动数据中心向更高带宽、更低功耗方向演进，为光互连架构的升级提供关键支撑。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/university-of-arizona-research-powers-new-optical-switching-technology-designed-to-reduce-data-center-energy-consumption/?utm_source=rss&utm_medium=rss&utm_campaign=university-of-arizona-research-powers-new-optical-switching-technology-designed-to-reduce-data-center-energy-consumption" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Oracle Java to Power Samsung Electronics’ Global Semiconductor Development</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>甲骨文宣布其Java SE通用订阅服务将助力三星电子实现全球半导体开发软件的标准化。这表明三星在芯片设计、制造及测试等环节正强化软件生态的统一性，以提升跨地区研发协作效率。Java作为跨平台语言，有助于三星整合异构开发环境，降低工具链碎片化风险。此举反映半导体巨头对底层软件栈可控性与一致性的重视日益提升。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/oracle-java-to-power-samsung-electronics-global-semiconductor-development/?utm_source=rss&utm_medium=rss&utm_campaign=oracle-java-to-power-samsung-electronics-global-semiconductor-development" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">T-Global Technology Partners with France’s SiPearl to Advance Next-Generation HPC Cooling Technologies</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>T-Global Technology与法国SiPearl合作推进下一代高性能计算（HPC）冷却技术，其主导的“高导热材料与两相液冷模块开发”项目获台湾经济部“AI驱动产业创新A+计划”支持。这表明台法双方在先进散热领域正加强技术协同，尤其针对高功耗HPC芯片的热管理挑战。此举有助于提升双方在AI与超算硬件生态中的竞争力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/t-global-technology-partners-with-frances-sipearl-to-advance-next-generation-hpc-cooling-technologies/?utm_source=rss&utm_medium=rss&utm_campaign=t-global-technology-partners-with-frances-sipearl-to-advance-next-generation-hpc-cooling-technologies" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">NHanced Semiconductors & the University of Florida to Present on Hybrid Bonding Reliability at the 2026 Electronic Components & Technology Conference in Orlando</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/nhanced-semiconductors-the-university-of-florida-to-present-on-hybrid-bonding-reliability-at-the-2026-electronic-components-technology-conference-in-orlando/?utm_source=rss&utm_medium=rss&utm_campaign=nhanced-semiconductors-the-university-of-florida-to-present-on-hybrid-bonding-reliability-at-the-2026-electronic-components-technology-conference-in-orlando" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Accurate Gas Control Systems Introduces CryoSure Platform to Solve Diborane Instability Challenges Threatening Next-Generation Semiconductor Yields</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-13</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Accurate Gas Control Systems推出CryoSure平台，旨在解决乙硼烷（Diborane）不稳定性对先进半导体良率构成的威胁。该平台采用精密低温输送技术，可显著提升特种气体在晶圆制造过程中的输送稳定性与安全性。随着半导体工艺向更先进节点演进，高活性掺杂气体的精确控制成为关键瓶颈，CryoSure的推出标志着气体输送系统向更高可靠性迈进的里程碑。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/accurate-gas-control-systems-introduces-cryosure-platform-to-solve-diborane-instability-challenges-threatening-next-generation-semiconductor-yields/?utm_source=rss&utm_medium=rss&utm_campaign=accurate-gas-control-systems-introduces-cryosure-platform-to-solve-diborane-instability-challenges-threatening-next-generation-semiconductor-yields" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
