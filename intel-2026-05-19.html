@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-19</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-19</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-19 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">System Check: Share your opinion on version control and Git</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻标题和摘要显示，这是一次面向技术社区的调研活动，旨在收集开发者对版本控制工具（尤其是Git）的使用习惯与看法，并涉及工程项目的备份策略。此类调研有助于了解行业在代码管理方面的实践趋势，尤其对关注开发流程规范化的团队具有参考价值。其过往曾就无线协议等主题开展类似调查，体现出系统性技术习惯追踪的延续性。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/system-check-share-your-opinion-on-version-control-and-git/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Webinar: Spurious Emission Testing for Amateur Radio Transmitters</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>本次网络研讨会聚焦业余无线电发射机的杂散发射测试，依据ETSI EN 301 783-1标准展开，由Elektor主办，特邀Baltic Lab专家Sebastian与主持人Brian Tristam Williams共同探讨。内容面向射频工程师、实验者及业余无线电爱好者，旨在提升对合规性测试的理解，强化设备电磁兼容设计意识，推动业余无线电设备向标准化、低干扰方向发展。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/spurious-emissions-testing-webinar-elektor/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">AI energy hub planned by Mitsubishi and Tallgrass</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>三菱与Tallgrass计划在怀俄明州建设大型能源枢纽，旨在满足人工智能和超大规模数据中心日益增长的电力需求。项目一期将部署两台三菱M501JAC燃气轮机，凸显传统能源企业正积极布局高耗能数字基础设施的电力保障。此举反映AI算力扩张正驱动能源基础设施升级，燃气发电因其稳定调峰能力成为数据中心可靠电源选项之一。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ai-data-centre-energy-hub-wyoming/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Siemens expands rail technology portfolio with MERMEC acquisition</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>西门子交通通过收购意大利MERMEC集团相关业务，进一步扩大其在欧洲铁路技术领域的影响力。此次收购强化了西门子在铁路信号、诊断与测量系统方面的技术能力，同时提升了其工业基础布局。此举有助于西门子整合南欧市场资源，增强对高速铁路和智能运维解决方案的掌控力，巩固其在全球轨道交通装备市场的领先地位。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/siemens-expands-rail-technology-portfolio-with-mermec-acquisition/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">ASML and Tata Electronics partner on India semiconductor fab</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-19</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>ASML与塔塔电子签署战略合作协议，支持印度半导体制造生态发展，重点围绕塔塔在古吉拉特邦Dholera建设的300毫米晶圆厂。ASML将提供光刻技术支持，此举标志着欧洲光刻巨头首次深度参与印度本土先进晶圆制造项目，有望提升印度在全球半导体供应链中的战略地位，并推动其实现芯片自给目标。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/asml-and-tata-electronics-partner-on-india-semiconductor-fab/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Alpha and Omega Semiconductor Unveils Total Power Solution for Next-Gen Intel Panther Lake and Wildcat Lake Platforms</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-18</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Alpha and Omega半导体公司推出面向英特尔下一代Panther Lake与Wildcat Lake平台的完整电源解决方案，重点布局数字多相控制器新品。此举表明该公司正深化与英特尔高端处理器平台的合作，强化在CPU核心供电领域的技术布局。数字多相控制器是实现高效、精准电压调节的关键组件，尤其在应对高性能计算动态负载方面至关重要，凸显AOS在功率管理芯片领域的技术跟进能力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/alpha-and-omega-semiconductor-unveils-total-power-solution-for-next-gen-intel-panther-lake-and-wildcat-lake-platforms/?utm_source=rss&utm_medium=rss&utm_campaign=alpha-and-omega-semiconductor-unveils-total-power-solution-for-next-gen-intel-panther-lake-and-wildcat-lake-platforms" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Gradiant Announces Series E Financing at $2 Billion Valuation to Accelerate Expansion in AI, Semiconductors, and Industrial Water Infrastructure</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-18</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/gradiant-announces-series-e-financing-at-2-billion-valuation-to-accelerate-expansion-in-ai-semiconductors-and-industrial-water-infrastructure/?utm_source=rss&utm_medium=rss&utm_campaign=gradiant-announces-series-e-financing-at-2-billion-valuation-to-accelerate-expansion-in-ai-semiconductors-and-industrial-water-infrastructure" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">TetraMem Announces 22nm Multi-Level RRAM Analog In-Memory Computing SoC Milestone</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-18</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>TetraMem宣布其22nm多值阻变存储器（RRAM）模拟存内计算SoC MLX200平台已成功流片、制造并完成初步硅验证。这一进展标志着RRAM在模拟存内计算架构中的工程化落地取得关键突破，22nm工艺节点的采用表明该技术正向先进制程靠拢，有助于提升能效与集成密度，为边缘AI和高能效计算应用提供了新的硬件路径。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/tetramem-announces-22nm-multi-level-rram-analog-in-memory-computing-soc-milestone/?utm_source=rss&utm_medium=rss&utm_campaign=tetramem-announces-22nm-multi-level-rram-analog-in-memory-computing-soc-milestone" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
