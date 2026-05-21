@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-21</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-21</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-21 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">The “Elektor Industry/eeNews Europe” YouTube channel surpasses 90,000 subscribers</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>“Elektor Industry/eeNews Europe”频道订阅量突破九万，反映出工程师群体对深度技术内容的持续需求。在短视频泛滥、内容同质化的背景下，专业受众更青睐具有行业洞察力和工程针对性的资讯。该频道的成功表明，面向全球电子工程社区的高质量内容仍具强大吸引力，凸显技术媒体向专业化、垂直化发展的趋势。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/elektor-industry-eenews-europe-youtube-90000/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEMI FlexTech calls for proposals on flexible hybrid electronics</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>SEMI FlexTech启动柔性混合电子（FHE）项目提案征集，旨在推动下一代材料、增材工艺等关键技术发展，项目资助由陆军研究实验室（ARL）支持。此举反映美国军方对柔性电子在可穿戴设备、传感器和先进封装等领域战略价值的重视。该倡议有望加速FHE从实验室向产业化过渡，强化国防与民用技术的协同创新。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/semi-flextech-calls-for-proposals-on-flexible-hybrid-electronics/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Ericsson and Net Feasa target smart shipping with 5G and agentic AI</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>爱立信与Net Feasa合作，将运营商级4G/5G网络与自主AI能力引入全球海运业，优先应用于集装箱船舶，未来拓展至更广泛航运领域。此举结合高速通信与智能代理技术，有望提升船舶运营自动化水平与决策效率，推动智慧航运发展。目前该系统已在实际场景中部署，标志着通信与AI技术向传统海事领域深度渗透。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/ericsson-and-net-feasa-target-smart-shipping-with-5g-and-agentic-ai/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">MCUs bridge I3C across voltage domains</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出Microchip的PIC18-Q20系列微控制器集成了I3C外设，支持跨电压域通信。I3C（Improved Inter-Integrated Circuit）作为新一代传感器接口标准，兼具高速、低功耗和多电压兼容特性，适用于复杂嵌入式系统。通过硬件级支持电压域桥接，该MCU可简化多电源域设计，提升系统集成度，尤其利于物联网和移动设备中多传感器互联场景。</p></div>
+  <a class="intel-link" href="https://www.edn.com/mcus-bridge-i3c-across-voltage-domains/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">CPU IP processes mixed scalar and vector workloads</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻指出，SiFive Performance P570 Gen 3 是一款支持乱序执行的RISC-V超标量处理器IP，能够同时处理标量和向量工作负载。这表明RISC-V架构正朝着高性能计算领域拓展，通过融合标量与向量处理能力，提升在AI、边缘计算等场景下的并行处理效率。该设计凸显了RISC-V在灵活性和可扩展性方面的优势，为国产处理器IP研发提供了技术演进方向。</p></div>
+  <a class="intel-link" href="https://www.edn.com/cpu-ip-processes-mixed-scalar-and-vector-workloads/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">How data movement defines performance for AI silicon</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>数据搬运效率已成为决定AI芯片性能的关键瓶颈。当数据在存储与计算单元间传输延迟时，即便算力再强，整体性能也会受限。这表明，AI芯片设计正从单纯追求算力峰值，转向优化数据通路与存储层级协同。未来架构创新将更聚焦降低数据移动开销，提升能效比。</p></div>
+  <a class="intel-link" href="https://www.edn.com/how-data-movement-defines-performance-for-ai-silicon/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">2026 IEEE Electronic Components and Technology Conference (ECTC) To Showcase the Latest Electronic Packaging Technologies</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/2026-ieee-electronic-components-and-technology-conference-ectc-to-showcase-the-latest-electronic-packaging-technologies/?utm_source=rss&utm_medium=rss&utm_campaign=2026-ieee-electronic-components-and-technology-conference-ectc-to-showcase-the-latest-electronic-packaging-technologies" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">PFlow Industries Highlights VRCs for Semiconductor Manufacturing Environments</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-20</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>PFlow Industries强调其垂直往复式输送机（VRC）技术，特别是M系列和F系列产品，适用于半导体制造环境。作为VRC技术先驱，该公司正将物料垂直传输解决方案拓展至高洁净度、高精度要求的半导体生产场景。此举反映出半导体制造对内部物流自动化与空间效率的持续重视，VRC在晶圆厂多层厂房中的物料转运环节具备应用潜力。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/pflow-industries-highlights-vrcs-for-semiconductor-manufacturing-environments-2/?utm_source=rss&utm_medium=rss&utm_campaign=pflow-industries-highlights-vrcs-for-semiconductor-manufacturing-environments-2" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
