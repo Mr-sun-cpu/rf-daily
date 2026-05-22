@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-22</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-22</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-22 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Nvidia revenue jumps 85% on AI demand</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>英伟达最新季度营收同比激增85%，主要受益于AI基础设施需求在超大规模数据中心、企业部署和边缘系统中的持续爆发。其数据中心业务成为核心增长引擎，反映出全球AI算力投资进入高速扩张阶段。这一趋势凸显高性能计算芯片在AI时代的关键地位，也表明AI正从训练向推理场景全面渗透，带动全产业链升级。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/nvidia-revenue-jumps-85-on-ai-demand/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Splunk report: Global downtime costs surge to $600bn a year</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/splunk-report-global-downtime-costs-surge-to-600bn-a-year/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">The Future of Physical AI Isn’t Smarter Robots, It’s Smarter Interfaces</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>这篇由赞助商提供的文章提出，物理人工智能的未来不在于制造更聪明的机器人，而在于开发更智能的人机交互界面。配图展示了人类通过直观方式控制音箱、灯泡和无人机，暗示技术演进的核心是提升人与智能设备之间的连接效率与体验，而非单纯增强机器人自主性。这表明产业重心正从硬件智能向交互智能转移。</p></div>
+  <a class="intel-link" href="https://spectrum.ieee.org/wetour-robotics-physical-ai-human-interfaces" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">SEM-Guided Low-kV FIB Finishing for Leading-Edge Semiconductor Failure Analysis</div>
+  <div class="intel-meta">来源：IEEE Spectrum  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>该新闻介绍ZEISS Crossbeam 750 FIBSEM设备在先进半导体失效分析中的应用，强调其通过SEM引导的低千伏聚焦离子束（FIB）技术，实现高精度TEM薄片制备、三维断层扫描及纳米加工。该技术提升了样品制备的精准度和效率，适用于前沿制程的微观结构分析，有助于加速芯片研发与缺陷诊断，推动半导体制造向更高集成度发展。</p></div>
+  <a class="intel-link" href="https://events.bizzabo.com/868497/home" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Toward Power-Generating Displays: A Single Device That Harvests And Emits Light</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>研究人员开发出一种新型有机半导体材料，有望实现兼具光能采集与发光功能的多功能电子器件。该技术突破指向“发电显示器”概念，即单一器件既能像太阳能电池吸收环境光发电，又能作为OLED主动发光，可能推动自供能屏幕发展。若实现商业化，将显著降低显示系统能耗，拓展可穿戴与物联网设备的能源解决方案。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/toward-power-generating-displays-a-single-device-that-harvests-and-emits-light/?utm_source=rss&utm_medium=rss&utm_campaign=toward-power-generating-displays-a-single-device-that-harvests-and-emits-light" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Analog Devices to Acquire Empower Semiconductor</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>（AI 解读暂时不可用，或因事实校验未通过被拦截）</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/analog-devices-to-acquire-empower-semiconductor/?utm_source=rss&utm_medium=rss&utm_campaign=analog-devices-to-acquire-empower-semiconductor" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">IBM and U.S. Department of Commerce Announce America’s First Purpose-Built Quantum Foundry, Supported by Proposed $1 Billion CHIPS Award</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>IBM与美国商务部达成意向，将共建美国首个专用量子芯片代工厂，标志着美国在量子计算硬件领域迈出关键一步。该合作旨在强化本土量子制造能力，减少对外依赖，推动从研发到量产的产业链闭环。此举将加速量子技术从实验室走向商业化，提升美国在全球量子竞争中的战略自主性，对半导体与量子融合生态具有深远意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/ibm-and-u-s-department-of-commerce-announce-americas-first-purpose-built-quantum-foundry-supported-by-proposed-1-billion-chips-award/?utm_source=rss&utm_medium=rss&utm_campaign=ibm-and-u-s-department-of-commerce-announce-americas-first-purpose-built-quantum-foundry-supported-by-proposed-1-billion-chips-award" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Axion Semiconductor Acquires Moov Technologies</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-21</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Axion半导体收购全球半导体设备交易平台Moov Technologies，标志着由行业资深人士创立的该企业正向产业链服务延伸。此次并购可能旨在整合设备交易资源，提升半导体制造生态效率，反映行业对二手设备流通及资源优化需求的增长趋势。对于国内半导体设备市场，此举或启发本土企业关注设备全生命周期管理与数字化平台布局。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/axion-semiconductor-acquires-moov-technologies/?utm_source=rss&utm_medium=rss&utm_campaign=axion-semiconductor-acquires-moov-technologies" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
