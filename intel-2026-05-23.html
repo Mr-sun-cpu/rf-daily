@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📡 行业情报 | 2026-05-23</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.intel-header { margin-bottom:32px; }
+.intel-count { display:inline-block; font-size:13px; color:#38bdf8;
+  background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25);
+  border-radius:20px; padding:3px 14px; margin-left:12px; vertical-align:middle; }
+.intel-grid { display:grid; gap:16px; }
+.intel-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(56,189,248,0.15); border-radius:12px;
+  padding:18px 22px; transition:border-color .2s, box-shadow .2s; }
+.intel-item:hover { border-color:rgba(56,189,248,0.4); box-shadow:0 4px 20px rgba(56,189,248,0.08); }
+.intel-title { font-size:16px; font-weight:700; color:#fff; line-height:1.55; margin-bottom:6px; }
+.intel-meta { font-size:12.5px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+.intel-interp { background:rgba(56,189,248,0.06); border-left:3px solid #38bdf8;
+  border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0 12px 0; }
+.interp-tag { display:inline-block; font-size:11.5px; font-weight:700; color:#38bdf8;
+  margin-bottom:6px; letter-spacing:.5px; }
+.intel-interp p { font-size:14px; color:rgba(255,255,255,0.82); line-height:1.75;
+  margin:0; word-break:break-all; }
+.intel-link { display:inline-block; font-size:12px; color:#38bdf8;
+  background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2);
+  border-radius:6px; padding:3px 12px; text-decoration:none; }
+.intel-link:hover { background:rgba(56,189,248,0.18); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📡 行业情报</h1>
+    <div class="sub">射频 / 半导体 全球资讯 · 2026-05-23</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <div class="intel-header">
+    <h1 style="display:inline">📡 射频/半导体行业情报</h1>
+    <span class="intel-count">8 条</span>
+    <div class="meta" style="margin-top:8px">📅 2026-05-23 &nbsp;|&nbsp; 来源：EDN · IEEE Spectrum · EE News Europe · Semiconductor Digest</div>
+  </div>
+  <div class="intel-grid">
+    <div class="intel-item">
+  <div class="intel-title">Teledyne CCD370 sensors launch on SMILE mission</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-23</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>Teledyne为欧空局SMILE任务的软X射线成像仪提供两款CCD370图像传感器，标志着其在空间科学载荷核心器件领域的持续突破。该任务聚焦太阳风与磁层-电离层相互作用，对深空探测与空间天气研究具有重要意义。此次合作凸显欧美在高端空间成像技术上的协同，也反映中国参与国际空间科学项目的深度拓展。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/teledyne-ccd370-sensors-launch-on-smile-missionteledyne-ccd370-sensors-smile-mission/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">EU approves €288m aid for German chip supply chain projects</div>
+  <div class="intel-meta">来源：EE News Europe  日期：2026-05-23</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>欧盟批准2.88亿欧元德国国家援助，支持蔡司与Zadient Materials Europe GmbH的半导体供应链项目，旨在强化欧洲芯片制造能力。该资金将用于建设先进光刻相关设施，凸显欧盟通过本土供应链本土化应对全球芯片竞争的战略意图。此举可能加速欧洲在高端半导体设备与材料领域的自主可控进程，对中国企业参与欧洲产业链合作形成新的政策环境挑战。</p></div>
+  <a class="intel-link" href="https://www.eenewseurope.com/en/eu-approves-e288m-aid-for-german-chip-supply-chain-projects/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">GHz-harvested power for Gbps wireless link is a double win</div>
+  <div class="intel-meta">来源：EDN Network  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>标题指出GHz级能量采集与Gbps级无线链路结合实现“双赢”，摘要提到一种巧妙设计的毫米波透镜促成这一突破。这表明通过高效能量收集技术从GHz频段捕获射频能量，同时维持高速数据传输，有望为无源物联网设备提供持续供电与高带宽通信能力，推动低功耗无线系统发展。</p></div>
+  <a class="intel-link" href="https://www.edn.com/ghz-harvested-power-for-gbps-wireless-link-is-a-double-win/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Micron Advances Made-in-America Memory With Manufacturing Expansion in Virginia</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>美光科技在弗吉尼亚州马纳萨斯工厂启动1α DRAM制程量产，标志着其美国本土内存制造能力的重要拓展。此举响应了美国强化半导体供应链自主的战略导向，通过提升先进制程产能增强地缘政治风险下的供应韧性。该扩产将强化美光在北美市场的制造布局，为后续技术迭代与政企合作奠定基础。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/micron-advances-made-in-america-memory-with-manufacturing-expansion-in-virginia/?utm_source=rss&utm_medium=rss&utm_campaign=micron-advances-made-in-america-memory-with-manufacturing-expansion-in-virginia" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">Stressed Crystal Creates Nanoscale Patterns on Chip Materials at Room Temperature</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>这项新技术利用晶体应力在室温下直接在硅等硬质芯片材料表面形成纳米级图案，突破了传统光刻需高温或复杂掩模的限制。通过操控材料晶格结构实现图案化，有望简化半导体制造工艺并降低能耗。该技术若成熟应用，可能为国产先进制程设备提供绕过传统光刻路径的新思路。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/stressed-crystal-creates-nanoscale-patterns-on-chip-materials-at-room-temperature/?utm_source=rss&utm_medium=rss&utm_campaign=stressed-crystal-creates-nanoscale-patterns-on-chip-materials-at-room-temperature" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">imec Presents Quantum Dot Qubit Device Using High NA EUV Lithography</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>imec利用高数值孔径极紫外光刻技术（High NA EUV）成功研制出量子点量子比特器件，标志着先进光刻技术在量子计算领域的关键应用突破。高NA EUV作为下一代芯片制造的核心工具，其高精度图形化能力为量子比特的可扩展集成提供了制造基础。此举凸显半导体制造工艺与量子技术融合的趋势，推动量子芯片向规模化发展迈出重要一步。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/imec-presents-quantum-dot-qubit-device-using-high-na-euv-lithography/?utm_source=rss&utm_medium=rss&utm_campaign=imec-presents-quantum-dot-qubit-device-using-high-na-euv-lithography" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">World Micro Signs Distribution Agreement with Mobilint to Expand AI Semiconductor Solutions</div>
+  <div class="intel-meta">来源：Semiconductor Digest  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>World Micro与Mobilint签署分销协议，旨在扩大AI半导体解决方案的供应范围。此举将借助World Micro的全球分销网络和供应链能力，推动Mobilint的AI加速芯片进入更广泛的市场。该合作反映出AI芯片需求持续增长，分销渠道在加速技术商业化中的关键作用日益凸显，对国内半导体企业拓展海外渠道具有借鉴意义。</p></div>
+  <a class="intel-link" href="https://www.semiconductor-digest.com/world-micro-signs-distribution-agreement-with-mobilint-to-expand-ai-semiconductor-solutions/?utm_source=rss&utm_medium=rss&utm_campaign=world-micro-signs-distribution-agreement-with-mobilint-to-expand-ai-semiconductor-solutions" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+<div class="intel-item">
+  <div class="intel-title">U.S. Quantum Bet Puts Hardware First, But Utility Remains the Test</div>
+  <div class="intel-meta">来源：EE Times EMEA  日期：2026-05-22</div>
+  <div class="intel-interp"><span class="interp-tag">📌 深入解读</span><p>美国通过《芯片法案》投入巨资支持多种技术路径的量子硬件研发，凸显其将量子计算视为战略基础设施的长期布局。尽管硬件投入明确，但核心挑战仍在于如何将这些设备转化为具备实际效用的应用。这表明美国在量子竞赛中优先夯实基础能力，但技术落地的实用价值仍是最终成败的关键考验。</p></div>
+  <a class="intel-link" href="https://www.eetimes.com/u-s-quantum-bet-puts-hardware-first-but-utility-remains-the-test/" target="_blank" rel="noopener">🔗 原文链接</a>
+</div>
+
+  </div>
+</div>
+<footer>© 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
