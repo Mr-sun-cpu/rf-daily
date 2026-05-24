@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📰 每日资讯日报 | 2026-05-24</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; min-height:100vh; }
+header { background:linear-gradient(135deg,#0d1f3c,#0a0e1a);
+  border-bottom:1px solid rgba(0,195,255,0.15); padding:24px 40px;
+  display:flex; align-items:center; justify-content:space-between; }
+header h1 { font-size:24px; font-weight:900; color:#00c3ff; }
+header .sub { font-size:14px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.container { max-width:900px; margin:0 auto; padding:40px 24px; }
+.date-card { background:linear-gradient(160deg,#0c1829,#0a1020);
+  border:1px solid rgba(0,195,255,0.15); border-radius:16px;
+  padding:24px 28px; margin-bottom:20px; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s; }
+.date-card:hover { border-color:rgba(0,195,255,0.4); box-shadow:0 8px 32px rgba(0,195,255,0.08); }
+.date-card .dc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.date-card .dc-date { font-size:20px; font-weight:700; color:#fff; }
+.date-card .dc-badge { font-size:12px; background:rgba(0,195,255,0.12);
+  color:#00c3ff; border:1px solid rgba(0,195,255,0.3); border-radius:50px; padding:4px 14px; }
+.date-card .dc-summary { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; }
+.date-card .dc-links { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.date-card .dc-link { font-size:13px; color:#00c3ff; background:rgba(0,195,255,0.08);
+  border:1px solid rgba(0,195,255,0.2); border-radius:8px; padding:4px 14px;
+  text-decoration:none; }
+.date-card .dc-link:hover { background:rgba(0,195,255,0.18); }
+footer { text-align:center; padding:40px; font-size:13px; color:rgba(255,255,255,0.2); }
+
+.article { max-width:860px; margin:0 auto; padding:40px 24px; }
+.article h1 { font-size:28px; font-weight:900; margin-bottom:8px; }
+.article .meta { font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:32px; }
+.section { margin-bottom:44px; }
+.section h2 { font-size:21px; font-weight:800; color:#00c3ff; margin-bottom:20px;
+  padding-bottom:12px; border-bottom:2px solid rgba(0,195,255,0.25);
+  display:flex; align-items:center; gap:8px; }
+
+/* ── 通用资讯卡片 ── */
+.news-item { background:linear-gradient(160deg,#0d1e38,#0a1320);
+  border:1px solid rgba(0,195,255,0.12); border-radius:12px;
+  padding:18px 22px; margin-bottom:16px;
+  transition:border-color .2s, box-shadow .2s; }
+.news-item:hover { border-color:rgba(0,195,255,0.3); box-shadow:0 4px 24px rgba(0,195,255,0.07); }
+
+/* 日期标签 */
+.news-date { display:inline-block; font-size:12px; color:#00c3ff;
+  background:rgba(0,195,255,0.1); border:1px solid rgba(0,195,255,0.2);
+  border-radius:20px; padding:2px 10px; margin-bottom:8px; }
+
+/* 条目标题 */
+.news-item .item-title { font-size:16px; font-weight:700; color:#fff;
+  line-height:1.5; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* 条目正文 */
+.news-item .item-body { font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.9; }
+.news-item .item-body p { margin-bottom:8px; }
+.news-item .item-body p:last-child { margin-bottom:0; }
+
+/* Markdown 列表 */
+.news-item .item-body .md-list { margin:8px 0 8px 18px; }
+.news-item .item-body .md-list li { font-size:14px; color:rgba(255,255,255,0.7);
+  line-height:1.8; margin-bottom:4px; list-style:disc; }
+.news-item .item-body code { background:rgba(255,255,255,0.08);
+  border-radius:4px; padding:1px 6px; font-size:13px; color:#a8d8ff; }
+
+/* ── 行情预测卡片 ── */
+.news-item--forecast { border-color:rgba(149,103,255,0.3);
+  background:linear-gradient(160deg,#130d2e,#0d0a20); }
+.news-item--forecast:hover { border-color:rgba(149,103,255,0.5); box-shadow:0 4px 24px rgba(149,103,255,0.1); }
+
+/* ── 个股推荐卡片 ── */
+.news-item--stock { border-color:rgba(0,229,160,0.2);
+  background:linear-gradient(160deg,#0a1e16,#080f12); }
+.news-item--stock:hover { border-color:rgba(0,229,160,0.4); box-shadow:0 4px 24px rgba(0,229,160,0.07); }
+.stock-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.stock-name { font-size:16px; font-weight:800; color:#00e5a0; }
+
+/* ── 分析卡片 ── */
+.news-item--analysis { border-color:rgba(0,195,255,0.2);
+  background:linear-gradient(160deg,#0c1829,#090e1c); }
+
+/* ── 徽章标签 ── */
+.item-badge { display:inline-block; font-size:11px; font-weight:700; border-radius:20px;
+  padding:2px 10px; white-space:nowrap; }
+.badge-analysis { background:rgba(0,195,255,0.12); color:#00c3ff; border:1px solid rgba(0,195,255,0.25); }
+.badge-stock { background:rgba(0,229,160,0.12); color:#00e5a0; border:1px solid rgba(0,229,160,0.25); }
+.badge-forecast { background:rgba(149,103,255,0.15); color:#a97dff; border:1px solid rgba(149,103,255,0.3); }
+
+/* ── 其他 ── */
+.back { display:inline-block; margin-bottom:32px; font-size:14px; color:#00c3ff; text-decoration:none; }
+.back:hover { text-decoration:underline; }
+.summary-list { list-style:none; }
+.summary-list li { padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14.5px; color:rgba(255,255,255,0.78); line-height:1.8; }
+.summary-list li:last-child { border-bottom:none; }
+.disclaimer { margin-top:20px; font-size:13px; color:rgba(255,255,255,0.35);
+  padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; }
+
+.nav-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.nav-tab { font-size:14px; font-weight:600; color:var(--col); background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:7px 18px;
+  text-decoration:none; transition:background .18s, border-color .18s; }
+.nav-tab:hover { background:rgba(255,255,255,0.1); border-color:var(--col); }
+.xhs-btn { display:inline-block; margin-bottom:32px; font-size:14px; font-weight:600;
+  color:#ff6b8a; background:rgba(255,107,138,0.08); border:1px solid rgba(255,107,138,0.25);
+  border-radius:8px; padding:8px 20px; text-decoration:none; }
+.xhs-btn:hover { background:rgba(255,107,138,0.16); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📰 每日资讯日报</h1>
+    <div class="sub">科技·财经·汽车·射频 每日精选</div>
+  </div>
+</header>
+<div class="article">
+  <a class="back" href="index.html">← 返回首页</a>
+  <h1>📰 每日资讯日报 | 2026-05-24</h1>
+  <div class="meta">📅 2026-05-24 &nbsp;|&nbsp; 🤖 AI 自动生成 &nbsp;|&nbsp; 📰 每日资讯日报</div>
+  <nav class="nav-bar"><a class="nav-tab" href="#news" style="--col:#00c3ff">🌏 每日时政</a>
+<a class="nav-tab" href="#stock" style="--col:#00e5a0">📈 股市基金</a>
+<a class="nav-tab" href="#ev" style="--col:#f5a623">🚗 新能源汽车</a>
+<a class="nav-tab" href="#gaas" style="--col:#c97bff">🔬 GaAs/MMIC</a>
+<a class="nav-tab" href="#rf" style="--col:#ff6b6b">📡 射频芯片</a>
+</nav>
+  
+  
+<div class="section" id="news">
+  <h2>🌏 每日时政</h2>
+  <div class="news-item"><div class="item-body"><p>【今日核心观点】</p>
+<p>国内多地推进数字政务改革，提升公共服务效率；国家发布新一批稳增长政策，聚焦中小企业融资支持；国际社会关注全球气候合作新动向，多国呼吁加强绿色技术共享。</p>
+<p>📅 2026-05-24</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【国内要闻】多地深化数字政务改革，推动“一网通办”升级</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 近期多个省市加快数字政务系统整合，提升群众办事便利度。</p>
+<p>公开信息显示，部分地方政府正推进政务服务平台与社保、税务、公安等系统深度对接，实现更多事项“掌上办”“跨省通办”【来源：新华社】。此举旨在优化营商环境，降低制度性交易成本，提升政府服务响应速度。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【政策解读】国家出台新一轮中小企业融资支持政策</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 政府进一步加大对中小企业的金融支持力度，缓解融资难题。</p>
+<p>据公开报道，近期多部门联合推出专项信贷支持措施，鼓励金融机构向小微企业倾斜资源，并推动信用贷款产品创新。政策强调通过财政贴息、担保增信等方式降低企业融资门槛，助力实体经济稳定发展。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【国际动态】多国呼吁加强全球气候技术合作，推动绿色转型</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 国际社会持续关注气候变化应对，强调技术共享与资金支持的重要性。</p>
+<p>公开信息显示，近期国际气候对话中，多个发展中国家提出应建立更公平的技术转移机制，发达国家则表态支持清洁能源项目合作【来源：联合国新闻】。分析认为，全球绿色产业链协同将成为未来气候治理的关键路径。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【社会热点】城市青年“轻创业”趋势升温，灵活就业形态受关注</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 越来越多年轻人选择低门槛、灵活性高的创业模式，引发社会广泛讨论。</p>
+<p>据公开报道，短视频平台、本地生活服务等领域成为青年创业新阵地，部分城市已出台配套扶持政策。这一现象反映出就业观念转变，也对公共服务和社会保障体系提出新要求。</p></div></div>
+
+  
+</div>
+<div class="section" id="stock">
+  <h2>📈 股市基金</h2>
+  <div class="news-item"><div class="item-body"><p>【今日核心观点】</p>
+<p>1. 市场整体呈现结构性分化格局，科技成长板块延续强势，消费与周期股表现相对疲软。</p>
+<p>2. 主力资金持续向人工智能、半导体、新能源等高景气赛道集中，北向资金偏好发生阶段性切换。</p>
+<p>3. 短期市场情绪趋于谨慎，但中长期仍看好政策支持与产业升级驱动下的结构性机会。</p>
+<p>📅 2026-05-24</p></div></div>
+<div class="news-item"><div class="item-body"><p>**【分析维度】大盘走势</p></div></div>
+<div class="news-item"><div class="item-body"><p>**（标签：大盘走势）</p></div></div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>市场维持震荡上行趋势，但板块分化加剧，科技主线主导行情。</p>
+<p>近期A股整体呈现“指数平稳、结构活跃”特征，上证指数在关键位置反复拉锯，而创业板与科创50表现相对强势，反映出市场风险偏好向成长风格倾斜。驱动因素主要来自政策对科技创新的持续支持以及部分行业景气度改善预期。</p></div>
+</div>
+<div class="news-item"><div class="item-body"><p>**【分析维度】资金流向</p></div></div>
+<div class="news-item"><div class="item-body"><p>**（标签：资金流向）</p></div></div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>主力资金持续流入科技成长板块，消费与金融板块遭遇阶段性流出压力。</p>
+<p>从资金动向看，人工智能、半导体、光伏等赛道持续获得机构资金加仓，显示市场对技术突破与国产替代逻辑的认可。与此同时，传统消费与银行板块资金流出明显，反映出市场对经济复苏节奏的观望态度。</p></div>
+</div>
+<div class="news-item"><div class="item-body"><p>**【分析维度】行情预测</p></div></div>
+<div class="news-item"><div class="item-body"><p>**（标签：行情预测）</p></div></div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>短期市场或以震荡整固为主，中长期仍看好科技驱动的结构性牛市。</p>
+<p>考虑到外部环境不确定性仍存，叠加部分高估值板块面临获利回吐压力，预计短期内市场将维持震荡格局。但从中长期看，在政策支持与产业趋势共振下，科技、高端制造、绿色能源等方向仍具备较强配置价值。</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">人工智能ETF（159819）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>受益于AI技术商业化加速，长期成长逻辑清晰。</p>
+<ul class="md-list">
+<li>推荐理由：人工智能作为国家战略重点方向，近年来在算法、算力、应用场景持续突破，相关产业链公司订单与收入预期向好。ETF分散个股风险，适合把握行业整体趋势。</li>
+<li>风险提示：技术迭代不及预期或监管政策变化可能影响板块表现。</li>
+<li>适合投资者：成长型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">中芯国际（688981）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>半导体国产化核心标的，产能扩张与技术升级双轮驱动。</p>
+<ul class="md-list">
+<li>推荐理由：作为国内晶圆代工龙头，公司在先进制程与成熟工艺双线布局，受益于国产替代加速与下游需求回暖。</li>
+<li>风险提示：国际技术封锁与设备供应风险仍存。</li>
+<li>适合投资者：激进型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">宁德时代（300750）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>全球动力电池龙头，技术领先与规模优势构筑护城河。</p>
+<ul class="md-list">
+<li>推荐理由：公司在电池能量密度、快充技术、储能系统等领域持续创新，海外客户拓展顺利，长期增长空间广阔。</li>
+<li>风险提示：行业竞争加剧可能导致利润率承压。</li>
+<li>适合投资者：成长型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">恒瑞医药（600276）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>创新药研发管线丰富，集采影响逐步出清。</p>
+<ul class="md-list">
+<li>推荐理由：公司多款创新药进入商业化阶段，研发投入持续转化为业绩增长动力，估值处于历史低位区间。</li>
+<li>风险提示：新药研发失败或医保谈判降价超预期。</li>
+<li>适合投资者：稳健型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">比亚迪（002594）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>新能源汽车销量持续领先，垂直整合优势显著。</p>
+<ul class="md-list">
+<li>推荐理由：公司在电池、电机、电控全产业链布局完善，海外市场拓展加速，品牌影响力不断提升。</li>
+<li>风险提示：原材料价格波动与市场竞争加剧。</li>
+<li>适合投资者：成长型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">科创50ETF（588000）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>聚焦硬科技赛道，代表中国产业升级方向。</p>
+<ul class="md-list">
+<li>推荐理由：成分股涵盖半导体、生物医药、高端装备等高成长领域，长期受益于国家创新驱动战略。</li>
+<li>风险提示：波动较大，适合长期持有。</li>
+<li>适合投资者：成长型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">中国平安（601318）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>保险行业估值修复标的，负债端改善预期增强。</p>
+<ul class="md-list">
+<li>推荐理由：随着利率环境趋稳与代理人队伍优化，公司新业务价值有望回升，当前估值具备安全边际。</li>
+<li>风险提示：资本市场波动影响投资收益。</li>
+<li>适合投资者：稳健型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">隆基绿能（601012）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>光伏行业龙头，技术领先与全球化布局优势明显。</p>
+<ul class="md-list">
+<li>推荐理由：公司在HJT、BC等新型电池技术持续突破，海外产能布局规避贸易壁垒，长期成长确定性高。</li>
+<li>风险提示：行业产能过剩风险与政策补贴退坡。</li>
+<li>适合投资者：成长型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">招商中证白酒指数（161725）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>消费复苏弹性品种，高端白酒需求韧性较强。</p>
+<ul class="md-list">
+<li>推荐理由：白酒板块具备较强品牌护城河与定价权，经济回暖预期下消费场景恢复将带动业绩回升。</li>
+<li>风险提示：消费复苏不及预期或政策限制高端消费。</li>
+<li>适合投资者：稳健型</li>
+</ul></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">易方达蓝筹精选混合（005827）</span>
+  </div>
+  <div class="item-body"><p>-</p></div>
+</div>
+<div class="news-item news-item--stock">
+  <div class="stock-header">
+    <span class="item-badge badge-stock">📈 个股推荐</span>
+    <span class="stock-name">一句话结论：</span>
+  </div>
+  <div class="item-body"><p>均衡配置优质蓝筹，长期业绩稳健。</p>
+<ul class="md-list">
+<li>推荐理由：基金经理擅长精选消费、医药、科技等赛道龙头，组合抗风险能力强，适合长期持有。</li>
+<li>风险提示：市场风格切换可能导致阶段性跑输。</li>
+<li>适合投资者：稳健型</li>
+</ul></div>
+</div>
+
+  <div class="disclaimer">⚠️ 免责声明：以上分析仅供参考，不构成投资建议，据此操作风险自担。</div>
+</div>
+<div class="section" id="ev">
+  <h2>🚗 新能源汽车</h2>
+  <div class="news-item"><div class="item-body"><p>【今日核心观点】</p>
+<p>新能源汽车智能化竞争进入深水区，城市高阶智驾成为新焦点；高压快充与整车OTA持续优化用户体验；自主品牌在主流价位段加速技术落地，推动市场格局重塑。</p>
+<p>📅 2026-05-24</p>
+<p><strong>一句话结论：</strong> 新能源汽车市场持续向智能化与高压快充方向演进，主流车企正加快相关技术落地。</p>
+<p>📅 2026-05-24</p>
+<p>📅 2026-05-24</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【技术突破】整车OTA升级频率提升，智能座舱体验持续优化</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 主流新能源车企正通过高频次OTA升级，持续优化智能座舱与驾驶辅助功能。</p>
+<p>据官方资料，部分品牌已实现季度级甚至月度级系统更新，涵盖语音交互、导航逻辑、能耗管理等多个维度。这种“常用常新”的体验正逐渐成为消费者购车的重要考量因素。</p>
+<p>📅 2026-05-24</p>
+<p>公开信息显示，配备高阶智驾系统的车型在年轻消费群体中关注度显著上升，尤其在一二线城市的试驾转化率较高。车企正通过软硬件协同优化，降低智驾使用门槛。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【购车指南】同价位纯电轿车智驾能力对比：功能落地比参数更重要</strong></div><div class="item-body"><p>建议消费者优先体验实车在城市道路的自动变道、红绿灯识别、行人避让等场景表现，而非仅对比传感器数量或芯片算力。同时，关注品牌OTA更新频率与用户反馈，选择技术迭代能力强的车型。</p></div></div>
+
+  
+</div>
+<div class="section" id="gaas">
+  <h2>🔬 GaAs/MMIC技术</h2>
+  <div class="news-item"><div class="item-title"><strong>【行业动态】化合物半导体代工产能向6英寸迁移，应对5G/6G前端模块需求</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 公开技术资料显示，主流化合物半导体代工厂正逐步将GaAs产线从4英寸向6英寸迁移，以提升规模效应并降低毫米波前端模块成本。</p>
+<p>这一产能升级主要服务于大规模MIMO天线阵列和小型化基站射频前端模块的代工需求，但工艺开发周期较长，涉及光刻精度、刻蚀选择比及金属化可靠性等多重技术挑战。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【新产品解析】毫米波Doherty PA架构面临宽带匹配与热管理双重挑战</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 业内通识认为，毫米波频段Doherty功率放大器在实现高效率的同时，需解决宽带输入匹配网络与高峰均比信号下的热稳定性问题。</p>
+<p>公开技术资料显示，毫米波频段下四分之一波长传输线尺寸缩减至亚毫米级，对微带线加工精度和介电层厚度均匀性极为敏感。此外，GaN-on-SiC器件在高功率密度工作时，结温梯度分布会导致载流子迁移率下降，进而影响线性度。因此，模块设计需集成谐波调谐电路与温度补偿偏置网络，以维持复杂调制信号放大时的效率与稳定性。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【学术进展】InP基HEMT表面态工程成为毫米波低噪声研究重点</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 近期学术研究聚焦于InP基高电子迁移率晶体管（HEMT）的表面钝化工艺，以抑制毫米波频段的沟道噪声贡献。</p>
+<p>研究表明，表面态陷阱会引起载流子散射，导致噪声系数恶化。通过优化等离子体增强化学气相沉积（PECVD）的SiNx钝化层致密性，可减少界面态密度，从而降低1/f噪声向毫米波频段的延伸。此外，T型栅极结构可缩短栅长并降低栅电阻，进一步提升f_max。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【技术深解】GaN-on-SiC热沉设计决定功率放大器可靠性与寿命</strong></div><div class="item-body"><p>公开技术资料显示，热设计需综合考虑芯片级、封装级与系统级散热：芯片层面通过优化场板结构降低电场峰值，减少热电子效应；封装层面采用低热阻Au-Sn共晶焊料与铜钼铜（CMC）热沉；系统层面则依赖微流道冷却或均热板技术。</p>
+<p>📅 2026-05-24</p>
+<p>业内通识认为，未来三年技术路线将呈现"GaAs守中</p></div></div>
+
+  
+</div>
+<div class="section" id="rf">
+  <h2>📡 射频芯片</h2>
+  <div class="news-item"><span class="news-date">📅 2026-05-24</span><div class="item-body"><p>公开信息显示，该方案通过将GaAs功率放大器与SOI开关协同设计，优化了高频段切换效率与线性度表现，适用于主流5G智能手机平台【来源：行业公开技术白皮书】。尽管具体型号与性能参数未披露，但整体设计方向反映出国产射频前端正向高集成、低功耗路径演进。</p>
+<p>📅 2026-05-24</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【公司战略】Qorvo加大亚太市场投入，强化与中国终端厂商联合开发机制</strong></div><div class="item-body"><p><strong>一句话结论：</strong> Qorvo通过深化本地化合作模式，加速其射频前端解决方案在中国品牌手机中的导入进程。</p>
+<p>据行业分析，Qorvo近期调整区域战略架构，增设区域性联合实验室以支持客户定制化需求，尤其在毫米波天线模组与前端系统集成方面提供快速响应【来源：公司官网新闻稿】。此举旨在应对日益激烈的市场竞争，并巩固其在高端5G设备供应链中的地位。</p>
+<p>📅 2026-05-24</p>
+<p>目前已有国内设计企业完成工程验证，进入小批量试产阶段，标志着国产射频制造能力迈上新台阶。</p></div></div>
+<div class="news-item"><div class="item-title"><strong>【技术深解】包络跟踪（Envelope Tracking）技术提升5G高带宽信号能效表现</strong></div><div class="item-body"><p><strong>一句话结论：</strong> 包络跟踪技术通过动态调节PA供电电压，有效改善高带宽5G信号的功率附加效率与热管理压力。</p>
+<p>该技术正逐步从旗舰机型向中高端设备渗透，成为提升终端续航能力的关键使能技术之一。</p>
+<p>📅 2026-05-24</p>
+<p><strong>一句话结论：</strong> 尽管5G手机出货量增长放缓，但毫米波商用试点与6G关键技术预研为射频前端市场注入长期增长动能。</p>
+<p>*本日报由 AI 自动生成，仅供参考 | 每日资讯日报*</p></div></div>
+
+  
+</div>
+</div>
+<footer>© 📰 每日资讯日报 &nbsp;|&nbsp; <a href="https://mr-sun-cpu.github.io/rf-daily/" style="color:#00c3ff">https://mr-sun-cpu.github.io/rf-daily/</a> &nbsp;|&nbsp; 🤖 AI 自动生成</footer>
+</body>
+</html>
